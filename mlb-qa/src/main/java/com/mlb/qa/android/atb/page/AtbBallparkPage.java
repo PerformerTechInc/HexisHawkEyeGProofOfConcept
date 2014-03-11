@@ -10,15 +10,15 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 /**
  * Ballpark home page
  */
-public class BallparkPage extends AtbAndroidPage {
+public class AtbBallparkPage extends AtbAndroidPage {
 	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/ballparkupcominggame_checkin")
 	private ExtendedWebElement checkInButton;
 
-	public BallparkPage(WebDriver driver) {
+	public AtbBallparkPage(WebDriver driver) {
 		super(driver);
 	}
 
-	public CheckinPage openCheckInPage() {
+	public AtbCheckinPage openCheckInPage() {
 		if (isElementNotPresent(checkInButton)) {
 			throw new CheckInUnavailableException(
 					"No 'Check in' button present on the screen");
@@ -32,6 +32,6 @@ public class BallparkPage extends AtbAndroidPage {
 			throw new CheckInUnavailableException(
 					"Impossible to open check in window. Reason: " + msg);
 		}
-		return new CheckinPage(driver);
+		return new AtbCheckinPage(driver);
 	}
 }
