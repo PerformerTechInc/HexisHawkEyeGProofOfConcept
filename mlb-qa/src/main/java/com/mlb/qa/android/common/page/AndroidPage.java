@@ -7,11 +7,19 @@ import org.openqa.selenium.browserlaunchers.Sleeper;
 import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
-public class AndroidPage extends AbstractUIObject{
+public class AndroidPage extends AbstractUIObject {
 	protected static final Logger logger = Logger.getLogger(Screenshot.class);
-	
+
 	public AndroidPage(WebDriver driver) {
 		super(driver);
+	}
+
+	/**
+	 * 
+	 * @return true by default. Override it in child classes
+	 */
+	public boolean isOpened() {
+		return true;
 	}
 
 	public void swipeLeft() {
