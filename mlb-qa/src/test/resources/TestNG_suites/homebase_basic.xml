@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="MLB - Homebase Basic test"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+	
+	<test verbose="1" name="Verify Home Page">
+	    <parameter name="username" value="ivayner"/>
+	    <parameter name="password" value="{crypt:bS1H60l3W5qDWDjDaHmJuQ==}"/>
+	    <parameter name="profile" value="abl"/>
+	    	    
+		<classes>
+			<class name="com.mlb.qa.tests.web.HomeBaseTest">
+				<methods>
+					<include name="checkHomebaseTest" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

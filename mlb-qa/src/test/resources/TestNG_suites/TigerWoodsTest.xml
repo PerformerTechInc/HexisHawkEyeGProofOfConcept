@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="MLB - Tiget Woods acceptance"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+	
+	<test verbose="1" name="Tiger Woods Test">
+		<parameter name="tour" value="Tiger vs. Jack"/>
+		<classes>
+			<class name="com.mlb.qa.tests.web.TigerWoodsTest">
+				<methods>
+					<include name="testNews" />
+					<include name="testTigerVSJackTour" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
