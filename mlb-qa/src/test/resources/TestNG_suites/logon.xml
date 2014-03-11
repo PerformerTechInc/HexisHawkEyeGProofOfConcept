@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="MLB - Web Acceptance Logon"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+	
+	<test verbose="1" name="Verify Logon">
+	    <parameter name="email" value="media6@mlbtest.com"/>
+	    <parameter name="password" value="password"/>
+	    <parameter name="profile" value="mlbMedia"/>
+	    
+		<classes>
+			<class name="com.mlb.qa.tests.web.LoginWebTest">
+				<methods>
+					<include name="testLogin" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

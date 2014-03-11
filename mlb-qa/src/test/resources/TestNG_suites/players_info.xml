@@ -1,0 +1,38 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="MLB - Mobile Web Acceptance"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+	
+	<test verbose="1" name="Verify Player Information">
+	    <parameter name="team" value="Mets"/>
+	    <parameter name="role" value="PITCHING"/>
+	    <parameter name="sorter" value="W"/>
+	    <parameter name="person" value="De La Rosa, J"/>
+	    
+		<classes>
+			<class name="com.mlb.qa.tests.mobile.BasicMobileWebTest">
+				<methods>
+					<include name="testPlayerInfo" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test verbose="1" name="Verify Players Information">
+		<parameter name="{excel_ds_args}" value="TUID;team;role;sorter;person" /> 
+		<parameter name="{excel_ds_uid}" value="TUID;person"/>
+	    <parameter name="{excel_ds_file}" value="XLS_DATA/players.xlsx"/>
+	    <parameter name="{excel_ds_sheet}" value="player"/>	    
+		<classes>
+			<class name="com.mlb.qa.tests.mobile.BasicMobileWebTest">
+				<methods>
+					<include name="testPlayersInfo" />
+				</methods>
+			</class>
+		</classes>
+	</test>	
+
+
+	
+</suite>

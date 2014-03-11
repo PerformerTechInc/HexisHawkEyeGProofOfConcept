@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="MLB - Android At Bat"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+	<test verbose="1" name="Appium Android At Bat demo test">
+		<classes>
+			<class name="com.mlb.qa.tests.android.AppiumAndroidAtBatTest"/>
+		</classes>
+	</test>
+</suite>
