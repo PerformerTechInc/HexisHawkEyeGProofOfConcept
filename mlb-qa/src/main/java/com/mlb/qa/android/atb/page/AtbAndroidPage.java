@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import com.mlb.qa.android.common.page.AndroidPage;
-import com.mlb.qa.exception.CommonTestRuntimeException;
+import com.mlb.qa.exception.TestRuntimeException;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**
@@ -69,7 +69,7 @@ public class AtbAndroidPage extends AndroidPage {
 
 	public String getActionTitle() {
 		if (isElementNotPresent(actionBarTitle)) {
-			throw new CommonTestRuntimeException(
+			throw new TestRuntimeException(
 					"Action bar title not found on the page");
 		}
 		return actionBarTitle.getText();

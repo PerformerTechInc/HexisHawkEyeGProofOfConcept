@@ -3,7 +3,7 @@ package com.mlb.qa.android.at_bat.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.mlb.qa.exception.CommonTestRuntimeException;
+import com.mlb.qa.exception.TestRuntimeException;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 public class Menu extends AtBatAndroidPage {
@@ -47,7 +47,7 @@ public class Menu extends AtBatAndroidPage {
 			break;
 		}
 		default: {
-			throw new CommonTestRuntimeException(
+			throw new TestRuntimeException(
 					"Unknown or unsupported menu item: " + item);
 		}
 		}
