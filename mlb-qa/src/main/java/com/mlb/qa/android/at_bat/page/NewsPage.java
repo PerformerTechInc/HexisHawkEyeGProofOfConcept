@@ -6,7 +6,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.mlb.qa.exception.CommonTestRuntimeException;
+import com.mlb.qa.exception.TestRuntimeException;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 public class NewsPage extends AtBatAndroidPage {
@@ -28,7 +28,7 @@ public class NewsPage extends AtBatAndroidPage {
 	public NewsPage switchToDetailedView() {
 		logger.debug("Try to switch to detailed view");
 		if (newsTitles.isEmpty()) {
-			throw new CommonTestRuntimeException(
+			throw new TestRuntimeException(
 					"Impossible to No any news displayed or you already on the detailed view");
 		}
 		click(newsTitles.get(0));
