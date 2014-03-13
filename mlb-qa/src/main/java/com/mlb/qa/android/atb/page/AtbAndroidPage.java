@@ -1,5 +1,6 @@
 package com.mlb.qa.android.atb.page;
 
+import org.joda.time.DateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,9 @@ public class AtbAndroidPage extends AndroidPage {
 
 	// Menu
 	public enum Menu {
-		BALLPARKS("BALLPARKS"), ;
+		BALLPARKS("BALLPARKS"), 
+		CHANGE_SCOREBOARD_START_DATE("Change Scoreboard Start Date"), 
+		CLEAR_SCOREBOARD_START_DATE("Clear Scoreboard Start Date");
 
 		public static final String MENU_ITEM_LOCATOR_PATTERN = "//TextView[@text='%s']";
 
@@ -50,25 +53,22 @@ public class AtbAndroidPage extends AndroidPage {
 	 * 
 	 * @param menu
 	 */
-	public void openMenu(Menu menu) {
-		if (isElementNotPresent(menuLayout)) {
+	public void clickOnMenuItem(Menu menu) {
+		if (!isElementPresent(menuLayout)) {
 			click(openMenuButton);
 		}
-		ExtendedWebElement menuItemElement = new ExtendedWebElement(
-				driver.findElement(By.xpath(menu.getMenuItemLocator())),
-				String.format("Menu item with text '%s'",
-						menu.getMenuItemText()));
-		scrollTo(menuItemElement);
-		click(menuItemElement);
+		scrollTo(menu.getMenuItemText(), menuLayout.getBy());
+		click(String.format("Menu item with text '%s'", menu.getMenuItemText()),
+				driver.findElement(By.xpath(menu.getMenuItemLocator())));
 	}
 
 	public AtbBallparksPage openBallparksFromMenu() {
-		openMenu(Menu.BALLPARKS);
+		clickOnMenuItem(Menu.BALLPARKS);
 		return new AtbBallparksPage(driver);
 	}
 
 	public String getActionTitle() {
-		if (isElementNotPresent(actionBarTitle)) {
+		if (!isElementPresent(actionBarTitle)) {
 			throw new TestRuntimeException(
 					"Action bar title not found on the page");
 		}
@@ -92,5 +92,19 @@ public class AtbAndroidPage extends AndroidPage {
 	 */
 	public String getExpectedPageAction() {
 		return null;
+	}
+
+	/**
+	 * Testing menu section
+	 */
+	public void changeScoreboardStartDate(DateTime date) {
+		logger.info(String.format("Set Scoreboard Start Date to %s", date));
+		clickOnMenuItem(Menu.CHANGE_SCOREBOARD_START_DATE);
+		new DatePicker(driver).selectDate(date);
+	}
+
+	public void clearScoreboardStartDate() {
+		logger.info("Clear scoreboard start date from testing menu");
+		clickOnMenuItem(Menu.CLEAR_SCOREBOARD_START_DATE);
 	}
 }
