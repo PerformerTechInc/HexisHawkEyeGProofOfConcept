@@ -20,12 +20,18 @@ public class AtbAndroidPage extends AndroidPage {
 	private ExtendedWebElement menuLayout;
 	@FindBy(id = "android:id/action_bar_title")
 	private ExtendedWebElement actionBarTitle;
+	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/progress_bar")
+	private ExtendedWebElement progressBar;
+	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/error_message")
+	private ExtendedWebElement errorMesssage;
 
 	// Menu
 	public enum Menu {
-		BALLPARKS("BALLPARKS"), 
-		CHANGE_SCOREBOARD_START_DATE("Change Scoreboard Start Date"), 
-		CLEAR_SCOREBOARD_START_DATE("Clear Scoreboard Start Date");
+		BALLPARKS("BALLPARKS"), CHANGE_SCOREBOARD_START_DATE(
+				"Change Scoreboard Start Date"), CLEAR_SCOREBOARD_START_DATE(
+				"Clear Scoreboard Start Date"), OPEN_CHECKIN_WINDOW(
+				"Open Checkin Window"), CLOSE_CHECKIN_WINDOW(
+				"Close Checkin Window"), ;
 
 		public static final String MENU_ITEM_LOCATOR_PATTERN = "//TextView[@text='%s']";
 
@@ -57,7 +63,7 @@ public class AtbAndroidPage extends AndroidPage {
 		if (!isElementPresent(menuLayout)) {
 			click(openMenuButton);
 		}
-		scrollTo(menu.getMenuItemText(), menuLayout.getBy());
+		scrollTo(menu.getMenuItemText(), menuLayout);
 		click(String.format("Menu item with text '%s'", menu.getMenuItemText()),
 				driver.findElement(By.xpath(menu.getMenuItemLocator())));
 	}
@@ -94,8 +100,25 @@ public class AtbAndroidPage extends AndroidPage {
 		return null;
 	}
 
+	public boolean isErrorMessagePresent() {
+		return isElementPresent(errorMesssage);
+	}
+
+	public String loadErrorMessage() {
+		return errorMesssage.getText();
+	}
+
+	public boolean isProgressBarPresent() {
+		return isElementPresent(progressBar);
+	}
+
 	/**
 	 * Testing menu section
+	 */
+
+	/**
+	 * Set/clear scoreboard start date
+	 * 
 	 */
 	public void changeScoreboardStartDate(DateTime date) {
 		logger.info(String.format("Set Scoreboard Start Date to %s", date));
@@ -107,4 +130,39 @@ public class AtbAndroidPage extends AndroidPage {
 		logger.info("Clear scoreboard start date from testing menu");
 		clickOnMenuItem(Menu.CLEAR_SCOREBOARD_START_DATE);
 	}
+
+	/**
+	 * 
+	 * Open/Close checkin window
+	 */
+	public void openCheckinWindow() {
+		try {
+			clickOnMenuItem(Menu.OPEN_CHECKIN_WINDOW);
+		} catch (Exception e) {
+			if (!isElementPresent(menuLayout)) {
+				click(openMenuButton);
+			}
+			// if passed -> nothing to do: checkin window already opened
+			scrollTo(Menu.CLOSE_CHECKIN_WINDOW.getMenuItemText(), menuLayout);
+			logger.info("Checkin window already opened. Nothing to do");
+			// close menu
+			click(openMenuButton);
+		}
+	}
+
+	public void closeCheckinWindow() {
+		try {
+			clickOnMenuItem(Menu.CLOSE_CHECKIN_WINDOW);
+		} catch (Exception e) {
+			if (!isElementPresent(menuLayout)) {
+				click(openMenuButton);
+			}
+			// if passed -> nothing to do: checkin window already opened
+			scrollTo(Menu.OPEN_CHECKIN_WINDOW.getMenuItemText(), menuLayout);
+			logger.info("Checkin window already closed. Nothing to do");
+			// close menu
+			click(openMenuButton);
+		}
+	}
+
 }
