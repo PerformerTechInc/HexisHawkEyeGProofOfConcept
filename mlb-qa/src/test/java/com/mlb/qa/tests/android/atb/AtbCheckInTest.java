@@ -1,92 +1,91 @@
 package com.mlb.qa.tests.android.atb;
 
-import java.util.Random;
 
 import org.joda.time.DateTime;
+import org.junit.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.mlb.qa.android.atb.exception.CheckInUnavailableException;
 import com.mlb.qa.android.atb.page.AtbAndroidPage;
+import com.mlb.qa.android.atb.page.AtbEventPage;
 import com.mlb.qa.android.atb.page.AtbStartPage;
 import com.mlb.qa.android.atb.service.http.AtbHttpService;
 import com.mlb.qa.android.atb.utils.AtbParameter;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 public class AtbCheckInTest extends UITest {
-	private DateTime gameDate=new DateTime(2014,3,22,0, 0);;
-	
-	private AtbHttpService httpService = new AtbHttpService();
-	
-	@BeforeClass(enabled = false, description = "")
-	public void findNearestGameDateForBallpark(){
-		//gameDate = new DateTime(2014,3,12,18, 0);	// 03.12.2014 18:00
+	private DateTime gameDate = new DateTime(2014, 3, 22, 0, 0);;
 
+	private AtbHttpService httpService = new AtbHttpService();
+	private String homeTeam = "Arizona Diamondbacks";
+
+	@Parameters("team")
+	@BeforeClass(enabled = false, description = "Find nearest incoming game for the specified team")
+	public void findNearestGameDateForBallpark(String team) {
+		homeTeam = team;
+		// TODO: find nearest home game for the team
+		gameDate = new DateTime(2014, 3, 31, 18, 0); // Temp w/a: 03.31.2014 18:00
 
 	}
-	
+
 	@BeforeClass(enabled = false, dependsOnMethods = "findNearestGameDateForBallpark", description = "")
-	public void allowCheckinForGameDate(){
-		httpService.setTimeBoundaryCheckinServiceProperty(14400*6l);		// 24 hrs
+	public void allowCheckinForGameDate() {
+		httpService.setTimeBoundaryCheckinServiceProperty(14400 * 6l); // 24 hrs
 		httpService.setGameFeedCheckinServiceProperty(gameDate);
 	}
-	
-	@BeforeClass(enabled=false, dependsOnMethods = "allowCheckinForGameDate", description = "")
-	public void loginIfNotLogged(){
+
+	@BeforeClass(enabled = false, dependsOnMethods = "allowCheckinForGameDate", description = "")
+	public void loginIfNotLogged() {
 		AtbStartPage sp = new AtbStartPage(driver);
 		if (sp.isOpened()) {
-			sp.passToLoginPage().login(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(), AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue())
+			sp.passToLoginPage()
+					.login(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),
+							AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue())
 					.skipFavoriteTeamSelection();
 			;
 		}
 	}
-	
+
 	@BeforeClass(enabled = false, dependsOnMethods = "loginIfNotLogged")
-	public void setDateTimeFrame(){
-		AtbAndroidPage atbap = new AtbAndroidPage(driver);
-		atbap.changeScoreboardStartDate(gameDate);
+	public void openCheckinWindow() {
+		new AtbAndroidPage(driver).openCheckinWindow();
 	}
-	
-	@Test(enabled = false, description = "")
-	public void checkin(){
-		
+
+	@Test(enabled = false, description = "Check in")
+	public void checkin() {
+		AtbEventPage eventPage = new AtbAndroidPage(driver).openBallparksFromMenu()
+				.openBallparkByName(homeTeam).openCheckInPage()
+				.processLocationDetermining().confirmCheckIn();
+		Assert.assertTrue(eventPage.isAlertPresent());
 	}
-	
-	@Test(enabled = false, dependsOnMethods = "checkin")
-	public void checkCheckinSuccessInBackend(){
-		
-	}
-	
-	
-	
+
+
 	/****
 	 * 
 	 * TEMPORARY debug methods<br>
 	 * 
 	 */
-	@Test(enabled = false, expectedExceptions = CheckInUnavailableException.class)
-	public void openCheckinPage() {
-		  new AtbAndroidPage(driver).openBallparksFromMenu()
-		  .openBallparkByName("Angel Stadium").openCheckInPage();
-		 
-	}
-	
-	@Test(enabled = false, description = "Log in")
+
+	@Test(enabled = true, description = "Log in")
 	public void logInIfNotLogged() {
 		AtbStartPage sp = new AtbStartPage(driver);
 		if (sp.isOpened()) {
-			sp.passToLoginPage().login(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(), AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue())
+			sp.passToLoginPage()
+					.login(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),
+							AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue())
 					.skipFavoriteTeamSelection();
 			;
 		}
 	}
-	
-	@Test(enabled = false, description = "Check Date picker")
-	public void checkDatePicker(){
+
+	@Test(dependsOnMethods ="logInIfNotLogged")
+	public void openCheckinPage() {
 		AtbAndroidPage atbap = new AtbAndroidPage(driver);
-		atbap.changeScoreboardStartDate(new DateTime().plusDays(new Random().nextInt(999)));
-		atbap.changeScoreboardStartDate(new DateTime().plusDays(new Random().nextInt(999)));
-		atbap.clearScoreboardStartDate();
-		
+		//atbap.openCheckinWindow();
+		AtbEventPage eventPage = atbap.openBallparksFromMenu()
+				.openBallparkByName(homeTeam).openCheckInPage().processLocationDetermining()
+				.confirmCheckIn();
+		Assert.assertTrue(eventPage.isAlertPresent());
 	}
 }
