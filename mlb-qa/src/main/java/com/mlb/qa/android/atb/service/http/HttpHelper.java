@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -16,6 +17,7 @@ import com.mlb.qa.exception.TestRuntimeException;
 
 public class HttpHelper {
 	private static final Logger logger = Logger.getLogger(HttpHelper.class);
+	public static final String UTF_8_CHARSET = "UTF-8";
 
 	/**
 	 * @param method
@@ -25,7 +27,7 @@ public class HttpHelper {
 	 * @return
 	 */
 	public static HttpResult executeHttpMethod(HttpMethod method, String charset) {
-		logger.info("Execute HTTP method: " + method);
+		logger.info("Execute HTTP method: " + method.getName());
 		HttpClient client = new HttpClient();
 		try {
 			client.getParams().setParameter("http.protocol.content-charset",
@@ -70,6 +72,18 @@ public class HttpHelper {
 		}
 
 		return executeHttpMethod(pMethod, charset);
+	}
+	
+	/**
+	 * Executes GET method
+	 * @param url
+	 * @param charset
+	 * @return
+	 */
+	public static HttpResult executeGetMethod(String url, String charset) {
+		GetMethod gMethod = new GetMethod(url);
+		gMethod.setDoAuthentication(false);
+		return executeHttpMethod(gMethod, charset);
 	}
 
 	public static void checkResult(HttpResult result, int responseCode,

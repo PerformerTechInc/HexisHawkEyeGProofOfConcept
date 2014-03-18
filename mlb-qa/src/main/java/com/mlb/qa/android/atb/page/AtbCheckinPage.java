@@ -55,15 +55,16 @@ public class AtbCheckinPage extends AtbAndroidPage {
 				});
 	}
 
-	public AtbEventPage confirmCheckIn() {
+	public AtbCheckedInPage confirmCheckIn() {
 		click(confirmCheckinButton);
 		if (isElementPresent(alertTitle)
 				&& "Error".equalsIgnoreCase(alertTitle.getText())) {
 			throw new CheckInProcessingException(alertMessage.getText());
 		}
-		return new AtbEventPage(driver);
+		return new AtbCheckedInPage(driver);
 	}
 
+	@Override
 	public String getExpectedPageAction() {
 		return "Check In";
 	}
