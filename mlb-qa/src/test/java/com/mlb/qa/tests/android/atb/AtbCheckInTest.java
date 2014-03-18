@@ -57,7 +57,7 @@ public class AtbCheckInTest extends UITest {
 		}
 	}
 
-	@Test(enabled = true, dependsOnMethods = "loginIfNotLogged")
+	@Test(enabled = true, dependsOnMethods = "loginIfNotLogged", description = "Open check in window (in Testing area of application)")
 	public void openCheckinWindow() {
 		new AtbAndroidPage(driver).openCheckinWindow();
 	}
