@@ -1,6 +1,5 @@
 package com.mlb.qa.tests.android.atb;
 
-
 import org.joda.time.DateTime;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -15,32 +14,38 @@ import com.mlb.qa.android.atb.page.AtbStartPage;
 import com.mlb.qa.android.atb.service.http.AtbHttpService;
 import com.mlb.qa.android.atb.service.lookup.AtbLookupService;
 import com.mlb.qa.android.atb.utils.AtbParameter;
+import com.mlb.qa.android.atb.utils.DateUtils;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 public class AtbCheckInTest extends UITest {
-	private DateTime gameDate = new DateTime(2014, 3, 22, 0, 0);;
+
+	private Game game;
+	private Team team;
 
 	private AtbHttpService httpService = new AtbHttpService();
 	private AtbLookupService lookupService = new AtbLookupService();
-	private String homeTeam = "Arizona Diamondbacks";
 
-	@Parameters("team")
+	@Parameters("team_abbrev")
 	@BeforeClass(enabled = true, description = "Find nearest incoming game for the specified team")
-	public void findNearestGameDateForBallpark(String team) {
-		homeTeam = team;
-		// TODO: find nearest home game for the team
-		gameDate = new DateTime(2014, 3, 31, 18, 0); // Temp w/a: 03.31.2014 18:00
+	public void findNearestGameDateForBallpark(String teamAbbrev) {
+		String season = AtbParameter.MLB_ATB_SEASON.getValue();
+		team = lookupService.lookupTeamByAbbrev(teamAbbrev, season);
+		DateTime today = new DateTime();
+		game = lookupService.lookupNearestIncomingHomeGame(team.getTeamId(),
+				team.getVenueId(), today, today.plusMonths(6), season);
 
 	}
 
-	@BeforeClass(enabled = true, dependsOnMethods = "findNearestGameDateForBallpark", description = "")
+	@BeforeClass(enabled = true, dependsOnMethods = "findNearestGameDateForBallpark", description = "Allow checkin for the game date")
 	public void allowCheckinForGameDate() {
-		httpService.setTimeBoundaryCheckinServiceProperty(14400 * 6l); // 24 hrs
+		httpService.setTimeBoundaryCheckinServiceProperty(60 * 60 * 4l); // 4
+																			// hrs
+		DateTime gameDate = DateUtils.parseString(game.getGameTimeLocal(),
+				Game.GAME_TIME_LOCAL_FORMAT_PATTERN);
 		httpService.setGameFeedCheckinServiceProperty(gameDate);
 	}
 
-	
-	@Test(enabled = true, dependsOnMethods = "allowCheckinForGameDate", description = "")
+	@Test(enabled = true, dependsOnMethods = "allowCheckinForGameDate", description = "Log in if not logged yet")
 	public void loginIfNotLogged() {
 		AtbStartPage sp = new AtbStartPage(driver);
 		if (sp.isOpened()) {
@@ -57,20 +62,18 @@ public class AtbCheckInTest extends UITest {
 		new AtbAndroidPage(driver).openCheckinWindow();
 	}
 
-	@Parameters("stadium")
 	@Test(enabled = true, dependsOnMethods = "openCheckinWindow", description = "Check in")
-	public void checkin(String stadium) {
+	public void checkin() {
 		AtbCheckedInPage checkedInPage = new AtbAndroidPage(driver)
-				.openBallparksFromMenu().openBallparkByName(homeTeam)
+				.openBallparksFromMenu().openBallparkByName(team.getName())
 				.openCheckInPage().processLocationDetermining()
 				.confirmCheckIn();
 		Assert.assertTrue(
 				checkedInPage.isOpened()
-						&& stadium.equalsIgnoreCase(checkedInPage
-								.loadCheckedInStadiumName()),
+						&& team.getVenueName().equalsIgnoreCase(
+								checkedInPage.loadCheckedInStadiumName()),
 				"Checked In page not opened or wrong stadium page displayed");
 	}
-
 
 	/****
 	 * 
@@ -90,20 +93,23 @@ public class AtbCheckInTest extends UITest {
 		}
 	}
 
-	@Test(enabled = false, dependsOnMethods ="logInIfNotLogged")
+	@Test(enabled = false, dependsOnMethods = "logInIfNotLogged")
 	public void openCheckinPage() {
 		AtbAndroidPage atbap = new AtbAndroidPage(driver);
-		//atbap.openCheckinWindow();
+		// atbap.openCheckinWindow();
 		AtbCheckedInPage eventPage = atbap.openBallparksFromMenu()
-				.openBallparkByName(homeTeam).openCheckInPage().processLocationDetermining()
-				.confirmCheckIn();
+				.openBallparkByName("").openCheckInPage()
+				.processLocationDetermining().confirmCheckIn();
 		Assert.assertTrue(eventPage.isAlertPresent());
 	}
-	
+
 	@Test(enabled = false, description = "Check game date")
-	public void checkSearchByTeamAbbrev(){
-		Team team = lookupService.lookupTeamByAbbrev("ARI", AtbParameter.MLB_ATB_SEASON.getValue());
-		Game game = lookupService.lookupNearestIncomingHomeGame(team.getTeamId(), team.getVenueId(), new DateTime(), new DateTime().plusYears(1), "2014");
-		System.out.print(game.getGameDate());
+	public void checkSearchByTeamAbbrev() {
+		Team team = lookupService.lookupTeamByAbbrev("ARI",
+				AtbParameter.MLB_ATB_SEASON.getValue());
+		Game game = lookupService.lookupNearestIncomingHomeGame(
+				team.getTeamId(), team.getVenueId(), new DateTime(),
+				new DateTime().plusYears(1), "2014");
+		System.out.print(game.getGameTimeLocal());
 	}
 }

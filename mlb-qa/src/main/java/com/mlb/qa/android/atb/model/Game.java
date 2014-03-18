@@ -10,10 +10,11 @@ import com.mlb.qa.android.atb.service.lookup.LookupItem;
 @XmlRootElement(name = "row")
 @XmlAccessorType(XmlAccessType.NONE)
 public class Game implements LookupItem {
+	//3/17/2014 11:05:00 AM
+	public static final String GAME_TIME_LOCAL_FORMAT_PATTERN = "MM/dd/yyyy hh:mm:ss a";
+
 	@XmlAttribute(name = "game_id")
 	private String gameId;
-	@XmlAttribute(name = "game_date")
-	private String gameDate;
 	@XmlAttribute(name = "game_time_local")
 	private String gameTimeLocal;
 	@XmlAttribute(name = "home_team_id")
@@ -35,14 +36,6 @@ public class Game implements LookupItem {
 
 	public void setGameId(String gameId) {
 		this.gameId = gameId;
-	}
-
-	public String getGameDate() {
-		return gameDate;
-	}
-
-	public void setGameDate(String gameDate) {
-		this.gameDate = gameDate;
 	}
 
 	public String getGameTimeLocal() {
@@ -103,10 +96,10 @@ public class Game implements LookupItem {
 
 	@Override
 	public String toString() {
-		return "Game [gameId=" + gameId + ", gameDate=" + gameDate
-				+ ", gameTimeLocal=" + gameTimeLocal + ", homeTeamId="
-				+ homeTeamId + ", homeTeamFull=" + homeTeamFull + ", venueId="
-				+ venueId + ", venue=" + venue + ", awayTeamId=" + awayTeamId
-				+ ", awayTeamFull=" + awayTeamFull + "]";
+		return "Game [gameId=" + gameId + ", gameTimeLocal=" + gameTimeLocal
+				+ ", homeTeamId=" + homeTeamId + ", homeTeamFull="
+				+ homeTeamFull + ", venueId=" + venueId + ", venue=" + venue
+				+ ", awayTeamId=" + awayTeamId + ", awayTeamFull="
+				+ awayTeamFull + "]";
 	}
 }

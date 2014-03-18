@@ -1,10 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="MLB - At the Ballpark"
-	skipfailedinvocationcounts="false" junit="false" parallel="tests"
-	data-provider-thread-count="50" annotations="JDK">
+<suite verbose="1" name="MLB - At the Ballpark" annotations="JDK">
 	<test verbose="1" name="At the Ballpark - Check in test">
-		<parameter name="team" value="Arizona Diamondbacks"></parameter>
-		<parameter name="stadium" value="CHASE FIELD"></parameter>
+		<parameter name="team_abbrev" value="ARI"></parameter>
 		<classes>
 			<class name="com.mlb.qa.tests.android.atb.AtbCheckInTest" />
 		</classes>
