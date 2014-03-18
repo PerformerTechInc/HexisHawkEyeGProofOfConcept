@@ -13,14 +13,13 @@ import com.mlb.qa.android.atb.utils.AtbParameter;
 public class AtbHttpService {
 	private static final Logger logger = Logger.getLogger(AtbHttpService.class);
 
-	public static final String UTF_8_CHARSET = "UTF-8";
 	private static final String KEY_PARAM = "key";
 	private static final String VALUE_PARAM = "value";
 	private static final String PROPERTY_UPDATED_RESPONSE_REGEX = ".*%s.*property is updated to.*s.*";
 	private static final String GAME_FEED_URL_PATTERN = "http://gd.qa.mlb.com/components/game/mlb/year_%4d/month_%02d/day_%02d/master_scoreboard.xml";
 	
 	public enum AtbCheckinProperty {
-		GAME_FEED("com.bamnetworks.mobile.service.instadium.game.GameService.gameFeedURL"), 
+		GAME_FEED("com.bamnetworks.mobile.service.social.game.GameService.gameFeedURL"), 
 		TIME_BOUNDARY("com.bamnetworks.mobile.service.social.game.GameService.timeBoundary"),
 		;
 		private String propertyName;
@@ -47,7 +46,9 @@ public class AtbHttpService {
 		bodyParameters.put(VALUE_PARAM, timeInSeconds.toString());
 		HttpResult result = HttpHelper.executePostMethod(
 				AtbParameter.MLB_ATB_SOCIAL_SERVICE_PROPERTY_HOST.getValue(),
-				new HashMap<String, String>(), bodyParameters, UTF_8_CHARSET);
+				new HashMap<String, String>(), bodyParameters, HttpHelper.UTF_8_CHARSET);
+		logger.info("Operation result: ");
+		logger.info(result);
 		HttpHelper.checkResult(result, HttpStatus.SC_OK, String.format(
 				PROPERTY_UPDATED_RESPONSE_REGEX,
 				AtbCheckinProperty.TIME_BOUNDARY.getPropertyName(),
@@ -72,7 +73,9 @@ public class AtbHttpService {
 		bodyParameters.put(VALUE_PARAM, value);
 		HttpResult result = HttpHelper.executePostMethod(
 				AtbParameter.MLB_ATB_SOCIAL_SERVICE_PROPERTY_HOST.getValue(),
-				new HashMap<String, String>(), bodyParameters, UTF_8_CHARSET);
+				new HashMap<String, String>(), bodyParameters, HttpHelper.UTF_8_CHARSET);
+		logger.info("Operation result: ");
+		logger.info(result);
 		HttpHelper.checkResult(result, HttpStatus.SC_OK, String.format(
 				PROPERTY_UPDATED_RESPONSE_REGEX,
 				AtbCheckinProperty.GAME_FEED.getPropertyName(),

@@ -6,7 +6,8 @@ public enum AtbParameter {
 	MLB_ATB_LOOKUP_SERVICE("mlb_atb_lookup_service"),
 	MLB_ATB_SOCIAL_SERVICE_PROPERTY_HOST("mlb_atb_social_service"),
 	MLB_ATB_DEFAULT_USER("mlb_atb_default_user"),
-	MLB_ATB_DEFAULT_PASSWORD("mlb_atb_default_password"),	
+	MLB_ATB_DEFAULT_PASSWORD("mlb_atb_default_password"),
+	MLB_ATB_SEASON("mlb_atb_season"),
 	;
 	
 	private String key;
