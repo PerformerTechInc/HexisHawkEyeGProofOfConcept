@@ -68,7 +68,7 @@ public class AtbCheckInTest extends UITest {
 	@Test(enabled = true, dependsOnMethods = "openCheckinWindow", description = "Check in")
 	public void checkin() {
 		AtbCheckedInPage checkedInPage = new AtbAndroidPage(driver)
-				.openBallparksFromMenu().openBallparkByName(team.getNameFull())
+				.openBallparksFromMenu().openBallparkByTeamName(team.getNameFull())
 				.openCheckInPage().processLocationDetermining()
 				.confirmCheckIn();
 		Assert.assertTrue(
@@ -80,6 +80,9 @@ public class AtbCheckInTest extends UITest {
 
 	private String detectVenueOnUi(Game game) {
 		String venueShort = game.getVenueShort();
-		return venueShort == null ? game.getVenue() : venueShort;
+		if (null == venueShort || venueShort.isEmpty()){
+			return game.getVenue();
+		}
+		return venueShort;
 	}
 }
