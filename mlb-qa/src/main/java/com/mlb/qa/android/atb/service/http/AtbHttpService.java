@@ -35,15 +35,15 @@ public class AtbHttpService {
 
 	/**
 	 * Set timeBoundary property of mobile-service-social
-	 * @param timeInSeconds
+	 * @param timeInMinutes
 	 */
-	public void setTimeBoundaryCheckinServiceProperty(Long timeInSeconds) {
+	public void setTimeBoundaryCheckinServiceProperty(Long timeInMinutes) {
 		logger.info(String.format("Set checkin timeBoundary property to %s",
-				timeInSeconds));
+				timeInMinutes));
 		Map<String, String> bodyParameters = new HashMap<String, String>();
 		bodyParameters.put(KEY_PARAM,
 				AtbCheckinProperty.TIME_BOUNDARY.getPropertyName());
-		bodyParameters.put(VALUE_PARAM, timeInSeconds.toString());
+		bodyParameters.put(VALUE_PARAM, timeInMinutes.toString());
 		HttpResult result = HttpHelper.executePostMethod(
 				AtbParameter.MLB_ATB_SOCIAL_SERVICE_PROPERTY_HOST.getValue(),
 				new HashMap<String, String>(), bodyParameters, HttpHelper.UTF_8_CHARSET);
@@ -52,7 +52,7 @@ public class AtbHttpService {
 		HttpHelper.checkResult(result, HttpStatus.SC_OK, String.format(
 				PROPERTY_UPDATED_RESPONSE_REGEX,
 				AtbCheckinProperty.TIME_BOUNDARY.getPropertyName(),
-				timeInSeconds.toString()));
+				timeInMinutes.toString()));
 	}
 
 	/**

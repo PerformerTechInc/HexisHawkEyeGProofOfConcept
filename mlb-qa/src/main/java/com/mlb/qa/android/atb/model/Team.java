@@ -16,6 +16,8 @@ public class Team implements LookupItem {
 	private String nameShort;
 	@XmlAttribute(name = "name_abbrev")
 	private String nameAbbrev;
+	@XmlAttribute(name = "name_display_full")
+	private String nameFull;
 	@XmlAttribute(name = "city")
 	private String city;
 	@XmlAttribute(name = "venue_id")
@@ -79,10 +81,20 @@ public class Team implements LookupItem {
 		this.venueName = venueName;
 	}
 
+	public String getNameFull() {
+		return nameFull;
+	}
+
+	public void setNameFull(String nameFull) {
+		this.nameFull = nameFull;
+	}
+
 	@Override
 	public String toString() {
 		return "Team [teamId=" + teamId + ", name=" + name + ", nameShort="
-				+ nameShort + ", nameAbbrev=" + nameAbbrev + ", city=" + city
-				+ ", venueId=" + venueId + ", venueName=" + venueName + "]";
+				+ nameShort + ", nameAbbrev=" + nameAbbrev + ", nameFull="
+				+ nameFull + ", city=" + city + ", venueId=" + venueId
+				+ ", venueName=" + venueName + "]";
 	}
+
 }
