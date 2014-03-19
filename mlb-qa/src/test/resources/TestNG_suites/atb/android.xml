@@ -1,17 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark" annotations="JDK">
-	<test verbose="1" name="At the Ballpark - Check in test- ARI">
-		<parameter name="team_abbrev" value="ARI"></parameter>
-		<classes>
-			<class name="com.mlb.qa.tests.android.atb.AtbCheckInTest" />
-		</classes>
-	</test>
-	<test verbose="1" name="At the Ballpark - Check in test - BOS">
-		<parameter name="team_abbrev" value="BOS"></parameter>
-		<classes>
-			<class name="com.mlb.qa.tests.android.atb.AtbCheckInTest" />
-		</classes>
-	</test>
 	<test verbose="1" name="At the Ballpark - Check in test - ATL">
 		<parameter name="team_abbrev" value="ATL"></parameter>
 		<classes>
@@ -32,6 +20,18 @@
 	</test>
 	<test verbose="1" name="At the Ballpark - Check in test - CWS">
 		<parameter name="team_abbrev" value="CWS"></parameter>
+		<classes>
+			<class name="com.mlb.qa.tests.android.atb.AtbCheckInTest" />
+		</classes>
+	</test>
+	<test verbose="1" name="At the Ballpark - Check in test- ARI">
+		<parameter name="team_abbrev" value="ARI"></parameter>
+		<classes>
+			<class name="com.mlb.qa.tests.android.atb.AtbCheckInTest" />
+		</classes>
+	</test>
+	<test verbose="1" name="At the Ballpark - Check in test - BOS">
+		<parameter name="team_abbrev" value="BOS"></parameter>
 		<classes>
 			<class name="com.mlb.qa.tests.android.atb.AtbCheckInTest" />
 		</classes>

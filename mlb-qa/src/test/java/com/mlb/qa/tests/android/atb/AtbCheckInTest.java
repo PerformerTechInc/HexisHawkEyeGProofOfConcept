@@ -73,8 +73,13 @@ public class AtbCheckInTest extends UITest {
 				.confirmCheckIn();
 		Assert.assertTrue(
 				checkedInPage.isOpened()
-						&& team.getVenueName().equalsIgnoreCase(
+						&& detectVenueOnUi(game).equalsIgnoreCase(
 								checkedInPage.loadCheckedInStadiumName()),
 				"Checked In page not opened or wrong stadium page displayed");
+	}
+
+	private String detectVenueOnUi(Game game) {
+		String venueShort = game.getVenueShort();
+		return venueShort == null ? game.getVenue() : venueShort;
 	}
 }
