@@ -10,7 +10,6 @@ import com.mlb.qa.android.atb.service.lookup.LookupItem;
 @XmlRootElement(name = "row")
 @XmlAccessorType(XmlAccessType.NONE)
 public class Game implements LookupItem {
-	//3/17/2014 11:05:00 AM
 	public static final String GAME_TIME_LOCAL_FORMAT_PATTERN = "MM/dd/yyyy hh:mm:ss a";
 
 	@XmlAttribute(name = "game_id")
@@ -25,6 +24,8 @@ public class Game implements LookupItem {
 	private String venueId;
 	@XmlAttribute(name = "venue")
 	private String venue;
+	@XmlAttribute(name = "venue_short")
+	private String venueShort;
 	@XmlAttribute(name = "away_team_id")
 	private String awayTeamId;
 	@XmlAttribute(name = "away_team_full")
@@ -94,12 +95,21 @@ public class Game implements LookupItem {
 		this.awayTeamFull = awayTeamFull;
 	}
 
+	public String getVenueShort() {
+		return venueShort;
+	}
+
+	public void setVenueShort(String venueShort) {
+		this.venueShort = venueShort;
+	}
+
 	@Override
 	public String toString() {
 		return "Game [gameId=" + gameId + ", gameTimeLocal=" + gameTimeLocal
 				+ ", homeTeamId=" + homeTeamId + ", homeTeamFull="
 				+ homeTeamFull + ", venueId=" + venueId + ", venue=" + venue
-				+ ", awayTeamId=" + awayTeamId + ", awayTeamFull="
-				+ awayTeamFull + "]";
+				+ ", venueShort=" + venueShort + ", awayTeamId=" + awayTeamId
+				+ ", awayTeamFull=" + awayTeamFull + "]";
 	}
+
 }
