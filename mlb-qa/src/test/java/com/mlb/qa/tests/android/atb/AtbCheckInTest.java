@@ -81,7 +81,7 @@ public class AtbCheckInTest extends UITest {
 	@Test(dataProvider = "excel_ds")
 	public void checkin(String teamAbbrev){
 		findNearestGameDateForBallpark(teamAbbrev);
-		allowCheckinForGameDate();
+		//allowCheckinForGameDate();
 		loginIfNotLogged();
 		openCheckinWindow();
 		checkin();

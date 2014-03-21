@@ -60,7 +60,7 @@ public class AtbAndroidPage extends AndroidPage {
 	 * @param menu
 	 */
 	public void clickOnMenuItem(Menu menu) {
-		if (!isElementPresent(menuLayout)) {
+		if (!isElementPresent(menuLayout, delay)) {
 			click(openMenuButton);
 		}
 		scrollTo(menu.getMenuItemText(), menuLayout);
@@ -74,7 +74,7 @@ public class AtbAndroidPage extends AndroidPage {
 	}
 
 	public String getActionTitle() {
-		if (!isElementPresent(actionBarTitle)) {
+		if (!isElementPresent(actionBarTitle, delay)) {
 			throw new TestRuntimeException(
 					"Action bar title not found on the page");
 		}
@@ -101,7 +101,7 @@ public class AtbAndroidPage extends AndroidPage {
 	}
 
 	public boolean isErrorMessagePresent() {
-		return isElementPresent(errorMesssage);
+		return isElementPresent(errorMesssage, delay);
 	}
 
 	public String loadErrorMessage() {
@@ -109,7 +109,7 @@ public class AtbAndroidPage extends AndroidPage {
 	}
 
 	public boolean isProgressBarPresent() {
-		return isElementPresent(progressBar);
+		return isElementPresent(progressBar, delay);
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class AtbAndroidPage extends AndroidPage {
 		try {
 			clickOnMenuItem(Menu.OPEN_CHECKIN_WINDOW);
 		} catch (Exception e) {
-			if (!isElementPresent(menuLayout)) {
+			if (!isElementPresent(menuLayout, delay)) {
 				click(openMenuButton);
 			}
 			// if passed -> nothing to do: checkin window already opened
@@ -154,7 +154,7 @@ public class AtbAndroidPage extends AndroidPage {
 		try {
 			clickOnMenuItem(Menu.CLOSE_CHECKIN_WINDOW);
 		} catch (Exception e) {
-			if (!isElementPresent(menuLayout)) {
+			if (!isElementPresent(menuLayout, delay)) {
 				click(openMenuButton);
 			}
 			// if passed -> nothing to do: checkin window already opened

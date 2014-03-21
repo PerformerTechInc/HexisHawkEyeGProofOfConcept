@@ -22,12 +22,12 @@ public class AtbBallparkPage extends AtbAndroidPage {
 	}
 
 	public AtbCheckinPage openCheckInPage() {
-		if (isElementNotPresent(checkInButton)) {
+		if (!isElementPresent(checkInButton, delay)) {
 			throw new CheckInProcessingException(
 					"No 'Check in' button present on the screen");
 		}
 		click(checkInButton);
-		if (isElementPresent(okButtonOnPopup)) {
+		if (isElementPresent(okButtonOnPopup, delay)) {
 			throw new CheckInProcessingException(errorMessageOnPopup.getText());
 		}
 		return new AtbCheckinPage(driver);
