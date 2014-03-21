@@ -13,6 +13,7 @@ import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
 public class AndroidPage extends AbstractUIObject {
 	protected static final Logger logger = Logger.getLogger(AndroidPage.class);
+	protected static final int delay = 3;
 
 	public AndroidPage(WebDriver driver) {
 		super(driver);

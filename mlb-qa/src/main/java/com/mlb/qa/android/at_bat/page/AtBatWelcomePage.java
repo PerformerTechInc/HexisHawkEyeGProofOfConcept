@@ -17,7 +17,7 @@ public class AtBatWelcomePage extends AtBatAndroidPage {
 	public FavoriteTeamSelectionPage continueWithLiteVersion() {
 		logger.debug("Skip 'buy premium version' step if displayed");
 		// present just for 1st run
-		if (isElementPresent(maybeLaterLink)) {
+		if (isElementPresent(maybeLaterLink, 3)) {
 			click(maybeLaterLink);
 		}
 		return new FavoriteTeamSelectionPage(driver);

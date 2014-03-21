@@ -50,14 +50,14 @@ public class AtbCheckinPage extends AtbAndroidPage {
 
 					@Override
 					public boolean apply(WebDriver arg0) {
-						return !(isProgressBarPresent() || isElementPresent(determiningLocationText));
+						return !(isProgressBarPresent() || isElementPresent(determiningLocationText, delay));
 					}
 				});
 	}
 
 	public AtbCheckedInPage confirmCheckIn() {
 		click(confirmCheckinButton);
-		if (isElementPresent(alertTitle)
+		if (isElementPresent(alertTitle, delay)
 				&& "Error".equalsIgnoreCase(alertTitle.getText())) {
 			throw new CheckInProcessingException(alertMessage.getText());
 		}

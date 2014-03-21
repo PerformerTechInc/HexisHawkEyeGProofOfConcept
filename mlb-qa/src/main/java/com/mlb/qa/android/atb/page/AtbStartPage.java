@@ -20,7 +20,7 @@ public class AtbStartPage extends AtbAndroidPage {
 
 	@Override
 	public boolean isOpened() {
-		return isElementPresent(mlbLoginTitle);
+		return isElementPresent(mlbLoginTitle, delay);
 	}
 
 	public AtbLoginPage passToLoginPage() {
