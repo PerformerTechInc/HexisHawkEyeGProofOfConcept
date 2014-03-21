@@ -27,8 +27,8 @@ public class AtbCheckInTest extends UITest {
 	private AtbHttpService httpService = new AtbHttpService();
 	private AtbLookupService lookupService = new AtbLookupService();
 
-	@Parameters("team_abbrev")
-	@BeforeClass(enabled = true, description = "Find nearest incoming game for the specified team")
+	//@Parameters("team_abbrev")
+	//@BeforeClass(enabled = true, description = "Find nearest incoming game for the specified team")
 	public void findNearestGameDateForBallpark(String teamAbbrev) {
 		String season = AtbParameter.MLB_ATB_SEASON.getValue();
 		team = lookupService.lookupTeamByAbbrev(teamAbbrev, season);
@@ -37,7 +37,7 @@ public class AtbCheckInTest extends UITest {
 				team.getVenueId(), today, today.plusMonths(6), season);
 	}
 
-	@BeforeClass(enabled = true, dependsOnMethods = "findNearestGameDateForBallpark", description = "Allow checkin for the game date")
+	//@BeforeClass(enabled = true, dependsOnMethods = "findNearestGameDateForBallpark", description = "Allow checkin for the game date")
 	public void allowCheckinForGameDate() {
 		DateTime gameDate = DateUtils.parseString(game.getGameTimeLocal(),
 				Game.GAME_TIME_LOCAL_FORMAT_PATTERN);
@@ -48,7 +48,7 @@ public class AtbCheckInTest extends UITest {
 				.setTimeBoundaryCheckinServiceProperty(daysBetween * 24 * 60l);
 	}
 
-	@Test(enabled = true, description = "Log in if not logged yet")
+	//@Test(enabled = true, description = "Log in if not logged yet")
 	public void loginIfNotLogged() {
 		AtbStartPage sp = new AtbStartPage(driver);
 		if (sp.isOpened()) {
@@ -60,27 +60,36 @@ public class AtbCheckInTest extends UITest {
 		}
 	}
 
-	@Test(enabled = true, dependsOnMethods = "loginIfNotLogged", description = "Open check in window (in Testing area of application)")
+	//@Test(enabled = true, dependsOnMethods = "loginIfNotLogged", description = "Open check in window (in Testing area of application)")
 	public void openCheckinWindow() {
 		new AtbAndroidPage(driver).openCheckinWindow();
 	}
 
-	@Test(enabled = true, dependsOnMethods = "openCheckinWindow", description = "Check in")
+	//@Test(enabled = true, dependsOnMethods = "openCheckinWindow", description = "Check in")
 	public void checkin() {
 		AtbCheckedInPage checkedInPage = new AtbAndroidPage(driver)
-				.openBallparksFromMenu().openBallparkByTeamName(team.getNameFull())
-				.openCheckInPage().processLocationDetermining()
-				.confirmCheckIn();
+				.openBallparksFromMenu()
+				.openBallparkByTeamName(team.getNameFull()).openCheckInPage()
+				.processLocationDetermining().confirmCheckIn();
 		Assert.assertTrue(
 				checkedInPage.isOpened()
 						&& detectVenueOnUi(game).equalsIgnoreCase(
 								checkedInPage.loadCheckedInStadiumName()),
 				"Checked In page not opened or wrong stadium page displayed");
 	}
+	
+	@Test(dataProvider = "excel_ds")
+	public void checkin(String teamAbbrev){
+		findNearestGameDateForBallpark(teamAbbrev);
+		allowCheckinForGameDate();
+		loginIfNotLogged();
+		openCheckinWindow();
+		checkin();
+	}
 
 	private String detectVenueOnUi(Game game) {
 		String venueShort = game.getVenueShort();
-		if (null == venueShort || venueShort.isEmpty()){
+		if (null == venueShort || venueShort.isEmpty()) {
 			return game.getVenue();
 		}
 		return venueShort;
