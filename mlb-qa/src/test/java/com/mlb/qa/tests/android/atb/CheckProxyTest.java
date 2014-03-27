@@ -63,8 +63,8 @@ public class CheckProxyTest extends APITest {
 			HttpHost proxy = new HttpHost("proxy-vip.mm3.mlbam.com", 80);
 
 	        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-	        nvps.add(new BasicNameValuePair("key", "username"));
-	        nvps.add(new BasicNameValuePair("IDToken2", "password"));
+	        nvps.add(new BasicNameValuePair("key", "com.bamnetworks.mobile.service.social.game.GameService.timeBoundary"));
+	        nvps.add(new BasicNameValuePair("value", "666666"));
 				httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
 	
 	        DefaultHttpClient client = new DefaultHttpClient();
