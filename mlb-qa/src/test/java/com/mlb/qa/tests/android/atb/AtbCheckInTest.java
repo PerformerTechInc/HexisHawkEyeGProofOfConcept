@@ -1,5 +1,7 @@
 package com.mlb.qa.tests.android.atb;
 
+import java.io.UnsupportedEncodingException;
+
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
@@ -38,7 +40,7 @@ public class AtbCheckInTest extends UITest {
 	}
 
 	//@BeforeClass(enabled = true, dependsOnMethods = "findNearestGameDateForBallpark", description = "Allow checkin for the game date")
-	public void allowCheckinForGameDate() {
+	public void allowCheckinForGameDate() throws UnsupportedEncodingException {
 		DateTime gameDate = DateUtils.parseString(game.getGameTimeLocal(),
 				Game.GAME_TIME_LOCAL_FORMAT_PATTERN);
 		httpService.setGameFeedCheckinServiceProperty(gameDate);
