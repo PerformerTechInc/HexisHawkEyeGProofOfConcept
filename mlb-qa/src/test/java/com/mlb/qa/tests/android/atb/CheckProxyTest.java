@@ -51,10 +51,10 @@ public class CheckProxyTest extends APITest {
 		client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
 		try {
 			HttpResponse response = client.execute(get);
-			System.out.print(response.toString() );
+		logger.info(response.toString());
 			InputStream istream = response.getEntity().getContent();
 			String result = IOUtils.toString(istream);
-			System.out.print(result);
+			logger.info(result);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
