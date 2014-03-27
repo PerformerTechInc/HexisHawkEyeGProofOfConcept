@@ -74,6 +74,7 @@ public class CheckProxyTest extends APITest {
 	        logger.info(response);
 	    	String result = IOUtils.toString(response.getEntity().getContent());
 			logger.info(result);
+			// svn hack	
 	}
 	
 }
