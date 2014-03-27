@@ -2,8 +2,6 @@ package com.mlb.qa.tests.android.atb;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
@@ -13,16 +11,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.log4j.Logger;
-import org.apache.xmlbeans.impl.common.IOUtil;
-import org.joda.time.DateTime;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.mlb.qa.android.atb.model.Game;
-import com.mlb.qa.android.atb.model.Team;
 import com.mlb.qa.android.atb.service.http.AtbHttpService;
 import com.mlb.qa.android.atb.service.lookup.AtbLookupService;
-import com.mlb.qa.android.atb.utils.AtbParameter;
 import com.qaprosoft.carina.core.foundation.APITest;
 
 public class CheckProxyTest extends APITest {
@@ -61,11 +54,5 @@ public class CheckProxyTest extends APITest {
 			e.printStackTrace();
 		}
 	}
-
-	/*@Test()
-	public void checkProxyPost() {
-		httpService.setTimeBoundaryCheckinServiceProperty(5 * 24 * 60l);
-	}*/
-	
 	
 }
