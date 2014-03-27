@@ -42,7 +42,7 @@ public class CheckProxyTest extends APITest {
 		lookupService.lookupNearestIncomingHomeGame(
 				team.getTeamId(), team.getVenueId(), today,
 				today.plusMonths(6), season);*/
-		HttpHost proxy = new HttpHost("http://proxy-vip.mm3.mlbam.com", 80);
+		HttpHost proxy = new HttpHost("proxy-vip.mm3.mlbam.com", 80);
 		logger.info(proxy);
 		DefaultHttpClient client = new DefaultHttpClient();
 		logger.info(client);
