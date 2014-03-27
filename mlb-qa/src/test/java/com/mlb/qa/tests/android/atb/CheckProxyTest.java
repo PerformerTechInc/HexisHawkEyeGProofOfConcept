@@ -52,18 +52,16 @@ public class CheckProxyTest extends APITest {
 			String result = IOUtils.toString(istream);
 			System.out.print(result);
 		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Test()
+	/*@Test()
 	public void checkProxyPost() {
 		httpService.setTimeBoundaryCheckinServiceProperty(5 * 24 * 60l);
-	}
+	}*/
 	
 	
 }
