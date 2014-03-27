@@ -58,6 +58,7 @@ public class HttpHelper {
 				result.setResponseBody(IOUtils.toString(response.getEntity()
 						.getContent()));
 			}
+			logger.info("Result: " + result);
 			return result;
 		} catch (Exception e) {
 			throw new TestRuntimeException("Error while http method execution",
