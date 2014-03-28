@@ -3,7 +3,7 @@
 	<test verbose="1" name="At the Ballpark - Check in test">
 		<parameter name="{excel_ds_args}" value="team_abbrev" /> 
 		<parameter name="{excel_ds_uid}" value="team_abbrev"/>
-	    <parameter name="{excel_ds_file}" value="XLS_DATA/atb_team_abbrev.xls"/>
+	    <parameter name="{excel_ds_file}" value="XLS_DATA/atb_teams.xlsx"/>
 	    <parameter name="{excel_ds_sheet}" value="team_abbrev"/>	
 		<classes>
 			<class name="com.mlb.qa.tests.android.atb.AtbCheckInTest" />
