@@ -53,10 +53,10 @@ public class AtbLookupService {
 								.dateToString(startDate,
 										LOOKUP_INPUT_DATE_FORMAT), venueId,
 						season);
-		logger.info(String.format("Request: %s", getQueryRequest));
+		//logger.info(String.format("Request: %s", getQueryRequest));
 		HttpResult result = HttpHelper.executeGet(getQueryRequest,
 				HttpHelper.UTF_8_CHARSET);
-		logger.info(String.format("Result: %s", result));
+		//logger.info(String.format("Result: %s", result));
 		HttpHelper.checkResult(result, HttpStatus.SC_OK,
 				QUERYNG_RESULT_RESPONSE_REGEXP);
 		List<Game> games = LookupHelper.unmarshal(Game.class,
@@ -83,10 +83,10 @@ public class AtbLookupService {
 						abbrev, season));
 		String request = AtbParameter.MLB_ATB_LOOKUP_SERVICE.getValue()
 				+ String.format(TEAM_BY_ABBREV_QUERY, abbrev, season);
-		logger.info(String.format("Request: %s", request));
+		//logger.info(String.format("Request: %s", request));
 		HttpResult result = HttpHelper.executeGet(request,
 				HttpHelper.UTF_8_CHARSET);
-		logger.info(String.format("Result: %s", result));
+		//logger.info(String.format("Result: %s", result));
 		HttpHelper.checkResult(result, HttpStatus.SC_OK,
 				QUERYNG_RESULT_RESPONSE_REGEXP);
 		List<Team> teams = LookupHelper.unmarshal(Team.class,

@@ -81,7 +81,7 @@ public class AtbCheckInTest extends UITest {
 	}
 	
 	@Test(dataProvider = "excel_ds")
-	public void checkin(String teamAbbrev){
+	public void checkin(String teamAbbrev) throws UnsupportedEncodingException {
 		findNearestGameDateForBallpark(teamAbbrev);
 		//allowCheckinForGameDate();
 		loginIfNotLogged();

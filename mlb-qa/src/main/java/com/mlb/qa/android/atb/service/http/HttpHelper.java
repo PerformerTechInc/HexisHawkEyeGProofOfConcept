@@ -26,8 +26,8 @@ public class HttpHelper {
 	private static final Logger logger = Logger.getLogger(HttpHelper.class);
 	public static final String UTF_8_CHARSET = "UTF-8";
 	public static final Integer DEFAULT_HTTP_PORT = 80;
-	public static final String HTTP_PROXY_HOSTNAME = "http_proxy_host_name";
-	public static final String HTTP_PROXY_PORT = "http_proxy_port";
+	public static final String HTTP_PROXY_HOSTNAME = "http.proxyHost";
+	public static final String HTTP_PROXY_PORT = "http.proxyPort";
 
 	/**
 	 * @param method
@@ -51,14 +51,14 @@ public class HttpHelper {
 		}
 		try {
 			HttpResponse response = client.execute(request);
-			logger.info("Response: " + response);
+			// logger.info("Response: " + response);
 			HttpResult result = new HttpResult();
 			result.setResponseCode(response.getStatusLine().getStatusCode());
 			if (response.getEntity() != null) {
 				result.setResponseBody(IOUtils.toString(response.getEntity()
 						.getContent()));
 			}
-			logger.info("Result: " + result);
+			// logger.info("Result: " + result);
 			return result;
 		} catch (Exception e) {
 			throw new TestRuntimeException("Error while http method execution",

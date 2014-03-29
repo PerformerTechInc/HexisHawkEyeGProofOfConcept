@@ -85,7 +85,7 @@ public class OfAtbCheckInTestTemp extends UITest {
 		findNearestGameDateForBallpark(teamAbbrev);
 		//allowCheckinForGameDate();
 		loginIfNotLogged();
-		openCheckinWindow();
+		//openCheckinWindow();
 		checkin();
 	}
 
