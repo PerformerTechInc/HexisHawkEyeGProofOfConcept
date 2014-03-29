@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark" annotations="JDK">
-	<test verbose="1" name="At the Ballpark - Check in test - BAL">
-		<parameter name="team" value="BAL"></parameter>
+	<test verbose="1" name="At the Ballpark - Check in test - LAD">
+		<parameter name="team" value="LAD"></parameter>
 		<classes>
 			<class name="com.mlb.qa.tests.android.atb.OfAtbCheckInTestTemp" />
 		</classes>
