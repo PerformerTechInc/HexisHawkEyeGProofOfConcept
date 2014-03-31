@@ -6,6 +6,9 @@ import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Optional;
 //import org.testng.annotations.BeforeClass;
 //import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -29,8 +32,9 @@ public class AtbCheckInTest extends UITest {
 	private AtbHttpService httpService = new AtbHttpService();
 	private AtbLookupService lookupService = new AtbLookupService();
 
-	//@Parameters("team_abbrev")
-	//@BeforeClass(enabled = true, description = "Find nearest incoming game for the specified team")
+	// @Parameters("team_abbrev")
+	// @BeforeClass(enabled = true, description =
+	// "Find nearest incoming game for the specified team")
 	public void findNearestGameDateForBallpark(String teamAbbrev) {
 		String season = AtbParameter.MLB_ATB_SEASON.getValue();
 		team = lookupService.lookupTeamByAbbrev(teamAbbrev, season);
@@ -39,7 +43,9 @@ public class AtbCheckInTest extends UITest {
 				team.getVenueId(), today, today.plusMonths(6), season);
 	}
 
-	//@BeforeClass(enabled = true, dependsOnMethods = "findNearestGameDateForBallpark", description = "Allow checkin for the game date")
+	// @BeforeClass(enabled = true, dependsOnMethods =
+	// "findNearestGameDateForBallpark", description =
+	// "Allow checkin for the game date")
 	public void allowCheckinForGameDate() throws UnsupportedEncodingException {
 		DateTime gameDate = DateUtils.parseString(game.getGameTimeLocal(),
 				Game.GAME_TIME_LOCAL_FORMAT_PATTERN);
@@ -50,7 +56,7 @@ public class AtbCheckInTest extends UITest {
 				.setTimeBoundaryCheckinServiceProperty(daysBetween * 24 * 60l);
 	}
 
-	//@Test(enabled = true, description = "Log in if not logged yet")
+	// @Test(enabled = true, description = "Log in if not logged yet")
 	public void loginIfNotLogged() {
 		AtbStartPage sp = new AtbStartPage(driver);
 		if (sp.isOpened()) {
@@ -62,12 +68,14 @@ public class AtbCheckInTest extends UITest {
 		}
 	}
 
-	//@Test(enabled = true, dependsOnMethods = "loginIfNotLogged", description = "Open check in window (in Testing area of application)")
+	// @Test(enabled = true, dependsOnMethods = "loginIfNotLogged", description
+	// = "Open check in window (in Testing area of application)")
 	public void openCheckinWindow() {
 		new AtbAndroidPage(driver).openCheckinWindow();
 	}
 
-	//@Test(enabled = true, dependsOnMethods = "openCheckinWindow", description = "Check in")
+	// @Test(enabled = true, dependsOnMethods = "openCheckinWindow", description
+	// = "Check in")
 	public void checkin() {
 		AtbCheckedInPage checkedInPage = new AtbAndroidPage(driver)
 				.openBallparksFromMenu()
@@ -79,11 +87,14 @@ public class AtbCheckInTest extends UITest {
 								checkedInPage.loadCheckedInStadiumName()),
 				"Checked In page not opened or wrong stadium page displayed");
 	}
-	
+
 	@Test(dataProvider = "excel_ds")
-	public void checkin(String teamAbbrev) throws UnsupportedEncodingException {
+	public void checkin(String teamAbbrev, @Optional("false")String moveCheckinWindow)
+			throws UnsupportedEncodingException {
 		findNearestGameDateForBallpark(teamAbbrev);
-		//allowCheckinForGameDate();
+		if (Boolean.parseBoolean(moveCheckinWindow)) {
+			allowCheckinForGameDate();
+		}
 		loginIfNotLogged();
 		openCheckinWindow();
 		checkin();
@@ -95,5 +106,14 @@ public class AtbCheckInTest extends UITest {
 			return game.getVenue();
 		}
 		return venueShort;
+	}
+
+	@DataProvider(name = "excel_ds")
+	public Object[][] readDataFromXLS(ITestContext context)
+	{
+		// staticArgs - that are passed from xml bun not excel, the same for
+		// every data set (row in excel)
+		String[] staticArgs = { "move_checkin_window" };
+		return createTestArgSets(context, "Execute", "y", staticArgs);
 	}
 }

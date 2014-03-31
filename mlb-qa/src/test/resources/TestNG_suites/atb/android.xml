@@ -2,6 +2,7 @@
 <suite verbose="1" name="MLB - At the Ballpark" annotations="JDK">
 	<test verbose="1" name="At the Ballpark - Check in test - LAD">
 		<parameter name="team" value="LAD"></parameter>
+		<parameter name="move_checkin_window" value="false"></parameter>
 		<classes>
 			<class name="com.mlb.qa.tests.android.atb.OfAtbCheckInTestTemp" />
 		</classes>
@@ -9,6 +10,7 @@
 	<!-- 
 	<test verbose="1" name="At the Ballpark - Check in test - ATL">
 		<parameter name="team" value="ATL"></parameter>
+		<parameter name="move_checkin_window" value="false"></parameter>
 		<classes>
 			<class name="com.mlb.qa.tests.android.atb.OfAtbCheckInTestTemp" />
 		</classes>
