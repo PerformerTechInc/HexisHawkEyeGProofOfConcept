@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -112,5 +113,9 @@ public class HttpHelper {
 							.append(", required body part regex: ")
 							.append(bodyRegex).toString());
 		}
+	}
+	
+	public static void checkResultOk(HttpResult result){
+		checkResult(result, HttpStatus.SC_OK, ".*");
 	}
 }

@@ -5,9 +5,8 @@
 		<parameter name="{excel_ds_uid}" value="team_abbrev"/>
 	    <parameter name="{excel_ds_file}" value="XLS_DATA/atb_team_abbrev.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_abbrev"/>
-	    <parameter name="move_checkin_window" value="false"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atb.AtbCheckInTest" />
+			<class name="com.mlb.qa.tests.android.atb.AtbCheckInFixedGameFeedUrlTest" />
 		</classes>
 	</test>
 </suite>
