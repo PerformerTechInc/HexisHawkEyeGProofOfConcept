@@ -23,7 +23,7 @@ import com.mlb.qa.exception.TestRuntimeException;
 public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 
 	@Test(dataProvider = "prepareTestData", description = "Check in")
-	public void checkin(Game game, Team team) {
+	public void checkin(String teamAbbrev, Game game, Team team) {
 		loginIfNotLogged();
 		openCheckinWindow();
 		AtbCheckedInPage checkedInPage = new AtbAndroidPage(driver)
@@ -55,16 +55,18 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 					Game.GAME_TIME_LOCAL_FORMAT_PATTERN);
 			if (DateUtils.hasEqualDates(checkinDate, gameDate)) {
 				List<Object> row = new LinkedList<Object>();
+				row.add("TUID:" + teamAbbrev);
 				row.add(game);
 				row.add(team);
 				dataToRun.add(row);
 			}
 		}
 		// copy to array
-		Object[][] dataToRunArr = new Object[dataToRun.size()][2];
+		Object[][] dataToRunArr = new Object[dataToRun.size()][3];
 		for (int i = 0; i < dataToRun.size(); i++) {
 			dataToRunArr[i][0] = dataToRun.get(i).get(0);
 			dataToRunArr[i][1] = dataToRun.get(i).get(1);
+			dataToRunArr[i][2] = dataToRun.get(i).get(2);
 		}
 		if (dataToRunArr.length != 0){
 			int daysBetween = new Period(new DateTime(), checkinDate,
