@@ -79,7 +79,7 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 			}
 		}
 		else {
-			logger.info("No one balpark has nearest incoming game date equal to current system check-in window date. No tests to run");
+			logger.info("No one ballpark has nearest incoming game date equal to current system check-in window date. No tests to run");
 		}
 		return dataToRunArr;
 	}

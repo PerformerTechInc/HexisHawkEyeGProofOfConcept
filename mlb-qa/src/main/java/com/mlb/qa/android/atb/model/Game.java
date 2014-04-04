@@ -5,11 +5,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.mlb.qa.android.atb.service.lookup.LookupItem;
-
 @XmlRootElement(name = "row")
 @XmlAccessorType(XmlAccessType.NONE)
-public class Game implements LookupItem {
+public class Game implements Item {
 	public static final String GAME_TIME_LOCAL_FORMAT_PATTERN = "MM/dd/yyyy hh:mm:ss a";
 
 	@XmlAttribute(name = "game_id")
