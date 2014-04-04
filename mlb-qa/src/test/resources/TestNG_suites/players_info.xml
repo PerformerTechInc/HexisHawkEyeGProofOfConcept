@@ -22,7 +22,7 @@
 	<test verbose="1" name="Verify Players Information">
 		<parameter name="{excel_ds_args}" value="TUID;team;role;sorter;person" /> 
 		<parameter name="{excel_ds_uid}" value="TUID;person"/>
-	    <parameter name="{excel_ds_file}" value="XLS_DATA/players.xlsx"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/players.xlsx"/>
 	    <parameter name="{excel_ds_sheet}" value="player"/>	    
 		<classes>
 			<class name="com.mlb.qa.tests.mobile.BasicMobileWebTest">
