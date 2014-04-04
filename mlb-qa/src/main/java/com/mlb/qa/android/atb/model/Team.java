@@ -3,10 +3,8 @@ package com.mlb.qa.android.atb.model;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.mlb.qa.android.atb.service.lookup.LookupItem;
-
 @XmlRootElement(name = "row")
-public class Team implements LookupItem {
+public class Team implements Item {
 
 	@XmlAttribute(name = "team_id")
 	private String teamId;

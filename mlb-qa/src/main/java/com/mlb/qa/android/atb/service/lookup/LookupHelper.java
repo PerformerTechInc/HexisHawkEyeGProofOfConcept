@@ -10,10 +10,12 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import com.mlb.qa.android.atb.model.Item;
+
 public class LookupHelper {
 
 	@SuppressWarnings("unchecked")
-	public static <T extends LookupItem> List<T> unmarshal(Class<T> clazz,
+	public static <T extends Item> List<T> unmarshal(Class<T> clazz,
 			String source) {
 		List<T> result = new LinkedList<T>();
 
