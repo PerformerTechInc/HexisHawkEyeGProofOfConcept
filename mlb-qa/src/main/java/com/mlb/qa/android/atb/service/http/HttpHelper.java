@@ -1,23 +1,34 @@
 package com.mlb.qa.android.atb.service.http;
 
-import java.util.LinkedList;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.conn.params.ConnRoutePNames;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
 
 import com.mlb.qa.exception.TestRuntimeException;
+import com.qaprosoft.carina.core.foundation.utils.R;
 
 public class HttpHelper {
 	private static final Logger logger = Logger.getLogger(HttpHelper.class);
 	public static final String UTF_8_CHARSET = "UTF-8";
+	public static final Integer DEFAULT_HTTP_PORT = 80;
+	public static final String HTTP_PROXY_HOSTNAME = "http.proxyHost";
+	public static final String HTTP_PROXY_PORT = "http.proxyPort";
 
 	/**
 	 * @param method
@@ -26,18 +37,29 @@ public class HttpHelper {
 	 * @param contentEncoding
 	 * @return
 	 */
-	public static HttpResult executeHttpMethod(HttpMethod method, String charset) {
-		logger.info("Execute HTTP method: " + method.getName());
-		HttpClient client = new HttpClient();
+	public static HttpResult executeHttpRequest(HttpUriRequest request,
+			String charset) {
+		logger.info("Execute HTTP request: " + request);
+		DefaultHttpClient client = new DefaultHttpClient();
+		// http proxy
+		String hostname = R.CONFIG.get(HTTP_PROXY_HOSTNAME);
+		if (hostname != null && !"NULL".equalsIgnoreCase(hostname)) {
+			Integer port = R.CONFIG.getInt(HTTP_PROXY_PORT);
+			port = port == null ? DEFAULT_HTTP_PORT : port;
+			HttpHost proxy = new HttpHost(hostname, port);
+			client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,
+					proxy);
+		}
 		try {
-			client.getParams().setParameter("http.protocol.content-charset",
-					charset);
-			int responseCode = client.executeMethod(method);
-			logger.info("Response code: " + responseCode);
+			HttpResponse response = client.execute(request);
+			// logger.info("Response: " + response);
 			HttpResult result = new HttpResult();
-			result.setResponseCode(responseCode);
-			result.setResponseBody(IOUtils.toString(
-					method.getResponseBodyAsStream(), charset));
+			result.setResponseCode(response.getStatusLine().getStatusCode());
+			if (response.getEntity() != null) {
+				result.setResponseBody(IOUtils.toString(response.getEntity()
+						.getContent()));
+			}
+			// logger.info("Result: " + result);
 			return result;
 		} catch (Exception e) {
 			throw new TestRuntimeException("Error while http method execution",
@@ -49,41 +71,32 @@ public class HttpHelper {
 	/**
 	 * Executes POST method and returns response body as String
 	 * 
+	 * @throws UnsupportedEncodingException
+	 * 
 	 */
-	public static HttpResult executePostMethod(String url,
-			Map<String, String> parameters, Map<String, String> bodyParameters,
-			String charset) {
-		PostMethod pMethod = new PostMethod(url);
-		pMethod.setDoAuthentication(false);
+	public static HttpResult executePost(String url,
+			Map<String, String> parameters, String encoding)
+			throws UnsupportedEncodingException {
+		HttpPost post = new HttpPost(url);
 		// parameters
+		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 		for (String key : parameters.keySet()) {
-			pMethod.addParameter(new NameValuePair(key, parameters.get(key)));
+			nvps.add(new BasicNameValuePair(key, parameters.get(key)));
 		}
-		// body
-		if (null != bodyParameters && bodyParameters.size() != 0) {
-			List<NameValuePair> bodyAsList = new LinkedList<NameValuePair>();
-			for (String param : bodyParameters.keySet()) {
-				bodyAsList.add(new NameValuePair(param, bodyParameters
-						.get(param)));
-			}
-			NameValuePair[] body = bodyAsList
-					.toArray(new NameValuePair[bodyAsList.size()]);
-			pMethod.setRequestBody((NameValuePair[]) body);
-		}
-
-		return executeHttpMethod(pMethod, charset);
+		post.setEntity(new UrlEncodedFormEntity(nvps, encoding));
+		return executeHttpRequest(post, encoding);
 	}
-	
+
 	/**
 	 * Executes GET method
+	 * 
 	 * @param url
 	 * @param charset
 	 * @return
 	 */
-	public static HttpResult executeGetMethod(String url, String charset) {
-		GetMethod gMethod = new GetMethod(url);
-		gMethod.setDoAuthentication(false);
-		return executeHttpMethod(gMethod, charset);
+	public static HttpResult executeGet(String url, String encoding) {
+		HttpGet get = new HttpGet(url);
+		return executeHttpRequest(get, encoding);
 	}
 
 	public static void checkResult(HttpResult result, int responseCode,
@@ -100,5 +113,9 @@ public class HttpHelper {
 							.append(", required body part regex: ")
 							.append(bodyRegex).toString());
 		}
+	}
+	
+	public static void checkResultOk(HttpResult result){
+		checkResult(result, HttpStatus.SC_OK, ".*");
 	}
 }

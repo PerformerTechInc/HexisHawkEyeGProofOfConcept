@@ -1,8 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark" annotations="JDK">
-	<test verbose="1" name="Temp jenkins test">
+	<test verbose="1" name="At the Ballpark - Check in test - LAD">
+		<parameter name="team" value="LAD"></parameter>
+		<parameter name="move_checkin_window" value="false"></parameter>
 		<classes>
-			<class name="com.mlb.qa.tests.android.atb.TempJenkinsTest" />
+			<class name="com.mlb.qa.tests.android.atb.OfAtbCheckInTestTemp" />
 		</classes>
 	</test>
 </suite>

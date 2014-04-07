@@ -1,11 +1,10 @@
 package com.mlb.qa.android.atb.model;
 
-import com.mlb.qa.android.atb.service.lookup.LookupItem;
 
 /**
  * Ballpark bean<br>
  */
-public class Ballpark implements LookupItem{
+public class Ballpark implements Item{
 	private String name;
 	private String teamName;
 

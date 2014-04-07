@@ -6,21 +6,22 @@ import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
 import org.testng.Assert;
-
-//import org.testng.annotations.BeforeClass;
-//import org.testng.annotations.Parameters;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.mlb.qa.android.atb.model.Game;
 import com.mlb.qa.android.atb.model.Team;
 import com.mlb.qa.android.atb.page.AtbAndroidPage;
 import com.mlb.qa.android.atb.page.AtbCheckedInPage;
+import com.mlb.qa.android.atb.page.AtbStartPage;
 import com.mlb.qa.android.atb.service.http.AtbHttpService;
 import com.mlb.qa.android.atb.service.lookup.AtbLookupService;
 import com.mlb.qa.android.atb.utils.AtbParameter;
 import com.mlb.qa.android.atb.utils.DateUtils;
+import com.qaprosoft.carina.core.foundation.UITest;
 
-public class AtbCheckInTest extends BaseCheckinTest {
+public class OfAtbCheckInTestTemp extends UITest {
 
 	private Game game;
 	private Team team;
@@ -52,6 +53,24 @@ public class AtbCheckInTest extends BaseCheckinTest {
 				.setTimeBoundaryCheckinServiceProperty(daysBetween * 24 * 60l);
 	}
 
+	// @Test(enabled = true, description = "Log in if not logged yet")
+	public void loginIfNotLogged() {
+		AtbStartPage sp = new AtbStartPage(driver);
+		if (sp.isOpened()) {
+			sp.passToLoginPage()
+					.login(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),
+							AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue())
+					.skipFavoriteTeamSelection();
+			;
+		}
+	}
+
+	// @Test(enabled = true, dependsOnMethods = "loginIfNotLogged", description
+	// = "Open check in window (in Testing area of application)")
+	public void openCheckinWindow() {
+		new AtbAndroidPage(driver).openCheckinWindow();
+	}
+
 	// @Test(enabled = true, dependsOnMethods = "openCheckinWindow", description
 	// = "Check in")
 	public void checkin() {
@@ -66,13 +85,24 @@ public class AtbCheckInTest extends BaseCheckinTest {
 				"Checked In page not opened or wrong stadium page displayed");
 	}
 
-	@Test(dataProvider = "excel_ds", description = "Check in")
-	public void checkin(String teamAbbrev)
+	@Test()
+	@Parameters({ "team", "move_checkin_window" })
+	public void checkin(String teamAbbrev, @Optional("false") Boolean moveCheckinWindow)
 			throws UnsupportedEncodingException {
 		findNearestGameDateForBallpark(teamAbbrev);
-		allowCheckinForGameDate();
+		if (moveCheckinWindow) {
+			allowCheckinForGameDate();
+		}
 		loginIfNotLogged();
 		openCheckinWindow();
 		checkin();
+	}
+
+	private String detectVenueOnUi(Game game) {
+		String venueShort = game.getVenueShort();
+		if (null == venueShort || venueShort.isEmpty()) {
+			return game.getVenue();
+		}
+		return venueShort;
 	}
 }
