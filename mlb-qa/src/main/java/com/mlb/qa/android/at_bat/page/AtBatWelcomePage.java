@@ -5,21 +5,26 @@ import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
+/**
+ * MLB At Bat entry point<br>
+ * @author boyle
+ *
+ */
 public class AtBatWelcomePage extends AtBatAndroidPage {
-
-	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallFragment_continueWithAtBatLite")
-	public ExtendedWebElement maybeLaterLink;
+	
+	@FindBy(xpath = "//TextView[@text='No Thanks, Maybe Later']")
+	public ExtendedWebElement maybeLaterText;
 
 	public AtBatWelcomePage(WebDriver driver) {
 		super(driver);
 	}
-
-	public FavoriteTeamSelectionPage continueWithLiteVersion() {
-		logger.debug("Skip 'buy premium version' step if displayed");
-		// present just for 1st run
-		if (isElementPresent(maybeLaterLink, 3)) {
-			click(maybeLaterLink);
-		}
-		return new FavoriteTeamSelectionPage(driver);
+	
+	@Override
+	public boolean isOpened() {
+		return isElementPresent(maybeLaterText, 10);
+	}
+	
+	public AtBatPaywallPage passToPaywallPage() {
+		return new AtBatPaywallPage(driver);
 	}
 }
