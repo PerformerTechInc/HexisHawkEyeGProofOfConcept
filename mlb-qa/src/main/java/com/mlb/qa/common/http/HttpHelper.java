@@ -1,4 +1,4 @@
-package com.mlb.qa.android.atb.service.http;
+package com.mlb.qa.common.http;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
 
-import com.mlb.qa.exception.TestRuntimeException;
+import com.mlb.qa.common.exception.TestRuntimeException;
 import com.qaprosoft.carina.core.foundation.utils.R;
 
 public class HttpHelper {

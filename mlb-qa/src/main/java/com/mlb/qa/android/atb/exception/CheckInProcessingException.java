@@ -1,6 +1,7 @@
 package com.mlb.qa.android.atb.exception;
 
-import com.mlb.qa.exception.TestRuntimeException;
+import com.mlb.qa.common.exception.TestRuntimeException;
+
 
 public class CheckInProcessingException extends TestRuntimeException {
 	private static final long serialVersionUID = -7424237863625081777L;

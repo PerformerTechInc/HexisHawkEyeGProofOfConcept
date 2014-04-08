@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.mlb.qa.android.atb.model.Item;
-import com.mlb.qa.exception.TestRuntimeException;
+import com.mlb.qa.common.exception.TestRuntimeException;
 
 /**
  * Java bean for mapping of the identityPoint_identify_response<br>

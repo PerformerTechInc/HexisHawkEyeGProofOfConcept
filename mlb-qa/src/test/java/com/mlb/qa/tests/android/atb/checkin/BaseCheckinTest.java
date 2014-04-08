@@ -1,20 +1,26 @@
-package com.mlb.qa.tests.android.atb;
+package com.mlb.qa.tests.android.atb.checkin;
+
+import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
 
 import com.mlb.qa.android.atb.model.Game;
+import com.mlb.qa.android.atb.model.checkin_history.CheckinHistoryItem;
+import com.mlb.qa.android.atb.model.identity_point.IdentityPoint;
 import com.mlb.qa.android.atb.page.AtbAndroidPage;
 import com.mlb.qa.android.atb.page.AtbStartPage;
 import com.mlb.qa.android.atb.service.http.AtbHttpService;
 import com.mlb.qa.android.atb.service.lookup.AtbLookupService;
 import com.mlb.qa.android.atb.utils.AtbParameter;
+import com.mlb.qa.common.comparator.FieldsComparator;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 public abstract class BaseCheckinTest extends UITest {
 	protected static final Logger logger = Logger.getLogger(BaseCheckinTest.class);
 	protected AtbHttpService httpService;
 	protected AtbLookupService lookupService;
-
+	
 	public BaseCheckinTest() {
 		super();
 		httpService = new AtbHttpService();
@@ -42,5 +48,18 @@ public abstract class BaseCheckinTest extends UITest {
 
 	protected void openCheckinWindow() {
 		new AtbAndroidPage(driver).openCheckinWindow();
+	}
+
+	protected boolean isCheckinInHistoryCorrect(Game game, DateTime checkinDate, IdentityPoint identityPoint) {
+		List<CheckinHistoryItem> checkins = httpService.loadListOfCheckinsByIdentityPoint(identityPoint.getId(),
+				checkinDate, checkinDate);
+		boolean result = false;
+		if (!checkins.isEmpty()) {
+			CheckinHistoryItem latestCheckin = checkins.get(0);
+			result = (0 == FieldsComparator.compareFields("Event id (game name)", latestCheckin.getEventName(),
+					game.getGameId()));
+			result &= (0 == FieldsComparator.compareFields("Checkin status id", latestCheckin.getCheckinStatusId(), 0));
+		}
+		return result;
 	}
 }

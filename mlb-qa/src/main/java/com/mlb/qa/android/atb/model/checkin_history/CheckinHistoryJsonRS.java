@@ -12,7 +12,8 @@ import javax.xml.transform.stream.StreamSource;
 import org.eclipse.persistence.jaxb.UnmarshallerProperties;
 import org.eclipse.persistence.oxm.MediaType;
 
-import com.mlb.qa.exception.TestRuntimeException;
+import com.mlb.qa.common.exception.TestRuntimeException;
+
 
 /**
  * Load check-in history response bean

@@ -1,4 +1,4 @@
-package com.mlb.qa.exception;
+package com.mlb.qa.common.exception;
 
 /**
  * Base test exception

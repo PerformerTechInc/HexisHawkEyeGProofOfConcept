@@ -1,4 +1,4 @@
-package com.mlb.qa.android.atb.service.http;
+package com.mlb.qa.common.http;
 
 public class HttpResult {
 
