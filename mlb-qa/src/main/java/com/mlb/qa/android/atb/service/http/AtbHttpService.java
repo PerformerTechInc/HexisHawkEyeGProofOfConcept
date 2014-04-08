@@ -17,7 +17,9 @@ import com.mlb.qa.android.atb.model.identity_point.IdentityPoint;
 import com.mlb.qa.android.atb.model.identity_point.IdentityPointIdentifyRS;
 import com.mlb.qa.android.atb.utils.AtbParameter;
 import com.mlb.qa.android.atb.utils.DateUtils;
-import com.mlb.qa.exception.TestRuntimeException;
+import com.mlb.qa.common.exception.TestRuntimeException;
+import com.mlb.qa.common.http.HttpHelper;
+import com.mlb.qa.common.http.HttpResult;
 
 public class AtbHttpService {
 	private static final Logger logger = Logger.getLogger(AtbHttpService.class);

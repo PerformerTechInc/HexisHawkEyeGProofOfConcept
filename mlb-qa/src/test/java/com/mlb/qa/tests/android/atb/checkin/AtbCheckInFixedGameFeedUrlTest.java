@@ -1,4 +1,4 @@
-package com.mlb.qa.tests.android.atb;
+package com.mlb.qa.tests.android.atb.checkin;
 
 import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
@@ -9,18 +9,29 @@ import org.joda.time.Period;
 import org.joda.time.PeriodType;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.mlb.qa.android.atb.model.Game;
 import com.mlb.qa.android.atb.model.Team;
+import com.mlb.qa.android.atb.model.identity_point.IdentityPoint;
 import com.mlb.qa.android.atb.page.AtbAndroidPage;
 import com.mlb.qa.android.atb.page.AtbCheckedInPage;
 import com.mlb.qa.android.atb.utils.AtbParameter;
 import com.mlb.qa.android.atb.utils.DateUtils;
-import com.mlb.qa.exception.TestRuntimeException;
+import com.mlb.qa.common.comparator.FieldsComparator;
+import com.mlb.qa.common.exception.TestRuntimeException;
 
 public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
+	private DateTime checkinDate;
+	private IdentityPoint identityPoint;
+
+	@BeforeClass(description = "Detect IdentityPoint for account")
+	public void detectIdentityPoint() throws UnsupportedEncodingException {
+		identityPoint = httpService.loadIdentityPointByEmail(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),
+				AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue());
+	}
 
 	@Test(dataProvider = "prepareTestData", description = "Check in")
 	public void checkin(String teamAbbrev, Game game, Team team) {
@@ -30,11 +41,13 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 				.openBallparksFromMenu()
 				.openBallparkByTeamName(team.getNameFull()).openCheckInPage()
 				.processLocationDetermining().confirmCheckIn();
-		Assert.assertTrue(
-				checkedInPage.isOpened()
-						&& detectVenueOnUi(game).equalsIgnoreCase(
-								checkedInPage.loadCheckedInStadiumName()),
-				"Checked In page not opened or wrong stadium page displayed");
+		if (!checkedInPage.isOpened()) {
+			Assert.fail("Checked In page not opened");
+		}
+		boolean result = (0 == FieldsComparator.compareFieldsIgnoreCase("Displayed and expected ballpark",
+				checkedInPage.loadCheckedInStadiumName(), detectVenueOnUi(game)));
+		result &= isCheckinInHistoryCorrect(game, checkinDate, identityPoint);
+		Assert.assertTrue(result);
 	}
 
 	@DataProvider(name = "prepareTestData")
@@ -42,7 +55,7 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 	{
 		logger.info("Prepare list of ballparks with nearest incoming game date equal to the current check-in window date");
 		Object[][] allArguments = createTestArgSets(context, "Execute", "y");
-		DateTime checkinDate = httpService.getCheckinDate();
+		checkinDate = httpService.getCheckinDate();
 		List<List<Object>> dataToRun = new LinkedList<List<Object>>();
 		for (int i = 0; i < allArguments.length; i++) {
 			String teamAbbrev = (String) allArguments[i][0];
@@ -68,7 +81,7 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 			dataToRunArr[i][1] = dataToRun.get(i).get(1);
 			dataToRunArr[i][2] = dataToRun.get(i).get(2);
 		}
-		if (dataToRunArr.length != 0){
+		if (dataToRunArr.length != 0) {
 			int daysBetween = new Period(new DateTime(), checkinDate,
 					PeriodType.days()).getDays() + 1;
 			try {

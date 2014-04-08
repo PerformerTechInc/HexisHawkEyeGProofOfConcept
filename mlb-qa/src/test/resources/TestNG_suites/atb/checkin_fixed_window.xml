@@ -6,7 +6,7 @@
 	    <parameter name="{excel_ds_sheet}" value="team_abbrev"/>
 	    <parameter name="{excel_ds_custom_provider}" value="true"/>
 		<classes>
-			<class name="com.mlb.qa.tests.android.atb.AtbCheckInFixedGameFeedUrlTest" />
+			<class name="com.mlb.qa.tests.android.atb.checkin.AtbCheckInFixedGameFeedUrlTest" />
 		</classes>
 	</test>
 </suite>

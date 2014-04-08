@@ -10,10 +10,10 @@ import org.joda.time.DateTime;
 
 import com.mlb.qa.android.atb.model.Game;
 import com.mlb.qa.android.atb.model.Team;
-import com.mlb.qa.android.atb.service.http.HttpHelper;
-import com.mlb.qa.android.atb.service.http.HttpResult;
 import com.mlb.qa.android.atb.utils.AtbParameter;
 import com.mlb.qa.android.atb.utils.DateUtils;
+import com.mlb.qa.common.http.HttpHelper;
+import com.mlb.qa.common.http.HttpResult;
 
 /**
  * Lookup service<br>

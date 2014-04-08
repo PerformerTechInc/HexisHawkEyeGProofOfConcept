@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import com.mlb.qa.exception.TestRuntimeException;
+import com.mlb.qa.common.exception.TestRuntimeException;
 
 public class DateUtils {
 	public static final String DEFAULT_DATE_FORMAT = "EEEE | MMM d, yyyy";
