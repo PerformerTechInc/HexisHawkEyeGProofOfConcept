@@ -1,6 +1,7 @@
 package com.mlb.qa.android.atb.service.lookup;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.httpclient.HttpStatus;
@@ -54,8 +55,7 @@ public class AtbLookupService {
 										LOOKUP_INPUT_DATE_FORMAT), venueId,
 						season);
 		logger.info(String.format("Request: %s", getQueryRequest));
-		HttpResult result = HttpHelper.executeGet(getQueryRequest,
-				HttpHelper.UTF_8_CHARSET);
+		HttpResult result = HttpHelper.executeGet(getQueryRequest, new HashMap<String, String>());
 		logger.info(String.format("Result: %s", result));
 		HttpHelper.checkResult(result, HttpStatus.SC_OK,
 				QUERYNG_RESULT_RESPONSE_REGEXP);
@@ -84,8 +84,7 @@ public class AtbLookupService {
 		String request = AtbParameter.MLB_ATB_LOOKUP_SERVICE.getValue()
 				+ String.format(TEAM_BY_ABBREV_QUERY, abbrev, season);
 		logger.info(String.format("Request: %s", request));
-		HttpResult result = HttpHelper.executeGet(request,
-				HttpHelper.UTF_8_CHARSET);
+		HttpResult result = HttpHelper.executeGet(request, new HashMap<String, String>());
 		logger.info(String.format("Result: %s", result));
 		HttpHelper.checkResult(result, HttpStatus.SC_OK,
 				QUERYNG_RESULT_RESPONSE_REGEXP);

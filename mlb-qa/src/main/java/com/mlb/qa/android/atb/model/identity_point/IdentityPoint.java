@@ -15,7 +15,7 @@ public class IdentityPoint implements Item {
 	private String id;
 	@XmlElement(name = "fingerprint")
 	private String fingerPrint;
-	@XmlElement(name = "email")
+	@XmlElement(name = "address")
 	private Email email;
 	@XmlElement(name = "password")
 	private String password;
@@ -58,5 +58,11 @@ public class IdentityPoint implements Item {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "IdentityPoint [identificationType=" + identificationType + ", id=" + id + ", fingerPrint="
+				+ fingerPrint + ", email=" + email + ", password=" + password + "]";
 	}
 }

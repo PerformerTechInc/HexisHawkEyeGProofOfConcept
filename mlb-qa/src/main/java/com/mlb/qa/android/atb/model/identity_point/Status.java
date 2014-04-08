@@ -28,4 +28,9 @@ public class Status implements Item {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	@Override
+	public String toString() {
+		return "Status [code=" + code + ", message=" + message + "]";
+	}
 }
