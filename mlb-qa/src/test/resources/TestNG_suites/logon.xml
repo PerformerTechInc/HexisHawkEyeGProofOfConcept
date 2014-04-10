@@ -10,7 +10,7 @@
 	    <parameter name="profile" value="mlbMedia"/>
 	    
 		<classes>
-			<class name="com.mlb.qa.tests.web.LoginWebTest">
+			<class name="com.mlb.qa.tests.demo.web.LoginWebTest">
 				<methods>
 					<include name="testLogin" />
 				</methods>

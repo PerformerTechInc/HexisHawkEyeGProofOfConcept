@@ -7,7 +7,7 @@
 	<test verbose="1" name="Tiger Woods Test">
 		<parameter name="tour" value="Tiger vs. Jack"/>
 		<classes>
-			<class name="com.mlb.qa.tests.web.TigerWoodsTest">
+			<class name="com.mlb.qa.tests.demo.web.TigerWoodsTest">
 				<methods>
 					<include name="testNews" />
 					<include name="testTigerVSJackTour" />

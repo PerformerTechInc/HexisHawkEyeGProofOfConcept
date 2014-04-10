@@ -4,7 +4,7 @@
 	data-provider-thread-count="50" annotations="JDK"> 
 	<test verbose="1" name="Appium Android At Bat demo test">
 		<classes>
-			<class name="com.mlb.qa.tests.android.AppiumAndroidAtBatTest"/>
+			<class name="com.mlb.qa.tests.demo.AppiumAndroidAtBatTest"/>
 		</classes>
 	</test>
 </suite>

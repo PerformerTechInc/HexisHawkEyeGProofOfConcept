@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 import com.mlb.qa.android.at_bat.page.AtBatMenu.MenuItem;
-import com.mlb.qa.android.common.page.AndroidPage;
+import com.mlb.qa.common.android.page.AndroidPage;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**

@@ -10,7 +10,7 @@
 	    <parameter name="profile" value="abl"/>
 	    	    
 		<classes>
-			<class name="com.mlb.qa.tests.web.HomeBaseTest">
+			<class name="com.mlb.qa.tests.demo.web.HomeBaseTest">
 				<methods>
 					<include name="checkHomebaseTest" />
 				</methods>

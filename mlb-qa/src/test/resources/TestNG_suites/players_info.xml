@@ -11,7 +11,7 @@
 	    <parameter name="person" value="De La Rosa, J"/>
 	    
 		<classes>
-			<class name="com.mlb.qa.tests.mobile.BasicMobileWebTest">
+			<class name="com.mlb.qa.tests.demo.mobile.BasicMobileWebTest">
 				<methods>
 					<include name="testPlayerInfo" />
 				</methods>
@@ -25,7 +25,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/players.xlsx"/>
 	    <parameter name="{excel_ds_sheet}" value="player"/>	    
 		<classes>
-			<class name="com.mlb.qa.tests.mobile.BasicMobileWebTest">
+			<class name="com.mlb.qa.tests.demo.mobile.BasicMobileWebTest">
 				<methods>
 					<include name="testPlayersInfo" />
 				</methods>
