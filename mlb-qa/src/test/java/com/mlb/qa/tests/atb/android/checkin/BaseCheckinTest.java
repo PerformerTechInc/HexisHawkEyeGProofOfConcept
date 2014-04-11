@@ -9,7 +9,7 @@ import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.mlb.qa.atb.android.page.AtbStartPage;
 import com.mlb.qa.atb.model.Game;
-import com.mlb.qa.atb.model.checkin_history.CheckinHistoryItem;
+import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonItem;
 import com.mlb.qa.atb.model.identity_point.IdentityPoint;
 import com.mlb.qa.atb.service.http.AtbHttpService;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
@@ -51,11 +51,11 @@ public abstract class BaseCheckinTest extends UITest {
 	}
 
 	protected boolean isCheckinInHistoryCorrect(Game game, DateTime checkinDate, IdentityPoint identityPoint) {
-		List<CheckinHistoryItem> checkins = httpService.loadListOfCheckinsByIdentityPoint(identityPoint.getId(),
+		List<CheckinHistoryJsonItem> checkins = httpService.loadListOfCheckinsByIdentityPoint(identityPoint.getId(),
 				checkinDate, checkinDate);
 		boolean result = false;
 		if (!checkins.isEmpty()) {
-			CheckinHistoryItem latestCheckin = checkins.get(0);
+			CheckinHistoryJsonItem latestCheckin = checkins.get(0);
 			result = (0 == FieldsComparator.compareFields("Event id (game name)", latestCheckin.getEventName(),
 					game.getGameId()));
 			result &= (0 == FieldsComparator.compareFields("Checkin status id", latestCheckin.getCheckinStatusId(), 0));

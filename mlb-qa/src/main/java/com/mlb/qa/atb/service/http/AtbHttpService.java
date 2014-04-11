@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import com.mlb.qa.atb.AtbParameter;
-import com.mlb.qa.atb.model.checkin_history.CheckinHistoryItem;
-import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonRS;
+import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonItem;
+import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJson;
 import com.mlb.qa.atb.model.identity_point.IdentityPoint;
 import com.mlb.qa.atb.model.identity_point.IdentityPointIdentifyRS;
 import com.mlb.qa.common.date.DateUtils;
@@ -176,7 +176,7 @@ public class AtbHttpService {
 	 * @param identityPoint
 	 * @return
 	 */
-	public List<CheckinHistoryItem> loadListOfCheckinsByIdentityPoint(String identityPoint, DateTime startDate,
+	public List<CheckinHistoryJsonItem> loadListOfCheckinsByIdentityPoint(String identityPoint, DateTime startDate,
 			DateTime endDate) {
 		logger.info(String.format("Load list of checkins by identity point: %s. Start date: %s, end date: %s",
 				identityPoint, startDate, endDate));
@@ -188,7 +188,7 @@ public class AtbHttpService {
 		HttpResult result = HttpHelper.executeGet(rq, new HashMap<String, String>());
 		logger.debug(result);
 		HttpHelper.checkResultOk(result);
-		CheckinHistoryJsonRS response = CheckinHistoryJsonRS.unmarshal(result.getResponseBody());
+		CheckinHistoryJson response = CheckinHistoryJson.unmarshal(result.getResponseBody());
 		logger.info(String.format("Response: %s", response));
 		return response.getCheckins();
 	}

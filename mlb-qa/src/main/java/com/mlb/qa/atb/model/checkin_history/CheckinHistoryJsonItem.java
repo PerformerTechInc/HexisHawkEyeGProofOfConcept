@@ -11,7 +11,7 @@ import com.mlb.qa.atb.model.adapter.JodaTimeDateAdapter;
 /**
  * Check-in in history bean. NOTE: only base fields implemented
  */
-public class CheckinHistoryItem implements Item {
+public class CheckinHistoryJsonItem implements Item {
 	@XmlElement(name = "checkinType", required = false)
 	private String checkinType;
 	@XmlElement(name = "checkinStatusId", required = true)

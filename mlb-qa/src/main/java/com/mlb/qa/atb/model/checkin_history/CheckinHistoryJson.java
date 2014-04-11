@@ -18,16 +18,16 @@ import com.mlb.qa.common.exception.TestRuntimeException;
 /**
  * Load check-in history response bean
  */
-public class CheckinHistoryJsonRS {
+public class CheckinHistoryJson {
 
 	@XmlElement(name = "response")
-	List<CheckinHistoryItem> checkins;
+	List<CheckinHistoryJsonItem> checkins;
 
-	public List<CheckinHistoryItem> getCheckins() {
+	public List<CheckinHistoryJsonItem> getCheckins() {
 		return checkins;
 	}
 
-	public void setCheckins(List<CheckinHistoryItem> checkins) {
+	public void setCheckins(List<CheckinHistoryJsonItem> checkins) {
 		this.checkins = checkins;
 	}
 
@@ -43,14 +43,14 @@ public class CheckinHistoryJsonRS {
 	 * @return
 	 * @throws JAXBException
 	 */
-	public static CheckinHistoryJsonRS unmarshal(String jsonSource) {
+	public static CheckinHistoryJson unmarshal(String jsonSource) {
 		try {
-			JAXBContext jc = JAXBContext.newInstance(CheckinHistoryJsonRS.class);
+			JAXBContext jc = JAXBContext.newInstance(CheckinHistoryJson.class);
 			Unmarshaller unmarshaller = jc.createUnmarshaller();
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_INCLUDE_ROOT, Boolean.FALSE);
 			unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
-			return (CheckinHistoryJsonRS) unmarshaller.unmarshal(new StreamSource(new StringReader(jsonSource)),
-					CheckinHistoryJsonRS.class).getValue();
+			return (CheckinHistoryJson) unmarshaller.unmarshal(new StreamSource(new StringReader(jsonSource)),
+					CheckinHistoryJson.class).getValue();
 		} catch (JAXBException e) {
 			throw new TestRuntimeException(
 					String.format("Error while unmarshaling json response. Source: %s", jsonSource), e);
