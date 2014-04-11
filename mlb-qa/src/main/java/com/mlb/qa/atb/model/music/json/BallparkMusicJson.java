@@ -53,7 +53,7 @@ public class BallparkMusicJson implements Item{
 						music.setTitle(trim(pair.getValue()));
 					}
 					else if (DESCRIPTION_KEY.equalsIgnoreCase(pair.getKey())) {
-						music.setDescription(pair.getValue());
+						//music.setDescription(pair.getValue());
 					}
 					else if (ARTIST_KEY.equalsIgnoreCase(pair.getKey())) {
 						music.setArtist(trim(pair.getValue()));

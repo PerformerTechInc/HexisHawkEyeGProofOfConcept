@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class BallparkMusicJsonItem {
+import com.mlb.qa.atb.model.Item;
+
+public class BallparkMusicJsonItem implements Item{
 	@XmlElement(name = "itemType")
 	private BallparkMusicJsonItemType itemType;
 	@XmlElement(name = "field")

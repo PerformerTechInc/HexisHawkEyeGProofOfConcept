@@ -45,9 +45,9 @@ public class AtbBallparkMusicPage extends AbstractPage {
 
 	private Music loadMusicFromContainer(ExtendedWebElement container, MusicCategory category) {
 		Music music = new Music();
-		music.setDescription(new ExtendedWebElement(container.getElement().findElement(
-				By.xpath(PLAYER_RELATIVE_PATH)),
-				"Description").getText());
+		//music.setDescription(new ExtendedWebElement(container.getElement().findElement(
+		//		By.xpath(PLAYER_RELATIVE_PATH)),
+		//		"Description").getText());
 		music.setTitle(new ExtendedWebElement(container.getElement().findElement(By.xpath(TITLE_RELATIVE_PATH)),
 				"Title").getText());
 		music.setArtist(new ExtendedWebElement(container.getElement().findElement(By.xpath(ARTIST_RELATIVE_PATH)),

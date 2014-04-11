@@ -2,7 +2,9 @@ package com.mlb.qa.atb.model.music.json;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class BallparkMusicJsonItemType {
+import com.mlb.qa.atb.model.Item;
+
+public class BallparkMusicJsonItemType implements Item{
 	@XmlElement(name = "@key")
 	private String key;
 
