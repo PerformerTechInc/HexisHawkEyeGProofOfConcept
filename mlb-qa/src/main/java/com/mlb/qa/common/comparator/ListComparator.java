@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * Use it for objects' lists comparison
  * 
@@ -12,7 +14,8 @@ import java.util.List;
  * @param <T>
  */
 public class ListComparator<T> {
-
+	private static final Logger LOGGER =Logger.getLogger(ListComparator.class);
+	
 	private ListItemComparator<T> comparator;
 
 	public ListComparator(ListItemComparator<T> comparator) {
@@ -36,8 +39,8 @@ public class ListComparator<T> {
 			Collections.sort(tempL1, comparator);
 			Collections.sort(tempL2, comparator);
 		}
-		System.out.println(tempL1);
-		System.out.println(tempL2);
+		LOGGER.info("Sorted list 1: " + tempL1);
+		LOGGER.info("Sorted list 2: " + tempL2);
 		int res = 0;
 		for (int i = 0; i < tempL1.size(); i++) {
 			res = comparator.compare(tempL1.get(i), tempL2.get(i));

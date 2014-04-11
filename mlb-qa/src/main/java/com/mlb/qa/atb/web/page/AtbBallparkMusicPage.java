@@ -22,7 +22,9 @@ public class AtbBallparkMusicPage extends AbstractPage {
 	private List<ExtendedWebElement> playerMusicListContainers;
 	@FindBy(how = How.XPATH, using = "//section[contains(@class, 'music_Stadium')]//div[@class='info']")
 	private List<ExtendedWebElement> stadiumMusicListContainers;
-
+	@FindBy(how = How.XPATH, using = "//section[contains(@class, 'music_Other')]//div[@class='info']")
+	private List<ExtendedWebElement> otherMusicListContainers;
+	
 	public AtbBallparkMusicPage(WebDriver driver) {
 		super(driver);
 	}
@@ -39,6 +41,9 @@ public class AtbBallparkMusicPage extends AbstractPage {
 		}
 		for (ExtendedWebElement container : stadiumMusicListContainers) {
 			musicList.add(loadMusicFromContainer(container, MusicCategory.STADIUM));
+		}
+		for (ExtendedWebElement container : otherMusicListContainers) {
+			musicList.add(loadMusicFromContainer(container, MusicCategory.OTHER));
 		}
 		return musicList;
 	}

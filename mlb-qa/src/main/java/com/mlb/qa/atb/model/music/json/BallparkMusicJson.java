@@ -3,12 +3,15 @@ package com.mlb.qa.atb.model.music.json;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.persistence.jaxb.UnmarshallerProperties;
 import org.eclipse.persistence.oxm.MediaType;
 import org.eclipse.persistence.oxm.annotations.XmlPath;
@@ -28,6 +31,7 @@ public class BallparkMusicJson implements Item{
 
 	public static final String CATEGORY_PLAYER = "Player";
 	public static final String CATEGORY_STADIUM = "Stadium";
+	public static final String CATEGORY_OTHER = "Other";
 
 	public static final String NOT_AVAILABLE = "N/A";
 
@@ -50,13 +54,13 @@ public class BallparkMusicJson implements Item{
 				Music music = new Music();
 				for (BallparkMusicJsonKeyValuePair pair : item.getParameters()) {
 					if (TITLE_KEY.equalsIgnoreCase(pair.getKey())) {
-						music.setTitle(trim(pair.getValue()));
+						music.setTitle(format(pair.getValue()));
 					}
 					else if (DESCRIPTION_KEY.equalsIgnoreCase(pair.getKey())) {
-						//music.setDescription(pair.getValue());
+						//music.setDescription(format(pair.getValue()));
 					}
 					else if (ARTIST_KEY.equalsIgnoreCase(pair.getKey())) {
-						music.setArtist(trim(pair.getValue()));
+						music.setArtist(format(pair.getValue()));
 					}
 					else if (CATEGORY_KEY.equalsIgnoreCase(pair.getKey())) {
 						if (CATEGORY_PLAYER.equalsIgnoreCase(trim(pair.getValue()))) {
@@ -65,7 +69,10 @@ public class BallparkMusicJson implements Item{
 						else if (CATEGORY_STADIUM.equalsIgnoreCase(trim(pair.getValue()))) {
 							music.setCategory(MusicCategory.STADIUM);
 						}
-						else {
+						else if (CATEGORY_OTHER.equalsIgnoreCase(trim(pair.getValue()))){
+							music.setCategory(MusicCategory.OTHER);
+						}
+						else{
 							throw new TestRuntimeException("Unknown music category found: " + pair.getValue());
 						}
 					}
@@ -79,8 +86,23 @@ public class BallparkMusicJson implements Item{
 		return musicList;
 	}
 
+	private String format(String source){
+		return replaceUtf8CodesWithCahracters(trim(source));
+	}
 	private String trim(String source) {
 		return null == source ? null : source.trim();
+	}
+	
+	private String replaceUtf8CodesWithCahracters(String source){
+		String result = source;
+		String codeRegEx = "&#\\d{1,4};";
+		Matcher matcher = Pattern.compile(codeRegEx).matcher(result);
+		while (matcher.find()){
+			String code = matcher.group();
+			int codePoint = Integer.parseInt(StringUtils.substringBetween(code, "&#",";"));
+			result = result.replaceFirst(code, new String(Character.toChars(codePoint)));
+		}
+		return result;
 	}
 
 	/**
