@@ -32,7 +32,7 @@ public class AtbBallparkMusicTest extends UITest {
 		List<Music> musicBackEnd = BallparkMusicJson.unmarshal(jsonUrl).parseBalparkMusicList();
 		System.out.println(musicBackEnd);
 		Assert.assertTrue(0 == new ListComparator<Music>(new MusicComparator()).compareContent(musicUi, musicBackEnd),
-				"List of music on UI isn't equal to list of music on back end");
+				"List of music on UI isn't equal to list of music on back end for " + team_abbrev + "; web:" + team_web);
 			
 	}
 }
