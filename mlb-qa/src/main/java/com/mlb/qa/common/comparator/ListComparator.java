@@ -48,17 +48,7 @@ public class ListComparator<T> {
 				return res;
 			}
 		}
-/*
-		for (int i = 0; i < tempL1.size(); i++) {
-			for (int j = 0; j < tempL2.size(); j++) {
-				
-				res = comparator.compare(tempL1.get(i), tempL2.get(i));
-				if (res != 0) {
-					return res;
-				}
-			}
-		}	
-			*/
+
 		return 0;
 	}
 
