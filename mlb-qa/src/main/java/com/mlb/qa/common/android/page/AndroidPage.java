@@ -1,8 +1,10 @@
 package com.mlb.qa.common.android.page;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.browserlaunchers.Sleeper;
@@ -51,16 +53,28 @@ public class AndroidPage extends AbstractUIObject {
 		Sleeper.sleepTight(2000l);
 	}
 
-	public void scrollTo(String scrollToText,
-			ExtendedWebElement containerElement) {
-		logger.info(String.format(
-				"Scrolling to text '%s', Scroll container: %s", scrollToText,
-				containerElement.getNameWithLocator()));
+	public void scrollTo(String scrollToText, ExtendedWebElement containerElement) {
+		try {
+
+			driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+			RemoteWebElement element = (RemoteWebElement) driver.findElement(By.name(scrollToText));
+			if (element.isDisplayed())
+				return;
+			driver.manage().timeouts().implicitlyWait(IMPLICIT_TIMEOUT, TimeUnit.SECONDS);			
+		}
+		catch (Exception e)
+		{
+			//restore timeout
+			driver.manage().timeouts().implicitlyWait(IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+		}
+		logger.info(String.format("Scrolling to text '%s', Scroll container: %s", scrollToText, containerElement.getNameWithLocator()));
 		final JavascriptExecutor executor = (JavascriptExecutor) driver;
 		final HashMap<String, String> scrollMap = new HashMap<String, String>();
 		scrollMap.put("text", scrollToText);
-		scrollMap.put("element", ((RemoteWebElement) driver
-				.findElement(containerElement.getBy())).getId());
+		
+		scrollMap.put("element", ((RemoteWebElement) driver.findElement(containerElement.getBy())).getId());
+		logger.info(scrollMap);
 		executor.executeScript("mobile: scrollTo", scrollMap);
+		
 	}
 }
