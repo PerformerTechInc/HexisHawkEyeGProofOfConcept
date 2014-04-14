@@ -25,6 +25,8 @@ public class AtbCheckinPage extends AtbAndroidPage {
 	private ExtendedWebElement alertTitle;
 	@FindBy(id = "android:id/message")
 	private ExtendedWebElement alertMessage;
+	@FindBy(xpath = "//Button[@text='OK']")
+	private ExtendedWebElement okButton;
 
 	public AtbCheckinPage(WebDriver driver) {
 		super(driver);
@@ -57,9 +59,19 @@ public class AtbCheckinPage extends AtbAndroidPage {
 
 	public AtbCheckedInPage confirmCheckIn() {
 		click(confirmCheckinButton);
-		if (isElementPresent(alertTitle, delay)
-				&& "Error".equalsIgnoreCase(alertTitle.getText())) {
-			throw new CheckInProcessingException(alertMessage.getText());
+		if (isElementPresent(alertTitle, delay)) {
+			String msg = "";
+			try {
+				if ("Error".equalsIgnoreCase(alertTitle.getText())) {
+					msg = alertMessage.getText();
+				}
+				// close pop up
+				click(okButton);
+			} finally {
+				if (!msg.isEmpty()) {
+					throw new CheckInProcessingException(msg);
+				}
+			}
 		}
 		return new AtbCheckedInPage(driver);
 	}
