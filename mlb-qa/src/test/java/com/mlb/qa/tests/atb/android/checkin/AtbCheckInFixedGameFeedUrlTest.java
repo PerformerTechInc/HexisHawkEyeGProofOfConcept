@@ -80,6 +80,8 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 			dataToRunArr[i][0] = dataToRun.get(i).get(0);
 			dataToRunArr[i][1] = dataToRun.get(i).get(1);
 			dataToRunArr[i][2] = dataToRun.get(i).get(2);
+			logger.info("Applicable teams number for checkin with current date is " + dataToRun.size());
+			logger.info("Team: " + dataToRun.get(i).get(2) + "; Game: " + dataToRun.get(i).get(1));
 		}
 		if (dataToRunArr.length != 0) {
 			int daysBetween = new Period(new DateTime(), checkinDate,
