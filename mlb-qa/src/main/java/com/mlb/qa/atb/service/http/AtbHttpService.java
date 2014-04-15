@@ -14,6 +14,8 @@ import org.joda.time.DateTime;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonItem;
 import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJson;
+import com.mlb.qa.atb.model.game_ticket.GameTicket;
+import com.mlb.qa.atb.model.game_ticket.QueryGameTicketsRS;
 import com.mlb.qa.atb.model.identity_point.IdentityPoint;
 import com.mlb.qa.atb.model.identity_point.IdentityPointIdentifyRS;
 import com.mlb.qa.common.date.DateUtils;
@@ -34,6 +36,8 @@ public class AtbHttpService {
 	private static final String CHECKINS_PATH = "/checkins";
 	// IdentityPointService
 	private static final String SOAP_ACTION_IDENTITY_POINT_IDENTIFY = "http://services.bamnetworks.com/registration/identityPoint/identify";
+	//
+	private static final String GET_GAME_TICKETS_PATH_PATTERN = "?team_id=home_team_id_value&home_team_id=home_team_id_value&venue_id=venue_id_value&site_section=MOBILE&ticket_category=TICKETS&begin_date=date_value";
 	// date formats
 	public static final String INPUT_DATE_FORMAT = "yyyyMMdd";
 	/**
@@ -191,6 +195,28 @@ public class AtbHttpService {
 		CheckinHistoryJson response = CheckinHistoryJson.unmarshal(result.getResponseBody());
 		logger.info(String.format("Response: %s", response));
 		return response.getCheckins();
+	}
+
+	/**
+	 * Load list of events from GameTicket service
+	 * 
+	 * @param homeTeamId
+	 * @param venueId
+	 * @param beginDate
+	 * @return
+	 */
+	public List<GameTicket> loadListOfTicketsFromGameTicketService(String homeTeamId, String venueId, DateTime beginDate) {
+		logger.info(String.format("Load list of tickets by home team id: %s, venue id: %s, begin date: %s", homeTeamId,
+				venueId, beginDate));
+		String getQueryRequest = AtbParameter.MLB_ATB_GAME_TICKETS_SERVICE.getValue()
+				+ GET_GAME_TICKETS_PATH_PATTERN.replaceAll("home_team_id_value", homeTeamId)
+						.replaceAll("venue_id_value", venueId).replaceAll("date_value", DateUtils.dateToString(beginDate,
+								DateUtils.LOOKUP_INPUT_DATE_FORMAT));
+		logger.info(String.format("Request: %s", getQueryRequest));
+		HttpResult result = HttpHelper.executeGet(getQueryRequest, new HashMap<String, String>());
+		//logger.info(String.format("Result: %s", result));
+		HttpHelper.checkResultOk(result);
+		return QueryGameTicketsRS.unmarshal(result.getResponseBody()).getGameTickets();
 	}
 
 	private int getValueByPattern(String str, Pattern pattern) {

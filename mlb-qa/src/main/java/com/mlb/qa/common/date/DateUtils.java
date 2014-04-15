@@ -8,6 +8,7 @@ import com.mlb.qa.common.exception.TestRuntimeException;
 
 public class DateUtils {
 	public static final String DEFAULT_DATE_FORMAT = "EEEE | MMM d, yyyy";
+	public static final String LOOKUP_INPUT_DATE_FORMAT = "yyyyMMdd";
 
 	public static enum Month {
 		JANUARY(1, "January", "Jan"), FEBRUARY(2, "February", "Feb"), MARCH(3,
