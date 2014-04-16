@@ -14,6 +14,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
 public class AndroidPage extends AbstractUIObject {
+	//TODO:  Need to rework the swipes as different screen sizes seem to need different values
 	protected static final Logger logger = Logger.getLogger(AndroidPage.class);
 	protected static final int delay = 3;
 
@@ -43,13 +44,13 @@ public class AndroidPage extends AbstractUIObject {
 
 	public void swipeUp() {
 		logger.debug("Swipe Up");
-		swipe(0.5, 0.95, 0.5, 0.05, 2);
+		swipe(0.5, 0.85, 0.5, 0.05, 2);
 		Sleeper.sleepTight(2000l);
 	}
 
 	public void swipeDown() {
 		logger.debug("Swipe down");
-		swipe(0.5, 0.05, 0.5, 0.95, 2);
+		swipe(0.5, 0.05, 0.5, 0.85, 2);
 		Sleeper.sleepTight(2000l);
 	}
 

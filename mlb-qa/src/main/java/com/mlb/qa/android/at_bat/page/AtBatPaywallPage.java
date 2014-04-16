@@ -34,9 +34,9 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 	public AtBatFavoriteTeamSelectionPage continueWithLiteVersion() {
 		logger.debug("Skip 'buy premium version' step if displayed");
 		// present just for 1st run
-		if (isElementPresent(maybeLaterLink, 3)) {
+		if (isElementPresent(maybeLaterLink, 10)) {
 			click(maybeLaterLink);
-		} else if (isElementPresent(maybeLaterText, 3)) {
+		} else if (isElementPresent(maybeLaterText, 10)) {
 			click(maybeLaterText);
 		}
 		return new AtBatFavoriteTeamSelectionPage(driver);
