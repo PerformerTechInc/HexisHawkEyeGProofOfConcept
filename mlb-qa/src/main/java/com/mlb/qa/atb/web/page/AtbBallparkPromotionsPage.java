@@ -1,0 +1,110 @@
+package com.mlb.qa.atb.web.page;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import com.mlb.qa.atb.model.game_promotion.GamePromotion;
+import com.mlb.qa.atb.model.game_promotion.Promotion;
+import com.mlb.qa.common.date.DateUtils.Month;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
+
+public class AtbBallparkPromotionsPage extends AbstractPage {
+	private static final Logger logger = Logger.getLogger(AtbBallparkPromotionsPage.class);
+	// promo item
+	private static final String PROMOTION_CONTAINER_LOCATOR = ".//div[@class='promo-details-item']";
+	private static final String OFFER_NAME_LOCATOR = "./h7";
+	private static final String DESCRIPTION_LOCATOR = "./p";
+	// Buy tickets link
+	private static final String BUY_TICKETS_LINK_LOCATOR = ".//a[text()='Buy Tickets']";
+	private static final String HREF_ATTR = "href";
+	// away team
+	private static final String OPPONENT_LOCATOR = ".//*[@class='promo-details-opponent']";
+	// date
+	private static final String DAY_LOCATOR = ".//div[@class='promo-date-number']";
+
+	private static final String PRESENTED_BY = "Presented By ";
+
+	@FindBy(xpath = "//nav[@class='nav-pagination']//li/h5")
+	private ExtendedWebElement monthYearLabel;
+	// game promotion containers
+	@FindBy(xpath = "//section[@id= 'promotions']/ul/li")
+	private List<ExtendedWebElement> gamePromotionContainers;
+
+	public AtbBallparkPromotionsPage(WebDriver driver) {
+		super(driver);
+	}
+
+	public static AtbBallparkPromotionsPage open(WebDriver driver, String url) {
+		logger.info("Open " + url);
+		driver.get(url);
+		return new AtbBallparkPromotionsPage(driver);
+	}
+
+	public List<GamePromotion> loadListOfGamePromotions() {
+		logger.info("Load list of game promotions");
+		// get year and month
+		String monthYear = monthYearLabel.getText().trim();
+		int year = Integer.parseInt(StringUtils.substringAfter(monthYear, " "));
+		int month = Month.getMonthOfYearByShortName(StringUtils.substringBefore(monthYear, " "));
+		List<GamePromotion> gamePromotions = new LinkedList<GamePromotion>();
+		for (ExtendedWebElement gamePromotionContainer : gamePromotionContainers) {
+			GamePromotion gamePromotion = new GamePromotion();
+			int day = Integer.parseInt((new ExtendedWebElement(gamePromotionContainer.getElement().findElement(
+					By.xpath(DAY_LOCATOR)))).getText());
+			gamePromotion.setGameDate(new DateTime(year, month, day, 0, 0));
+			gamePromotion.setAwayNameTeam(StringUtils.substringAfter(
+					getTextIfPresent(gamePromotionContainer, OPPONENT_LOCATOR), "vs. "));
+			String href = getAttributeIfElementPresent(gamePromotionContainer, BUY_TICKETS_LINK_LOCATOR, HREF_ATTR);
+			List<Promotion> promotions = new LinkedList<Promotion>();
+			for (WebElement promoItemContainer : gamePromotionContainer.getElement().findElements(
+					By.xpath(PROMOTION_CONTAINER_LOCATOR))) {
+				Promotion promotion = new Promotion();
+				String descriptionLine = getTextIfPresent(new ExtendedWebElement(promoItemContainer),
+						DESCRIPTION_LOCATOR);
+				if (descriptionLine.startsWith(PRESENTED_BY)) {
+					promotion.setDescription("");
+					promotion.setPresentedBy(StringUtils.substringAfter(descriptionLine, PRESENTED_BY));
+				}
+				else {
+					promotion.setDescription(descriptionLine);
+					promotion.setPresentedBy("");
+				}
+				promotion
+						.setOfferName(getTextIfPresent(new ExtendedWebElement(promoItemContainer), OFFER_NAME_LOCATOR));
+				promotion.setTlink(href);
+				promotions.add(promotion);
+			}
+			gamePromotion.setPromotions(promotions);
+			gamePromotions.add(gamePromotion);
+		}
+		logger.info("Found promotions: " + gamePromotions);
+		return gamePromotions;
+	}
+
+	private String getTextIfPresent(ExtendedWebElement container, String nestedLocator) {
+		String text = "";
+		List<WebElement> foundElements = container.getElement().findElements(By.xpath(nestedLocator));
+		if (!foundElements.isEmpty()) {
+			text = (new ExtendedWebElement(foundElements.get(0))).getText();
+		}
+		return text;
+	}
+
+	private String getAttributeIfElementPresent(ExtendedWebElement container, String nestedLocator, String attribute) {
+		String text = "";
+		List<WebElement> foundElements = container.getElement().findElements(By.xpath(nestedLocator));
+		if (!foundElements.isEmpty()) {
+			text = (new ExtendedWebElement(foundElements.get(0))).getAttribute(attribute);
+		}
+		return text;
+	}
+}

@@ -14,6 +14,8 @@ import org.joda.time.DateTime;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonItem;
 import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJson;
+import com.mlb.qa.atb.model.game_promotion.GamePromotion;
+import com.mlb.qa.atb.model.game_promotion.QueryGamePromotionsRS;
 import com.mlb.qa.atb.model.game_ticket.GameTicket;
 import com.mlb.qa.atb.model.game_ticket.QueryGameTicketsRS;
 import com.mlb.qa.atb.model.identity_point.IdentityPoint;
@@ -36,8 +38,10 @@ public class AtbHttpService {
 	private static final String CHECKINS_PATH = "/checkins";
 	// IdentityPointService
 	private static final String SOAP_ACTION_IDENTITY_POINT_IDENTIFY = "http://services.bamnetworks.com/registration/identityPoint/identify";
-	//
+	// GameTickets
 	private static final String GET_GAME_TICKETS_PATH_PATTERN = "?team_id=home_team_id_value&home_team_id=home_team_id_value&venue_id=venue_id_value&site_section=MOBILE&ticket_category=TICKETS&begin_date=date_value";
+	// GamePromotions
+	private static final String GET_GAME_PROMOTIONS_PATH_PATTERN = "?display_in=ATBAT&sport_id=1&site_section=MOBILE&mobile=true&leave_empty_games=false&team_id=home_team_id_value&home_team_id=home_team_id_value&year=year_value&begin_date=begin_date_value&end_date=end_date_value";
 	// date formats
 	public static final String INPUT_DATE_FORMAT = "yyyyMMdd";
 	/**
@@ -210,13 +214,46 @@ public class AtbHttpService {
 				venueId, beginDate));
 		String getQueryRequest = AtbParameter.MLB_ATB_GAME_TICKETS_SERVICE.getValue()
 				+ GET_GAME_TICKETS_PATH_PATTERN.replaceAll("home_team_id_value", homeTeamId)
-						.replaceAll("venue_id_value", venueId).replaceAll("date_value", DateUtils.dateToString(beginDate,
+						.replaceAll("venue_id_value", venueId)
+						.replaceAll("date_value", DateUtils.dateToString(beginDate,
 								DateUtils.LOOKUP_INPUT_DATE_FORMAT));
 		logger.info(String.format("Request: %s", getQueryRequest));
 		HttpResult result = HttpHelper.executeGet(getQueryRequest, new HashMap<String, String>());
-		//logger.info(String.format("Result: %s", result));
 		HttpHelper.checkResultOk(result);
-		return QueryGameTicketsRS.unmarshal(result.getResponseBody()).getGameTickets();
+		List<GameTicket> gameTickets = QueryGameTicketsRS.unmarshal(result.getResponseBody()).getGameTickets();
+		logger.info("Found game tickets: " + gameTickets);
+		return gameTickets;
+	}
+
+	/**
+	 * Load list of events from GamePromotion service
+	 * 
+	 * @param homeTeamId
+	 * @param year
+	 * @param month
+	 * @return
+	 */
+	public List<GamePromotion> loadListOfPromotionsFromGamePromotionsService(String homeTeamId, Integer year,
+			Integer month) {
+		logger.info(String.format("Load list of promotions by home team id: %s, year: %s, month: %s", homeTeamId,
+				year, month));
+		DateTime beginDate = new DateTime(year, month, 1, 0, 0);
+		DateTime endDate = beginDate.plusMonths(1).minusDays(1);
+		String getQueryRequest = AtbParameter.MLB_ATB_GAME_PROMOTIONS_SERVICE.getValue()
+				+ GET_GAME_PROMOTIONS_PATH_PATTERN.replaceAll("home_team_id_value", homeTeamId)
+						.replaceAll("year_value", year.toString())
+						.replaceAll("begin_date_value", DateUtils.dateToString(beginDate,
+								DateUtils.LOOKUP_INPUT_DATE_FORMAT))
+						.replaceAll("end_date_value", DateUtils.dateToString(endDate,
+								DateUtils.LOOKUP_INPUT_DATE_FORMAT));
+		logger.info(String.format("Request: %s", getQueryRequest));
+		HttpResult result = HttpHelper.executeGet(getQueryRequest, new HashMap<String, String>());
+		// logger.info(String.format("Result: %s", result));
+		HttpHelper.checkResultOk(result);
+		List<GamePromotion> gamePromotions = QueryGamePromotionsRS.unmarshal(result.getResponseBody())
+				.getGamePromotions();
+		logger.info("Found game promotions: " + gamePromotions);
+		return gamePromotions;
 	}
 
 	private int getValueByPattern(String str, Pattern pattern) {

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
  * Tickets for games at the Ballpark page
  */
 public class AtbBallparkTicketsPage extends AbstractPage {
+	private static final Logger logger = Logger.getLogger(AtbBallparkTicketsPage.class);
 
 	private static final String DATE_LOCATOR = "./time/span[contains(@class,'date')]";
 	private static final String TIME_LOCATOR = "./time/span[contains(@class,'time')]";
@@ -38,6 +40,7 @@ public class AtbBallparkTicketsPage extends AbstractPage {
 	}
 
 	public static AtbBallparkTicketsPage open(WebDriver driver, String url) {
+		logger.info("Open " + url);
 		driver.get(url);
 		return new AtbBallparkTicketsPage(driver);
 	}
@@ -48,6 +51,7 @@ public class AtbBallparkTicketsPage extends AbstractPage {
 	 * @return
 	 */
 	public List<GameTicket> loadListOfGameTickets() {
+		logger.info("Load list of tickets from page");
 		List<GameTicket> result = new LinkedList<GameTicket>();
 		for (ExtendedWebElement container : gameContainers) {
 			GameTicket ticket = new GameTicket();
@@ -64,7 +68,7 @@ public class AtbBallparkTicketsPage extends AbstractPage {
 			String time = new ExtendedWebElement(container.getElement()
 					.findElement(By.xpath(TIME_LOCATOR)),
 					"Game time").getText().trim();
-			if (TBD.equalsIgnoreCase(time)){
+			if (TBD.equalsIgnoreCase(time)) {
 				time = START_OF_DAY_TIME;
 			}
 			ticket.setDateTimeLocal(DateUtils.parseString(dateStr + " " + time, DATE_FORMAT));
@@ -78,6 +82,7 @@ public class AtbBallparkTicketsPage extends AbstractPage {
 			}
 			result.add(ticket);
 		}
+		logger.info("Found tickets: " + result);
 		return result;
 	}
 
