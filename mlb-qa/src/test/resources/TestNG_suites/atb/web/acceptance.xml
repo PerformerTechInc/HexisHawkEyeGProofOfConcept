@@ -1,9 +1,31 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark Web - Acceptance"
 	annotations="JDK">
-	<suite-files>
-		<suite-file path="./ballpark_music.xml" />
-		<suite-file path="./ballpark_tickets.xml" />
-		<suite-file path="./ballpark_promotions.xml" />
-	</suite-files>
+	<test verbose="1" name="Ballpark music test">
+		<parameter name="{excel_ds_uid}" value="team_abbrev" />
+		<parameter name="{excel_ds_args}" value="team_abbrev;team_web" />
+		<parameter name="{excel_ds_file}" value="XLS_data/atb_web.xls" />
+		<parameter name="{excel_ds_sheet}" value="team_music" />
+		<classes>
+			<class name="com.mlb.qa.tests.atb.web.AtbBallparkMusicTest" />
+		</classes>
+	</test>
+	<test verbose="1" name="Ballpark promotions test">
+		<parameter name="{excel_ds_uid}" value="team_abbrev" />
+		<parameter name="{excel_ds_args}" value="team_abbrev;team_promotions_web" />
+		<parameter name="{excel_ds_file}" value="XLS_data/atb_web.xls" />
+		<parameter name="{excel_ds_sheet}" value="team_promotions" />
+		<classes>
+			<class name="com.mlb.qa.tests.atb.web.AtbBallparkPromotionsTest" />
+		</classes>
+	</test>
+	<test verbose="1" name="Ballpark tickets test">
+		<parameter name="{excel_ds_uid}" value="team_abbrev" />
+		<parameter name="{excel_ds_args}" value="team_abbrev;team_tickets_web" />
+		<parameter name="{excel_ds_file}" value="XLS_data/atb_web.xls" />
+		<parameter name="{excel_ds_sheet}" value="team_tickets" />
+		<classes>
+			<class name="com.mlb.qa.tests.atb.web.AtbBallparkTicketsTest" />
+		</classes>
+	</test>
 </suite>
