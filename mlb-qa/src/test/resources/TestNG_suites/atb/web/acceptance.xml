@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="MLB - At the Ballpark Web - Acceptance"
+	annotations="JDK">
+	<suite-files>
+		<suite-file path="./ballpark_music.xml" />
+		<suite-file path="./ballpark_tickets.xml" />
+		<suite-file path="./ballpark_promotions.xml" />
+	</suite-files>
+</suite>
