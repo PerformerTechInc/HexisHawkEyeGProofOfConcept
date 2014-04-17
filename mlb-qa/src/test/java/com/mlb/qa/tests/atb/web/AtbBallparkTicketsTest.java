@@ -18,7 +18,7 @@ import com.mlb.qa.common.comparator.ListComparator;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 /**
- * Check that content of Tickets page for each team is correct<br>
+ * Check that content of Tickets page for each ballpark is correct<br>
  */
 public class AtbBallparkTicketsTest extends UITest {
 	private AtbHttpService httpService = new AtbHttpService();

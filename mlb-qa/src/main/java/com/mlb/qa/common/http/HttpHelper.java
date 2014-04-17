@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,6 +18,7 @@ import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import com.mlb.qa.common.exception.TestRuntimeException;
@@ -66,16 +66,15 @@ public class HttpHelper {
 			HttpResult result = new HttpResult();
 			result.setResponseCode(response.getStatusLine().getStatusCode());
 			if (response.getEntity() != null) {
-				result.setResponseBody(IOUtils.toString(response.getEntity()
-						.getContent()));
+				result.setResponseBody(EntityUtils.toString(response.getEntity(), "UTF-8"));
 			}
-			//logger.info("Result: " + result);
+			// logger.info("Result: " + result);
 			return result;
+
 		} catch (Exception e) {
 			throw new TestRuntimeException("Error while http method execution",
 					e);
 		}
-
 	}
 
 	/**
