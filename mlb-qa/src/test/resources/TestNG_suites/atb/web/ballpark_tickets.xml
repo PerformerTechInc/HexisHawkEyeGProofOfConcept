@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="MLB - At the Ballpark" annotations="JDK">
+<suite verbose="1" name="MLB - At the Ballpark Web - Tickets" annotations="JDK">
 	<test verbose="1" name="Ballpark tickets test">
 		<parameter name="{excel_ds_uid}" value="team_abbrev" />
 		<parameter name="{excel_ds_args}" value="team_abbrev;team_tickets_web" /> 

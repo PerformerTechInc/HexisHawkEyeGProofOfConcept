@@ -1,17 +1,22 @@
 package com.mlb.qa.atb.model.game_promotion;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.mlb.qa.atb.model.Item;
+import com.mlb.qa.atb.model.adapter.TicketServiceStringAdapter;
 
 public class Promotion implements Item {
 	@XmlAttribute(name = "description")
+	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
 	private String description;
+	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
 	@XmlAttribute(name = "offer_name")
 	private String offerName;
 	@XmlAttribute(name = "tlink")
 	private String tlink;
 	@XmlAttribute(name = "presented_by")
+	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
 	private String presentedBy;
 
 	public String getDescription() {

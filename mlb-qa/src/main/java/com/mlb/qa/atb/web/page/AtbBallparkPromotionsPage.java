@@ -2,6 +2,7 @@ package com.mlb.qa.atb.web.page;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -14,6 +15,8 @@ import org.openqa.selenium.support.FindBy;
 import com.mlb.qa.atb.model.game_promotion.GamePromotion;
 import com.mlb.qa.atb.model.game_promotion.Promotion;
 import com.mlb.qa.common.date.DateUtils.Month;
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.Configuration.Parameter;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 
@@ -22,7 +25,8 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 	// promo item
 	private static final String PROMOTION_CONTAINER_LOCATOR = ".//div[@class='promo-details-item']";
 	private static final String OFFER_NAME_LOCATOR = "./h7";
-	private static final String DESCRIPTION_LOCATOR = "./p";
+	private static final String DESCRIPTION_LOCATOR = "./p[not (starts-with(.,'Presented By '))]";
+	private static final String PRESENTED_BY_LOCATOR = "./p[starts-with(.,'Presented By ')]";
 	// Buy tickets link
 	private static final String BUY_TICKETS_LINK_LOCATOR = ".//a[text()='Buy Tickets']";
 	private static final String HREF_ATTR = "href";
@@ -54,7 +58,7 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 		// get year and month
 		String monthYear = monthYearLabel.getText().trim();
 		int year = Integer.parseInt(StringUtils.substringAfter(monthYear, " "));
-		int month = Month.getMonthOfYearByShortName(StringUtils.substringBefore(monthYear, " "));
+		int month = Month.getMonthOfYearByFullName(StringUtils.substringBefore(monthYear, " "));
 		List<GamePromotion> gamePromotions = new LinkedList<GamePromotion>();
 		for (ExtendedWebElement gamePromotionContainer : gamePromotionContainers) {
 			GamePromotion gamePromotion = new GamePromotion();
@@ -68,16 +72,11 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 			for (WebElement promoItemContainer : gamePromotionContainer.getElement().findElements(
 					By.xpath(PROMOTION_CONTAINER_LOCATOR))) {
 				Promotion promotion = new Promotion();
-				String descriptionLine = getTextIfPresent(new ExtendedWebElement(promoItemContainer),
-						DESCRIPTION_LOCATOR);
-				if (descriptionLine.startsWith(PRESENTED_BY)) {
-					promotion.setDescription("");
-					promotion.setPresentedBy(StringUtils.substringAfter(descriptionLine, PRESENTED_BY));
-				}
-				else {
-					promotion.setDescription(descriptionLine);
-					promotion.setPresentedBy("");
-				}
+				promotion.setDescription(getTextIfPresent(new ExtendedWebElement(promoItemContainer),
+						DESCRIPTION_LOCATOR));
+				promotion.setPresentedBy(StringUtils.substringAfter(
+						getTextIfPresent(new ExtendedWebElement(promoItemContainer),
+								PRESENTED_BY_LOCATOR), PRESENTED_BY));
 				promotion
 						.setOfferName(getTextIfPresent(new ExtendedWebElement(promoItemContainer), OFFER_NAME_LOCATOR));
 				promotion.setTlink(href);
@@ -92,18 +91,30 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 
 	private String getTextIfPresent(ExtendedWebElement container, String nestedLocator) {
 		String text = "";
-		List<WebElement> foundElements = container.getElement().findElements(By.xpath(nestedLocator));
-		if (!foundElements.isEmpty()) {
-			text = (new ExtendedWebElement(foundElements.get(0))).getText();
+		try {
+			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+			List<WebElement> foundElements = container.getElement().findElements(By.xpath(nestedLocator));
+			if (!foundElements.isEmpty()) {
+				text = (new ExtendedWebElement(foundElements.get(0))).getText();
+			}
+		} finally {
+			driver.manage().timeouts()
+					.implicitlyWait(Configuration.getLong(Parameter.IMPLICIT_TIMEOUT), TimeUnit.SECONDS);
 		}
 		return text;
 	}
 
 	private String getAttributeIfElementPresent(ExtendedWebElement container, String nestedLocator, String attribute) {
 		String text = "";
-		List<WebElement> foundElements = container.getElement().findElements(By.xpath(nestedLocator));
-		if (!foundElements.isEmpty()) {
-			text = (new ExtendedWebElement(foundElements.get(0))).getAttribute(attribute);
+		try {
+			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+			List<WebElement> foundElements = container.getElement().findElements(By.xpath(nestedLocator));
+			if (!foundElements.isEmpty()) {
+				text = (new ExtendedWebElement(foundElements.get(0))).getAttribute(attribute);
+			}
+		} finally {
+			driver.manage().timeouts()
+					.implicitlyWait(Configuration.getLong(Parameter.IMPLICIT_TIMEOUT), TimeUnit.SECONDS);
 		}
 		return text;
 	}

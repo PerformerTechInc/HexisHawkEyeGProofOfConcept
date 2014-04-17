@@ -48,6 +48,16 @@ public class DateUtils {
 					+ shortName);
 		}
 
+		public static Integer getMonthOfYearByFullName(String fullName) {
+			for (Month month : values()) {
+				if (month.getFullName().equalsIgnoreCase(fullName)) {
+					return month.getMonthOfYear();
+				}
+			}
+			throw new TestRuntimeException("Wrong full name specified: "
+					+ fullName);
+		}
+
 		public Integer getMonthOfYear() {
 			return this.monthOfYear;
 		}
