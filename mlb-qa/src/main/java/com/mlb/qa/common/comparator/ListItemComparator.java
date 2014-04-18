@@ -16,9 +16,13 @@ public abstract class ListItemComparator<T> implements Comparator<T> {
 	protected int compareFields(String name, String s1, String s2) {
 		return FieldsComparator.compareFields(name, s1, s2);
 	}
-	
+
 	protected int compareFieldsIgnoreCase(String name, String s1, String s2) {
 		return FieldsComparator.compareFieldsIgnoreCase(name, s1, s2);
+	}
+
+	protected int compareFields(String name, Boolean b1, Boolean b2) {
+		return FieldsComparator.compareFields(name, b1, b2);
 	}
 
 	protected void doLogging(String name, Object str1, Object str2,
@@ -27,7 +31,7 @@ public abstract class ListItemComparator<T> implements Comparator<T> {
 			logger.info(new StringBuilder("Equal parameters - ").append(name)
 					.append(" \"").append(str1).append("\" = \"").append(str2)
 					.append("\"").toString());
-					
+
 		} else {
 			logger.info(new StringBuilder("Different parameters - ")
 					.append(name).append(" \"").append(str1).append("\" != \"")
