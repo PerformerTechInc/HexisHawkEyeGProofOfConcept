@@ -43,15 +43,31 @@ public class FieldsComparator {
 		return res;
 	}
 
+	public static int compareFields(String name, Boolean b1, Boolean b2) {
+		int res = 0;
+		if (b1 == null && b2 != null) {
+			res = -1;
+		}
+		else if (b1 != null && b2 == null) {
+			res = 1;
+		}
+		else if (b1 == null && b2 == null) {
+			res = 0;
+		}
+		else {
+			res = b1.compareTo(b2);
+		}
+		doLogging(name, b1, b2, res == 0);
+		return res;
+	}
+
 	protected static void doLogging(String name, Object str1, Object str2,
 			boolean equal) {
 		if (equal) {
-			/*
 			logger.info(new StringBuilder("Equal parameters - ").append(name)
 					.append(" \"").append(str1).append("\" = \"").append(str2)
 					.append("\"").toString());
-			*/
-					
+
 		} else {
 			logger.info(new StringBuilder("Different parameters - ")
 					.append(name).append(" \"").append(str1).append("\" != \"")

@@ -1,6 +1,7 @@
 package com.mlb.qa.atb.service.lookup;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import org.joda.time.DateTime;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.model.Game;
 import com.mlb.qa.atb.model.Team;
+import com.mlb.qa.atb.model.schedule.ScheduleGameInfo;
+import com.mlb.qa.atb.model.schedule.ScheduleUtils;
 import com.mlb.qa.common.date.DateUtils;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;
@@ -23,9 +26,9 @@ public class AtbLookupService {
 			.getLogger(AtbLookupService.class);
 
 	// queries
+	public static final String INCOMING_GAME_FOR_SCHEDULE_QUERY = "named.schedule_vw_sponsors.bam?team_id=%s&season=%s&start_date=%s&end_date=%s&game_type='E'&game_type='S'&game_type='R'&game_type='F'&game_type='D'&game_type='L'&game_type='W'&ovrd_enc=utf-8";
 	public static final String INCOMING_GAMES_BY_TEAM_ID_QUERY = "named.schedule_vw_complete.bam?schedule_vw_complete.col_in=game_id&schedule_vw_complete.col_in=game_date&schedule_vw_complete.col_in=game_time_local&schedule_vw_complete.col_in=home_team_id&schedule_vw_complete.col_in=home_team_full&schedule_vw_complete.col_in=venue_id&schedule_vw_complete.col_in=venue&schedule_vw_complete.col_in=venue_short&schedule_vw_complete.col_in=away_team_id&schedule_vw_complete.col_in=away_team_full&team_id=%s&end_date=%s&start_date=%s&venue_id=%s&sort_order=asc&season=%s&game_type='W'&game_type='F'&game_type='D'&game_type='R'&game_type='L'&game_type='A'&schedule_vw_complete.recPP=1&schedule_vw_complete.recSP=1";
 	public static final String TEAM_BY_ABBREV_QUERY = "named.team_all_season.bam?team_all_season.col_in=venue_id&team_all_season.col_in=name_display_full&team_all_season.col_in=team_id&team_all_season.col_in=name&team_all_season.col_in=name_short&team_all_season.col_in=name_abbrev&team_all_season.col_in=city&team_all_season.col_in=venue_name&name_abbrev='%s'&season=%s&sport_id=1";
-	
 
 	private static final String QUERYNG_RESULT_RESPONSE_REGEXP = ".*<queryResults.*</queryResults>.*";
 
@@ -95,5 +98,39 @@ public class AtbLookupService {
 					abbrev, season));
 		}
 		return teams.get(0);
+	}
+
+	/**
+	 * Lookup for the scheduled games info
+	 * 
+	 * @param teamId
+	 * @param year
+	 * @param month
+	 * @return
+	 */
+	public List<ScheduleGameInfo> loookupListOfScheduledGamesForTheMonth(String teamId, Integer year,
+			Integer month) {
+		logger.info(String.format("Load list of scheduled games' info by team id: %s, year: %s, month: %s", teamId,
+				year, month));
+		DateTime beginDate = new DateTime(year, month, 1, 0, 0);
+		DateTime endDate = beginDate.plusMonths(1).minusDays(1);
+		String getQueryRequest = AtbParameter.MLB_ATB_LOOKUP_SERVICE.getValue()
+				+ String.format(INCOMING_GAME_FOR_SCHEDULE_QUERY, teamId, year.toString(),
+						DateUtils.dateToString(beginDate,
+								DateUtils.LOOKUP_INPUT_DATE_FORMAT), DateUtils.dateToString(endDate,
+								DateUtils.LOOKUP_INPUT_DATE_FORMAT));
+		logger.info(String.format("Request: %s", getQueryRequest));
+		HttpResult result = HttpHelper.executeGet(getQueryRequest, new HashMap<String, String>());
+		// logger.info(String.format("Result: %s", result));
+		HttpHelper.checkResultOk(result);
+		List<Game> games = LookupHelper.unmarshal(Game.class,
+				result.getResponseBody());
+		List<ScheduleGameInfo> gameInfoList = new ArrayList<ScheduleGameInfo>(games.size());
+		for (Game game : games) {
+			ScheduleGameInfo gameInfo = ScheduleUtils.parseGameScheduleInfo(game, teamId);
+			gameInfoList.add(gameInfo);
+		}
+		logger.info("Found scheduled games: " + gameInfoList);
+		return gameInfoList;
 	}
 }
