@@ -41,12 +41,12 @@ public class AtBatNewsPage extends AtBatAndroidPage {
 	}
 
 	public Boolean isSponsorSlideDisplayed() {
-		return isElementPresent(sponsorImage);
+		return isElementPresent(sponsorImage, delay);
 	}
 
 	public List<String> loadShareWithOptions() {
 		click(shareWithButton);
-		if (isElementPresent(seeAllButton)) {
+		if (isElementPresent(seeAllButton, delay)) {
 			click(seeAllButton);
 		}
 		List<String> shareOptions = new LinkedList<String>();

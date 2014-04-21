@@ -23,7 +23,7 @@ public class AtBatFavoriteTeamSelectionPage extends AtBatAndroidPage {
 
 	public AtBatNotificationsPage skipFavoriteTeamSelectionStep() {
 		logger.debug("Skip 'favorite team selection' step if displayed");
-		if (isElementPresent(nextLink)) {
+		if (isElementPresent(nextLink, delay)) {
 			click(nextLink);
 		}
 		return new AtBatNotificationsPage(driver);
@@ -32,7 +32,7 @@ public class AtBatFavoriteTeamSelectionPage extends AtBatAndroidPage {
 	public AtBatAndroidPage selectFavoriteTeam() {
 		//TODO: Need to finish the logic here that allows the selection of the Favorite Team.
 		logger.debug("Select 'favorite team select' if displayed");
-		if (isElementPresent(favoriteTeamTitle)) {
+		if (isElementPresent(favoriteTeamTitle, delay)) {
 
 		}
 		return new AtBatAndroidPage(driver);

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.FindBy;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -72,19 +71,25 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	}
 
 	public AtBatNewsPage selectTeamNews() {
-		click(itemNews);
-		
+		if (isElementPresent(itemNews, delay)) {
+			click(itemNews);
+		}
+
 		return new AtBatNewsPage(driver);
 	}
 
 	public AtBatTeamPage selectTeamVideo() {
-		click(itemVideo);
+		if (isElementPresent(itemVideo, delay)) {
+			click(itemVideo);
+		}
 
 		return new AtBatTeamPage(driver);
 	}
 
 	public AtBatSchedulePage selectTeamSchedule() {
-		click(itemSchedule);
+		if (isElementPresent(itemSchedule, delay)) {
+			click(itemSchedule);
+		}
 
 		return new AtBatSchedulePage(driver);
 	}
@@ -108,7 +113,9 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	}
 
 	public AtBatTeamRosterPage selectTeamRoster() {
-		click(itemRoster);
+		if (isElementPresent(itemRoster, delay)) {
+			click(itemRoster);
+		}
 
 		return new AtBatTeamRosterPage(driver);
 	}
@@ -121,7 +128,7 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	}
 
 	public Boolean isSponsorSlideDisplayed() {
-		return isElementPresent(teamCarouselAdImage, 3);
+		return isElementPresent(teamCarouselAdImage, delay);
 	}
 
 	public int getNumberOfDateItems() {
@@ -158,8 +165,6 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	}
 
 	public boolean isCarouselItemVisible(int i) {
-		//TODO:  Need to revisit this and remove the first timer.
-		Sleeper.sleepTightInSeconds(20);
 		if (isElementPresent(teamCarouselIndicators.get(i), 20)) {
 			if (teamCarouselIndicators.get(i).getElement().isDisplayed()) {
 				return true;

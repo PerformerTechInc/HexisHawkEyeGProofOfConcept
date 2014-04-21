@@ -23,7 +23,7 @@ public class AtBatWebViewPage extends AtBatAndroidPage {
 	}
 
 	public boolean isTeamsWebView(String teamAbbrev) {
-		if (isElementPresent(actionBarTitle)) {
+		if (isElementPresent(actionBarTitle, delay)) {
 			if (isElementPresent(String.format("Team '%s'", teamAbbrev),
 					driver.findElement(By.xpath(String.format(
 							ACTION_BAR_NAME_LOCATOR_PATTERN, teamAbbrev))))) {

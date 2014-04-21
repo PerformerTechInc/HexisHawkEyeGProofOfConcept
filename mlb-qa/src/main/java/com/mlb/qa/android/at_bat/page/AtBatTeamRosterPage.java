@@ -50,7 +50,7 @@ public class AtBatTeamRosterPage extends AtBatAndroidPage {
 	}
 
 	public AtBatTeamRosterPage selectNameLink() {
-		if (isElementPresent(nameLink)) {
+		if (isElementPresent(nameLink, delay)) {
 			click(nameLink);
 		}
 
@@ -58,7 +58,7 @@ public class AtBatTeamRosterPage extends AtBatAndroidPage {
 	}
 
 	public AtBatTeamRosterPage selectPositionLink() {
-		if (isElementPresent(positionLink)) {
+		if (isElementPresent(positionLink, delay)) {
 			click(positionLink);
 		}
 

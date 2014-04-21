@@ -52,7 +52,7 @@ public class AtBatSettingsPage extends AtBatAndroidPage {
 
 	public AtBatLoginAlert accessMLBAccount() {
 		//TODO:  Might not necessarily need this?
-		if (isElementPresent(mlbAccountLoginLink)) {
+		if (isElementPresent(mlbAccountLoginLink, delay)) {
 			click(mlbAccountLoginLink);
 		}
 

@@ -30,7 +30,7 @@ public class AtBatForgotPasswordPage extends AtBatAndroidPage {
 	}
 
 	public boolean passwordSent() {
-		if (isElementPresent(newPasswordLabel)) {
+		if (isElementPresent(newPasswordLabel, delay)) {
 			return true;
 		}
 		return false;

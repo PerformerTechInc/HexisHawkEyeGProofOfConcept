@@ -30,7 +30,7 @@ public class AtBatNotificationsPage extends AtBatAndroidPage {
 	public AtBatAndroidPage skipSettingNotifications() {
 		logger.debug("Skip 'notification selection step' if displayed");
 		skipPlayServiceAlert();
-		if (isElementPresent(notificationsExists, 3)) {
+		if (isElementPresent(notificationsExists, delay)) {
 			click(doneLink);
 		}
 		return new AtBatAndroidPage(driver);
@@ -38,8 +38,8 @@ public class AtBatNotificationsPage extends AtBatAndroidPage {
 
 	public void skipPlayServiceAlert() {
 		logger.debug("Skip 'google play service not supported' step if displayed");
-		if (isElementPresent(alertPlayServices, 3)) {
-			if (isElementPresent(alertOkLink, 3)) {
+		if (isElementPresent(alertPlayServices, delay)) {
+			if (isElementPresent(alertOkLink, delay)) {
 				click(alertOkLink);
 			}
 		}
@@ -47,8 +47,8 @@ public class AtBatNotificationsPage extends AtBatAndroidPage {
 
 	public AtBatNotificationsPage skipPlayServiceAlertInitial() {
 		logger.debug("Skip 'google play service not supported' step if displayed");
-		if (isElementPresent(alertPlayServices, 3)) {
-			if (isElementPresent(alertPlayServices, 3)) {
+		if (isElementPresent(alertPlayServices, delay)) {
+			if (isElementPresent(alertPlayServices, delay)) {
 				click(alertOkLink);
 			}
 		}

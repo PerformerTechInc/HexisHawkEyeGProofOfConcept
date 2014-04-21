@@ -14,6 +14,8 @@ public class AtBatAndroidPage extends AndroidPage {
 	
 	@FindBy(id = "android:id/up")
 	private ExtendedWebElement openMenuButton;
+	@FindBy(name = "Navigate up")
+	private ExtendedWebElement openMenuButtonText;
 
 	public AtBatAndroidPage(WebDriver driver) {
 		super(driver);
@@ -21,7 +23,11 @@ public class AtBatAndroidPage extends AndroidPage {
 
 	public AtBatMenu openMenu() {
 		logger.debug("Open menu");
-		click(openMenuButton);
+		if (isElementPresent(openMenuButton, delay)) {
+			click(openMenuButton);
+		} else if (isElementPresent(openMenuButtonText, delay)){
+			click(openMenuButtonText);
+		}
 		return new AtBatMenu(driver);
 	}
 	

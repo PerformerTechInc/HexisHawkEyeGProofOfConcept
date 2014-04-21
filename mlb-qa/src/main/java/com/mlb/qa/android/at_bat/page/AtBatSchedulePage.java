@@ -26,7 +26,7 @@ public class AtBatSchedulePage extends AtBatAndroidPage {
 	}
 
 	public AtBatSchedulePage selectList() {
-		if (isElementPresent(listLink)) {
+		if (isElementPresent(listLink, delay)) {
 			click(listLink);
 		}
 
@@ -34,7 +34,7 @@ public class AtBatSchedulePage extends AtBatAndroidPage {
 	}
 
 	public AtBatSchedulePage selectMonth() {
-		if (isElementPresent(monthLink)) {
+		if (isElementPresent(monthLink, delay)) {
 			click(monthLink);
 		}
 
@@ -42,14 +42,14 @@ public class AtBatSchedulePage extends AtBatAndroidPage {
 	}
 
 	public boolean isListVisible() {
-		if (isElementPresent(listLink)) {
+		if (isElementPresent(listLink, delay)) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isMonthVisible() {
-		if (isElementPresent(monthLink)) {
+		if (isElementPresent(monthLink, delay)) {
 			return true;
 		}
 		return false;

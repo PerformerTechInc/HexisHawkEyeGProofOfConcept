@@ -44,9 +44,9 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 
 	public AtBatLoginPage loginAsExistingUser() {
 		logger.debug("Attempting to 'login' as an existing user");
-		if (isElementPresent(existingUserLoginLink,3)) {
+		if (isElementPresent(existingUserLoginLink, delay)) {
 			click(existingUserLoginLink);
-		} else if (isElementPresent(existingUserLoginText)) {
+		} else if (isElementPresent(existingUserLoginText, delay)) {
 			click(existingUserLoginText);
 		}
 		
@@ -54,14 +54,14 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 	}
 
 	public boolean storeAvailable() {
-		if (isElementPresent(storeNotAvailableText, 3)) {
+		if (isElementPresent(storeNotAvailableText, delay)) {
 			return false;
 		}
 		return true;
 	}
 
 	public boolean paywallPageAvailable() {
-		if (isElementPresent(paywallTitleText)) {
+		if (isElementPresent(paywallTitleText, delay)) {
 			return true;
 		}
 		return false;
