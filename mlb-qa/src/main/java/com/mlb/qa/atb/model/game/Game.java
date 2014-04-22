@@ -1,9 +1,16 @@
-package com.mlb.qa.atb.model;
+package com.mlb.qa.atb.model.game;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.joda.time.DateTime;
+
+import com.mlb.qa.atb.model.Item;
+import com.mlb.qa.atb.model.game.adapter.GameStatusAdapter;
+import com.mlb.qa.atb.model.game.adapter.GameTimeLocalAdapter;
 
 @XmlRootElement(name = "row")
 @XmlAccessorType(XmlAccessType.NONE)
@@ -14,15 +21,19 @@ public class Game implements Item {
 	@XmlAttribute(name = "game_id")
 	private String gameId;
 	@XmlAttribute(name = "game_time_local")
-	private String gameTimeLocal;
+	@XmlJavaTypeAdapter(value = GameTimeLocalAdapter.class)
+	private DateTime gameTimeLocal;
 	@XmlAttribute(name = "game_status_text", required = false)
-	private String gameStatus;
+	@XmlJavaTypeAdapter(value = GameStatusAdapter.class)
+	private GameStatus gameStatus;
 	@XmlAttribute(name = "home_team_id")
 	private String homeTeamId;
 	@XmlAttribute(name = "home_team_full")
 	private String homeTeamFull;
 	@XmlAttribute(name = "home_team_brief", required = false)
 	private String homeTeamBrief;
+	@XmlAttribute(name = "home_team_abbrev", required = false)
+	private String homeTeamAbbrev;
 	@XmlAttribute(name = "home_score", required = false)
 	private String homeTeamScore;
 	@XmlAttribute(name = "home_result", required = false)
@@ -39,6 +50,8 @@ public class Game implements Item {
 	private String awayTeamFull;
 	@XmlAttribute(name = "away_team_brief", required = false)
 	private String awayTeamBrief;
+	@XmlAttribute(name = "away_team_abbrev", required = false)
+	private String awayTeamAbbrev;
 	@XmlAttribute(name = "away_score", required = false)
 	private String awayTeamScore;
 	@XmlAttribute(name = "away_result", required = false)
@@ -52,11 +65,11 @@ public class Game implements Item {
 		this.gameId = gameId;
 	}
 
-	public String getGameTimeLocal() {
+	public DateTime getGameTimeLocal() {
 		return gameTimeLocal;
 	}
 
-	public void setGameTimeLocal(String gameTimeLocal) {
+	public void setGameTimeLocal(DateTime gameTimeLocal) {
 		this.gameTimeLocal = gameTimeLocal;
 	}
 
@@ -164,22 +177,39 @@ public class Game implements Item {
 		this.awayTeamBrief = awayTeamBrief;
 	}
 
-	public String getGameStatus() {
+	public GameStatus getGameStatus() {
 		return gameStatus;
 	}
 
-	public void setGameStatus(String gameStatus) {
+	public void setGameStatus(GameStatus gameStatus) {
 		this.gameStatus = gameStatus;
+	}
+
+	public String getHomeTeamAbbrev() {
+		return homeTeamAbbrev;
+	}
+
+	public void setHomeTeamAbbrev(String homeTeamAbbrev) {
+		this.homeTeamAbbrev = homeTeamAbbrev;
+	}
+
+	public String getAwayTeamAbbrev() {
+		return awayTeamAbbrev;
+	}
+
+	public void setAwayTeamAbbrev(String awayTeamAbbrev) {
+		this.awayTeamAbbrev = awayTeamAbbrev;
 	}
 
 	@Override
 	public String toString() {
 		return "Game [gameId=" + gameId + ", gameTimeLocal=" + gameTimeLocal + ", gameStatus=" + gameStatus
 				+ ", homeTeamId=" + homeTeamId + ", homeTeamFull=" + homeTeamFull + ", homeTeamBrief=" + homeTeamBrief
-				+ ", homeTeamScore=" + homeTeamScore + ", homeResult=" + homeResult
-				+ ", venueId=" + venueId + ", venue=" + venue + ", venueShort=" + venueShort + ", awayTeamId="
-				+ awayTeamId + ", awayTeamFull=" + awayTeamFull + ", awayTeamBrief=" + awayTeamBrief
-				+ ", awayTeamScore=" + awayTeamScore + ", awayResult=" + awayResult
-				+ "]";
+				+ ", homeTeamAbbrev=" + homeTeamAbbrev + ", homeTeamScore=" + homeTeamScore + ", homeResult="
+				+ homeResult + ", venueId=" + venueId + ", venue=" + venue + ", venueShort=" + venueShort
+				+ ", awayTeamId=" + awayTeamId + ", awayTeamFull=" + awayTeamFull + ", awayTeamBrief=" + awayTeamBrief
+				+ ", awayTeamAbbrev=" + awayTeamAbbrev + ", awayTeamScore=" + awayTeamScore + ", awayResult="
+				+ awayResult + "]";
 	}
+
 }

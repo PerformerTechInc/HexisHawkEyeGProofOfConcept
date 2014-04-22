@@ -1,7 +1,6 @@
 package com.mlb.qa.atb.model.schedule;
 
-import com.mlb.qa.atb.model.Game;
-import com.mlb.qa.common.date.DateUtils;
+import com.mlb.qa.atb.model.game.Game;
 import com.mlb.qa.common.exception.TestRuntimeException;
 
 public class ScheduleUtils {
@@ -17,7 +16,7 @@ public class ScheduleUtils {
 		if (teamId == null || game == null) {
 			throw new TestRuntimeException("team id, game should be null");
 		}
-		boolean isScheduled = Game.GAME_STATUS_SCHEDULED.equalsIgnoreCase(game.getGameStatus());
+		boolean isScheduled = Game.GAME_STATUS_SCHEDULED.equalsIgnoreCase(game.getGameStatus().getStatusText());
 		if (teamId.equals(game.getHomeTeamId())) {
 			info.setIsHome(true);
 			info.setOpponent(game.getAwayTeamBrief());
@@ -35,8 +34,7 @@ public class ScheduleUtils {
 							teamId, game.getAwayTeamId(), game.getHomeTeamId()));
 		}
 		info.setIsScheduled(isScheduled);
-		info.setDate(DateUtils.parseString(game.getGameTimeLocal(),
-				Game.GAME_TIME_LOCAL_FORMAT_PATTERN));
+		info.setDate(game.getGameTimeLocal());
 		if (!isScheduled && game.getHomeTeamScore() != null && game.getAwayTeamScore() != null
 				&& !game.getHomeTeamScore().isEmpty()
 				&& !game.getAwayTeamScore().isEmpty()) {

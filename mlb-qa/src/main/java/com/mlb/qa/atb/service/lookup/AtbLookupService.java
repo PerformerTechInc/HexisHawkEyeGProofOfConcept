@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 
 import com.mlb.qa.atb.AtbParameter;
-import com.mlb.qa.atb.model.Game;
 import com.mlb.qa.atb.model.Team;
+import com.mlb.qa.atb.model.game.Game;
 import com.mlb.qa.atb.model.schedule.ScheduleGameInfo;
 import com.mlb.qa.atb.model.schedule.ScheduleUtils;
 import com.mlb.qa.common.date.DateUtils;
@@ -110,6 +110,18 @@ public class AtbLookupService {
 	 */
 	public List<ScheduleGameInfo> loookupListOfScheduledGamesForTheMonth(String teamId, Integer year,
 			Integer month) {
+		List<Game> games = loookupListOfGamesForTheMonth(teamId, year, month);
+		List<ScheduleGameInfo> gameInfoList = new ArrayList<ScheduleGameInfo>(games.size());
+		for (Game game : games) {
+			ScheduleGameInfo gameInfo = ScheduleUtils.parseGameScheduleInfo(game, teamId);
+			gameInfoList.add(gameInfo);
+		}
+		logger.info("Found scheduled games: " + gameInfoList);
+		return gameInfoList;
+	}
+
+	public List<Game> loookupListOfGamesForTheMonth(String teamId, Integer year,
+			Integer month) {
 		logger.info(String.format("Load list of scheduled games' info by team id: %s, year: %s, month: %s", teamId,
 				year, month));
 		DateTime beginDate = new DateTime(year, month, 1, 0, 0);
@@ -125,12 +137,7 @@ public class AtbLookupService {
 		HttpHelper.checkResultOk(result);
 		List<Game> games = LookupHelper.unmarshal(Game.class,
 				result.getResponseBody());
-		List<ScheduleGameInfo> gameInfoList = new ArrayList<ScheduleGameInfo>(games.size());
-		for (Game game : games) {
-			ScheduleGameInfo gameInfo = ScheduleUtils.parseGameScheduleInfo(game, teamId);
-			gameInfoList.add(gameInfo);
-		}
-		logger.info("Found scheduled games: " + gameInfoList);
-		return gameInfoList;
+		logger.info("Found scheduled games: " + games);
+		return games;
 	}
 }

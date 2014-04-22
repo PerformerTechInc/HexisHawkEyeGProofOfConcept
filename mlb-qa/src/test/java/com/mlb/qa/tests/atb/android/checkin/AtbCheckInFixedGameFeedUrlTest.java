@@ -16,8 +16,8 @@ import org.testng.annotations.Test;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.mlb.qa.atb.android.page.AtbCheckedInPage;
-import com.mlb.qa.atb.model.Game;
 import com.mlb.qa.atb.model.Team;
+import com.mlb.qa.atb.model.game.Game;
 import com.mlb.qa.atb.model.identity_point.IdentityPoint;
 import com.mlb.qa.common.comparator.FieldsComparator;
 import com.mlb.qa.common.date.DateUtils;
@@ -64,8 +64,7 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 			DateTime today = new DateTime();
 			Game game = lookupService.lookupNearestIncomingHomeGame(team.getTeamId(),
 					team.getVenueId(), today, today.plusMonths(6), season);
-			DateTime gameDate = DateUtils.parseString(game.getGameTimeLocal(),
-					Game.GAME_TIME_LOCAL_FORMAT_PATTERN);
+			DateTime gameDate = game.getGameTimeLocal();
 			if (DateUtils.hasEqualDates(checkinDate, gameDate)) {
 				List<Object> row = new LinkedList<Object>();
 				row.add("TUID:" + teamAbbrev);
