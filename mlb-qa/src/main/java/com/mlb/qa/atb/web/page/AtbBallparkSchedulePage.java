@@ -11,6 +11,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.mlb.qa.atb.model.game.Game;
+import com.mlb.qa.atb.model.game.GameStatus;
 import com.mlb.qa.atb.model.schedule.ScheduleGameInfo;
 import com.mlb.qa.common.date.DateUtils;
 import com.mlb.qa.common.exception.TestRuntimeException;
@@ -28,28 +30,45 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 	private static final String AWAY_PREFIX = "@ ";
 	private static final String SCHEDULED_GAME_REGEXP = "[\\w-]{1,} \\d{1,}:\\d{1,} \\w{2}";
 	private static final String FINAL_GAME_REGEXP = "[\\w-]{1,} \\w \\d{1,}-\\d{1,}";
-	//private static final String SCHEDULED_GAME_REGEXP = "[\\w-\\s]{1,} \\d{1,}:\\d{1,} \\w{2}";
-	//private static final String FINAL_GAME_REGEXP = "[\\w-\\s]{1,} \\w \\d{1,}-\\d{1,}";
-	
+	// private static final String SCHEDULED_GAME_REGEXP =
+	// "[\\w-\\s]{1,} \\d{1,}:\\d{1,} \\w{2}";
+	// private static final String FINAL_GAME_REGEXP =
+	// "[\\w-\\s]{1,} \\w \\d{1,}-\\d{1,}";
+	private static final String SCORE_REGEXP = "[LW] \\d{1,}-\\d{1,}";
+	private static final String GAME_STATUS_CALENDAR_SCHEDULED_REGEXP = "\\d{1,2}:\\d{1,2} [PA]M";
+	private static final String GAME_STATUS_POSTPONED = "PPD";
+
 	// e.g. Sat, May 24, 2014
-	private static final String DATE_FORMAT = "EEE, MMM dd, yyyy hh:mm aa";
+	private static final String DATE_FORMAT_LIST = "EEE, MMM dd, yyyy hh:mm aa";
+	// e.g. April 2014 07 03:14 PM
+	private static final String DATE_FORMAT_CALENDAR = "MMMM y d hh:mm aa";
+	private static final String START_OF_DAY = "12:00 PM";
 
+	// common locators for nested elements
+	private static final String GAME_OPPONENT_LOCATOR = ".//*[@class='game-opponent']";
+	// List view specific locators
 	private static final String GAME_DAY_LIST_LOCATOR = ".//*[@class='game-day']/h5";
-	private static final String GAME_OPPONENT_LIST_LOCATOR = ".//*[@class='game-opponent']";
 	private static final String GAME_PROBABLES_LIST_LOCATOR = ".//div[@class='game-probables']";
+	// Calendar view specific locators
+	private static final String GAME_DAY_CALENDAR_LOCATOR = "./div[@class='game-day']";
+	private static final String GAME_STATUS_CALENDAR_LOCATOR = "./div[@class='game-status']";
 
+	// Common elements
 	@FindBy(xpath = "//a[text()='Calendar']")
 	private ExtendedWebElement calendarTab;
 	@FindBy(xpath = "//a[text()='Opponent']")
 	private ExtendedWebElement opponentTab;
 	@FindBy(xpath = "//a[text()='List']")
 	private ExtendedWebElement listTab;
+	@FindBy(xpath = "//*[@class='nav-pagination']//li/h5")
+	private ExtendedWebElement monthYearNavigation;
+
+	// List view specific elements
 	@FindBy(xpath = "//div[@class='game-details']")
 	private List<ExtendedWebElement> gameDetailsContainersListView;
-	@FindBy(xpath = "//td[contains(@class, 'game-home')]")
-	private List<ExtendedWebElement> gameHomeDetailsContainersTableView;
-	@FindBy(xpath = "//td[contains(@class, 'game-away')]")
-	private List<ExtendedWebElement> gameAwayDetailsContainersTableView;
+	// Calendar view specific elements
+	@FindBy(xpath = "//td[contains(@class,'game-')]")
+	private List<ExtendedWebElement> gameDetailsContainersCalendarView;
 
 	public AtbBallparkSchedulePage(WebDriver driver) {
 		super(driver);
@@ -79,11 +98,72 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 		return this;
 	}
 
-	public List<ScheduleGameInfo> loadGamesFromCalendarTab() {
+	public List<Game> loadGamesFromCalendarTab(String teamAbbrev) {
+		logger.info("Load list of scheduled events from Calendar tab");
 		openCalendarTab();
-		List<ScheduleGameInfo> result = new LinkedList<ScheduleGameInfo>();
-
+		String monthYearString = monthYearNavigation.getText().trim();
+		List<Game> result = new LinkedList<Game>();
+		for (ExtendedWebElement container : gameDetailsContainersCalendarView) {
+			Game game = new Game();
+			String dateStr = monthYearString.concat(" ").concat(getTextIfPresent(container, GAME_DAY_CALENDAR_LOCATOR));
+			String containerClass = container.getAttribute("class");
+			String opponentStr = getTextIfPresent(container, GAME_OPPONENT_LOCATOR).trim();
+			String gameStatusStr = getTextIfPresent(container, GAME_STATUS_CALENDAR_LOCATOR).trim();
+			if (containerClass.contains("home")) {
+				game.setHomeTeamAbbrev(teamAbbrev);
+				game.setAwayTeamAbbrev(opponentStr);
+			}
+			else {
+				game.setAwayTeamAbbrev(teamAbbrev);
+				game.setHomeTeamAbbrev(opponentStr);
+			}
+			if (GAME_STATUS_POSTPONED.equals(gameStatusStr)) {
+				game.setGameStatus(GameStatus.POSTPONED);
+				dateStr = dateStr.concat(" ").concat(START_OF_DAY);
+			}
+			else if (gameStatusStr.matches(SCORE_REGEXP)) {
+				game.setGameStatus(GameStatus.FINAL);
+				String homeResult = StringUtils.substringBefore(gameStatusStr, " ");
+				game.setHomeResult(homeResult);
+				game.setAwayResult(detectOpponenResult(homeResult));
+				String scorePart = StringUtils.substringAfter(gameStatusStr, " ");
+				String[] score = scorePart.split("-");
+				String winnerResult = score[0].trim();
+				String loserResult = score[1].trim();
+				if ("W".equalsIgnoreCase(homeResult)) {
+					game.setHomeTeamScore(winnerResult);
+					game.setAwayTeamScore(loserResult);
+				}
+				else {
+					game.setHomeTeamScore(loserResult);
+					game.setAwayTeamScore(winnerResult);
+				}
+				dateStr = dateStr.concat(" ").concat(START_OF_DAY);
+			}
+			else if (gameStatusStr.matches(GAME_STATUS_CALENDAR_SCHEDULED_REGEXP)) {
+				game.setGameStatus(GameStatus.SCHEDULED);
+				dateStr = dateStr.concat(" ").concat(gameStatusStr);
+			}
+			else {
+				throw new TestRuntimeException(String.format("Game status string has unknown format: '%s'",
+						gameStatusStr));
+			}
+			game.setGameTimeLocal(DateUtils.parseString(dateStr, DATE_FORMAT_CALENDAR));
+			result.add(game);
+		}
 		return result;
+	}
+
+	private String detectOpponenResult(String mainResult) {
+		if ("L".equalsIgnoreCase(mainResult)) {
+			return "W";
+		}
+		else if ("W".equalsIgnoreCase(mainResult)) {
+			return "L";
+		}
+		else {
+			throw new TestRuntimeException(String.format("Unknown result: %s", mainResult));
+		}
 	}
 
 	public List<ScheduleGameInfo> loadGamesFromListTab() {
@@ -93,7 +173,7 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 		for (ExtendedWebElement container : gameDetailsContainersListView) {
 			ScheduleGameInfo info = new ScheduleGameInfo();
 			String gameDayStr = getTextIfPresent(container, GAME_DAY_LIST_LOCATOR);
-			String gameOpponenStr = getTextIfPresent(container, GAME_OPPONENT_LIST_LOCATOR);
+			String gameOpponenStr = getTextIfPresent(container, GAME_OPPONENT_LOCATOR);
 			String gameProbablesStr = getTextIfPresent(container, GAME_PROBABLES_LIST_LOCATOR);
 			// parse opponent string
 			if (gameOpponenStr.startsWith(HOME_PREFIX)) {
@@ -125,13 +205,13 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 			infoToSave.setResult("");
 			String datePart = StringUtils.substringAfterLast(opponentStr, " ");
 			String time = gameDayStr.concat(" ");
-			if ("TDD".equalsIgnoreCase(datePart)){
+			if ("PPD".equalsIgnoreCase(datePart)) {
 				time = time.concat("12:00 PM");
 			}
-			else{
-				time = time.concat(datePart) ;
+			else {
+				time = time.concat(datePart);
 			}
-			infoToSave.setDate(DateUtils.parseString(time, DATE_FORMAT));
+			infoToSave.setDate(DateUtils.parseString(time, DATE_FORMAT_LIST));
 		}
 		else if (opponentStr.matches(FINAL_GAME_REGEXP)) {
 			infoToSave.setIsScheduled(false);
@@ -140,15 +220,17 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 			infoToSave.setOpponent(StringUtils.substringBeforeLast(opponentResultStr, opponentResultStr));
 			infoToSave.setResult(StringUtils.substringAfterLast(opponentResultStr, opponentResultStr));
 			infoToSave.setScore(scorePart);
-			infoToSave.setDate(DateUtils.parseString(gameDayStr.concat(" 12:00 PM"), DATE_FORMAT));
+			infoToSave.setDate(DateUtils.parseString(gameDayStr.concat(" 12:00 PM"), DATE_FORMAT_LIST));
 		}
 		else {
 			throw new TestRuntimeException(String.format(
 					"Unknown format of opponent info string: %s. Expected '%s' or '%s'", opponentStr,
 					SCHEDULED_GAME_REGEXP, FINAL_GAME_REGEXP));
 		}
-	//	infoToSave.setProbable(StringUtils.substringAfter(probablesStr, "vs.").trim());
-	//	infoToSave.setOpponentProbable(StringUtils.substringBefore(probablesStr, "vs.").trim());
+		// infoToSave.setProbable(StringUtils.substringAfter(probablesStr,
+		// "vs.").trim());
+		// infoToSave.setOpponentProbable(StringUtils.substringBefore(probablesStr,
+		// "vs.").trim());
 	}
 
 	private String getTextIfPresent(ExtendedWebElement container, String nestedLocator) {

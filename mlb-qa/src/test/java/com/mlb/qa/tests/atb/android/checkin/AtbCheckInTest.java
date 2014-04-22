@@ -12,11 +12,10 @@ import org.testng.annotations.Test;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.mlb.qa.atb.android.page.AtbCheckedInPage;
-import com.mlb.qa.atb.model.Game;
 import com.mlb.qa.atb.model.Team;
+import com.mlb.qa.atb.model.game.Game;
 import com.mlb.qa.atb.model.identity_point.IdentityPoint;
 import com.mlb.qa.common.comparator.FieldsComparator;
-import com.mlb.qa.common.date.DateUtils;
 
 public class AtbCheckInTest extends BaseCheckinTest {
 
@@ -50,8 +49,7 @@ public class AtbCheckInTest extends BaseCheckinTest {
 	}
 
 	private void allowCheckinForGameDate() throws UnsupportedEncodingException {
-		gameDate = DateUtils.parseString(game.getGameTimeLocal(),
-				Game.GAME_TIME_LOCAL_FORMAT_PATTERN);
+		gameDate = game.getGameTimeLocal();
 		httpService.setGameFeedCheckinServiceProperty(gameDate);
 		int daysBetween = new Period(new DateTime(), gameDate,
 				PeriodType.days()).getDays() + 1;
