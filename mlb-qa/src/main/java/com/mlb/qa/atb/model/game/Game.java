@@ -9,20 +9,30 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.joda.time.DateTime;
 
 import com.mlb.qa.atb.model.Item;
+import com.mlb.qa.atb.model.game.adapter.GameDateAdapter;
 import com.mlb.qa.atb.model.game.adapter.GameStatusAdapter;
+import com.mlb.qa.atb.model.game.adapter.GameTimeGmtAdapter;
 import com.mlb.qa.atb.model.game.adapter.GameTimeLocalAdapter;
 
 @XmlRootElement(name = "row")
 @XmlAccessorType(XmlAccessType.NONE)
 public class Game implements Item {
+
 	public static final String GAME_TIME_LOCAL_FORMAT_PATTERN = "MM/dd/yyyy hh:mm:ss a";
-	public static final String GAME_STATUS_SCHEDULED = "Scheduled";
+	public static final String GAME_TIME_GMT_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ssZ";
+	public static final String GAME_DATE_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
 	@XmlAttribute(name = "game_id")
 	private String gameId;
+	@XmlAttribute(name = "game_date", required = false)
+	@XmlJavaTypeAdapter(value = GameDateAdapter.class)
+	private DateTime gameDate;
 	@XmlAttribute(name = "game_time_local")
 	@XmlJavaTypeAdapter(value = GameTimeLocalAdapter.class)
 	private DateTime gameTimeLocal;
+	@XmlAttribute(name = "game_time_gmt", required = false)
+	@XmlJavaTypeAdapter(value = GameTimeGmtAdapter.class)
+	private DateTime gameTimeGmt;
 	@XmlAttribute(name = "game_status_text", required = false)
 	@XmlJavaTypeAdapter(value = GameStatusAdapter.class)
 	private GameStatus gameStatus;
@@ -201,15 +211,31 @@ public class Game implements Item {
 		this.awayTeamAbbrev = awayTeamAbbrev;
 	}
 
+	public DateTime getGameTimeGmt() {
+		return gameTimeGmt;
+	}
+
+	public void setGameTimeGmt(DateTime gameTimeGmt) {
+		this.gameTimeGmt = gameTimeGmt;
+	}
+
+	public DateTime getGameDate() {
+		return gameDate;
+	}
+
+	public void setGameDate(DateTime gameDate) {
+		this.gameDate = gameDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Game [gameId=" + gameId + ", gameTimeLocal=" + gameTimeLocal + ", gameStatus=" + gameStatus
-				+ ", homeTeamId=" + homeTeamId + ", homeTeamFull=" + homeTeamFull + ", homeTeamBrief=" + homeTeamBrief
-				+ ", homeTeamAbbrev=" + homeTeamAbbrev + ", homeTeamScore=" + homeTeamScore + ", homeResult="
-				+ homeResult + ", venueId=" + venueId + ", venue=" + venue + ", venueShort=" + venueShort
-				+ ", awayTeamId=" + awayTeamId + ", awayTeamFull=" + awayTeamFull + ", awayTeamBrief=" + awayTeamBrief
-				+ ", awayTeamAbbrev=" + awayTeamAbbrev + ", awayTeamScore=" + awayTeamScore + ", awayResult="
-				+ awayResult + "]";
+		return "Game [gameId=" + gameId + ", gameDate=" + gameDate + ", gameTimeLocal=" + gameTimeLocal
+				+ ", gameTimeGmt=" + gameTimeGmt + ", gameStatus=" + gameStatus + ", homeTeamId=" + homeTeamId
+				+ ", homeTeamFull=" + homeTeamFull + ", homeTeamBrief=" + homeTeamBrief + ", homeTeamAbbrev="
+				+ homeTeamAbbrev + ", homeTeamScore=" + homeTeamScore + ", homeResult=" + homeResult + ", venueId="
+				+ venueId + ", venue=" + venue + ", venueShort=" + venueShort + ", awayTeamId=" + awayTeamId
+				+ ", awayTeamFull=" + awayTeamFull + ", awayTeamBrief=" + awayTeamBrief + ", awayTeamAbbrev="
+				+ awayTeamAbbrev + ", awayTeamScore=" + awayTeamScore + ", awayResult=" + awayResult + "]";
 	}
 
 }

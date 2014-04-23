@@ -6,6 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.MutableDateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +18,7 @@ import com.mlb.qa.atb.model.game.Game;
 import com.mlb.qa.atb.model.game.GameStatus;
 import com.mlb.qa.atb.model.schedule.ScheduleGameInfo;
 import com.mlb.qa.common.date.DateUtils;
+import com.mlb.qa.common.date.TimeZone;
 import com.mlb.qa.common.exception.TestRuntimeException;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.Configuration.Parameter;
@@ -62,6 +66,8 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 	private ExtendedWebElement listTab;
 	@FindBy(xpath = "//*[@class='nav-pagination']//li/h5")
 	private ExtendedWebElement monthYearNavigation;
+	@FindBy(xpath = "//section[@class='schedule-footnote']/p")
+	private ExtendedWebElement timeZoneWarningLabel;
 
 	// List view specific elements
 	@FindBy(xpath = "//div[@class='game-details']")
@@ -102,6 +108,8 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 		logger.info("Load list of scheduled events from Calendar tab");
 		openCalendarTab();
 		String monthYearString = monthYearNavigation.getText().trim();
+		String timeZoneName = StringUtils.substringBetween(timeZoneWarningLabel.getText(), "All Times ",
+				". Subject To Change.");
 		List<Game> result = new LinkedList<Game>();
 		for (ExtendedWebElement container : gameDetailsContainersCalendarView) {
 			Game game = new Game();
@@ -120,23 +128,37 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 			if (GAME_STATUS_POSTPONED.equals(gameStatusStr)) {
 				game.setGameStatus(GameStatus.POSTPONED);
 				dateStr = dateStr.concat(" ").concat(START_OF_DAY);
-			}
-			else if (gameStatusStr.matches(SCORE_REGEXP)) {
+			} else if (gameStatusStr.matches(SCORE_REGEXP)) {
 				game.setGameStatus(GameStatus.FINAL);
-				String homeResult = StringUtils.substringBefore(gameStatusStr, " ");
-				game.setHomeResult(homeResult);
-				game.setAwayResult(detectOpponenResult(homeResult));
+				String teamResult = StringUtils.substringBefore(gameStatusStr, " ");
+				String opponentResult = detectOpponenResult(teamResult);
 				String scorePart = StringUtils.substringAfter(gameStatusStr, " ");
 				String[] score = scorePart.split("-");
 				String winnerResult = score[0].trim();
 				String loserResult = score[1].trim();
-				if ("W".equalsIgnoreCase(homeResult)) {
-					game.setHomeTeamScore(winnerResult);
-					game.setAwayTeamScore(loserResult);
+				if (containerClass.contains("home")) {
+					game.setHomeResult(teamResult);
+					game.setAwayResult(opponentResult);
+					if ("W".equalsIgnoreCase(teamResult)) {
+						game.setHomeTeamScore(winnerResult);
+						game.setAwayTeamScore(loserResult);
+					}
+					else {
+						game.setHomeTeamScore(loserResult);
+						game.setAwayTeamScore(winnerResult);
+					}
 				}
 				else {
-					game.setHomeTeamScore(loserResult);
-					game.setAwayTeamScore(winnerResult);
+					game.setHomeResult(opponentResult);
+					game.setAwayResult(teamResult);
+					if ("W".equalsIgnoreCase(teamResult)) {
+						game.setHomeTeamScore(loserResult);
+						game.setAwayTeamScore(winnerResult);
+					}
+					else {
+						game.setHomeTeamScore(winnerResult);
+						game.setAwayTeamScore(loserResult);
+					}
 				}
 				dateStr = dateStr.concat(" ").concat(START_OF_DAY);
 			}
@@ -145,10 +167,17 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 				dateStr = dateStr.concat(" ").concat(gameStatusStr);
 			}
 			else {
-				throw new TestRuntimeException(String.format("Game status string has unknown format: '%s'",
-						gameStatusStr));
+				game.setGameStatus(GameStatus.getByStatusText(gameStatusStr));
+				dateStr = dateStr.concat(" ").concat(START_OF_DAY);
 			}
-			game.setGameTimeLocal(DateUtils.parseString(dateStr, DATE_FORMAT_CALENDAR));
+			DateTime dt = DateUtils.parseString(dateStr, DATE_FORMAT_CALENDAR);
+			game.setGameDate(dt);
+			if (GameStatus.SCHEDULED.equals(game.getGameStatus())){
+				MutableDateTime mdt = dt.toMutableDateTime();
+				mdt.setZone(DateTimeZone.forOffsetHours(TimeZone.valueOf(timeZoneName).getOffset()));
+				dt = mdt.toDateTime().withZone(DateTimeZone.forOffsetHours(0));
+				game.setGameTimeGmt(dt);
+			}
 			result.add(game);
 		}
 		return result;
