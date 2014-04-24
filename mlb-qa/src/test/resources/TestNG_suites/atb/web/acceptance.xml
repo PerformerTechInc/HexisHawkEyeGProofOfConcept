@@ -28,4 +28,13 @@
 			<class name="com.mlb.qa.tests.atb.web.AtbBallparkTicketsTest" />
 		</classes>
 	</test>
+	<test verbose="1" name="Ballpark schedule test">
+		<parameter name="{excel_ds_uid}" value="team_abbrev" />
+		<parameter name="{excel_ds_args}" value="team_abbrev;team_schedule_web" />
+		<parameter name="{excel_ds_file}" value="XLS_data/atb_web.xls" />
+		<parameter name="{excel_ds_sheet}" value="team_schedule" />
+		<classes>
+			<class name="com.mlb.qa.tests.atb.web.AtbBallparkScheduleTest" />
+		</classes>
+	</test>
 </suite>

@@ -1,14 +1,14 @@
 package com.mlb.qa.common.date;
 
 public enum TimeZone {
-	ET(-5), MST(-7), CT(-5), MT(-6), PT(-8);
-	private Integer offset;
+	ET("US/Eastern"), MST("US/Arizona"), CT("US/Central"), MT("US/Mountain"), PT("US/Pacific");
+	private String id;
 
-	private TimeZone(Integer offset) {
-		this.offset = offset;
+	private TimeZone(String id) {
+		this.id = id;
 	}
 
-	public Integer getOffset() {
-		return offset;
+	public String getId() {
+		return id;
 	}
 }

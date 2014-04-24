@@ -8,7 +8,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.joda.time.MutableDateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,6 +26,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 
 /**
  * Ballpark schedule page
+ * 
  */
 public class AtbBallparkSchedulePage extends AbstractPage {
 	private static final Logger logger = Logger.getLogger(AtbBallparkSchedulePage.class);
@@ -112,73 +112,81 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 				". Subject To Change.");
 		List<Game> result = new LinkedList<Game>();
 		for (ExtendedWebElement container : gameDetailsContainersCalendarView) {
-			Game game = new Game();
 			String dateStr = monthYearString.concat(" ").concat(getTextIfPresent(container, GAME_DAY_CALENDAR_LOCATOR));
 			String containerClass = container.getAttribute("class");
-			String opponentStr = getTextIfPresent(container, GAME_OPPONENT_LOCATOR).trim();
-			String gameStatusStr = getTextIfPresent(container, GAME_STATUS_CALENDAR_LOCATOR).trim();
-			if (containerClass.contains("home")) {
-				game.setHomeTeamAbbrev(teamAbbrev);
-				game.setAwayTeamAbbrev(opponentStr);
-			}
-			else {
-				game.setAwayTeamAbbrev(teamAbbrev);
-				game.setHomeTeamAbbrev(opponentStr);
-			}
-			if (GAME_STATUS_POSTPONED.equals(gameStatusStr)) {
-				game.setGameStatus(GameStatus.POSTPONED);
-				dateStr = dateStr.concat(" ").concat(START_OF_DAY);
-			} else if (gameStatusStr.matches(SCORE_REGEXP)) {
-				game.setGameStatus(GameStatus.FINAL);
-				String teamResult = StringUtils.substringBefore(gameStatusStr, " ");
-				String opponentResult = detectOpponenResult(teamResult);
-				String scorePart = StringUtils.substringAfter(gameStatusStr, " ");
-				String[] score = scorePart.split("-");
-				String winnerResult = score[0].trim();
-				String loserResult = score[1].trim();
+			List<WebElement> opponents = container.getElement().findElements(By.xpath(GAME_OPPONENT_LOCATOR));
+			List<WebElement> gameStatuses = container.getElement().findElements(By.xpath(GAME_STATUS_CALENDAR_LOCATOR));
+			// there may be 2 games in 1 day...
+			for (int i = 0; i < opponents.size(); i++) {
+				Game game = new Game();
+				String opponentStr = new ExtendedWebElement(opponents.get(i)).getText().trim();
+				// The count of game status should be equal to the count of game
+				// opponents!
+				String dateStrCopy = dateStr; // local copy to avoid duplicating
+												// of suffix like 12:00 PM
+				String gameStatusStr = new ExtendedWebElement(gameStatuses.get(i)).getText().trim();
 				if (containerClass.contains("home")) {
-					game.setHomeResult(teamResult);
-					game.setAwayResult(opponentResult);
-					if ("W".equalsIgnoreCase(teamResult)) {
-						game.setHomeTeamScore(winnerResult);
-						game.setAwayTeamScore(loserResult);
-					}
-					else {
-						game.setHomeTeamScore(loserResult);
-						game.setAwayTeamScore(winnerResult);
-					}
+					game.setHomeTeamAbbrev(teamAbbrev);
+					game.setAwayTeamAbbrev(opponentStr);
 				}
 				else {
-					game.setHomeResult(opponentResult);
-					game.setAwayResult(teamResult);
-					if ("W".equalsIgnoreCase(teamResult)) {
-						game.setHomeTeamScore(loserResult);
-						game.setAwayTeamScore(winnerResult);
+					game.setAwayTeamAbbrev(teamAbbrev);
+					game.setHomeTeamAbbrev(opponentStr);
+				}
+				if (GAME_STATUS_POSTPONED.equals(gameStatusStr)) {
+					game.setGameStatus(GameStatus.POSTPONED);
+					dateStrCopy = dateStrCopy.concat(" ").concat(START_OF_DAY);
+				} else if (gameStatusStr.matches(SCORE_REGEXP)) {
+					game.setGameStatus(GameStatus.FINAL);
+					String teamResult = StringUtils.substringBefore(gameStatusStr, " ");
+					String opponentResult = detectOpponenResult(teamResult);
+					String scorePart = StringUtils.substringAfter(gameStatusStr, " ");
+					String[] score = scorePart.split("-");
+					String winnerResult = score[0].trim();
+					String loserResult = score[1].trim();
+					if (containerClass.contains("home")) {
+						game.setHomeResult(teamResult);
+						game.setAwayResult(opponentResult);
+						if ("W".equalsIgnoreCase(teamResult)) {
+							game.setHomeTeamScore(winnerResult);
+							game.setAwayTeamScore(loserResult);
+						}
+						else {
+							game.setHomeTeamScore(loserResult);
+							game.setAwayTeamScore(winnerResult);
+						}
 					}
 					else {
-						game.setHomeTeamScore(winnerResult);
-						game.setAwayTeamScore(loserResult);
+						game.setHomeResult(opponentResult);
+						game.setAwayResult(teamResult);
+						if ("W".equalsIgnoreCase(teamResult)) {
+							game.setHomeTeamScore(loserResult);
+							game.setAwayTeamScore(winnerResult);
+						}
+						else {
+							game.setHomeTeamScore(winnerResult);
+							game.setAwayTeamScore(loserResult);
+						}
 					}
+					dateStrCopy = dateStrCopy.concat(" ").concat(START_OF_DAY);
 				}
-				dateStr = dateStr.concat(" ").concat(START_OF_DAY);
+				else if (gameStatusStr.matches(GAME_STATUS_CALENDAR_SCHEDULED_REGEXP)) {
+					game.setGameStatus(GameStatus.SCHEDULED);
+					dateStrCopy = dateStrCopy.concat(" ").concat(gameStatusStr);
+				}
+				else {
+					game.setGameStatus(GameStatus.getByStatusText(gameStatusStr));
+					dateStrCopy = dateStrCopy.concat(" ").concat(START_OF_DAY);
+				}
+				DateTime dt = DateUtils.parseString(dateStrCopy, DATE_FORMAT_CALENDAR);
+				game.setGameDate(dt);
+				if (GameStatus.SCHEDULED.equals(game.getGameStatus())) {
+					dt = dt.withZoneRetainFields(DateTimeZone.forID(TimeZone.valueOf(timeZoneName).getId())).withZone(
+							DateTimeZone.forOffsetHours(0));
+					game.setGameTimeGmt(dt);
+				}
+				result.add(game);
 			}
-			else if (gameStatusStr.matches(GAME_STATUS_CALENDAR_SCHEDULED_REGEXP)) {
-				game.setGameStatus(GameStatus.SCHEDULED);
-				dateStr = dateStr.concat(" ").concat(gameStatusStr);
-			}
-			else {
-				game.setGameStatus(GameStatus.getByStatusText(gameStatusStr));
-				dateStr = dateStr.concat(" ").concat(START_OF_DAY);
-			}
-			DateTime dt = DateUtils.parseString(dateStr, DATE_FORMAT_CALENDAR);
-			game.setGameDate(dt);
-			if (GameStatus.SCHEDULED.equals(game.getGameStatus())){
-				MutableDateTime mdt = dt.toMutableDateTime();
-				mdt.setZone(DateTimeZone.forOffsetHours(TimeZone.valueOf(timeZoneName).getOffset()));
-				dt = mdt.toDateTime().withZone(DateTimeZone.forOffsetHours(0));
-				game.setGameTimeGmt(dt);
-			}
-			result.add(game);
 		}
 		return result;
 	}

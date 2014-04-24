@@ -6,9 +6,7 @@ public enum GameStatus {
 	FINAL("Final"),
 	POSTPONED("Postponed"),
 	SCHEDULED("Scheduled"),
-	DELAYED_START("Delayed Start"),
-	IN_PROGRESS("In Progress"),
-	;
+	IN_PROGRESS("In Progress"), ;
 
 	private String statusText;
 
@@ -30,6 +28,12 @@ public enum GameStatus {
 			if (statusText.matches("Bot .*") || statusText.matches("Top .*") || statusText.matches("End .*")
 					|| statusText.matches("Mid .*") || statusText.matches("Warmup")) {
 				return IN_PROGRESS;
+			}
+			else if (statusText.equalsIgnoreCase("Game Over")) {
+				return FINAL;
+			}
+			else if (statusText.equalsIgnoreCase("Delayed Start")) {
+				return SCHEDULED;
 			}
 		}
 		throw new TestRuntimeException(String.format("No GameStatus found for the value %s", statusText));

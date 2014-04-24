@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark Web - Schedule" annotations="JDK">
-	<test verbose="1" name="Ballpark schedule list view test">
+	<test verbose="1" name="Ballpark schedule test">
 		<parameter name="{excel_ds_uid}" value="team_abbrev" />
 		<parameter name="{excel_ds_args}" value="team_abbrev;team_schedule_web" /> 
 	    <parameter name="{excel_ds_file}" value="XLS_data/atb_web.xls"/>
