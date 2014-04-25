@@ -11,8 +11,7 @@ import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.model.Team;
 import com.mlb.qa.atb.model.game.Game;
 import com.mlb.qa.atb.model.schedule.GameScheduleCalendarViewComparator;
-import com.mlb.qa.atb.model.schedule.ScheduleGameInfo;
-import com.mlb.qa.atb.model.schedule.ScheduleGameInfoComparator;
+import com.mlb.qa.atb.model.schedule.GameScheduleListViewComparator;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.mlb.qa.atb.web.page.AtbBallparkSchedulePage;
 import com.mlb.qa.common.comparator.ListComparator;
@@ -24,37 +23,37 @@ import com.qaprosoft.carina.core.foundation.UITest;
 public class AtbBallparkScheduleTest extends UITest {
 	private AtbLookupService lookupService = new AtbLookupService();
 
-	@Test(enabled = false, dataProvider = "excel_ds", description = "Check schedule on List tab")
+	@Test(dataProvider = "excel_ds", description = "Check schedule on List tab")
 	@Parameters({ "team_abbrev", "team_schedule_web" })
 	public void checkListSchedule(String teamAbbrev, String scheduleUrl) {
-		List<ScheduleGameInfo> scheduleUi = AtbBallparkSchedulePage.open(driver,
-				scheduleUrl).loadGamesFromListTab();
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
-		int month = new DateTime().getMonthOfYear();
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
-		List<ScheduleGameInfo> scheduleBe =
-				lookupService.loookupListOfScheduledGamesForTheMonth(team.getTeamId(),
-						Integer.parseInt(year), month);
-		Assert.assertTrue(0 == new
-				ListComparator<ScheduleGameInfo>(new
-						ScheduleGameInfoComparator()).compareContent(scheduleUi, scheduleBe),
-				"Check schedule on List tab. Team: " + teamAbbrev + "; web:" +
-						scheduleUrl);
+		List<Game> gamesUi = AtbBallparkSchedulePage.open(driver,
+				scheduleUrl).loadGamesFromListTab(team.getName());
+		int month = new DateTime().getMonthOfYear();
+		List<Game> gamesBe = lookupService.loookupListOfGamesForTheMonth(team.getTeamId(),
+				Integer.parseInt(year),
+				month);
+		Assert.assertTrue(0 == new ListComparator<Game>(new
+				GameScheduleListViewComparator()).compareContent(gamesUi, gamesBe),
+				"Check schedule on List tab. Team: " +
+						teamAbbrev + "; web:" + scheduleUrl);
+
 	}
 
-	@Test(dataProvider = "excel_ds", description = "Check schedule on Calendar tab")
+	@Test(enabled = true, dataProvider = "excel_ds", description = "Check schedule on Calendar tab")
 	@Parameters({ "team_abbrev", "team_schedule_web" })
 	public void checkCalendarSchedule(String teamAbbrev, String scheduleUrl) {
-		List<Game> scheduleUi = AtbBallparkSchedulePage.open(driver,
+		List<Game> gamesUi = AtbBallparkSchedulePage.open(driver,
 				scheduleUrl).loadGamesFromCalendarTab(teamAbbrev);
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		int month = new DateTime().getMonthOfYear();
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
-		List<Game> scheduleBe = lookupService.loookupListOfGamesForTheMonth(team.getTeamId(),
+		List<Game> gamesBe = lookupService.loookupListOfGamesForTheMonth(team.getTeamId(),
 				Integer.parseInt(year),
 				month);
 		Assert.assertTrue(0 == new ListComparator<Game>(new
-				GameScheduleCalendarViewComparator()).compareContent(scheduleUi, scheduleBe),
+				GameScheduleCalendarViewComparator()).compareContent(gamesUi, gamesBe),
 				"Check schedule on Calendar tab. Team: " +
 						teamAbbrev + "; web:" + scheduleUrl);
 	}
