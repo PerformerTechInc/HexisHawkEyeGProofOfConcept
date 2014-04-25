@@ -1,7 +1,6 @@
 package com.mlb.qa.atb.service.lookup;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,8 +11,6 @@ import org.joda.time.DateTime;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.model.Team;
 import com.mlb.qa.atb.model.game.Game;
-import com.mlb.qa.atb.model.schedule.ScheduleGameInfo;
-import com.mlb.qa.atb.model.schedule.ScheduleUtils;
 import com.mlb.qa.common.date.DateUtils;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;
@@ -98,26 +95,6 @@ public class AtbLookupService {
 					abbrev, season));
 		}
 		return teams.get(0);
-	}
-
-	/**
-	 * Lookup for the scheduled games info
-	 * 
-	 * @param teamId
-	 * @param year
-	 * @param month
-	 * @return
-	 */
-	public List<ScheduleGameInfo> loookupListOfScheduledGamesForTheMonth(String teamId, Integer year,
-			Integer month) {
-		List<Game> games = loookupListOfGamesForTheMonth(teamId, year, month);
-		List<ScheduleGameInfo> gameInfoList = new ArrayList<ScheduleGameInfo>(games.size());
-		for (Game game : games) {
-			ScheduleGameInfo gameInfo = ScheduleUtils.parseGameScheduleInfo(game, teamId);
-			gameInfoList.add(gameInfo);
-		}
-		logger.info("Found scheduled games: " + gameInfoList);
-		return gameInfoList;
 	}
 
 	public List<Game> loookupListOfGamesForTheMonth(String teamId, Integer year,
