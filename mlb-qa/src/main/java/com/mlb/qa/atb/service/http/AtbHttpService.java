@@ -1,5 +1,8 @@
 package com.mlb.qa.atb.service.http;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
@@ -7,11 +10,30 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationEventHandler;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.mlb.qa.atb.AtbParameter;
+import com.mlb.qa.atb.model.about.BallparkInformation;
 import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonItem;
 import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJson;
 import com.mlb.qa.atb.model.game_promotion.GamePromotion;
@@ -254,6 +276,29 @@ public class AtbHttpService {
 				.getGamePromotions();
 		logger.info("Found game promotions: " + gamePromotions);
 		return gamePromotions;
+	}
+
+	public BallparkInformation getBallparkInformation(String url) throws JAXBException, ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+		logger.info("Load checkin window date from gameFeeedUrl property");
+		HttpResult result = HttpHelper.executeGet(url, new HashMap<String, String>());
+		HttpHelper.checkResultOk(result);
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		Document document = builder.parse(new InputSource
+				(new ByteArrayInputStream(result.getResponseBody().getBytes("utf-8"))));		
+		XPathFactory xPathfactory = XPathFactory.newInstance();
+		XPath xpath = xPathfactory.newXPath();
+		XPathExpression expression = xpath.compile("section/pages/page[@id='information']/body/text()");
+		
+		BallparkInformation ballparkInformation = new BallparkInformation();
+		ballparkInformation.setBallparkTextDescription(expression.evaluate(document, XPathConstants.STRING).toString().
+				split("p\\>")[1].split("\\<")[0]);	
+		
+//		logger.info(ballparkInformation);
+		System.out.println(ballparkInformation.getBallparkTextDescription());
+		
+		return ballparkInformation;
 	}
 
 	private int getValueByPattern(String str, Pattern pattern) {
