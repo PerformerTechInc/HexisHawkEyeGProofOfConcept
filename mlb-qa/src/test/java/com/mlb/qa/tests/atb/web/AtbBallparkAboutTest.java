@@ -19,7 +19,7 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 public class AtbBallparkAboutTest extends UITest {
 	@Test(dataProvider = "excel_ds")
 	@Parameters({ "team_abbrev", "team_about_web" })
-	public void checkMusicList(String team_abbrev, String team_about_web) throws JAXBException,
+	public void checkAboutBallpartInformation(String team_abbrev, String team_about_web) throws JAXBException,
 			XPathExpressionException, ParserConfigurationException, SAXException, IOException {
 		String xmlUrl = Configuration.getEnvArg("mobile_url") + "/gen/section_mobile/" + team_abbrev.toLowerCase()
 				+ "/ballpark.xml";
