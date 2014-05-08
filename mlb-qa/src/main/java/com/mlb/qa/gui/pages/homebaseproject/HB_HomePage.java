@@ -13,6 +13,8 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.*;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.testng.annotations.*;
 import static org.testng.Assert.*;
+
+import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
@@ -44,14 +46,19 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(id="userName")
 	public ExtendedWebElement txtUsername;
+
 	@FindBy(id="userPassword")
 	public ExtendedWebElement txtUserPassword;
+	
 	@FindBy(id="submit")
 	public ExtendedWebElement btnSubmit;
+
 	@FindBy(id="userAppId")
 	public ExtendedWebElement selProfile;
+
 	@FindBy(id="submit")
 	public ExtendedWebElement btnSubmitProfile;
+
 	@FindBy(xpath="//*[@id='header-info-top']/div")
 	public ExtendedWebElement headerLabel;
 
@@ -61,8 +68,10 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(id="history-panel-icon-search")
 	public ExtendedWebElement btnShowHideHistory;
+
 	@FindBy(xpath="//span[contains(text(), 'Recent Items')]")
 	public ExtendedWebElement btnRecentItems;
+
 	@FindBy(xpath="//span[contains(text(), 'Activity Monitor')]")
 	public ExtendedWebElement btnActivityMonitor;
 
@@ -72,8 +81,10 @@ public class HB_HomePage extends AbstractPage {
 	
 	@FindBy(id="searchHeaderText")
 	public ExtendedWebElement txtSearch;
+
 	@FindBy(id="searchBtn")
 	public ExtendedWebElement btnSearch;
+
 	@FindBy(id="search-result-content-panel")
 	public ExtendedWebElement panelSearch;
 
@@ -83,123 +94,130 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(id="new-types-list")
 	public ExtendedWebElement dropDownListNewItem;
+
 	@FindBy(id="new-types-list")
 	public ExtendedWebElement dropDownListItemSelection;
+
 	@FindBy(id="newTypesButton")
 	public ExtendedWebElement btnNewItem;
+
+	@FindBy(id="item-panel-save")
+	public ExtendedWebElement BtnSave;
+
+	@FindBy(id="item-panel-publish-beta")
+	public ExtendedWebElement BtnToBeta;
+
+	@FindBy(name="@name")
+	public ExtendedWebElement FieldInternalName;
+
+	@FindBy(name="headline")
+	public ExtendedWebElement FieldHeadline;
+
+	@FindBy(name="subhead")
+	public ExtendedWebElement FieldSubhead;
+
+	@FindBy(name="alt-headline")
+	public ExtendedWebElement FieldAltHeadline;
+
+	@FindBy(name="byline")
+	public ExtendedWebElement FieldByline;
+
+	@FindBy(name="summary")
+	public ExtendedWebElement FieldSeoHeadline;
+
+	@FindBy(name="source")
+	public ExtendedWebElement FieldSource;
+
+	@FindBy(name="poll")
+	public ExtendedWebElement FieldPoll;
+
+	@FindBy(name="displayName")
+	public ExtendedWebElement FieldDisplayName;
+
+	@FindBy(name="value")
+	public ExtendedWebElement FieldValue;
+
+	@FindBy(name="year")
+	public ExtendedWebElement FieldYear;
+
+	@FindBy(name="title")
+	public ExtendedWebElement FieldTitle;
+
+	@FindBy(name="spanish-title")
+	public ExtendedWebElement FieldSpanishTitle;
+
+	@FindBy(name="url-text")
+	public ExtendedWebElement FieldURLText;
+
+	@FindBy(name="url")
+	public ExtendedWebElement FieldURL;
+
+	@FindBy(name="mobile-url")
+	public ExtendedWebElement FieldMobileURL;
+
+	@FindBy(name="sponsor-url")
+	public ExtendedWebElement FieldSponsorURL;
+
+	@FindBy(name="display-time")
+	public ExtendedWebElement FieldDisplayTimeInSeconds;
+
+	@FindBy(name="video-alias")
+	public ExtendedWebElement FieldVideoAlias;
+
+	@FindBy(xpath="//button[contains(text(), 'Tag Tool')]")
+	public ExtendedWebElement BtnTagTool;
+
+	@FindBy(id="compactLayout")
+	public ExtendedWebElement CheckboxTagToolAdvancedFields;
+
+	@FindBy(xpath="//input[@class='autocomplete-maininput processedYes']")
+	public ExtendedWebElement FieldTagToolPlayer;	
+
+	@FindBy(id="taggingGameDayBrowse")
+	public ExtendedWebElement BtnTagToolChangeDate;
+
+	@FindBy(xpath="(//button[@type='button'])[2]")
+	public ExtendedWebElement BtnApplyTagsAndClose;
 
 	//************ ITEM CREATION OBJECTS ************//	
 	
 	//************ ARTICLE CREATION OBJECTS ************//	
 
-	@FindBy(name="@name")
-	public ExtendedWebElement articleRequiredFieldInternalName;
-
-	@FindBy(name="headline")
-	public ExtendedWebElement articleRequiredFieldHeadline;
-
-	@FindBy(name="subhead")
-	public ExtendedWebElement articleRequiredFieldSubhead;
-
-//	@FindBy(id="05257329-1BA8-44F9-849B-F5E0CA2FEF45")
-//	public ExtendedWebElement articleRequiredFieldA;
-
-	@FindBy(xpath="//button[contains(text(), 'Tag Tool')]")
-	public ExtendedWebElement articleRequiredClickTagTool;
-
-	@FindBy(id="compactLayout")
-	public ExtendedWebElement articleAdvancedFieldsCheckbox;
-
 	@FindBy(id="tagging-autocompletePlayer")
 	public ExtendedWebElement articleRequiredClickC;
-
-	@FindBy(xpath="//input[@class='autocomplete-maininput processedYes']")
-	public ExtendedWebElement articleRequiredPlayerTagInputField;	
-
-	@FindBy(xpath="(//button[@type='button'])[2]")
-	public ExtendedWebElement articleRequiredApplyTagsAndClose;
-
-	@FindBy(id="taggingTagSelectLeagueMiLB")
-	public ExtendedWebElement articleRequiredClickE;
-
-	@FindBy(id="taggingKeywordTaxED")
-	public ExtendedWebElement articleRequiredClickF;
-
-	@FindBy(id="70E551FF-F54B-42FF-93E2-2B5F05F7BB87")
-	public ExtendedWebElement articleRequiredFieldG;
-
-	@FindBy(id="item-panel-save")
-	public ExtendedWebElement articleBtnSave;
-
-	@FindBy(xpath="//button[contains(text(), 'Tag Tool')]")
-	public ExtendedWebElement articleRequiredClickH;
-
-	@FindBy(id="item-panel-publish-beta")
-	public ExtendedWebElement articleBtnToBeta;
 
 	@FindBy(linkText="View Beta Article")
 	public ExtendedWebElement linkViewBetaArticle;
 
 	//************ ARTICLE CREATION OBJECTS ************//	
 
-	//************ MEDIAWALL CREATION OBJECTS ************//	
-
-	@FindBy(xpath="//for[label@title='Internal Name']")
-	public ExtendedWebElement mediaWallRequiredFieldA;
-//	@FindBy(id="05257329-1BA8-44F9-849B-F5E0CA2FEF45")
-//	public ExtendedWebElement mediaWallRequiredFieldA;
-	@FindBy(id="autocomplete-maininput processedYes")
-	public ExtendedWebElement mediaWallRequiredClickB;
-	@FindBy(id="autocomplete-maininput processedYes")
-	public ExtendedWebElement mediaWallRequiredClickC;
-	@FindBy(xpath="(//button[@type='button'])[2]")
-	public ExtendedWebElement mediaWallRequiredClickD;
-	@FindBy(id="taggingTagSelectLeagueMiLB")
-	public ExtendedWebElement mediaWallRequiredClickE;
-	@FindBy(id="taggingKeywordTaxED")
-	public ExtendedWebElement mediaWallRequiredClickF;
-	@FindBy(id="70E551FF-F54B-42FF-93E2-2B5F05F7BB87")
-	public ExtendedWebElement mediaWallRequiredFieldG;
-	@FindBy(id="item-panel-save")
-	public ExtendedWebElement mediaWallBtnSave;
-	@FindBy(id="3BA6CEBA-2B9C-4110-AA64-51719F353EF6")
-	public ExtendedWebElement mediaWallRequiredClickH;
-	@FindBy(id="item-panel-publish-beta")
-	public ExtendedWebElement mediaWallBtnToBeta;
-	@FindBy(linkText="View Beta Article")
-	public ExtendedWebElement linkViewBetaMediaWall;
-
-	//************ ARTICLE CREATION OBJECTS ************//	
+	//************ DIGITAL ASSET CREATION OBJECTS ************//	
 
 	//************ DIGITAL ASSET CREATION OBJECTS ************//	
 
-	@FindBy(xpath="//for[label@title='Internal Name']")
-	public ExtendedWebElement digitalAssetRequiredFieldA;
-//	@FindBy(id="05257329-1BA8-44F9-849B-F5E0CA2FEF45")
-//	public ExtendedWebElement digitalAssetRequiredFieldA;
-	@FindBy(id="F56F2E2F-E00A-46D9-AF01-1404017D46D0")
-	public ExtendedWebElement digitalAssetRequiredClickB;
-	@FindBy(id="tagauto-7B479973-46DB-47E6-A4C2-25A74DE0C687-input")
-	public ExtendedWebElement digitalAssetRequiredClickC;
-	@FindBy(xpath="(//button[@type='button'])[2]")
-	public ExtendedWebElement digitalAssetRequiredClickD;
-	@FindBy(id="taggingTagSelectLeagueMiLB")
-	public ExtendedWebElement digitalAssetRequiredClickE;
-	@FindBy(id="taggingKeywordTaxED")
-	public ExtendedWebElement digitalAssetRequiredClickF;
-	@FindBy(id="70E551FF-F54B-42FF-93E2-2B5F05F7BB87")
-	public ExtendedWebElement digitalAssetRequiredFieldG;
-	@FindBy(id="item-panel-save")
-	public ExtendedWebElement digitalAssetBtnSave;
-	@FindBy(id="3BA6CEBA-2B9C-4110-AA64-51719F353EF6")
-	public ExtendedWebElement digitalAssetRequiredClickH;
-	@FindBy(id="item-panel-publish-beta")
-	public ExtendedWebElement digitalAssetBtnToBeta;
-	@FindBy(linkText="View Beta Article")
-	public ExtendedWebElement linkViewBetaDigitalAsset;
+	//************ FIELD OPTION CREATION OBJECTS ************//	
 
-	//************ ARTICLE CREATION OBJECTS ************//	
-	
+	//************ FIELD OPTION CREATION OBJECTS ************//	
+
+	//************ HIGHLIGHT CREATION OBJECTS ************//	
+
+	//************ HIGHLIGHT CREATION OBJECTS ************//	
+
+	//************ HTML PAGE CREATION OBJECTS ************//	
+
+	//************ HTML PAGE CREATION OBJECTS ************//	
+
+	//************ LINK CREATION OBJECTS ************//	
+
+	@FindBy(name="link-url")
+	public ExtendedWebElement FieldLinkURL;
+
+	//************ LINK CREATION OBJECTS ************//	
+
+	//************ MEDIAWALL CREATION OBJECTS ************//	
+
+	//************ MEDIAWALL CREATION OBJECTS ************//	
+
 	public void login(String username, String password, String profile) {
 		type(txtUsername, username);
 		type(txtUserPassword, password);
@@ -225,71 +243,339 @@ public class HB_HomePage extends AbstractPage {
 		click(btnNewItem);
 	}
 	
-	public void fillAndSaveNewArticle(String articleReqFieldInternalName, String articleReqFieldG, String articleReqFieldHeadline, String articleReqFieldSubhead)	{
-		newArticlePageSource = driver.getPageSource();
-		type(articleRequiredFieldInternalName, articleReqFieldInternalName);
-//		click(articleRequiredClickTagTool);
-//		click(articleAdvancedFieldsCheckbox);
+	public void fillAndSaveNewArticle(String mainURLCall, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleTaglineValue) throws InterruptedException	{
+//		newArticlePageSource = driver.getPageSource();
+//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
+		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
+		type(FieldInternalName, articleReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		pause(1);
+		seleniumArticle.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldHeadline, articleReqFieldHeadline);
+		type(FieldSubhead, articleReqFieldSubhead);
+		type(FieldAltHeadline, articleReqFieldAltHeadline);
+		type(FieldByline, articleReqFieldByline);
+		type(FieldSeoHeadline, articleReqFieldSeoHeadline);
+		pause(1);
+		pressTab();
+		sendKeys(articleBlurbValue);
+		pause(1);
+		pressTab();
+		sendKeys(articleTaglineValue);
+		pause(1);
+		type(FieldPoll, articleReqFieldPoll);
+		click(BtnSave);
+		click(BtnToBeta);
+		click(linkViewBetaArticle);
+
+
+		
+//		String enterTag = Keys.chord(Keys.ENTER);
+//		driver.findElement(By.id("tagging-autocompletePlayer")).sendKeys(enterTag);
 //		pressTab();
-//		pressTab();
-//		pressTab();
-//		pressTab();
-//		pressTab();
-//		sendKeys("Heller");
-//		pressTab();
+//		sendKeys("Test");
+//		click(articleRequiredClickC);
+//		click(articleRequiredApplyTagsAndClose);
+//		selenium.typeKeys("style='width:330px'", "Heller");
+//		click(articleRequiredApplyTagsAndClose);
+//		selenium.typeKeys(articleRequiredFieldHeadline.toString(), "Headline");
+//		type(articleRequiredFieldHeadline, articleReqFieldHeadline);
+//		selenium.keyPressNative(String.valueOf(KeyEvent.VK_TAB));
+//		type(articleRequiredFieldSubhead, articleReqFieldSubhead);
 //		click(articleRequiredPlayerTagInputField);
 //		type(articleRequiredClickC,"x488");
 //		click(articleRequiredApplyTagsAndClose);
-//		click(articleRequiredClickE);
-//		click(articleRequiredClickF);
-//		type(articleRequiredFieldG, articleReqFieldG);
-//		type(articleRequiredFieldHeadline, articleReqFieldHeadline);
-		click(articleRequiredFieldHeadline);
-		sendKeys("Snehal Test Hello");
-//		DefaultSelenium selenium = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium selenium = new WebDriverBackedSelenium(driver, "https://qahomebase.mlbcontrol.net/");
-		selenium.typeKeys("Something", "Something");
+//		selenium.typeKeys(articleRequiredFieldHeadline.toString(), "Something");
 //		selenium.keyPress("Snehal Test Hello", "Snehal Test Hello");
-		pressTab();
-		sendKeys("Subhead ");
-		pressTab();
-		//		type(articleRequiredFieldHeadline, articleReqFieldHeadline);
-		type(articleRequiredFieldSubhead, articleReqFieldSubhead);
-		click(articleBtnSave);
+//		pressTab();
+//		sendKeys("Subhead ");
+//		pressTab();
+//		type(articleRequiredFieldHeadline, articleReqFieldHeadline);
+//		type(articleRequiredFieldSubhead, articleReqFieldSubhead);
+//		click(articleBtnSave);
 //		click(articleRequiredClickH);
-		click(articleBtnToBeta);
-		isElementPresent(linkViewBetaArticle, 15);
-		click(linkViewBetaArticle);
+//		click(articleBtnToBeta);
+//		isElementPresent(linkViewBetaArticle, 30);
+//		click(linkViewBetaArticle);
 
 	}
 
-	public void fillAndSaveNewMediaWall(String mediaWallReqFieldA, String mediaWallReqFieldG)	{
+	public void fillAndSaveNewDigitalAsset(String mainURLCall, String digitalAssetReqFieldInternalName, String digitalAssetReqFieldHeadline, String tagToolPlayerValue) throws InterruptedException	{
+		newDigitalAssetPageSource = driver.getPageSource();
+		Selenium seleniumDigitalAsset = new WebDriverBackedSelenium(driver, mainURLCall);
+		type(FieldInternalName, digitalAssetReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		pause(1);
+		seleniumDigitalAsset.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldHeadline, digitalAssetReqFieldHeadline);
+		click(BtnSave);
+		click(BtnToBeta);
+	}
+
+	public void fillAndSaveNewFieldOption(String mainURLCall, String fieldOptionReqFieldInternalName, String fieldOptionReqFieldDisplayName, String fieldOptionReqFieldValue, String tagToolPlayerValue) throws InterruptedException	{
+//		newArticlePageSource = driver.getPageSource();
+//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
+		Selenium seleniumFieldOption = new WebDriverBackedSelenium(driver, mainURLCall);
+		type(FieldInternalName, fieldOptionReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		pause(1);
+		seleniumFieldOption.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldDisplayName, fieldOptionReqFieldDisplayName);
+		type(FieldValue, fieldOptionReqFieldValue);
+		click(BtnSave);
+		click(BtnToBeta);
+
+	}
+
+	public void fillAndSaveNewHighlight(String mainURLCall, String highlightReqFieldInternalName, String highlightReqFieldYear, String tagToolPlayerValue) throws InterruptedException	{
+//		newArticlePageSource = driver.getPageSource();
+//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
+		Selenium seleniumHighlight = new WebDriverBackedSelenium(driver, mainURLCall);
+		type(FieldInternalName, highlightReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		pause(1);
+		seleniumHighlight.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldYear, highlightReqFieldYear);
+		click(BtnSave);
+		click(BtnToBeta);
+
+	}
+
+	public void fillAndSaveNewHTMLPage(String mainURLCall, String hTMLPageReqFieldInternalName, String hTMLPageReqFieldHeadline, String hTMLPageBlurbValue, String tagToolPlayerValue) throws InterruptedException	{
+//		newArticlePageSource = driver.getPageSource();
+//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
+		Selenium seleniumHTMLPage = new WebDriverBackedSelenium(driver, mainURLCall);
+		type(FieldInternalName, hTMLPageReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		pause(1);
+		seleniumHTMLPage.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldHeadline, hTMLPageReqFieldHeadline);
+		pause(1);
+		pressTab();
+		sendKeys(hTMLPageBlurbValue);
+		pause(1);
+		click(BtnSave);
+		click(BtnToBeta);
+
+	}
+
+	public void fillAndSaveNewLink(String mainURLCall, String linkReqFieldInternalName, String linkReqFieldLinkText, String linkReqFieldLinkURL, String linkReqFieldWidth, String linkReqFieldHeight, String tagToolPlayerValue) throws InterruptedException	{
+//		newArticlePageSource = driver.getPageSource();
+//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
+		Selenium seleniumLink = new WebDriverBackedSelenium(driver, mainURLCall);
+		pause(3);
+		sendKeys(linkReqFieldLinkText);
+		pressTab();
+		pause(3);
+		type(FieldInternalName, linkReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		seleniumLink.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldLinkURL, linkReqFieldLinkURL);
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		sendKeys(linkReqFieldWidth);
+		pause(1);
+		pressTab();
+		sendKeys(linkReqFieldHeight);
+		pause(1);
+		pressTab();
+		pause(1);
+		click(BtnSave);
+		click(BtnToBeta);
+
+	}
+
+	public void fillAndSaveNewMediaWall(String mainURLCall, String mediawallReqFieldInternalName, String mediawallReqFieldHeadline, String mediawallReqFieldURLText, String mediawallReqFieldURL, String mediawallReqFieldMobileURL, String mediawallReqFieldSponsorURL, String mediawallReqFieldBlurb, String mediawallReqFieldNotes, String mediawallReqFieldDisplayTimeInSeconds, String mediawallReqFieldVideoAlias, String tagToolPlayerValue) throws InterruptedException	{
 		newMediaWallPageSource = driver.getPageSource();
-		type(mediaWallRequiredFieldA, mediaWallReqFieldA);
-		click(mediaWallRequiredClickB);
-		click(mediaWallRequiredClickC);
-		click(mediaWallRequiredClickD);
-		click(mediaWallRequiredClickE);
-		click(mediaWallRequiredClickF);
-		type(mediaWallRequiredFieldG, mediaWallReqFieldG);
-		click(mediaWallBtnSave);
-		click(mediaWallRequiredClickH);
-		click(mediaWallBtnToBeta);
-		click(linkViewBetaMediaWall);
+//		newArticlePageSource = driver.getPageSource();
+//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
+		Selenium seleniumMediawall = new WebDriverBackedSelenium(driver, mainURLCall);
+		type(FieldInternalName, mediawallReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		pause(1);
+		seleniumMediawall.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldHeadline, mediawallReqFieldHeadline);
+		type(FieldURLText, mediawallReqFieldURLText);
+		type(FieldURL, mediawallReqFieldURL);
+		type(FieldMobileURL, mediawallReqFieldMobileURL);
+		type(FieldSponsorURL, mediawallReqFieldSponsorURL);
+		pause(1);
+		pressTab();
+		sendKeys(mediawallReqFieldBlurb);
+		pause(1);
+		pressTab();
+		sendKeys(mediawallReqFieldNotes);
+		pressTab();
+		pause(1);
+		type(FieldDisplayTimeInSeconds, mediawallReqFieldDisplayTimeInSeconds);
+		type(FieldVideoAlias, mediawallReqFieldVideoAlias);
+		click(BtnSave);
+		click(BtnToBeta);
 	}
 	
-	public void fillAndSaveNewDigitalAsset(String digitalAssetReqFieldA, String digitalAssetReqFieldG)	{
-		newDigitalAssetPageSource = driver.getPageSource();
-		type(digitalAssetRequiredFieldA, digitalAssetReqFieldA);
-		click(digitalAssetRequiredClickB);
-		click(digitalAssetRequiredClickC);
-		click(digitalAssetRequiredClickD);
-		click(digitalAssetRequiredClickE);
-		click(digitalAssetRequiredClickF);
-		type(digitalAssetRequiredFieldG, digitalAssetReqFieldG);
-		click(digitalAssetBtnSave);
-		click(digitalAssetRequiredClickH);
-		click(digitalAssetBtnToBeta);
-		click(linkViewBetaDigitalAsset);
+	public void fillAndSaveNewNotebook(String mainURLCall, String notebookReqFieldInternalName, String notebookReqFieldHeadline, String notebookReqFieldByline, String notebookReqFieldSource, String notebookTaglineValue, String tagToolPlayerValue) throws InterruptedException	{
+		newMediaWallPageSource = driver.getPageSource();
+//		newArticlePageSource = driver.getPageSource();
+//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
+		Selenium seleniumNotebook = new WebDriverBackedSelenium(driver, mainURLCall);
+		type(FieldInternalName, notebookReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		pause(1);
+		seleniumNotebook.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldHeadline, notebookReqFieldHeadline);
+		type(FieldByline, notebookReqFieldByline);
+		type(FieldSource, notebookReqFieldSource);
+		pause(1);
+		pressTab();
+		sendKeys(notebookTaglineValue);
+		pause(1);
+		pressTab();
+		pause(1);
+		click(BtnSave);
+		click(BtnToBeta);
 	}
+
+	public void fillAndSaveNewPhotoGallery(String mainURLCall, String photoGalleryReqFieldInternalName, String photoGalleryReqFieldTitle, String photoGalleryReqFieldSpanishTitle, String photoGalleryReqFieldBlurb, String photoGalleryReqFieldSpanishBlurb, String tagToolPlayerValue) throws InterruptedException	{
+		newMediaWallPageSource = driver.getPageSource();
+//		newArticlePageSource = driver.getPageSource();
+//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
+		Selenium seleniumPhotoGallery = new WebDriverBackedSelenium(driver, mainURLCall);
+		type(FieldInternalName, photoGalleryReqFieldInternalName);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		pause(1);
+		seleniumPhotoGallery.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayerValue);
+		pause(1);
+		pressTab();
+		click(BtnApplyTagsAndClose);
+		type(FieldTitle, photoGalleryReqFieldTitle);
+		type(FieldSpanishTitle, photoGalleryReqFieldSpanishTitle);
+		pause(1);
+		pressTab();
+		sendKeys(photoGalleryReqFieldBlurb);
+		pause(1);
+		pressTab();
+		sendKeys(photoGalleryReqFieldSpanishBlurb);
+		pause(1);
+		pressTab();
+		pause(1);
+		click(BtnSave);
+		click(BtnToBeta);
+	}
+
 }
