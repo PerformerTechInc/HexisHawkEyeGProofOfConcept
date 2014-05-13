@@ -11,8 +11,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  * @author boyle
  *
  */
-public class AtBatMenuTeamsPage extends AtBatAndroidPage {
-	public static String TEAM_NAME_LOCATOR_PATTERN = "//TextView[@text='%s']";
+public class AtBatMenuTeamsPage extends AtBatMenu {
 
 	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/MlbTeamListFragment_list")
 	private ExtendedWebElement teamsListContainer;	
@@ -24,7 +23,7 @@ public class AtBatMenuTeamsPage extends AtBatAndroidPage {
 		scrollTo(teamName, teamsListContainer);
 		click(String.format("Team '%s' name", teamName),
 				driver.findElement(By.xpath(String.format(
-						TEAM_NAME_LOCATOR_PATTERN, teamName))));
+						MENU_ITEM_LOCATOR_PATTERN, teamName))));
 		return new AtBatTeamPage(driver);
 	}
 }

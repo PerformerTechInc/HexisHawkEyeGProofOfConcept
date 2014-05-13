@@ -3,6 +3,7 @@ package com.mlb.qa.android.at_bat.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.mlb.qa.common.exception.TestRuntimeException;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**
@@ -38,18 +39,24 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 			click(maybeLaterLink);
 		} else if (isElementPresent(maybeLaterText, 10)) {
 			click(maybeLaterText);
+		} else {
+			throw new TestRuntimeException(
+					"'No Thanks, Maybe Later! not found on this page.");
 		}
 		return new AtBatFavoriteTeamSelectionPage(driver);
 	}
 
 	public AtBatLoginPage loginAsExistingUser() {
 		logger.debug("Attempting to 'login' as an existing user");
-		if (isElementPresent(existingUserLoginLink, delay)) {
+		if (isElementPresent(existingUserLoginLink, 10)) {
 			click(existingUserLoginLink);
-		} else if (isElementPresent(existingUserLoginText, delay)) {
+		} else if (isElementPresent(existingUserLoginText, 10)) {
 			click(existingUserLoginText);
+		} else {
+			throw new TestRuntimeException(
+					"'Sign in with MLB.com Account' not found on this page.");
 		}
-		
+
 		return new AtBatLoginPage(driver);
 	}
 

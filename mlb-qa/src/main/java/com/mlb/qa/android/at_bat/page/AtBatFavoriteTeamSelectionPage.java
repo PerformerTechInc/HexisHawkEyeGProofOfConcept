@@ -1,8 +1,10 @@
 package com.mlb.qa.android.at_bat.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import com.mlb.qa.common.exception.TestRuntimeException;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**
@@ -10,12 +12,14 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  * @author boyle
  *
  */
-public class AtBatFavoriteTeamSelectionPage extends AtBatAndroidPage {
+public class AtBatFavoriteTeamSelectionPage extends AtBatMenu {
 	
 	@FindBy(xpath = "//Button[@text='Next']")
 	private ExtendedWebElement nextLink;
 	@FindBy(xpath = "//TextView[@text='Select a Favorite Team']")
 	private ExtendedWebElement favoriteTeamTitle;
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/MLBTeamListFragment_favoriteList")
+	private ExtendedWebElement favoriteTeamListContainer;
 	
 	public AtBatFavoriteTeamSelectionPage(WebDriver driver) {
 		super(driver);
@@ -23,18 +27,39 @@ public class AtBatFavoriteTeamSelectionPage extends AtBatAndroidPage {
 
 	public AtBatNotificationsPage skipFavoriteTeamSelectionStep() {
 		logger.debug("Skip 'favorite team selection' step if displayed");
-		if (isElementPresent(nextLink, delay)) {
-			click(nextLink);
-		}
+		tapNext();
+		
 		return new AtBatNotificationsPage(driver);
 	}
 
-	public AtBatAndroidPage selectFavoriteTeam() {
-		//TODO: Need to finish the logic here that allows the selection of the Favorite Team.
+	/**
+	 * Used if on the Favorite Team Page
+	 * @param teamName is the name of the team to be selected.
+	 * @return brings back a new instance of the Favorite Team Page.
+	 */
+	public AtBatFavoriteTeamSelectionPage selectFavoriteTeam(String teamName) {
 		logger.debug("Select 'favorite team select' if displayed");
 		if (isElementPresent(favoriteTeamTitle, delay)) {
-
+			scrollTo(teamName, favoriteTeamListContainer);
+			click(String.format("Team: '%s'", teamName),
+					driver.findElement(By.xpath(String.format(
+							MENU_ITEM_LOCATOR_PATTERN, teamName))));
 		}
-		return new AtBatAndroidPage(driver);
+		return new AtBatFavoriteTeamSelectionPage(driver);
+	}
+
+	public AtBatNotificationsPage selectNext() {
+		tapNext();
+		
+		return new AtBatNotificationsPage(driver);
+	}
+
+	private void tapNext() {
+		if (isElementPresent(nextLink, 10)) {
+			click(nextLink);
+		} else {
+			throw new TestRuntimeException(
+					"'Next' button not found on this page");
+		}
 	}
 }

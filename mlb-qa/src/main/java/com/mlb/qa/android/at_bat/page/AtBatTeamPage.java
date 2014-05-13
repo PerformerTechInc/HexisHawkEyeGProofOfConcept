@@ -4,8 +4,13 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.base.Predicate;
+import com.mlb.qa.common.exception.TestRuntimeException;
+import com.mlb.qa.common.timeout.Timeouts;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**
@@ -18,20 +23,37 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	public static String MENU_ITEM_LOCATOR_PATTERN = "//TextView[@text='%s']";
 	public static String BALLPARK_NAME_LOCATOR_PATTERN = "//ImageView[@name='%s']";
 
-	//Team Game Preview Area
+	//Navigation Bar
+	@FindBy(id="android:id/action_bar_title")
+	private ExtendedWebElement navigationTitle;
+
+	//Team Game Preview Area / Game Pager Fragment
+	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id.TeamGamePagerFragment_progressBar")
+	private ExtendedWebElement gamePagerProgressBar;
 	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/TeamGamePagerFragment_gamesPager")
 	private ExtendedWebElement gamePagerLayout;
 	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/TeamGamePagerFragment_gamesPagerTitleStrip")
 	private ExtendedWebElement teamDatesAvailable;
 
-	//Team Carousel
-	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/CarouselIndicatorView_indicator")
+	//Team Home Wall / Carousel
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id.TeamHomeWallFragment_progressBar")
+	private ExtendedWebElement teamCarouselProgressBar;
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/teamhome_carouselview")
+	private ExtendedWebElement teamCarouselView;
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/CarouselView_indicatorsContainer")
+	private ExtendedWebElement teamCarouselIndicatorContainer;
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/CarouselIndicatorView_indicator")
 	private List<ExtendedWebElement> teamCarouselIndicators;
-	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/TeamHomeWallAd_imageDefaultView")
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/TeamItemView_item")
+	private ExtendedWebElement teamCarouselItem;
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/TeamHomeWallAd_imageDefaultView")
 	private ExtendedWebElement teamCarouselAdImage;
 
+	//Team Main Menu Options
 	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/teamhome_scrollcontainer")
-	private ExtendedWebElement teamScrollContainer;	
+	private ExtendedWebElement teamScrollContainer;
+	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/TeamHome_teamhometablefragmentContainer")
+	private ExtendedWebElement teamHomeFragmentContainer;
 	@FindBy(xpath = "//ImageView[@name='News']")
 	private ExtendedWebElement itemNews;
 	@FindBy(xpath = "//ImageView[@name='Video']")
@@ -42,11 +64,16 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	private ExtendedWebElement itemTickets;
 	@FindBy(xpath = "//ImageView[@name='Shop']")
 	private ExtendedWebElement itemShop;
+
+	//Team Option Container
+	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/TeamHome_optionsContainer")
+	private ExtendedWebElement teamOptionContainer;
 	@FindBy(xpath = "//TextView[@text='Roster']")
 	private ExtendedWebElement itemRoster;
-	//TODO:  Need to change this based on the team we're on
-	@FindBy(xpath = "//TextView[@text='More from New York Mets'")
-	private ExtendedWebElement itemMore;
+	@FindBy(xpath = "//TextView[@text='Notifications']")
+	private ExtendedWebElement itemNotifications;	
+
+	//Team More Area
 	@FindBy(xpath = "//TextView[contains(@text,'More from')]")
 	private ExtendedWebElement itemMorePartial;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/TeamHomeMoreFrag_container")
@@ -60,6 +87,15 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 
 	public AtBatTeamPage(WebDriver driver) {
 		super(driver);
+	}
+
+	public AtBatTeamPage selectDateItem(int i) {
+		if (isElementPresent(teamDatesAvailable, 10)) {
+			click(String.format("Day: '%s'", teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).get(i).getText()),
+					teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).get(i));
+		}
+
+		return new AtBatTeamPage(driver);
 	}
 
 	public AtBatTeamPage selectTeamMenuOptionByName(String teamName) {
@@ -80,7 +116,18 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 
 	public AtBatTeamPage selectTeamVideo() {
 		if (isElementPresent(itemVideo, delay)) {
-			click(itemVideo);
+			int counter = 0;
+			while (counter <= 5) {
+				if (isElementPresent(teamHomeFragmentContainer, delay)) {
+					click(itemVideo);		
+				} else {
+					break;	
+				}
+				counter = counter + 1;
+			}
+		} else {
+			throw new TestRuntimeException(
+					"The 'Video' menu item is not recognized on this page, and can't be selected.");
 		}
 
 		return new AtBatTeamPage(driver);
@@ -95,20 +142,7 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	}
 
 	public AtBatTeamPage selectTeamTickets() {
-
-		return new AtBatTeamPage(driver);
-	}
-
-	public AtBatTeamPage selectTeamStadium(String stadiumName) {
-
-		if (isElementPresent(String.format("Stadium '%s' name", stadiumName),
-				driver.findElement(By.xpath(String.format(
-						BALLPARK_NAME_LOCATOR_PATTERN, stadiumName))))) {
-			click(String.format("Stadium '%s' name", stadiumName),
-					driver.findElement(By.xpath(String.format(
-							BALLPARK_NAME_LOCATOR_PATTERN, stadiumName))));
-		}
-
+		//TODO:  Need to determine what to do with selecting the Tickets page if anything.
 		return new AtBatTeamPage(driver);
 	}
 
@@ -120,37 +154,33 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 		return new AtBatTeamRosterPage(driver);
 	}
 
-	public AtBatTeamPage selectCarouselItem(final int i) {
-
-		click(teamCarouselIndicators.get(i));
-
-		return new AtBatTeamPage(driver);
-	}
-
-	public Boolean isSponsorSlideDisplayed() {
-		return isElementPresent(teamCarouselAdImage, delay);
-	}
-
-	public int getNumberOfDateItems() {
-		return teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).size();
-	}
-
-	public int getNumberOfCarouselItems() {
-		return teamCarouselIndicators.size();
-	}
-
-	public AtBatTeamPage selectDateItem(int i) {
-		if (isElementPresent(teamDatesAvailable, 10)) {
-			click(String.format("Day: '%s'", teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).get(i).getText()),
-					teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).get(i));
+	public AtBatNotificationsPage selectTeamNotifications() {
+		if (isElementPresent(itemNotifications, delay)) {
+			click(itemNotifications);
 		}
+		
+		return new AtBatNotificationsPage(driver);
+	}
 
+	public AtBatTeamPage selectCarouselItem(final int i) {
+		if (isElementPresent(teamCarouselIndicators.get(i), delay)) {
+			click(teamCarouselIndicators.get(i));
+		}
+		
 		return new AtBatTeamPage(driver);
 	}
 
 	public AtBatTeamPage selectTeamMore() {
 		if (isElementPresent(itemMorePartial, 10)) {
-			click(itemMorePartial);
+			int counter = 0;
+			while (counter <= 5) {
+				if (!isElementPresent(itemMoreContainer, delay)) {
+					click(itemMorePartial);					
+				} else {
+					break;
+				}
+				counter = counter + 1;
+			}
 		}
 
 		return new AtBatTeamPage(driver);
@@ -164,7 +194,21 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 		return new AtBatWebViewPage(driver);
 	}
 
-	public boolean isCarouselItemVisible(int i) {
+	public Boolean isSponsorSlideDisplayed() {		
+		logger.info("Sponsor Slide Present: " + isElementPresent(teamCarouselAdImage) + " Normal Item Present: " + isElementPresent(teamCarouselItem));
+		return isElementPresent(teamCarouselAdImage, 10);
+	}
+
+	public Boolean isTeamStadium(String stadiumName) {
+		if (isElementPresent(String.format("Stadium '%s' name", stadiumName),
+				driver.findElement(By.xpath(String.format(
+						BALLPARK_NAME_LOCATOR_PATTERN, stadiumName))))) {
+			return true;
+		}
+		return false;
+	}
+
+	public Boolean isCarouselItemVisible(int i) {
 		if (isElementPresent(teamCarouselIndicators.get(i), 20)) {
 			if (teamCarouselIndicators.get(i).getElement().isDisplayed()) {
 				return true;
@@ -174,10 +218,88 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 		return false;
 	}
 
-	public boolean isMoreContainerVisible() {
+	public Boolean isMoreContainerVisible() {
 		if (isElementPresent(itemMoreContainer, 10)) {
 			return true;
 		}
 		return false;
+	}
+
+	public Boolean isTeamsPage(String teamAbbrev) {
+		if (isElementPresent(navigationTitle, delay)) {
+			if (isElementPresent(String.format("Team '%s'", teamAbbrev),
+					driver.findElement(By.xpath(String.format(
+							MENU_ITEM_LOCATOR_PATTERN, teamAbbrev))), delay)) {
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean isDateProgressBarPresent() {
+		return isElementPresent(gamePagerProgressBar, delay);
+	}
+
+	public boolean isCarouselProgressBarPresent() {
+		return isElementPresent(teamCarouselProgressBar, delay);
+	}
+
+	public AtBatTeamPage waitForDateProgressBarLoad() {
+		new WebDriverWait(driver,
+				120)
+				.until(new Predicate<WebDriver>() {
+
+					@Override
+					public boolean apply(WebDriver arg0) {
+						logger.info("Progress Bar Not Present: " + !isDateProgressBarPresent());
+						logger.info("Date Container Present: " + isElementPresent(teamDatesAvailable));
+						return (!isDateProgressBarPresent() && isElementPresent(teamDatesAvailable, delay));
+					}
+				});
+
+		return new AtBatTeamPage(driver);
+	}
+
+	public AtBatTeamPage waitForCarouselLoad() {
+		new WebDriverWait(driver,
+				Timeouts.DEFAULT_CONTENT_LOADING_TIMEOUT.getTimeoutInSeconds())
+				.until(new Predicate<WebDriver>() {
+
+					@Override
+					public boolean apply(WebDriver arg0) {
+						logger.info("Carousel Progress Bar Not Present: " + !isCarouselProgressBarPresent());
+						logger.info("Carousel Indicators Present: " + isElementPresent(teamCarouselIndicatorContainer));
+						return (!isCarouselProgressBarPresent() && isElementPresent(teamCarouselIndicatorContainer));
+					}
+				});
+
+		return new AtBatTeamPage(driver);
+	}
+
+	public int getNumberOfCarouselItems() {
+		return teamCarouselIndicators.size();
+	}
+
+	public int getNumberOfDateItems() {
+		int counter = 0;
+		while (counter <= 5) {
+			if (isElementPresent(teamDatesAvailable, 10)) {
+				return teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).size();				
+			}
+			counter = counter + 1;
+		}
+		
+		throw new TestRuntimeException(
+				"The 'Date Bar' hasn't loaded/or doesn't exist at this time and we're unable to gather the current size of it.");
+	}
+
+	public int getNumberOfMoreItems() {
+		if (isElementPresent(itemMoreContainer)) {
+			return itemMoreContainer.getElement().findElements(By.xpath("//TextView")).size();
+		} 
+		throw new TestRuntimeException(
+				"'More from' is not visible on this page and can't have its contents checked.");
+
 	}
 }

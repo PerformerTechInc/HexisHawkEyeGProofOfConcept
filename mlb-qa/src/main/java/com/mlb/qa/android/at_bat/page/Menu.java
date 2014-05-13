@@ -42,14 +42,14 @@ public class Menu extends AtBatAndroidPage {
 
 	private void clickOnMenuItem(MenuItem item) {
 		switch (item) {
-		case NEWS: {
-			click(newsMenuItem);
-			break;
-		}
-		default: {
-			throw new TestRuntimeException(
+			case NEWS: {
+				click(newsMenuItem);
+				break;
+			}
+			default: {
+				throw new TestRuntimeException(
 					"Unknown or unsupported menu item: " + item);
-		}
+			}
 		}
 	}
 

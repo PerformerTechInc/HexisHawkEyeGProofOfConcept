@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**
- * MLB At Bat - Login Alerty
+ * MLB At Bat - Login Alert
  * @author boyle
  *
  */
