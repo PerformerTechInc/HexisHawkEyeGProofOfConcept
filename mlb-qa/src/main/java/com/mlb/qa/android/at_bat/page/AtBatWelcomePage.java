@@ -25,7 +25,7 @@ public class AtBatWelcomePage extends AtBatAndroidPage {
 	}
 	
 	public AtBatPaywallPage passToPaywallPage() {
-		isElementPresent(maybeLaterText, delay);
+		isElementPresent(maybeLaterText, 10);
 		return new AtBatPaywallPage(driver);
 	}
 }

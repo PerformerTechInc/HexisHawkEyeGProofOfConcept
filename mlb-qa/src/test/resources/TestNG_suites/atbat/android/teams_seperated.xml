@@ -196,7 +196,20 @@
 			</class>
 		</classes>	    
 	</test>
-		<test verbose="1" name="Android At Bat Teams Page WebView Test">
+	<test verbose="1" name="Android At Bat Teams Page Test - More Items">
+	    <parameter name="{excel_ds_args}" value="TUID"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+					<methods>
+					    	<include name="testTeamMore"/>
+					</methods>
+			</class>
+		</classes>
+	</test>
+	<test verbose="1" name="Android At Bat Teams Page WebView Test">
 	    <parameter name="{excel_ds_args}" value="TUID;team_abbrev"/> 
 		<parameter name="{excel_ds_uid}" value="TUID"/>
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
@@ -208,5 +221,44 @@
 					</methods>
 			</class>
 		</classes>	    
+	</test>
+		<test verbose="1" name="Android At Bat Teams Page Favorite Team Entry Point Test">
+	    <parameter name="{excel_ds_args}" value="TUID;team_abbrev"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+					<methods>
+					    	<include name="testTeamEntryFavoriteTeam"/>
+					</methods>
+			</class>
+		</classes>	    
+	</test>
+	<test verbose="1" name="Android At Bat Teams Page Test - Notification Entry Point">
+	    <parameter name="{excel_ds_args}" value="TUID"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+					<methods>
+					    	<include name="testTeamNotificationEntryPoint"/>
+					</methods>
+			</class>
+		</classes>
+	</test>
+	<test verbose="1" name="Android At Bat Teams Page Test - Notification Toggles Available">
+	    <parameter name="{excel_ds_args}" value="TUID"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+					<methods>
+					    	<include name="testTeamNotificationTeamExpanded"/>
+					</methods>
+			</class>
+		</classes>
 	</test>
 </suite>

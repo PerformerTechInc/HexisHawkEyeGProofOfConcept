@@ -5,7 +5,10 @@ import org.testng.Assert;
 
 import com.mlb.qa.android.at_bat.page.AtBatAndroidPage;
 import com.mlb.qa.android.at_bat.page.AtBatFavoriteTeamSelectionPage;
+import com.mlb.qa.android.at_bat.page.AtBatMenu;
 import com.mlb.qa.android.at_bat.page.AtBatNewsPage;
+import com.mlb.qa.android.at_bat.page.AtBatNotificationsPage;
+import com.mlb.qa.android.at_bat.page.AtBatNotificationsPage.NotificationsToggleItem;
 import com.mlb.qa.android.at_bat.page.AtBatPaywallPage;
 import com.mlb.qa.android.at_bat.page.AtBatSchedulePage;
 import com.mlb.qa.android.at_bat.page.AtBatTeamRosterPage;
@@ -27,31 +30,34 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
+				.openTeamsMenu()
 				.openTeamByName(teamName)
-				.selectCarouselItem(1)
-				.selectCarouselItem(2)
-				.selectCarouselItem(3)
-				.selectCarouselItem(4)
-				.selectCarouselItem(3)
-				.selectCarouselItem(2)
-				.selectCarouselItem(1)
-				.selectCarouselItem(0);	
+					.waitForCarouselLoad()
+					.selectCarouselItem(1)
+					.selectCarouselItem(2)
+					.selectCarouselItem(3)
+					.selectCarouselItem(4)
+					.selectCarouselItem(3)
+					.selectCarouselItem(2)
+					.selectCarouselItem(1)
+					.selectCarouselItem(0);	
+		
 		Assert.assertTrue(teamPage.isCarouselItemVisible(0), "Incorrect Carousel Item is being displayed");
 	}
 
 	@Test(dataProvider = "excel_ds", priority = 2, description = "Testing Team Carousel Ad Appears for Lite User")
 	public void testTeamCarouselLiteAd(String teamName) {
-		boolean result = true;
+
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
+				.openTeamsMenu()
 				.openTeamByName(teamName)
-				.selectCarouselItem(4);
+					.waitForCarouselLoad()
+					.selectCarouselItem(3)
+					.selectCarouselItem(4);
 
-		result &= teamPage.isSponsorSlideDisplayed();
-		Assert.assertTrue(result, "The 'Sponsor slide' did not display correctly.");
+		Assert.assertTrue(teamPage.isSponsorSlideDisplayed(), "The 'Sponsor slide' did not display correctly.");
 	}
 
 	@Test(dataProvider = "excel_ds", priority = 3, description = "Testing Team Carousel Ad doesn't appear for Full User")
@@ -63,8 +69,9 @@ public class AtBatTeamPageTest extends UITest {
 				.skipFavoriteTeamSelectionStep()
 				.skipPlayServiceAlertInitial()
 				.skipSettingNotifications()
-				.openTeamsFromMenu()
-					.openTeamByName(teamName);
+				.openTeamsMenu()
+					.openTeamByName(teamName)
+						.waitForCarouselLoad();
 
 		teamPage.selectCarouselItem(3);
 		result &= teamPage.isSponsorSlideDisplayed();
@@ -82,8 +89,9 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
-					.openTeamByName(teamName);
+				.openTeamsMenu()
+					.openTeamByName(teamName)
+						.waitForCarouselLoad();
 		Assert.assertEquals(teamPage.getNumberOfCarouselItems(), 5, "The number of carousel items supposed to be available is incorrect");
 	}
 
@@ -95,8 +103,9 @@ public class AtBatTeamPageTest extends UITest {
 				.skipFavoriteTeamSelectionStep()
 				.skipPlayServiceAlertInitial()
 				.skipSettingNotifications()
-				.openTeamsFromMenu()
-					.openTeamByName(teamName);
+				.openTeamsMenu()
+					.openTeamByName(teamName)
+						.waitForCarouselLoad();
 		Assert.assertEquals(teamPage.getNumberOfCarouselItems(), 4, "The number of carousel items supposed to be available is incorrect");
 	}
 
@@ -105,8 +114,9 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
-					.openTeamByName(teamName);
+				.openTeamsMenu()
+					.openTeamByName(teamName)
+						.waitForDateProgressBarLoad();
 		Assert.assertEquals(teamPage.getNumberOfDateItems(), 3, "The number of games supposed to be displayed is incorrect.");
 	}
 
@@ -115,13 +125,14 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
+				.openTeamsMenu()
 					.openTeamByName(teamName)
-					.selectDateItem(0)
-					.selectDateItem(1)
-					.selectDateItem(2)
-					.selectDateItem(0)
-					.selectDateItem(0);
+						.waitForDateProgressBarLoad()
+						.selectDateItem(0)
+						.selectDateItem(1)
+						.selectDateItem(2)
+						.selectDateItem(0)
+						.selectDateItem(0);
 		//TODO:  Need to add an assert here that can check that the correct Date Item is opened.
 	}
 	
@@ -131,10 +142,11 @@ public class AtBatTeamPageTest extends UITest {
 
 		liteUserInitialPath();
 		AtBatNewsPage newsPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
+				.openTeamsMenu()
 					.openTeamByName(teamName)
-				.selectTeamNews()
-				.switchToDetailedView();
+					.waitForDateProgressBarLoad()
+						.selectTeamNews()
+						.switchToDetailedView();
 
 		newsPage.swipeRight();
 		newsPage.swipeRight();
@@ -157,25 +169,24 @@ public class AtBatTeamPageTest extends UITest {
 
 	@Test(dataProvider = "excel_ds", priority = 9, description = "Testing Teams News - Full User - No Ad Displays")
 	public void testTeamNewsFullNoAd(String teamName) {
-		boolean result = false;
 		fullUserInitialPath();
 
 		AtBatNewsPage newsPage = new AtBatFavoriteTeamSelectionPage(driver)
 				.skipFavoriteTeamSelectionStep()
 				.skipPlayServiceAlertInitial()
 				.skipSettingNotifications()
-				.openTeamsFromMenu()
+				.openTeamsMenu()
 					.openTeamByName(teamName)
+					.waitForDateProgressBarLoad()
 						.selectTeamNews()
 						.switchToDetailedView();
 
 		newsPage.swipeRight();
 		newsPage.swipeRight();
 		newsPage.swipeRight();
-		result = newsPage.isSponsorSlideDisplayed();
 
 		Assert.assertFalse(
-				result,
+				newsPage.isSponsorSlideDisplayed(),
 				"The sponsor slide displayed, when it wasn't meant to.");
 	}
 
@@ -184,9 +195,10 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
+				.openTeamsMenu()
 					.openTeamByName(teamName)
-					.selectTeamVideo();
+					.waitForDateProgressBarLoad()
+						.selectTeamVideo();
 
 		AtBatPaywallPage paywallPage = new AtBatPaywallPage(driver);
 
@@ -198,8 +210,9 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
+				.openTeamsMenu()
 					.openTeamByName(teamName)
+					.waitForDateProgressBarLoad()
 					.swipeUp();
 
 		AtBatSchedulePage schedulePage = new AtBatTeamPage(driver)
@@ -216,8 +229,9 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
-				.openTeamByName(teamName);
+				.openTeamsMenu()
+				.openTeamByName(teamName)
+				.waitForDateProgressBarLoad();
 		teamPage.swipeUp();
 
 		AtBatTeamRosterPage rosterPage = teamPage.selectTeamRoster();
@@ -234,10 +248,12 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
-				.openTeamByName(teamName);
+				.openTeamsMenu()
+				.openTeamByName(teamName)
+				.waitForDateProgressBarLoad();
 		teamPage.swipeUp();
-		teamPage.selectTeamStadium(stadiumName);
+
+		Assert.assertTrue(teamPage.isTeamStadium(stadiumName), "The stadium in question is either incorrect or doesn't match it's label correctly.");
 	}
 
 	@Test(dataProvider = "excel_ds", priority = 14, description = "Testing Team More")
@@ -245,10 +261,14 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
-				.openTeamByName(teamName);
+				.openTeamsMenu()
+				.openTeamByName(teamName)
+				.waitForDateProgressBarLoad();
+		teamPage.swipeUp();
 		teamPage.swipeUp();
 		teamPage.selectTeamMore();
+
+		Assert.assertTrue(teamPage.getNumberOfMoreItems() >= 3, "The number of items under 'More' has returned less then 3 items.");
 	}
 
 	@Test(dataProvider = "excel_ds", priority = 15, description = "Testing Team Facebook")
@@ -256,7 +276,7 @@ public class AtBatTeamPageTest extends UITest {
 		liteUserInitialPath();
 
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
-				.openTeamsFromMenu()
+				.openTeamsMenu()
 				.openTeamByName(teamName);
 		teamPage.swipeUp();
 		teamPage.selectTeamMore();
@@ -267,11 +287,71 @@ public class AtBatTeamPageTest extends UITest {
 		Assert.assertTrue(webViewPage.isTeamsWebView(teamAbbrev), String.format("The Web View displayed is not the correct one for the ", teamName));
 	}
 
+	@Test(dataProvider = "excel_ds", priority = 16, description = "Testing Favorite Team Menu - Entry Point")
+	public void testTeamEntryFavoriteTeam(String teamName, String teamAbbrev) {
+		liteUserInitialPathFavoriteTeam(teamName);
+
+		AtBatTeamPage teamPage = new AtBatMenu(driver)
+				.openScoreboard()
+				.openFavoriteTeam(teamName);
+		
+		Assert.assertTrue(teamPage.isTeamsPage(teamAbbrev), String.format("The team page displayed is not the correct team: ", teamName));
+	}
+
+	@Test(dataProvider = "excel_ds", priority = 17, description = "Testing Notification - Initial Entry Point ")
+	public void testTeamNotificationEntryPoint(String teamName) {
+		liteUserInitialPath();
+		
+		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+				.openTeamsMenu()
+				.openTeamByName(teamName)
+				.waitForDateProgressBarLoad();
+		teamPage.swipeUp();
+		teamPage.swipeUp();
+		AtBatNotificationsPage notificationsPage = teamPage.selectTeamNotifications();
+		
+		Assert.assertTrue(notificationsPage.checkIfTeamVisible(teamName), "The team in question is not present on the screen on initial entry.");
+	}
+
+	@Test(dataProvider = "excel_ds", priority = 18, description = "Testing Notification - Toggles Present")
+	public void testTeamNotificationTeamExpanded(String teamName) {		
+		liteUserInitialPath();
+		
+		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+				.openTeamsMenu()
+				.openTeamByName(teamName)
+				.waitForDateProgressBarLoad();
+		teamPage.swipeUp();
+		teamPage.swipeUp();
+		AtBatNotificationsPage notificationsPage = teamPage.selectTeamNotifications();
+		
+		Assert.assertTrue(notificationsPage.checkIfNotificationVisible(NotificationsToggleItem.GAME_START), 
+				String.format("The %s toggle item is not visible", NotificationsToggleItem.GAME_START.getText()));
+		Assert.assertTrue(notificationsPage.checkIfNotificationVisible(NotificationsToggleItem.GAME_END), 
+				String.format("The %s toggle item is not visible", NotificationsToggleItem.GAME_END.getText()));
+		Assert.assertTrue(notificationsPage.checkIfNotificationVisible(NotificationsToggleItem.SCORING_PLAYS), 
+				String.format("The %s toggle item is not visible", NotificationsToggleItem.SCORING_PLAYS.getText()));
+		Assert.assertTrue(notificationsPage.checkIfNotificationVisible(NotificationsToggleItem.LEAD_CHANGE), 
+				String.format("The %s toggle item is not visible", NotificationsToggleItem.LEAD_CHANGE.getText()));
+		Assert.assertTrue(notificationsPage.checkIfNotificationVisible(NotificationsToggleItem.NEWS), 
+				String.format("The %s toggle item is not visible", NotificationsToggleItem.NEWS.getText()));
+	}
+
 	public void liteUserInitialPath() {
 		new AtBatWelcomePage(driver)
 			.passToPaywallPage()
 			.continueWithLiteVersion()
 			.skipFavoriteTeamSelectionStep()
+			.skipPlayServiceAlertInitial()
+			.skipSettingNotifications();
+	}
+	
+	public void liteUserInitialPathFavoriteTeam(String teamName) {
+		new AtBatWelcomePage(driver)
+			.passToPaywallPage()
+			.continueWithLiteVersion()
+			.selectFavoriteTeam(teamName)
+			.selectNext()  
 			.skipPlayServiceAlertInitial()
 			.skipSettingNotifications();
 	}

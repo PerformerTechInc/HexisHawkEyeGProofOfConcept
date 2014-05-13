@@ -67,12 +67,12 @@ public class AtBatTeamRosterPage extends AtBatAndroidPage {
 
 	public boolean isTabSelected(RosterTabItem item) {
 		switch (item) {
-		case NAME:
-			return nameLink.getElement().isSelected();
-		case POSITION:
-			return positionLink.getElement().isSelected();
-		default:
-			throw new TestRuntimeException(
+			case NAME:
+				return nameLink.getElement().isSelected();
+			case POSITION:
+				return positionLink.getElement().isSelected();
+			default:
+				throw new TestRuntimeException(
 					"Unknown or unsupported tab item: " + item);
 		}
 	}

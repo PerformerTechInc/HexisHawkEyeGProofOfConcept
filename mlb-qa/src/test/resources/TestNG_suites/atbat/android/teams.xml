@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - Android At Bat"
-	skipfailedinvocationcounts="false" junit="false" parallel="tests"
-	data-provider-thread-count="50" annotations="JDK"> 
+	skipfailedinvocationcounts="false" junit="false" parallel="methods"
+	data-provider-thread-count="4" annotations="JDK"> 
 	<test verbose="1" name="Android At Bat Teams Page Test">
 	    <parameter name="{excel_ds_args}" value="TUID"/> 
 		<parameter name="{excel_ds_uid}" value="TUID"/>

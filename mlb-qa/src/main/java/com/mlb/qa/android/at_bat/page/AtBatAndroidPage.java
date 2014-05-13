@@ -30,9 +30,28 @@ public class AtBatAndroidPage extends AndroidPage {
 		}
 		return new AtBatMenu(driver);
 	}
-	
-	public AtBatMenuTeamsPage openTeamsFromMenu() {
-		openMenu().selectMenuItem(MenuItem.TEAMS);
+
+	public AtBatMenuTeamsPage openTeamsMenu() {
+		openMenu().clickOnMenuItem(MenuItem.TEAMS);
+		
 		return new AtBatMenuTeamsPage(driver);
+	}
+
+	public AtBatNewsPage openNews() {
+		openMenu().clickOnMenuItem(MenuItem.NEWS);
+		
+		return new AtBatNewsPage(driver);
+	}
+
+	public AtBatScoreboardPage openScoreboard() {
+		openMenu().clickOnMenuItem(MenuItem.SCOREBOARD);
+		
+		return new AtBatScoreboardPage(driver);
+	}
+
+	public AtBatTeamPage openFavoriteTeam(String teamName) {
+		openMenu().clickOnMenuItem(MenuItem.FAVORITE_TEAM, teamName);
+		
+		return new AtBatTeamPage(driver);
 	}
 }
