@@ -27,7 +27,8 @@ public abstract class ListItemComparator<T> implements Comparator<T> {
 
 	protected void doLogging(String name, Object str1, Object str2,
 			boolean equal) {
-		if (equal) {
+		
+		/*if (equal) {
 			logger.info(new StringBuilder("Equal parameters - ").append(name)
 					.append(" \"").append(str1).append("\" = \"").append(str2)
 					.append("\"").toString());
@@ -36,6 +37,6 @@ public abstract class ListItemComparator<T> implements Comparator<T> {
 			logger.info(new StringBuilder("Different parameters - ")
 					.append(name).append(" \"").append(str1).append("\" != \"")
 					.append(str2).append("\"").toString());
-		}
+		}*/
 	}
 }

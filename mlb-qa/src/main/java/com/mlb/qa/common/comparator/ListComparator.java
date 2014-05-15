@@ -43,6 +43,7 @@ public class ListComparator<T> {
 		LOGGER.info("Sorted list 2: " + tempL2);
 		int res = 0;
 		for (int i = 0; i < tempL1.size(); i++) {
+			LOGGER.info("Itteration: " +i);
 			res = comparator.compare(tempL1.get(i), tempL2.get(i));
 			if (res != 0) {
 				return res;

@@ -9,19 +9,27 @@ public class PromotionComparator extends ListItemComparator<Promotion> {
 
 	@Override
 	public int compare(Promotion p1, Promotion p2) {
-		int res = 0;
-		if (0 != (res = compareFieldsIgnoreCase("Description", p1.getDescription(), p2.getDescription()))) {
+		int res = 0;		
+/*		if (0 != (res = compareFieldsIgnoreCase("Description", p1.getDescription(), p2.getDescription()))) {
+			logger.warn("Description: " + p1.getDescription()+"; "+ p2.getDescription());
 			return res;
-		}
+			if (0 != (res = compareFieldsIgnoreCase("Description", p1.getDescription(), p2.getDistribution()))) {
+				logger.warn("Description: " + p1.getDescription()+"; "+ p2.getDescription());				
+				return res;
+			}
+		}*/
 		if (0 != (res = compareFieldsIgnoreCase("Offer name", p1.getOfferName(), p2.getOfferName()))) {
+			logger.warn("Offer name: " + p1.getOfferName()+"; "+ p2.getOfferName());
 			return res;
 		}
 		if (0 != (res = compareFieldsIgnoreCase("Presented By", p1.getPresentedBy(), p2.getPresentedBy()))) {
+			logger.warn("Presented By: "+ p1.getPresentedBy()+"; "+ p2.getPresentedBy());
 			return res;
 		}
 		/*if (0 != (res = compareFieldsIgnoreCase("Link", p1.getTlink(), p2.getTlink()))) {
 			return res;
 		}*/
+			
 		return res;
 	}
 

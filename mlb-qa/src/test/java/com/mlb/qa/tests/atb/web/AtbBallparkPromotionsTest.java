@@ -34,8 +34,27 @@ public class AtbBallparkPromotionsTest extends UITest {
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
 		List<GamePromotion> promotionsBackEnd = httpService.loadListOfPromotionsFromGamePromotionsService(
 				team.getTeamId(), Integer.parseInt(year), month);
-		Assert.assertTrue(0 == new ListComparator<GamePromotion>(new
-				GamePromotionComparator()).compareContent(promotionsOnUi, promotionsBackEnd),
+		
+		DateTime date = new DateTime();		
+		for (int i=0; i<promotionsBackEnd.size(); i++){
+			if (promotionsBackEnd.get(i).getGameDate().isBefore(date))
+			{
+				for (int j=promotionsBackEnd.get(i).getPromotions().size() - 1; j>=0; j--){
+					{
+						//exclude from Back End list those promotions which has displayIfPast=false
+						if (promotionsBackEnd.get(i).getPromotions().get(j).getDisplayIfPast() != null && !promotionsBackEnd.get(i).getPromotions().get(j).getDisplayIfPast()){
+							promotionsBackEnd.get(i).getPromotions().remove(j);
+						}
+					}				
+				}
+			}
+		}
+
+
+		
+		int res = new ListComparator<GamePromotion>(new GamePromotionComparator()).compareContent(promotionsOnUi, promotionsBackEnd);
+		
+		Assert.assertTrue(0 == res,
 				"List of promotions on UI isn't equal to list of promotions from  GamePromotion service " +
 						teamAbbrev + "; web:" + promotionsUrl);
 	}

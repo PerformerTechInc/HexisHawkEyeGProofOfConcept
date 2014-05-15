@@ -24,9 +24,10 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 	private static final Logger logger = Logger.getLogger(AtbBallparkPromotionsPage.class);
 	// promo item
 	private static final String PROMOTION_CONTAINER_LOCATOR = ".//div[@class='promo-details-item']";
-	private static final String OFFER_NAME_LOCATOR = "./h7";
-	private static final String DESCRIPTION_LOCATOR = "./p[not (starts-with(.,'Presented By '))]";
-	private static final String PRESENTED_BY_LOCATOR = "./p[starts-with(.,'Presented By ')]";
+	private static final String OFFER_NAME_LOCATOR = ".//h7";
+	private static final String DESCRIPTION_LOCATOR = ".//p[not (starts-with(.,'Presented By '))]";
+			
+	private static final String PRESENTED_BY_LOCATOR = ".//p[starts-with(.,'Presented By ')]";
 	// Buy tickets link
 	private static final String BUY_TICKETS_LINK_LOCATOR = ".//a[text()='Buy Tickets']";
 	private static final String HREF_ATTR = "href";
@@ -40,7 +41,7 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 	@FindBy(xpath = "//nav[@class='nav-pagination']//li/h5")
 	private ExtendedWebElement monthYearLabel;
 	// game promotion containers
-	@FindBy(xpath = "//section[@id= 'promotions']/ul/li")
+	@FindBy(xpath = "//*[@id='promotions']/ul/li[not(contains(h6,'Promotion'))]")
 	private List<ExtendedWebElement> gamePromotionContainers;
 
 	public AtbBallparkPromotionsPage(WebDriver driver) {
@@ -72,8 +73,8 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 			for (WebElement promoItemContainer : gamePromotionContainer.getElement().findElements(
 					By.xpath(PROMOTION_CONTAINER_LOCATOR))) {
 				Promotion promotion = new Promotion();
-				promotion.setDescription(getTextIfPresent(new ExtendedWebElement(promoItemContainer),
-						DESCRIPTION_LOCATOR));
+//				promotion.setDescription(getTextIfPresent(new ExtendedWebElement(promoItemContainer),
+//						DESCRIPTION_LOCATOR));
 				promotion.setPresentedBy(StringUtils.substringAfter(
 						getTextIfPresent(new ExtendedWebElement(promoItemContainer),
 								PRESENTED_BY_LOCATOR), PRESENTED_BY));

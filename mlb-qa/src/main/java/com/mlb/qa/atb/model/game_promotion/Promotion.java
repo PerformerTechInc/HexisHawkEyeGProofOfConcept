@@ -7,9 +7,9 @@ import com.mlb.qa.atb.model.Item;
 import com.mlb.qa.atb.model.adapter.TicketServiceStringAdapter;
 
 public class Promotion implements Item {
-	@XmlAttribute(name = "description")
-	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
-	private String description;
+//	@XmlAttribute(name = "description")
+//	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
+//	private String description;
 	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
 	@XmlAttribute(name = "offer_name")
 	private String offerName;
@@ -19,16 +19,41 @@ public class Promotion implements Item {
 	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
 	private String presentedBy;
 
-	public String getDescription() {
-		return description;
-	}
+	@XmlAttribute(name = "display_if_past")
+	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
+	private Boolean displayIfPast;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
+//	@XmlAttribute(name = "distribution")
+//	@XmlJavaTypeAdapter(value = TicketServiceStringAdapter.class)
+//	private String distribution;
+
+//	public String getDistribution() {
+//		return distribution;
+//	}
+//
+//	public void setDistribution(String distribution) {
+//		this.distribution = distribution;
+//	}
+//
+//	public String getDescription() {
+//		return description;
+//	}
+//
+//	public void setDescription(String description) {
+//		this.description = description;
+//	}
 
 	public String getOfferName() {
 		return offerName;
+	}
+
+	public Boolean getDisplayIfPast() {
+		return displayIfPast;
+	}
+
+	public void setDisplayIfPast(Boolean displayIfPast) {
+		this.displayIfPast = displayIfPast;
 	}
 
 	public void setOfferName(String offerName) {
@@ -53,8 +78,22 @@ public class Promotion implements Item {
 
 	@Override
 	public String toString() {
-		return "Promotion [description=" + description + ", offerName=" + offerName + ", tlink=" + tlink
+		/*String desc = description;
+		
+		if (distribution != null){
+			if (!distribution.isEmpty()) {
+				desc = distribution;
+				if (!description.isEmpty()){
+					desc = desc + " " + description;
+				}
+			}
+		}
+		return "Promotion [description=" + desc + ", offerName=" + offerName + ", tlink=" + tlink
+				+ ", presentedBy=" + presentedBy + "]";*/
+		return "Promotion [offerName=" + offerName + ", tlink=" + tlink
+				+ ", displayIfPast=" + displayIfPast
 				+ ", presentedBy=" + presentedBy + "]";
+	
 	}
 
 }
