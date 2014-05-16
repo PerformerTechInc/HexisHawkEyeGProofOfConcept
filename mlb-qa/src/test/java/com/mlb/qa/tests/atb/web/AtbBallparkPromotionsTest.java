@@ -39,7 +39,7 @@ public class AtbBallparkPromotionsTest extends UITest {
 				team.getTeamId(), Integer.parseInt(year), month);
 		
 		//DateTime date = new DateTime().minusDays(1);
-		DateTime date = new DateTime().minusHours(3);
+		DateTime date = new DateTime().minusHours(8);
 		for (int i=0; i<promotionsBackEnd.size(); i++){
 			LOGGER.info("GAME DATE: " + promotionsBackEnd.get(i).getGameDate());
 			LOGGER.info("CURR DATE: " + date);
