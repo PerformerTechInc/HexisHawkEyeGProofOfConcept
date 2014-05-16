@@ -8,9 +8,8 @@ import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.mlb.qa.android.at_bat.page.AtBatAndroidPage;
-import com.mlb.qa.android.at_bat.page.AtBatWelcomePage;
-import com.mlb.qa.android.at_bat.page.NewsPage;
+import com.mlb.qa.at_bat.android.page.AtBatAndroidPage;
+import com.mlb.qa.at_bat.android.page.AtBatWelcomePage;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 public class AppiumAndroidAtBatTest extends UITest {
