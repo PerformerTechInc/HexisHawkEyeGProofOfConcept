@@ -23,7 +23,7 @@ public class AtBatRosterTest extends UITest {
 	private AtBatHttpService httpService = new AtBatHttpService();
 	private AtbLookupService lookupService = new AtbLookupService();
 	
-	@Test(dataProvider = "excel_ds", description = "Check list of players is correct", enabled = false)
+	@Test(dataProvider = "excel_ds", description = "Check list of players is correct")
 	public void checkRosterList(String teamName, String teamShortCode) {
 		
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
@@ -63,7 +63,7 @@ public class AtBatRosterTest extends UITest {
 		}
 	}
 	
-	@Test(dataProvider = "excel_ds", description = "Checking player mugshots load", enabled = false) 
+	@Test(dataProvider = "excel_ds", description = "Checking player mugshots load") 
 	public void checkPlayerMugshots(String teamName, String teamShortCode) {
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		Team team = lookupService.lookupTeamByAbbrev(teamShortCode, year);
