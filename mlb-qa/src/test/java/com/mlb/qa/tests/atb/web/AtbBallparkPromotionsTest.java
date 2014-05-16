@@ -35,7 +35,8 @@ public class AtbBallparkPromotionsTest extends UITest {
 		List<GamePromotion> promotionsBackEnd = httpService.loadListOfPromotionsFromGamePromotionsService(
 				team.getTeamId(), Integer.parseInt(year), month);
 		
-		DateTime date = new DateTime().minusDays(1);		
+		//DateTime date = new DateTime().minusDays(1);
+		DateTime date = new DateTime();
 		for (int i=0; i<promotionsBackEnd.size(); i++){
 			if (promotionsBackEnd.get(i).getGameDate().isBefore(date))
 			{

@@ -1,7 +1,5 @@
 package com.mlb.qa.atb.model.game_promotion;
 
-import org.joda.time.DateTime;
-
 import com.mlb.qa.common.comparator.ListComparator;
 import com.mlb.qa.common.comparator.ListItemComparator;
 import com.mlb.qa.common.date.DateTimeDateComparator;
