@@ -1,0 +1,42 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="MLB - At Bat Web - Roster" annotations="JDK" parallel="tests" data-provider-thread-count="5"> 
+	<test verbose="1" name="AtBat - Team - Roster Test">
+	    <parameter name="{excel_ds_args}" value="TUID;team_shortcode"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.web.AtBatRosterTest">
+				<methods>
+				    <include name="checkRosterList"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test verbose="1" name="AtBat - Team - Player Card Opens Test">
+	    <parameter name="{excel_ds_args}" value="TUID;team_shortcode"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.web.AtBatRosterTest">
+				<methods>
+				    <include name="checkPlayerCards"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test verbose="1" name="AtBat - Team - Player Mugshot Test">
+	    <parameter name="{excel_ds_args}" value="TUID;team_shortcode"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.web.AtBatRosterTest">
+				<methods>
+				    <include name="checkPlayerMugshots"/>
+				</methods> 
+			</class>
+		</classes>
+	</test>
+</suite>

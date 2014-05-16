@@ -8,7 +8,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamCarousel"/>
 					    	<exclude name="testTeamStadium"/>
@@ -23,7 +23,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamCarouselLiteAd"/>
 					    	<exclude name="testTeamStadium"/>
@@ -38,7 +38,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamCarouselFullNoAd"/>
 					    	<exclude name="testTeamStadium"/>
@@ -53,7 +53,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamCarouselLite5ItemsExist"/>
 					    	<exclude name="testTeamStadium"/>
@@ -68,7 +68,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamCarouselFull4ItemsExist"/>
 					    	<exclude name="testTeamStadium"/>
@@ -83,7 +83,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamDateBar3GamesExist"/>
 					    	<exclude name="testTeamStadium"/>
@@ -98,7 +98,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamDatebarSwitchDays"/>
 					    	<exclude name="testTeamStadium"/>
@@ -113,7 +113,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamNewsLiteAd"/>
 					    	<exclude name="testTeamStadium"/>
@@ -128,7 +128,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamNewsFullNoAd"/>
 					    	<exclude name="testTeamStadium"/>
@@ -143,7 +143,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamVideoPaywallAppearsLiteUser"/>
 					    	<exclude name="testTeamStadium"/>
@@ -158,7 +158,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamScheduleTabs"/>
 					    	<exclude name="testTeamStadium"/>
@@ -173,7 +173,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamRosterTabs"/>
 					    	<exclude name="testTeamStadium"/>
@@ -188,7 +188,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamStadium"/>
 					    	<exclude name="testTeamMoreFacebook"/>
@@ -202,7 +202,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamMore"/>
 					</methods>
@@ -215,7 +215,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamMoreFacebook"/>
 					</methods>
@@ -228,7 +228,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamEntryFavoriteTeam"/>
 					</methods>
@@ -241,7 +241,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamNotificationEntryPoint"/>
 					</methods>
@@ -254,7 +254,7 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.android.atbat.AtBatTeamPageTest">
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageTest">
 					<methods>
 					    	<include name="testTeamNotificationTeamExpanded"/>
 					</methods>
