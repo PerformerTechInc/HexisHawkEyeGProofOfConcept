@@ -6,7 +6,8 @@ public enum GameStatus {
 	FINAL("Final"),
 	POSTPONED("Postponed"),
 	SCHEDULED("Scheduled"),
-	IN_PROGRESS("In Progress"), ;
+	IN_PROGRESS("In Progress"), 
+	OTHER("Other");
 
 	private String statusText;
 
@@ -32,10 +33,11 @@ public enum GameStatus {
 			else if (statusText.equalsIgnoreCase("Game Over")) {
 				return FINAL;
 			}
-			else if (statusText.equalsIgnoreCase("Delayed Start")) {
+			else if (statusText.equalsIgnoreCase("Delayed Start") || statusText.matches("Pre-Game")) {
 				return SCHEDULED;
 			}
 		}
-		throw new TestRuntimeException(String.format("No GameStatus found for the value %s", statusText));
+		return OTHER;
+		//throw new TestRuntimeException(String.format("No GameStatus found for the value %s", statusText));
 	}
 }
