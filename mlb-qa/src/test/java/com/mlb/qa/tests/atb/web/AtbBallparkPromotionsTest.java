@@ -2,10 +2,13 @@ package com.mlb.qa.tests.atb.web;
 
 import java.util.List;
 
+import org.jfree.util.Log;
 import org.joda.time.DateTime;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import ch.qos.logback.classic.Logger;
 
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.model.Team;
@@ -35,8 +38,11 @@ public class AtbBallparkPromotionsTest extends UITest {
 		List<GamePromotion> promotionsBackEnd = httpService.loadListOfPromotionsFromGamePromotionsService(
 				team.getTeamId(), Integer.parseInt(year), month);
 		
-		DateTime date = new DateTime().minusDays(1);		
+		//DateTime date = new DateTime().minusDays(1);
+		DateTime date = new DateTime().minusHours(8);
 		for (int i=0; i<promotionsBackEnd.size(); i++){
+			LOGGER.info("GAME DATE: " + promotionsBackEnd.get(i).getGameDate());
+			LOGGER.info("CURR DATE: " + date);
 			if (promotionsBackEnd.get(i).getGameDate().isBefore(date))
 			{
 				for (int j=promotionsBackEnd.get(i).getPromotions().size() - 1; j>=0; j--){
