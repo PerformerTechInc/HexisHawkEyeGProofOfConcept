@@ -50,15 +50,15 @@ public class AtBatRosterTest extends UITest {
 			Assert.assertEquals(
 					webPlayer.getPlayerName(), 
 					backendPlayerName, 
-					"Player Name doesn't match correctly");
+					String.format("Player Name doesn't match correctly for (%s)", webPlayer.getPlayerName()));
 			Assert.assertEquals(
 					webPlayer.getPlayerNumber(), 
 					backendPlayer.getPlayerNumber(), 
-					"Player Number doesn't match correctly");
+					String.format("Player Number doesn't match correctly for (%s)", webPlayer.getPlayerName()));
 			Assert.assertEquals(
 					Position.PositionShortCode.getPositionEnum(backendPlayer.getPlayerPositionText()), 
 					Position.PositionShortCode.getPositionEnum(webPlayer.getPlayerPositionText()),
-					"Player Position doesn't match correctly");
+					String.format("Player Position doesn't match correctly for (%s)", webPlayer.getPlayerName()));
 		}
 	}
 	
