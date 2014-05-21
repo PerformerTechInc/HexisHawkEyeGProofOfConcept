@@ -16,7 +16,7 @@ import com.mlb.qa.atb.web.page.AtbBallparkAboutPage;
 import com.qaprosoft.carina.core.foundation.UITest;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
-public class AtbBallparkAboutTest extends UITest {
+public class AtbBallparkAboutTest extends AtbBaseWebTest {
 	@Test(dataProvider = "excel_ds")
 	@Parameters({ "team_abbrev", "team_about_web" })
 	public void checkAboutBallpartInformation(String team_abbrev, String team_about_web) throws JAXBException,

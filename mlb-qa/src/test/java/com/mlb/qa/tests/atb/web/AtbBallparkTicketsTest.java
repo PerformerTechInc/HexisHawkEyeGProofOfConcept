@@ -20,7 +20,7 @@ import com.qaprosoft.carina.core.foundation.UITest;
 /**
  * Check that content of Tickets page for each ballpark is correct<br>
  */
-public class AtbBallparkTicketsTest extends UITest {
+public class AtbBallparkTicketsTest extends AtbBaseWebTest {
 	private AtbHttpService httpService = new AtbHttpService();
 	private AtbLookupService lookupService = new AtbLookupService();
 

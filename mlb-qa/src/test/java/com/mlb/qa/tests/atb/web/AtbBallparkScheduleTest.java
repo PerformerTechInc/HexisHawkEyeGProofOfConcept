@@ -20,7 +20,7 @@ import com.qaprosoft.carina.core.foundation.UITest;
 /**
  * Schedule test
  */
-public class AtbBallparkScheduleTest extends UITest {
+public class AtbBallparkScheduleTest extends AtbBaseWebTest {
 	private AtbLookupService lookupService = new AtbLookupService();
 
 	@Test(dataProvider = "excel_ds", description = "Check schedule on List tab")

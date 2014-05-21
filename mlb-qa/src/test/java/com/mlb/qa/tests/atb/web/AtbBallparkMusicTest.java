@@ -2,6 +2,8 @@ package com.mlb.qa.tests.atb.web;
 
 import java.util.List;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -16,8 +18,9 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 /**
  * Check that content of music page for each team is correct<br>
  */
-public class AtbBallparkMusicTest extends UITest {
-	@Test(dataProvider = "excel_ds")
+public class AtbBallparkMusicTest extends AtbBaseWebTest {
+
+    @Test(dataProvider = "excel_ds")
 	@Parameters({ "team_abbrev", "team_web" })
 	public void checkMusicList(String team_abbrev, String team_web) {
 		String jsonUrl = Configuration.getEnvArg("mobile_url") + "/gen/hb/ballpark-music/" + team_abbrev.toLowerCase()
