@@ -2,7 +2,6 @@ package com.mlb.qa.atb.service.http;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
@@ -10,15 +9,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationEventHandler;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.stream.StreamSource;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
@@ -34,8 +28,8 @@ import org.xml.sax.SAXException;
 
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.model.about.BallparkInformation;
-import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonItem;
 import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJson;
+import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonItem;
 import com.mlb.qa.atb.model.game_promotion.GamePromotion;
 import com.mlb.qa.atb.model.game_promotion.QueryGamePromotionsRS;
 import com.mlb.qa.atb.model.game_ticket.GameTicket;

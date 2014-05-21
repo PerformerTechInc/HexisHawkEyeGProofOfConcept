@@ -1,6 +1,5 @@
 package com.mlb.qa.tests.web.homebase;
 
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.mlb.qa.gui.pages.homebaseproject.HB_HomePage;

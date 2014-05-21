@@ -1,21 +1,21 @@
 package com.mlb.qa.tests.atbat.android;
 
-import org.testng.annotations.Test;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import com.mlb.qa.at_bat.android.page.AtBatAndroidPage;
 import com.mlb.qa.at_bat.android.page.AtBatFavoriteTeamSelectionPage;
 import com.mlb.qa.at_bat.android.page.AtBatMenu;
 import com.mlb.qa.at_bat.android.page.AtBatNewsPage;
 import com.mlb.qa.at_bat.android.page.AtBatNotificationsPage;
+import com.mlb.qa.at_bat.android.page.AtBatNotificationsPage.NotificationsToggleItem;
 import com.mlb.qa.at_bat.android.page.AtBatPaywallPage;
 import com.mlb.qa.at_bat.android.page.AtBatSchedulePage;
 import com.mlb.qa.at_bat.android.page.AtBatTeamPage;
 import com.mlb.qa.at_bat.android.page.AtBatTeamRosterPage;
+import com.mlb.qa.at_bat.android.page.AtBatTeamRosterPage.RosterTabItem;
 import com.mlb.qa.at_bat.android.page.AtBatWebViewPage;
 import com.mlb.qa.at_bat.android.page.AtBatWelcomePage;
-import com.mlb.qa.at_bat.android.page.AtBatNotificationsPage.NotificationsToggleItem;
-import com.mlb.qa.at_bat.android.page.AtBatTeamRosterPage.RosterTabItem;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 /**
@@ -119,11 +119,12 @@ public class AtBatTeamPageTest extends UITest {
 						.waitForDateProgressBarLoad();
 		Assert.assertEquals(teamPage.getNumberOfDateItems(), 3, "The number of games supposed to be displayed is incorrect.");
 	}
-
+	@SuppressWarnings("unused")
 	@Test(dataProvider = "excel_ds", priority = 7, description = "Testing Team Date Bar - Switching Between Days")
 	public void testTeamDatebarSwitchDays(String teamName) {
 		liteUserInitialPath();
 
+		
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
 				.openTeamsMenu()
 					.openTeamByName(teamName)

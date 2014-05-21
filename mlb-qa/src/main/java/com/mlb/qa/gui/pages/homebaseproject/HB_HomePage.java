@@ -1,24 +1,17 @@
 package com.mlb.qa.gui.pages.homebaseproject;
 
-import org.junit.Assert;
-import com.thoughtworks.selenium.DefaultSelenium;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import com.thoughtworks.selenium.*;
-import com.qaprosoft.carina.core.foundation.*;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.*;
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import org.testng.annotations.*;
-import static org.testng.Assert.*;
-
 import java.awt.event.KeyEvent;
-import java.util.regex.Pattern;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
+@SuppressWarnings("unused")
 public class HB_HomePage extends AbstractPage {
 	public HB_HomePage(WebDriver driver) {
 		super(driver);
@@ -26,6 +19,7 @@ public class HB_HomePage extends AbstractPage {
 		open();
 	}
 	
+
 
 	private static final String SHOW_HISTORY_LABEL = "Show History";
 	private static final String HIDE_HISTORY_LABEL = "Hide History";

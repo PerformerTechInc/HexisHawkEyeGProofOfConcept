@@ -39,10 +39,8 @@ public class HttpHelper {
 	public static final String CONTENT_TYPE_APPLICATION_JSON = "application/json";
 
 	/**
-	 * @param method
-	 * @param user
-	 * @param password
-	 * @param contentEncoding
+	 * @param request
+	 * @param headers
 	 * @return
 	 */
 	public static HttpResult executeHttpRequest(HttpUriRequest request, Map<String, String> headers) {

@@ -2,13 +2,10 @@ package com.mlb.qa.tests.atb.web;
 
 import java.util.List;
 
-import org.jfree.util.Log;
 import org.joda.time.DateTime;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import ch.qos.logback.classic.Logger;
 
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.model.Team;

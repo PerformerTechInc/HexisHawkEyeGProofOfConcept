@@ -1,20 +1,10 @@
 package com.mlb.qa.tests.demo;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import com.mlb.qa.at_bat.android.page.AtBatAndroidPage;
-import com.mlb.qa.at_bat.android.page.AtBatWelcomePage;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 public class AppiumAndroidAtBatTest extends UITest {
-	private String[] shareOptionsArr = { "Messaging", "Bluetooth", "Google",
-			"Google+", "Gmail" };
+//	private String[] shareOptionsArr = { "Messaging", "Bluetooth", "Google",
+//			"Google+", "Gmail" };
 
 	/*@Test(priority = 0, description = "Pass welcome and team selection steps if displayed")
 	public void testPaywallLiteUser() {

@@ -1,6 +1,5 @@
 package com.mlb.qa.atb.model.game;
 
-import com.mlb.qa.common.exception.TestRuntimeException;
 
 public enum GameStatus {
 	FINAL("Final"),

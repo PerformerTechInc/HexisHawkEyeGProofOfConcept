@@ -20,6 +20,7 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration.Parameter;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 
+@SuppressWarnings("unused")
 public class AtbBallparkPromotionsPage extends AbstractPage {
 	private static final Logger logger = Logger.getLogger(AtbBallparkPromotionsPage.class);
 	// promo item
