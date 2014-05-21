@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.mlb.qa.at_bat.model.roster.Position;
@@ -23,7 +22,7 @@ public class AtBatRosterTest extends UITest {
 	private AtBatHttpService httpService = new AtBatHttpService();
 	private AtbLookupService lookupService = new AtbLookupService();
 	
-	@Test(dataProvider = "excel_ds", description = "Check list of players is correct")
+	@Test(dataProvider = "excel_ds", description = "Check list of players is correct", enabled = true)
 	public void checkRosterList(String teamName, String teamShortCode) {
 		
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
@@ -33,7 +32,7 @@ public class AtBatRosterTest extends UITest {
 		//TODO:  Need to do a comparison just on the roster level here.
 	}
 	
-	@Test(dataProvider = "excel_ds", description = "Check player cards load", threadPoolSize = 5)
+	@Test(dataProvider = "excel_ds", description = "Check player cards load", enabled = true)
 	public void checkPlayerCards(String teamName, String teamShortCode) {
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		Team team = lookupService.lookupTeamByAbbrev(teamShortCode, year);
@@ -63,7 +62,7 @@ public class AtBatRosterTest extends UITest {
 		}
 	}
 	
-	@Test(dataProvider = "excel_ds", description = "Checking player mugshots load") 
+	@Test(dataProvider = "excel_ds", description = "Checking player mugshots load", enabled = true) 
 	public void checkPlayerMugshots(String teamName, String teamShortCode) {
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		Team team = lookupService.lookupTeamByAbbrev(teamShortCode, year);
@@ -71,10 +70,8 @@ public class AtBatRosterTest extends UITest {
 		
 		for (Iterator<Roster> iter = rosterBackEnd.iterator(); iter.hasNext(); ) {
 			Roster ros = iter.next();
-			httpService.getPlayerMugshot(ros.getPlayerId(), ros.getPlayerName());
+			httpService.checkPlayerMugshot(ros.getPlayerId(), ros.getPlayerName());
 		}
-		//TODO:  If a mugshot doesn't appear then an error will be thrown by the getPlayerMugshot stating as such.  Need to look into a proper assert to
-		//use here though.
 	}
 
 }
