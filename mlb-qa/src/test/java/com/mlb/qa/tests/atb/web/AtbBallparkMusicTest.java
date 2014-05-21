@@ -25,7 +25,7 @@ public class AtbBallparkMusicTest extends AtbBaseWebTest {
 	public void checkMusicList(String team_abbrev, String team_web) {
 		String jsonUrl = Configuration.getEnvArg("mobile_url") + "/gen/hb/ballpark-music/" + team_abbrev.toLowerCase()
 				+ ".json";
-		List<Music> musicUi = AtbBallparkMusicPage.open(driver, team_web).loadMusicList();
+		List<Music> musicUi = AtbBallparkMusicPage.open(getDriver(), team_web).loadMusicList();
 		List<Music> musicBackEnd = BallparkMusicJson.unmarshal(jsonUrl).parseBalparkMusicList();
 		Assert.assertTrue(0 == new ListComparator<Music>(new MusicComparator()).compareContent(musicUi, musicBackEnd),
 				"List of music on UI isn't equal to list of music on back end for " + team_abbrev + "; web:" + team_web);
