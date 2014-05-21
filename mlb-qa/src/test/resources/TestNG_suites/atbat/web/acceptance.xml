@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="MLB - At Bat Web - Roster" skipfailedinvocationcounts="false" junit="false" parallel="methods" data-provider-thread-count="5" annotations="JDK"> 
+<suite verbose="1" name="MLB - At Bat Web - Acceptance" skipfailedinvocationcounts="false" junit="false" parallel="methods" data-provider-thread-count="5" annotations="JDK"> 
 	<test verbose="1" name="AtBat - Team - Roster Test">
 	    <parameter name="{excel_ds_args}" value="TUID;team_shortcode"/> 
 		<parameter name="{excel_ds_uid}" value="TUID"/>
@@ -37,6 +37,15 @@
 				    <include name="checkPlayerMugshots"/>
 				</methods> 
 			</class>
+		</classes>
+	</test>
+	<test verbose="1" name="AtBat - Team - Standings Highlight Test">
+	    <parameter name="{excel_ds_args}" value="TUID;team_shortcode"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.web.AtBatStandingsTest"/>
 		</classes>
 	</test>
 </suite>
