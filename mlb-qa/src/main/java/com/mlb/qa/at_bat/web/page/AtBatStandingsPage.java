@@ -26,7 +26,7 @@ public class AtBatStandingsPage extends AbstractPage {
 	public AtBatStandingsPage(WebDriver driver) {
 		super(driver);
 	}
-	
+
 	public static AtBatStandingsPage open(WebDriver driver, String url) {
 		logger.info("Attempting to verify Standings URL: " + url);
 		driver.get(url);
@@ -36,14 +36,16 @@ public class AtBatStandingsPage extends AbstractPage {
 
 	public Boolean isFavoriteTeamHighlighted(String teamShortCode) {
 		boolean result = true;
-	
+
 		logger.info("Currently Selected Team Info: " + favoriteTeamShortCode.getAttribute("innerHTML"));
 		result &= favoriteTeamShortCode.getAttribute("innerHTML").equalsIgnoreCase(teamShortCode);
-		logger.info("Favorite Team is Bold? " + favoriteTeamStandings.getElement().getCssValue("font-weight").equals("700"));
-		result &= favoriteTeamStandings.getElement().getCssValue("font-weight").equals("700"); //Font Weight of 700 = BOLD
+
+		logger.info("Checking Font: " + favoriteTeamStandings.getElement().getCssValue("font-weight"));
+		result &= isBold(favoriteTeamStandings.getElement().getCssValue("font-weight"));
+
 		logger.info("Favorite Team Background is Grey? " + favoriteTeamStandings.getElement().getCssValue("background-color").contains("rgba(244, 244, 244, 1)"));
 		result &= favoriteTeamStandings.getElement().getCssValue("background-color").contains("rgba(244, 244, 244, 1)"); //Background Color of Grey
-		
+
 		return result;
 	}
 
@@ -52,6 +54,21 @@ public class AtBatStandingsPage extends AbstractPage {
 				isElementPresent(legendPlayoffBirth, 3) && 
 				isElementPresent(legendDivision, 3) &&
 				isElementPresent(legendClinchedBestRecord, 3)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Checks to see if either representation of bold exists as it can be different
+	 * between browsers.
+	 * 700 - Firefox
+	 * bold - Chrome
+	 * @param boldRepresentation is the string bold representation to check.
+	 * @return brings back whether the string passed can be considered bold.
+	 */
+	private Boolean isBold(String boldRepresentation) {
+		if (boldRepresentation.equals("700") || boldRepresentation.equals("bold")) {
 			return true;
 		}
 		return false;
