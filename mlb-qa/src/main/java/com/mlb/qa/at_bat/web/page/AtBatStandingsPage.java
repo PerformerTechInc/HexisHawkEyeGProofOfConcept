@@ -14,6 +14,14 @@ public class AtBatStandingsPage extends AbstractPage {
 	private ExtendedWebElement favoriteTeamStandings;
 	@FindBy(xpath = "//tr[@class='standings-favorite']/td[@class='standings-col-division text-left']/span[@class='title-short']")
 	private ExtendedWebElement favoriteTeamShortCode;
+	@FindBy(xpath = "//ul[@class='standings-legend']/li[1]")
+	private ExtendedWebElement legendWildCard;
+	@FindBy(xpath = "//ul[@class='standings-legend']/li[2]")
+	private ExtendedWebElement legendPlayoffBirth;
+	@FindBy(xpath = "//ul[@class='standings-legend']/li[3]")
+	private ExtendedWebElement legendDivision;
+	@FindBy(xpath = "//ul[@class='standings-legend']/li[4]")
+	private ExtendedWebElement legendClinchedBestRecord;
 	
 	public AtBatStandingsPage(WebDriver driver) {
 		super(driver);
@@ -37,5 +45,15 @@ public class AtBatStandingsPage extends AbstractPage {
 		result &= favoriteTeamStandings.getElement().getCssValue("background-color").contains("rgba(244, 244, 244, 1)"); //Background Color of Grey
 		
 		return result;
-	}	
+	}
+
+	public Boolean isPlayoffLegendAvailable() {
+		if (isElementPresent(legendWildCard, 3) && 
+				isElementPresent(legendPlayoffBirth, 3) && 
+				isElementPresent(legendDivision, 3) &&
+				isElementPresent(legendClinchedBestRecord, 3)) {
+			return true;
+		}
+		return false;
+	}
 }
