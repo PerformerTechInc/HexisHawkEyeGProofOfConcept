@@ -1,5 +1,6 @@
 package com.mlb.qa.at_bat.service.http;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,7 +9,6 @@ import org.apache.log4j.Logger;
 import com.mlb.qa.at_bat.AtBatParameter;
 import com.mlb.qa.at_bat.model.roster.QueryPlayerRosterRS;
 import com.mlb.qa.at_bat.model.roster.Roster;
-import com.mlb.qa.at_bat.model.standings.Season;
 import com.mlb.qa.common.exception.TestRuntimeException;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;
@@ -20,7 +20,7 @@ public class AtBatHttpService {
 	private static final String GET_PLAYER_CARD_PATTERN = "android.html#pid=player_id_value";
 	private static final String GET_PLAYER_MUGSHOT_PATTERN = "player_id_value.jpg";
 	private static final String GET_TEAM_STANDINGS_PATTERN = "?ref=android2014&fav=team_shortcode";
-	private static final String GET_STANDINGS_SEASON_PATTERN = "?yyyy=2014&view=season_mode_value";
+	private static final String GET_STANDINGS_SEASON_PATTERN = "?yyyy=year_value&view=season_mode_value";
 	
 	public List<Roster> loadListOfPlayers(String teamId) {
 		logger.info(String.format("Loading List of Players for Team Id: %s", teamId));
@@ -71,8 +71,12 @@ public class AtBatHttpService {
 	}
 
 	public String getSeasonStandingsURL(String seasonText) {
+		Calendar cal = Calendar.getInstance();
+		int intYear = cal.get(Calendar.YEAR);
+		String year = String.valueOf(intYear);
+		
 		String getQueryRequest = AtBatParameter.MLB_ATBAT_ANDROID_STANDINGS.getValue()
-				+ GET_STANDINGS_SEASON_PATTERN.replaceAll("season_mode_value", seasonText);
+				+ GET_STANDINGS_SEASON_PATTERN.replaceAll("season_mode_value", seasonText).replaceAll("year_value", year);
 		
 		return getQueryRequest;
 	}
