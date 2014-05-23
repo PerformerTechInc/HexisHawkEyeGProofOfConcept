@@ -39,8 +39,8 @@ public class ListComparator<T> {
 			Collections.sort(tempL1, comparator);
 			Collections.sort(tempL2, comparator);
 		}
-		LOGGER.info("Sorted list 1: " + tempL1);
-		LOGGER.info("Sorted list 2: " + tempL2);
+		LOGGER.warn("Sorted list 1: " + tempL1);
+		LOGGER.warn("Sorted list 2: " + tempL2);
 		int res = 0;
 		for (int i = 0; i < tempL1.size(); i++) {
 			LOGGER.info("Itteration: " +i);
