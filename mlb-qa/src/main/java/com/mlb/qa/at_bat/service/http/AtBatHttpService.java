@@ -1,5 +1,6 @@
 package com.mlb.qa.at_bat.service.http;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,7 +19,8 @@ public class AtBatHttpService {
 	private static final String GET_TEAM_ROSTER_PATTERN = "?team_id=team_id_value&roster_40.col_in=player_id&roster_40.col_in=name_full,primary_position,position_txt,jersey_number"; 
 	private static final String GET_PLAYER_CARD_PATTERN = "android.html#pid=player_id_value";
 	private static final String GET_PLAYER_MUGSHOT_PATTERN = "player_id_value.jpg";
-	private static final String GET_TEAM_STANDINGS_PATTERN = "?ref=android2014&fav=team_shortcode";
+	private static final String GET_TEAM_STANDINGS_PATTERN = "?ref=androidyear_value&fav=team_shortcode";
+	private static final String GET_STANDINGS_SEASON_PATTERN = "?yyyy=year_value&view=season_mode_value";
 	
 	public List<Roster> loadListOfPlayers(String teamId) {
 		logger.info(String.format("Loading List of Players for Team Id: %s", teamId));
@@ -63,8 +65,23 @@ public class AtBatHttpService {
 	public String getFavoriteTeamStandingsURL(String teamShortcode) {
 		logger.info(String.format("Verifying Favorite Team Standings for (" + teamShortcode + ")"));
 		String getQueryRequest = AtBatParameter.MLB_ATBAT_ANDROID_STANDINGS.getValue()
-				+ GET_TEAM_STANDINGS_PATTERN.replaceAll("team_shortcode", teamShortcode.toLowerCase());
+				+ GET_TEAM_STANDINGS_PATTERN.replaceAll("team_shortcode", teamShortcode.toLowerCase()).replaceAll("year_value", getCurrentYear());
 		
 		return getQueryRequest;
+	}
+
+	public String getSeasonStandingsURL(String seasonText) {		
+		String getQueryRequest = AtBatParameter.MLB_ATBAT_ANDROID_STANDINGS.getValue()
+				+ GET_STANDINGS_SEASON_PATTERN.replaceAll("season_mode_value", seasonText).replaceAll("year_value", getCurrentYear());
+		
+		return getQueryRequest;
+	}
+	
+	private String getCurrentYear() {
+		Calendar cal = Calendar.getInstance();
+		int intYear = cal.get(Calendar.YEAR);
+		String year = String.valueOf(intYear);
+		
+		return year;
 	}
 }
