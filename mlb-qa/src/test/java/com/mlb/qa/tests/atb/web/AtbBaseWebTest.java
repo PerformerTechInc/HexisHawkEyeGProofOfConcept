@@ -9,7 +9,7 @@ import org.testng.annotations.DataProvider;
  */
 public class AtbBaseWebTest extends UITest {
 
-    @DataProvider(name = "excel_ds", parallel = true)
+    @DataProvider(name = "excel_ds", parallel = false)
     public Object[][] readDataFromXLS(ITestContext context) {
         return createTestArgSets(context, "Execute", "Y");
     }
