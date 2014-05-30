@@ -1,6 +1,7 @@
 package com.mlb.qa.atb;
 
-import java.util.Date;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class AtbHistoryItem {
 
@@ -32,5 +33,27 @@ public class AtbHistoryItem {
 
     public void setCheckinDate(String checkinDate) {
         this.checkinDate = checkinDate;
+    }
+
+
+    public int hashCode() {
+        return new HashCodeBuilder(17, 31).
+                append(ballpark_name).
+                append(city).
+                append(checkinDate).
+                toHashCode();
+    }
+
+    public boolean equals(Object obj) {
+        if (!(obj instanceof AtbHistoryItem))
+            return false;
+        if (obj == this)
+            return true;
+
+        AtbHistoryItem rhs = (AtbHistoryItem) obj;
+        return new EqualsBuilder().
+                append(ballpark_name, rhs.ballpark_name).
+                append(city, rhs.city).append(checkinDate, rhs.checkinDate).
+                isEquals();
     }
 }
