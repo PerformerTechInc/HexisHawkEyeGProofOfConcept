@@ -285,9 +285,17 @@ public class AtbHttpService {
 		XPath xpath = xPathfactory.newXPath();
 		XPathExpression expression = xpath.compile("section/pages/page[@id='information']/body/text()");
 		
+		String text_section = expression.evaluate(document, XPathConstants.STRING).toString();
+
 		BallparkInformation ballparkInformation = new BallparkInformation();
-		ballparkInformation.setBallparkTextDescription(expression.evaluate(document, XPathConstants.STRING).toString().
-				split("p\\>")[1].split("\\<")[0]);	
+		if (!text_section.isEmpty())
+		{
+			ballparkInformation.setBallparkTextDescription(text_section.split("p\\>")[1].split("\\<")[0]);
+		}
+		else
+		{
+			ballparkInformation.setBallparkTextDescription("");			
+		}
 		
 //		logger.info(ballparkInformation);
 		System.out.println(ballparkInformation.getBallparkTextDescription());

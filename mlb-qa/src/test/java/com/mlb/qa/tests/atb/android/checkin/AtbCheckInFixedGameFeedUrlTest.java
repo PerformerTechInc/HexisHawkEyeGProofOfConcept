@@ -66,11 +66,14 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 					team.getVenueId(), today, today.plusMonths(6), season);
 			DateTime gameDate = game.getGameTimeLocal();
 			if (DateUtils.hasEqualDates(checkinDate, gameDate)) {
-				List<Object> row = new LinkedList<Object>();
-				row.add("TUID:" + teamAbbrev);
-				row.add(game);
-				row.add(team);
-				dataToRun.add(row);
+				//secondary verification that time for the game is less then 4 hours otherwise window is still closed
+				if (gameDate.minusHours(4).isBeforeNow() && !gameDate.isBeforeNow()) {
+					List<Object> row = new LinkedList<Object>();
+					row.add("TUID:" + teamAbbrev);
+					row.add(game);
+					row.add(team);
+					dataToRun.add(row);
+				}
 			}
 		}
 		// copy to array

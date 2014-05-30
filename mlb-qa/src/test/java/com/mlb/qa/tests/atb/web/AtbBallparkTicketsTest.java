@@ -15,7 +15,6 @@ import com.mlb.qa.atb.service.http.AtbHttpService;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.mlb.qa.atb.web.page.AtbBallparkTicketsPage;
 import com.mlb.qa.common.comparator.ListComparator;
-import com.qaprosoft.carina.core.foundation.UITest;
 
 /**
  * Check that content of Tickets page for each ballpark is correct<br>

@@ -15,7 +15,6 @@ import com.mlb.qa.atb.model.schedule.GameScheduleListViewComparator;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.mlb.qa.atb.web.page.AtbBallparkSchedulePage;
 import com.mlb.qa.common.comparator.ListComparator;
-import com.qaprosoft.carina.core.foundation.UITest;
 
 /**
  * Schedule test

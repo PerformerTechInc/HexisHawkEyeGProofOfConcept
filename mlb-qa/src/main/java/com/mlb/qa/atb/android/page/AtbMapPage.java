@@ -15,7 +15,6 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  */
 public class AtbMapPage extends AndroidPage {
 
-    //@FindBy(id="com.bamnetworks.mobile.android.ballpark:id/links")
     @FindBy(id="com.bamnetworks.mobile.android.ballpark:id/root")
     private ExtendedWebElement stadiumLinkList;
 
@@ -42,7 +41,6 @@ public class AtbMapPage extends AndroidPage {
     }
 
     public void openMap(){
-//        pause(5);
     	if(!isElementPresent(mapButton, 5) && driver.findElements(gridItem.getBy()).size() !=2) {
     		try {
     			scrollTo(MAP_LINK_NAME, stadiumLinkList);

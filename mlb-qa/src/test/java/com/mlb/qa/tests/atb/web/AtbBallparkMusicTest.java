@@ -1,9 +1,8 @@
 package com.mlb.qa.tests.atb.web;
 
 import java.util.List;
+
 import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -12,7 +11,6 @@ import com.mlb.qa.atb.model.music.MusicComparator;
 import com.mlb.qa.atb.model.music.json.BallparkMusicJson;
 import com.mlb.qa.atb.web.page.AtbBallparkMusicPage;
 import com.mlb.qa.common.comparator.ListComparator;
-import com.qaprosoft.carina.core.foundation.UITest;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
 /**

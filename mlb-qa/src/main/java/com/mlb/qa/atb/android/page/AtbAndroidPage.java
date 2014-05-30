@@ -31,7 +31,7 @@ public class AtbAndroidPage extends AndroidPage {
 				"Change Scoreboard Start Date"), CLEAR_SCOREBOARD_START_DATE(
 				"Clear Scoreboard Start Date"), OPEN_CHECKIN_WINDOW(
 				"Open Checkin Window"), CLOSE_CHECKIN_WINDOW(
-				"Close Checkin Window"), ;
+				"Close Checkin Window"), JOURNAL("JOURNAL"),HISTORY("History");
 
 		public static final String MENU_ITEM_LOCATOR_PATTERN = "//TextView[@text='%s']";
 

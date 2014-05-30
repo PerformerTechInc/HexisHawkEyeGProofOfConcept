@@ -1,5 +1,6 @@
 package com.mlb.qa.atb.web.page;
 
+import org.jfree.util.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,6 +22,13 @@ public class AtbBallparkAboutPage extends AbstractPage {
 	}
 
 	public String getBallparkTextDescription() {
-		return ballparkTextDescription.getText();
+		String desc = "";
+		if (isElementPresent(ballparkTextDescription)) {
+			desc = ballparkTextDescription.getText();
+		}
+		else
+			LOGGER.warn("Empty description is returned as no appropriate UI item discovered!");
+		
+		return desc;
 	}
 }

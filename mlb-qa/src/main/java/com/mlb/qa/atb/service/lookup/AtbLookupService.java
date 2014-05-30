@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mlb.qa.atb.model.schedule_pk.SchedulePk;
+import com.mlb.qa.common.utils.marshaller.MarshallerHelper;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
@@ -24,8 +26,12 @@ public class AtbLookupService {
 
 	// queries
 	public static final String INCOMING_GAME_FOR_SCHEDULE_QUERY = "named.schedule_vw_complete.bam?team_id=%s&season=%s&start_date=%s&end_date=%s&game_type='E'&game_type='S'&game_type='R'&game_type='F'&game_type='D'&game_type='L'&game_type='W'&ovrd_enc=utf-8";
-	public static final String INCOMING_GAMES_BY_TEAM_ID_QUERY = "named.schedule_vw_complete.bam?schedule_vw_complete.col_in=game_id&schedule_vw_complete.col_in=game_date&schedule_vw_complete.col_in=game_time_local&schedule_vw_complete.col_in=home_team_id&schedule_vw_complete.col_in=home_team_full&schedule_vw_complete.col_in=venue_id&schedule_vw_complete.col_in=venue&schedule_vw_complete.col_in=venue_short&schedule_vw_complete.col_in=away_team_id&schedule_vw_complete.col_in=away_team_full&team_id=%s&end_date=%s&start_date=%s&venue_id=%s&sort_order=asc&season=%s&game_type='W'&game_type='F'&game_type='D'&game_type='R'&game_type='L'&game_type='A'&schedule_vw_complete.recPP=1&schedule_vw_complete.recSP=1";
-	public static final String TEAM_BY_ABBREV_QUERY = "named.team_all_season.bam?team_all_season.col_in=venue_id&team_all_season.col_in=name_display_full&team_all_season.col_in=team_id&team_all_season.col_in=name&team_all_season.col_in=name_short&team_all_season.col_in=name_abbrev&team_all_season.col_in=city&team_all_season.col_in=venue_name&name_abbrev='%s'&season=%s&sport_id=1";
+
+    public static final String INCOMING_GAMES_BY_TEAM_ID_QUERY = "named.schedule_vw_complete.bam?schedule_vw_complete.col_in=game_id&schedule_vw_complete.col_in=game_date&schedule_vw_complete.col_in=game_time_local&schedule_vw_complete.col_in=home_team_id&schedule_vw_complete.col_in=home_team_full&schedule_vw_complete.col_in=venue_id&schedule_vw_complete.col_in=venue&schedule_vw_complete.col_in=venue_short&schedule_vw_complete.col_in=away_team_id&schedule_vw_complete.col_in=away_team_full&team_id=%s&end_date=%s&start_date=%s&venue_id=%s&sort_order=asc&season=%s&game_type='W'&game_type='F'&game_type='D'&game_type='R'&game_type='L'&game_type='A'&schedule_vw_complete.recPP=1&schedule_vw_complete.recSP=1";
+
+    public static final String TEAM_BY_ABBREV_QUERY = "named.team_all_season.bam?team_all_season.col_in=venue_id&team_all_season.col_in=name_display_full&team_all_season.col_in=team_id&team_all_season.col_in=name&team_all_season.col_in=name_short&team_all_season.col_in=name_abbrev&team_all_season.col_in=city&team_all_season.col_in=venue_name&name_abbrev='%s'&season=%s&sport_id=1";
+
+    public static final String SCHEDULE_PK_QUERY="http://qa.mlb.com/lookup/named.schedule_pk.bam?game_pk=%s";
 
 	private static final String QUERYNG_RESULT_RESPONSE_REGEXP = ".*<queryResults.*</queryResults>.*";
 
@@ -117,4 +123,9 @@ public class AtbLookupService {
 		logger.info("Found scheduled games: " + games);
 		return games;
 	}
+
+    public SchedulePk loadSchedulePk(String gameID){
+        HttpResult httpResult1 = HttpHelper.executeGet(String.format(SCHEDULE_PK_QUERY,gameID), new HashMap<String, String>());
+      return MarshallerHelper.unmarshall(httpResult1.getResponseBody(), SchedulePk.class);
+    }
 }

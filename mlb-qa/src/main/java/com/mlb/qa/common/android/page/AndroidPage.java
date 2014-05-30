@@ -75,7 +75,13 @@ public class AndroidPage extends AbstractUIObject {
 		
 		scrollMap.put("element", ((RemoteWebElement) driver.findElement(containerElement.getBy())).getId());
 		logger.info(scrollMap);
-		executor.executeScript("mobile: scrollTo", scrollMap);
+		try {
+			executor.executeScript("mobile: scrollTo", scrollMap);
+		}
+		catch (Exception e){
+			//do nothing
+			logger.warn("Exception occured for scroll operation! " + String.format("Scrolling to text '%s', Scroll container: %s", scrollToText, containerElement.getNameWithLocator()));
+		}
 		
 	}
 }
