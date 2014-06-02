@@ -8,6 +8,9 @@ import com.mlb.qa.atb.model.map.Response;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;
 import com.qaprosoft.carina.core.foundation.UITest;
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.Configuration.Parameter;
+
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -19,11 +22,19 @@ import java.util.List;
  * Check that content of Map page for each ballpark is correct<br>
  */
 public class AtbBallparkMapsTest extends UITest {
-    private static final String SERVICE_PATTERN = "http://wap.mlb.com/ballpark/iphone/config/";
+    private static final String PROD_SERVICE_PATTERN = "http://wap.mlb.com/ballpark/iphone/config/";
+    private static final String QA_SERVICE_PATTERN = "http://wapqa.mlb.com/ballpark/iphone/config/";
 
     @Test(dataProvider = "excel_ds", description = "Check ballpark maps")
     @Parameters({"team_abbrev", "TUID"})
     public void checkMapDescription(String teamAbbrev, String teamName) {
+    	String env = Configuration.get(Parameter.ENV);
+    	String SERVICE_PATTERN = QA_SERVICE_PATTERN;
+    	if (env.equalsIgnoreCase("prod")) {
+    		SERVICE_PATTERN = PROD_SERVICE_PATTERN;
+    	}
+    		
+    	
         AtbBallparksPage atbBallparksPage = new AtbBallparksPage(driver);
         atbBallparksPage.clickOnMenuItem(AtbAndroidPage.Menu.BALLPARKS);
         atbBallparksPage.openBallparkByTeamName(teamName);
