@@ -27,7 +27,7 @@ public class AtbBallparkScheduleTest extends AtbBaseWebTest {
 	public void checkListSchedule(String teamAbbrev, String scheduleUrl) {
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
-		List<Game> gamesUi = AtbBallparkSchedulePage.open(driver,
+		List<Game> gamesUi = AtbBallparkSchedulePage.open(getDriver(),
 				scheduleUrl).loadGamesFromListTab(team.getName());
 		int month = new DateTime().getMonthOfYear();
 		List<Game> gamesBe = lookupService.loookupListOfGamesForTheMonth(team.getTeamId(),
@@ -43,7 +43,7 @@ public class AtbBallparkScheduleTest extends AtbBaseWebTest {
 	@Test(enabled = true, dataProvider = "excel_ds", description = "Check schedule on Calendar tab")
 	@Parameters({ "team_abbrev", "team_schedule_web" })
 	public void checkCalendarSchedule(String teamAbbrev, String scheduleUrl) {
-		List<Game> gamesUi = AtbBallparkSchedulePage.open(driver,
+		List<Game> gamesUi = AtbBallparkSchedulePage.open(getDriver(),
 				scheduleUrl).loadGamesFromCalendarTab(teamAbbrev);
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		int month = new DateTime().getMonthOfYear();

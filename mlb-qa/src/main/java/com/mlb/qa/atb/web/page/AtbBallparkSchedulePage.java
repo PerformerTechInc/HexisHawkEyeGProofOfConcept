@@ -32,7 +32,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 public class AtbBallparkSchedulePage extends AbstractPage {
 	private static final Logger logger = Logger.getLogger(AtbBallparkSchedulePage.class);
 	private static final String HOME_PREFIX = "vs.";
-	private static final String GAME_OPPONENT_LIST_REGEXP = "(@|vs\\.) [\\w-\\s]* ([LW] \\d{1,}-\\d{1,}|\\d{1,2}:\\d{1,2} [PA]M|\\d{1,2}|PPD|(Gm|Bot|Mid|End|Top) \\d{1,2}( \\d{1,}-\\d{1,})?)";
+	private static final String GAME_OPPONENT_LIST_REGEXP = "(@|vs\\.) [\\w-\\s]* ([LW] \\d{1,}-\\d{1,}|\\d{1,2}:\\d{1,2} [PA]M|\\d{1,2}|PPD|TBD|(Gm|Bot|Mid|End|Top) \\d{1,2}( \\d{1,}-\\d{1,})?)";
 	private static final String GAME_IN_PROGRESS_STATUSES_REGEXP = "(Gm|Bot|Mid|End|Top) \\d{1,2}( \\d{1,}-\\d{1,})?";
 	private static final String SCORE_REGEXP = "[LW] \\d{1,}-\\d{1,}";
 	private static final String GAME_TIME_REGEXP = "\\d{1,2}:\\d{1,2} [PA]M";
@@ -84,18 +84,21 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 	public AtbBallparkSchedulePage openCalendarTab() {
 		logger.info("Open Calendar tab");
 		click(calendarTab);
+		pause(3);		
 		return this;
 	}
 
 	public AtbBallparkSchedulePage openListTab() {
 		logger.info("Open List tab");
 		click(listTab);
+		pause(3);
 		return this;
 	}
 
 	public AtbBallparkSchedulePage openOpponentTab() {
 		logger.info("Open Opponent tab");
 		click(opponentTab);
+		pause(3);		
 		return this;
 	}
 
