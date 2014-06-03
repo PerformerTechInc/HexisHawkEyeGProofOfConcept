@@ -52,6 +52,7 @@ public class AtbBallparkTicketsPage extends AbstractPage {
 	 */
 	public List<GameTicket> loadListOfGameTickets() {
 		logger.info("Load list of tickets from page");
+		pause(1);
 		List<GameTicket> result = new LinkedList<GameTicket>();
 		for (ExtendedWebElement container : gameContainers) {
 			GameTicket ticket = new GameTicket();

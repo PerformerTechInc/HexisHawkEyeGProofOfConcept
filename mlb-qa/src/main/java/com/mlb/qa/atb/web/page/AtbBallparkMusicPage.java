@@ -35,6 +35,7 @@ public class AtbBallparkMusicPage extends AbstractPage {
 	}
 
 	public List<Music> loadMusicList() {
+		pause(1);
 		List<Music> musicList = new LinkedList<Music>();
 		for (ExtendedWebElement container : playerMusicListContainers) {
 			musicList.add(loadMusicFromContainer(container, MusicCategory.PLAYER));

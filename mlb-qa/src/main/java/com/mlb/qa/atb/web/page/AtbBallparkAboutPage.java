@@ -22,6 +22,7 @@ public class AtbBallparkAboutPage extends AbstractPage {
 	}
 
 	public String getBallparkTextDescription() {
+		pause(1);
 		String desc = "";
 		if (isElementPresent(ballparkTextDescription)) {
 			desc = ballparkTextDescription.getText();

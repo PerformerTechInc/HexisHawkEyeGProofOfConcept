@@ -57,6 +57,7 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 
 	public List<GamePromotion> loadListOfGamePromotions() {
 		logger.info("Load list of game promotions");
+		pause(1);
 		// get year and month
 		String monthYear = monthYearLabel.getText().trim();
 		int year = Integer.parseInt(StringUtils.substringAfter(monthYear, " "));
