@@ -47,7 +47,7 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 	}
 
 	public AtBatLoginPage loginAsExistingUser() {
-		logger.debug("Attempting to 'login' as an existing user");
+		logger.debug("Attempting to 'authorization' as an existing user");
 		if (isElementPresent(existingUserLoginLink, 10)) {
 			click(existingUserLoginLink);
 		} else if (isElementPresent(existingUserLoginText, 10)) {

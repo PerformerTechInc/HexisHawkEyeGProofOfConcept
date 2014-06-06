@@ -22,6 +22,9 @@ public class AtbEventDetailsPage extends AtbAndroidPage {
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/tickets")
     private ExtendedWebElement tickets;
 
+    @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/menuitem_delete_checkin")
+    private ExtendedWebElement deleteButton;
+
     public AtbEventDetailsPage(WebDriver driver) {
         super(driver);
     }
@@ -43,6 +46,9 @@ public class AtbEventDetailsPage extends AtbAndroidPage {
         return isElementPresent(tickets);
     }
 
+    public boolean isDeleteButtonVisible(){
+        return isElementPresent(deleteButton, 10);
+    }
 
     @Override
     public boolean isOpened() {

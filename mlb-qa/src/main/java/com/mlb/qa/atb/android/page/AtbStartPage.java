@@ -9,7 +9,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  * MLB Ballpark start page<br>
  */
 public class AtbStartPage extends AtbAndroidPage {
-	@FindBy(xpath = "//TextView[@text='Log In with your MLB.com account or create one now.']")
+	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/message")
 	private ExtendedWebElement mlbLoginTitle;
 	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/signin")
 	private ExtendedWebElement signInButton;
@@ -20,7 +20,7 @@ public class AtbStartPage extends AtbAndroidPage {
 
 	@Override
 	public boolean isOpened() {
-		return isElementPresent(mlbLoginTitle, 10);
+		return isElementPresent(mlbLoginTitle, 8);
 	}
 
 	public AtbLoginPage passToLoginPage() {

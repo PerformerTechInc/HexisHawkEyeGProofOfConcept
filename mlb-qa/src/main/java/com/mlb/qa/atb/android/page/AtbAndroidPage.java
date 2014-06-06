@@ -14,6 +14,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  */
 public class AtbAndroidPage extends AndroidPage {
 
+
 	@FindBy(id = "android:id/up")
 	private ExtendedWebElement openMenuButton;
 	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/left_drawer")
@@ -25,13 +26,16 @@ public class AtbAndroidPage extends AndroidPage {
 	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/error_message")
 	private ExtendedWebElement errorMesssage;
 
+    @FindBy(id= "android:id/home")
+    private ExtendedWebElement home;
+
 	// Menu
 	public enum Menu {
 		BALLPARKS("BALLPARKS"), CHANGE_SCOREBOARD_START_DATE(
 				"Change Scoreboard Start Date"), CLEAR_SCOREBOARD_START_DATE(
 				"Clear Scoreboard Start Date"), OPEN_CHECKIN_WINDOW(
 				"Open Checkin Window"), CLOSE_CHECKIN_WINDOW(
-				"Close Checkin Window"), JOURNAL("JOURNAL"),HISTORY("History");
+				"Close Checkin Window"), JOURNAL("JOURNAL"),HISTORY("History"),GENERAL("General");
 
 		public static final String MENU_ITEM_LOCATOR_PATTERN = "//TextView[@text='%s']";
 
@@ -72,6 +76,16 @@ public class AtbAndroidPage extends AndroidPage {
 		clickOnMenuItem(Menu.BALLPARKS);
 		return new AtbBallparksPage(driver);
 	}
+
+    public boolean checkLogoOnHomePage(){
+        if (isElementPresent(home,delay)){
+            return true;
+        }
+        else {
+            throw new TestRuntimeException(
+                    "Logo not present");
+        }
+    }
 
 	public String getActionTitle() {
 		if (!isElementPresent(actionBarTitle, delay)) {
@@ -142,6 +156,7 @@ public class AtbAndroidPage extends AndroidPage {
 			if (!isElementPresent(menuLayout, delay)) {
 				click(openMenuButton);
 			}
+
 			// if passed -> nothing to do: checkin window already opened
 			scrollTo(Menu.CLOSE_CHECKIN_WINDOW.getMenuItemText(), menuLayout);
 			logger.info("Checkin window already opened. Nothing to do");
@@ -157,6 +172,7 @@ public class AtbAndroidPage extends AndroidPage {
 			if (!isElementPresent(menuLayout, delay)) {
 				click(openMenuButton);
 			}
+
 			// if passed -> nothing to do: checkin window already opened
 			scrollTo(Menu.OPEN_CHECKIN_WINDOW.getMenuItemText(), menuLayout);
 			logger.info("Checkin window already closed. Nothing to do");

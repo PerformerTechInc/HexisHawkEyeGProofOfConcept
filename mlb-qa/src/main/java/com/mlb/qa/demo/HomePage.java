@@ -13,13 +13,13 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 public class HomePage extends AbstractPage {
 		//private static String TEAM_NAME = "//a[contains(text(), '%s')]";
 
-		@FindBy(id="login-lnk")
+		@FindBy(id="authorization-lnk")
 		public ExtendedWebElement lnkLogin;
 
 		@FindBy(id="email")
 		public ExtendedWebElement txtEmail;
 
-		@FindBy(id="login-password")
+		@FindBy(id="authorization-password")
 		public ExtendedWebElement txtPassword;
 
 		@FindBy(xpath="//input[@value='Login']")
