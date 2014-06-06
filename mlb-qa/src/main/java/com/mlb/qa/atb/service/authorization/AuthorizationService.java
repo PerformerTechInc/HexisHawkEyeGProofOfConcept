@@ -1,7 +1,6 @@
 package com.mlb.qa.atb.service.authorization;
 
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
-import com.mlb.qa.atb.android.page.AtbLoginPage;
 import com.mlb.qa.atb.android.page.AtbStartPage;
 import com.mlb.qa.atb.android.page.settings.AtbSettingsPage;
 import org.openqa.selenium.WebDriver;
@@ -41,7 +40,6 @@ public class AuthorizationService {
 //                    .skipFavoriteTeamSelection();
             ;
         }
-        sp.executeKeyEvent(4);
     }
 
     public void reloginUser(String username, String password) {
