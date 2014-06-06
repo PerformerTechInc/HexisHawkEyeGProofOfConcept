@@ -103,7 +103,7 @@ public class AtbLookupService {
 		return teams.get(0);
 	}
 
-	public List<Game> loookupListOfGamesForTheMonth(String teamId, Integer year,
+	public List<Game> lookupListOfGamesForTheMonth(String teamId, Integer year,
 			Integer month) {
 		logger.info(String.format("Load list of scheduled games' info by team id: %s, year: %s, month: %s", teamId,
 				year, month));
@@ -122,6 +122,25 @@ public class AtbLookupService {
 				result.getResponseBody());
 		logger.info("Found scheduled games: " + games);
 		return games;
+	}
+
+	public List<Game> lookupListofGamesBetweenDates(String teamId, String year, DateTime d1, DateTime d2) {
+		logger.info(String.format("Load list of schedules games for teamid: %s, between dates %s and %s", teamId, d1, d2));
+		DateTime beginDate = d1;
+		DateTime endDate = d2;
+		String getQueryRequest = AtbParameter.MLB_ATB_LOOKUP_SERVICE.getValue()
+				+ String.format(INCOMING_GAME_FOR_SCHEDULE_QUERY, teamId, year,
+						DateUtils.dateToString(beginDate,
+								DateUtils.LOOKUP_INPUT_DATE_FORMAT), DateUtils.dateToString(endDate,
+								DateUtils.LOOKUP_INPUT_DATE_FORMAT));
+		logger.info(String.format("Request: %s", getQueryRequest));
+		HttpResult result = HttpHelper.executeGet(getQueryRequest, new HashMap<String, String>());
+		HttpHelper.checkResultOk(result);
+		List<Game> games = LookupHelper.unmarshal(Game.class,
+				result.getResponseBody());
+		logger.info("Found scheduled games: " + games);
+		return games;
+		
 	}
 
     public SchedulePk loadSchedulePk(String gameID){

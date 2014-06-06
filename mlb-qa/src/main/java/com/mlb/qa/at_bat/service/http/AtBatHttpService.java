@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import com.mlb.qa.at_bat.AtBatParameter;
 import com.mlb.qa.at_bat.model.roster.QueryPlayerRosterRS;
 import com.mlb.qa.at_bat.model.roster.Roster;
+import com.mlb.qa.at_bat.model.scoreboard.QueryScoreboardRS;
+import com.mlb.qa.at_bat.model.scoreboard.ScoreboardGame;
 import com.mlb.qa.common.exception.TestRuntimeException;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;
@@ -21,6 +23,7 @@ public class AtBatHttpService {
 	private static final String GET_PLAYER_MUGSHOT_PATTERN = "player_id_value.jpg";
 	private static final String GET_TEAM_STANDINGS_PATTERN = "?ref=androidyear_value&fav=team_shortcode";
 	private static final String GET_STANDINGS_SEASON_PATTERN = "?yyyy=year_value&view=season_mode_value";
+	private static final String GET_ANDROID_SCOREBOARD_PATTERN = "year_year_value/month_month_value/day_day_value/scoreboard_android.xml";
 	
 	public List<Roster> loadListOfPlayers(String teamId) {
 		logger.info(String.format("Loading List of Players for Team Id: %s", teamId));
@@ -76,7 +79,21 @@ public class AtBatHttpService {
 		
 		return getQueryRequest;
 	}
-	
+
+	public void getScoreboard(String month, String day) {
+		String getQueryRequest = AtBatParameter.MLB_ATBAT_MASTER_SCOREBOARD.getValue()
+				+ GET_ANDROID_SCOREBOARD_PATTERN.replaceAll("year_value", getCurrentYear()).replaceAll("month_value", month).replaceAll("day_value", day);
+		
+		HttpResult result = HttpHelper.executeGet(getQueryRequest, new HashMap<String, String>());
+		//logger.info(String.format("Result: %s", result));
+		HttpHelper.checkResultOk(result);
+		
+		//List<ScoreboardGame> scoreboardGames = QueryScoreboardRS.unmarshal(result.getResponseBody());
+		QueryScoreboardRS test = QueryScoreboardRS.unmarshal(result.getResponseBody());
+		logger.info("Checking List: " + test.getScoreboardGames());
+		//logger.info("Scoreboard Games Found: " + scoreboardGames);
+	}
+
 	private String getCurrentYear() {
 		Calendar cal = Calendar.getInstance();
 		int intYear = cal.get(Calendar.YEAR);

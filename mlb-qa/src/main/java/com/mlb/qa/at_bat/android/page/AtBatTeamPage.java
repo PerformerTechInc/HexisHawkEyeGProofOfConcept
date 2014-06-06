@@ -1,9 +1,11 @@
 package com.mlb.qa.at_bat.android.page;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -235,7 +237,7 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 		}
 		return false;
 	}
-	
+
 	public boolean isDateProgressBarPresent() {
 		return isElementPresent(gamePagerProgressBar, delay);
 	}
@@ -291,6 +293,28 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 		
 		throw new TestRuntimeException(
 				"The 'Date Bar' hasn't loaded/or doesn't exist at this time and we're unable to gather the current size of it.");
+	}
+
+	public List<String> getDateItems() {
+		int counter = 0;
+		List<String> dateList = new LinkedList<String>();
+		while (counter <= 5) {
+			if (isElementPresent(teamDatesAvailable, 10)) {
+				List<WebElement> dateWebElementList = teamDatesAvailable.getElement().findElements(By.xpath("//TextView"));
+				for (int i = 0; i < dateWebElementList.size(); i++) {
+					dateList.add(dateWebElementList.get(i).getText());
+				}
+				break;
+			}
+		}
+		return dateList;
+	}
+
+	public String getDateItem(int i) {
+		if (isElementPresent(teamDatesAvailable, 10)) {
+			return teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).get(i).getText();
+		}
+		return "";
 	}
 
 	public int getNumberOfMoreItems() {

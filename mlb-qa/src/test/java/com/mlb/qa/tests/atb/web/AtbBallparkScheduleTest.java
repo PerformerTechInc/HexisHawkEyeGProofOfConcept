@@ -30,7 +30,7 @@ public class AtbBallparkScheduleTest extends AtbBaseWebTest {
 		List<Game> gamesUi = AtbBallparkSchedulePage.open(getDriver(),
 				scheduleUrl).loadGamesFromListTab(team.getName());
 		int month = new DateTime().getMonthOfYear();
-		List<Game> gamesBe = lookupService.loookupListOfGamesForTheMonth(team.getTeamId(),
+		List<Game> gamesBe = lookupService.lookupListOfGamesForTheMonth(team.getTeamId(),
 				Integer.parseInt(year),
 				month);
 		Assert.assertTrue(0 == new ListComparator<Game>(new
@@ -48,7 +48,7 @@ public class AtbBallparkScheduleTest extends AtbBaseWebTest {
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		int month = new DateTime().getMonthOfYear();
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
-		List<Game> gamesBe = lookupService.loookupListOfGamesForTheMonth(team.getTeamId(),
+		List<Game> gamesBe = lookupService.lookupListOfGamesForTheMonth(team.getTeamId(),
 				Integer.parseInt(year),
 				month);
 		Assert.assertTrue(0 == new ListComparator<Game>(new
