@@ -55,7 +55,7 @@ public class AtbHistoryGamesTest extends UITest {
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		int month = new DateTime().getMonthOfYear() + 1;
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
-		List<Game> gamesBe = lookupService.loookupListOfGamesForTheMonth(
+		List<Game> gamesBe = lookupService.lookupListOfGamesForTheMonth(
 				team.getTeamId(), Integer.parseInt(year), month);
 
 		AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(
@@ -87,7 +87,7 @@ public class AtbHistoryGamesTest extends UITest {
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		int month = new DateTime().getMonthOfYear() - 1;
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
-		List<Game> gamesBe = lookupService.loookupListOfGamesForTheMonth(
+		List<Game> gamesBe = lookupService.lookupListOfGamesForTheMonth(
 				team.getTeamId(), Integer.parseInt(year), month);
 
 		AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(
