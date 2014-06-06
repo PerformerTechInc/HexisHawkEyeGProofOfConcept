@@ -23,6 +23,7 @@ public class AtbHistoryTest extends UITest {
     public void login(){
         AuthorizationService authorizationService = new AuthorizationService(getDriver());
         authorizationService.reloginUser(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue());
+
     }
 
 
@@ -46,7 +47,8 @@ public class AtbHistoryTest extends UITest {
         Assert.assertTrue(atbHistoryMainPage.isOpened(), "History isn't opened");
         AtbAddGamePage atbAddGamePage = atbHistoryMainPage.getAtbAddGamePage();
         Assert.assertTrue(atbAddGamePage.isOpened(), "Add Game isn't opened");
-        navigateBack();
+        atbAddGamePage.executeKeyEvent(4);
+        //navigateBack();
         Assert.assertTrue(atbHistoryMainPage.isOpened(), "History isn't opened, after click on back button");
 
     }

@@ -41,6 +41,7 @@ public class AuthorizationService {
 //                    .skipFavoriteTeamSelection();
             ;
         }
+        sp.executeKeyEvent(4);
     }
 
     public void reloginUser(String username, String password) {
@@ -51,7 +52,6 @@ public class AuthorizationService {
             logout();
             login(username, password);
         }
-
     }
 
 
