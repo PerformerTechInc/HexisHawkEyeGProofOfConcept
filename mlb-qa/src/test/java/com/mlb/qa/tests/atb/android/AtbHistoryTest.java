@@ -29,6 +29,8 @@ public class AtbHistoryTest extends UITest {
 
     @Test(description = "Check basic history",dependsOnMethods = "login")
     public void checkJournalTop() {
+        AuthorizationService authorizationService = new AuthorizationService(getDriver());
+        authorizationService.reloginUser(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue());
         AtbJournalPage atbJournalPage = new AtbJournalPage(getDriver());
         atbJournalPage.clickOnMenuItem(AtbAndroidPage.Menu.JOURNAL);
         List<AtbHistoryItem> fromJournal = atbJournalPage.getListOfHistoryItems();
@@ -42,20 +44,22 @@ public class AtbHistoryTest extends UITest {
 
     @Test(description = "Check back button functionality",dependsOnMethods = "login")
     public void checkBackButtonFunctionality() {
+        AuthorizationService authorizationService = new AuthorizationService(getDriver());
+        authorizationService.reloginUser(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue());
         AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(getDriver());
         atbHistoryMainPage.clickOnMenuItem(AtbAndroidPage.Menu.HISTORY);
         Assert.assertTrue(atbHistoryMainPage.isOpened(), "History isn't opened");
         AtbAddGamePage atbAddGamePage = atbHistoryMainPage.getAtbAddGamePage();
         Assert.assertTrue(atbAddGamePage.isOpened(), "Add Game isn't opened");
         atbAddGamePage.executeKeyEvent(4);
-        //navigateBack();
         Assert.assertTrue(atbHistoryMainPage.isOpened(), "History isn't opened, after click on back button");
 
     }
 
     @Test(description = "Check Event Page",dependsOnMethods = "login")
     public void checkEventPage() {
-
+        AuthorizationService authorizationService = new AuthorizationService(getDriver());
+        authorizationService.reloginUser(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue());
         AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(getDriver());
         atbHistoryMainPage.clickOnMenuItem(AtbAndroidPage.Menu.HISTORY);
         Assert.assertTrue(atbHistoryMainPage.isOpened(), "History isn't opened");

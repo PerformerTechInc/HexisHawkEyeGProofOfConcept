@@ -97,21 +97,33 @@ public class AtbHistoryGamesTest extends UITest {
 		AtbAddGamePage atbAddGamePage = atbHistoryMainPage.getAtbAddGamePage();
 		Assert.assertTrue(atbAddGamePage.isOpened(), "Add Game isn't opened");
 		atbAddGamePage.selectHomeTeam(gamesBe.get(gamesBe.size() - 1)
-				.getHomeTeamFull());
+                .getHomeTeamFull());
 		atbAddGamePage.selectAwayTeam(gamesBe.get(gamesBe.size() - 1)
-				.getAwayTeamFull());
+                .getAwayTeamFull());
 		atbAddGamePage.selectYear(year);
 		atbAddGamePage.selectMonth(gamesBe.get(gamesBe.size() - 1)
-				.getGameDate().monthOfYear().getAsText());
+                .getGameDate().monthOfYear().getAsText());
 		atbAddGamePage.selectDay(((Integer) gamesBe.get(gamesBe.size() - 1)
-				.getGameDate().getDayOfMonth()).toString());
+                .getGameDate().getDayOfMonth()).toString());
 		atbAddGamePage.clickSearchAmdSelectGame();
 		atbAddGamePage.clickAddDeleteButton();
-		Log.warn("TODO: additional verification is still required!");
-		//Assert.assertFalse(atbAddGamePage.checkErrorText());
+        Assert.assertTrue(atbAddGamePage.checkSuccessText());
 
 	}
-	
+
+    @Test(description = "Delete game from history")
+    public void deleteGameTest(){
+        AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(
+                getDriver());
+        atbHistoryMainPage.clickOnMenuItem(AtbAndroidPage.Menu.HISTORY);
+        atbHistoryMainPage.getRandomEvent();
+        AtbAddGamePage atbAddGamePage = new AtbAddGamePage(getDriver());
+        atbAddGamePage.clickDeleteChekIn();
+        atbAddGamePage.clickAddDeleteButton();
+        Assert.assertTrue(atbAddGamePage.checkSuccessText());
+
+    }
+
 	@AfterClass
 	public void returnDefaultUser() {
 		prepDriver = DriverFactory.create("temp");

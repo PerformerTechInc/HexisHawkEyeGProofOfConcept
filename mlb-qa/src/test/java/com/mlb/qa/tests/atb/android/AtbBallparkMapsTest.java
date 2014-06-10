@@ -1,10 +1,12 @@
 package com.mlb.qa.tests.atb.android;
 
+import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.mlb.qa.atb.android.page.AtbBallparksPage;
 import com.mlb.qa.atb.android.page.AtbMapPage;
 import com.mlb.qa.atb.model.map.Level;
 import com.mlb.qa.atb.model.map.Response;
+import com.mlb.qa.atb.service.authorization.AuthorizationService;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;
 import com.qaprosoft.carina.core.foundation.UITest;
@@ -22,10 +24,12 @@ import java.util.List;
  * Check that content of Map page for each ballpark is correct<br>
  */
 public class AtbBallparkMapsTest extends UITest {
+
+	   
     private static final String PROD_SERVICE_PATTERN = "http://wap.mlb.com/ballpark/iphone/config/";
     private static final String QA_SERVICE_PATTERN = "http://wapqa.mlb.com/ballpark/iphone/config/";
 
-    @Test(dataProvider = "excel_ds", description = "Check ballpark maps")
+    @Test(dataProvider = "excel_ds", description = "Check ballpark maps", dependsOnMethods = "login")
     @Parameters({"team_abbrev", "TUID"})
     public void checkMapDescription(String teamAbbrev, String teamName) {
     	String env = Configuration.get(Parameter.ENV);

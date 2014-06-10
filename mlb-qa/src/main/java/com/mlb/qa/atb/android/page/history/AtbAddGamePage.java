@@ -45,9 +45,14 @@ public class AtbAddGamePage extends AtbAndroidPage {
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/AddDeleteCheckinFragment_status")
     private ExtendedWebElement addDeleteStatus;
 
+    @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/menuitem_delete_checkin")
+    private ExtendedWebElement deleteButton;
+
     private static String SEARCH_PAATERN = "//TextView[@text='%s']";
 
     private final static String ERROR_TEXT = "You can only add games that have already been played. Please search again";
+
+    private final static String SUCCESS_TEXT = "Successfully updated";
 
     public AtbAddGamePage(WebDriver driver) {
         super(driver);
@@ -98,8 +103,15 @@ public class AtbAddGamePage extends AtbAndroidPage {
         click(addDeleteButton);
     }
 
+    public void clickDeleteChekIn(){
+        click(deleteButton);
+    }
+
     public boolean checkErrorText() {
     return addDeleteStatus.getText().contains(ERROR_TEXT);
+    }
+    public boolean checkSuccessText() {
+        return addDeleteStatus.getText().contains(SUCCESS_TEXT);
     }
 
     @Override

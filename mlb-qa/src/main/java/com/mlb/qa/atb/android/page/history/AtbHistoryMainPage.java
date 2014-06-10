@@ -32,6 +32,7 @@ public class AtbHistoryMainPage extends AtbAndroidPage {
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/ballpark_score_container")
     private ExtendedWebElement historyContainer;
 
+
     public AtbHistoryMainPage(WebDriver driver) {
         super(driver);
     }
@@ -65,6 +66,7 @@ public class AtbHistoryMainPage extends AtbAndroidPage {
         click(addButton);
         return new AtbAddGamePage(driver);
     }
+
 
     public AtbEventDetailsPage getRandomEvent() {
         List<WebElement> items = driver.findElements(historyContainer.getBy());
