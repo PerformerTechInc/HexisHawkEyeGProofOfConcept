@@ -36,8 +36,8 @@ public class AuthorizationService {
         if (sp.isOpened()) {
             sp.passToLoginPage()
                     .login(username,
-                            password);
-//                    .skipFavoriteTeamSelection();
+                            password)
+                    .skipFavoriteTeamSelection();
             ;
         }
     }
