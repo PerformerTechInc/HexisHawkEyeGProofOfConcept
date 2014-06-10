@@ -1,5 +1,6 @@
 package com.mlb.qa.atb.android.page;
 
+import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,9 +22,13 @@ public class AtbLoginPage extends AtbAndroidPage {
 	}
 
 	public AtbSelectFavoriteTeamPage login(String email, String password) {
-		type(emailInput, email);
+        Screenshot.capture(driver, true);
+        type(emailInput, email);
+        Screenshot.capture(driver, true);
 		type(passwordInput, password);
+        Screenshot.capture(driver, true);
 		click(loginButton);
+        Screenshot.capture(driver, true);
 		return new AtbSelectFavoriteTeamPage(driver);
 	}
 
