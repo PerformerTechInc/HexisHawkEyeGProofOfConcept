@@ -67,7 +67,6 @@ public class AtbAndroidPage extends AndroidPage {
 	 */
 	public void clickOnMenuItem(Menu menu) {
 		if (!isElementPresent(menuLayout, delay)) {
-            TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "TEST FAILED - 1");
 			click(openMenuButton);
 		}
 		scrollTo(menu.getMenuItemText(), menuLayout);
