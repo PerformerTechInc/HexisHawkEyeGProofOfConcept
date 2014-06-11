@@ -50,7 +50,10 @@ public class AtbHistoryGamesTest extends UITest {
 
 	@Test(dataProvider = "prepareTestData", description = "Add game from the future")
 	public void checkAddFutureGame(String teamAbbrev) {
-
+        authorizationService = new AuthorizationService(prepDriver);
+        authorizationService.reloginUser(
+                AtbParameter.MLB_ATB_ADITIONAL_USER.getValue(),
+                AtbParameter.MLB_ATB_ADITIONAL_PASSWORD.getValue());
 		AtbLookupService lookupService = new AtbLookupService();
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		int month = new DateTime().getMonthOfYear() + 1;
@@ -82,7 +85,10 @@ public class AtbHistoryGamesTest extends UITest {
 	
 	@Test(dataProvider = "prepareTestData", description = "Add game from the past")
 	public void checkAddPastGame(String teamAbbrev) {
-
+        authorizationService = new AuthorizationService(prepDriver);
+        authorizationService.reloginUser(
+                AtbParameter.MLB_ATB_ADITIONAL_USER.getValue(),
+                AtbParameter.MLB_ATB_ADITIONAL_PASSWORD.getValue());
 		AtbLookupService lookupService = new AtbLookupService();
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		int month = new DateTime().getMonthOfYear() - 1;
@@ -113,6 +119,10 @@ public class AtbHistoryGamesTest extends UITest {
 
     @Test(description = "Delete game from history")
     public void deleteGameTest(){
+        authorizationService = new AuthorizationService(prepDriver);
+        authorizationService.reloginUser(
+                AtbParameter.MLB_ATB_ADITIONAL_USER.getValue(),
+                AtbParameter.MLB_ATB_ADITIONAL_PASSWORD.getValue());
         AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(
                 getDriver());
         atbHistoryMainPage.clickOnMenuItem(AtbAndroidPage.Menu.HISTORY);
