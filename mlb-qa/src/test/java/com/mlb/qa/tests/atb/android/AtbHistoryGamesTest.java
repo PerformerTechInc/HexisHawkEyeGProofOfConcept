@@ -125,10 +125,10 @@ public class AtbHistoryGamesTest extends UITest {
         authorizationService.reloginUser(
                 AtbParameter.MLB_ATB_ADITIONAL_USER.getValue(),
                 AtbParameter.MLB_ATB_ADITIONAL_PASSWORD.getValue());
-        TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "TEST FAILED - 1");
+        TestLogCollector.addScreenshotComment(Screenshot.capture(getDriver(), true), "TEST FAILED - 1");
         AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(
                 getDriver());
-        TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "TEST FAILED - 2");
+        TestLogCollector.addScreenshotComment(Screenshot.capture(getDriver(), true), "TEST FAILED - 2");
         atbHistoryMainPage.clickOnMenuItem(AtbAndroidPage.Menu.HISTORY);
         atbHistoryMainPage.getRandomEvent();
         AtbAddGamePage atbAddGamePage = new AtbAddGamePage(getDriver());
