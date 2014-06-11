@@ -1,5 +1,7 @@
 package com.mlb.qa.atb.android.page;
 
+import com.qaprosoft.carina.core.foundation.log.TestLogCollector;
+import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import org.joda.time.DateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -65,6 +67,7 @@ public class AtbAndroidPage extends AndroidPage {
 	 */
 	public void clickOnMenuItem(Menu menu) {
 		if (!isElementPresent(menuLayout, delay)) {
+            TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "TEST FAILED - 1");
 			click(openMenuButton);
 		}
 		scrollTo(menu.getMenuItemText(), menuLayout);

@@ -1,11 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark Mobile - History" annotations="JDK">
 
-    <test verbose="1" name="Ballpark history - general tests">
-		<classes>
-			<class name="com.mlb.qa.tests.atb.android.AtbHistoryTest" />
-		</classes>
-	</test>
+    <!--<test verbose="1" name="Ballpark history - general tests">-->
+		<!--<classes>-->
+			<!--<class name="com.mlb.qa.tests.atb.android.AtbHistoryTest" />-->
+		<!--</classes>-->
+	<!--</test>-->
 
 	<test verbose="1" name="Ballpark history - games operation tests">
 

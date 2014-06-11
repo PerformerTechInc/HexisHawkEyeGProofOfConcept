@@ -23,14 +23,9 @@ public class AtbLoginPage extends AtbAndroidPage {
 	}
 
 	public AtbSelectFavoriteTeamPage login(String email, String password) {
-
-        TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "TEST FAILED - 1");
         type(emailInput, email);
-        TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "TEST FAILED - 2");
 		type(passwordInput, password);
-        TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "TEST FAILED - 3");
 		click(loginButton);
-        TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "TEST FAILED - 4");
 		return new AtbSelectFavoriteTeamPage(driver);
 	}
 
