@@ -1,21 +1,21 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark Mobile - History" annotations="JDK">
 
-    <!--<test verbose="1" name="Ballpark history - general tests">-->
-		<!--<classes>-->
-			<!--<class name="com.mlb.qa.tests.atb.android.AtbHistoryTest" />-->
-		<!--</classes>-->
-	<!--</test>-->
+    <test verbose="1" name="Ballpark history - general tests">
+        <classes>
+            <class name="com.mlb.qa.tests.atb.android.AtbHistoryTest"/>
+        </classes>
+    </test>
 
-	<test verbose="1" name="Ballpark history - games operation tests">
+    <test verbose="1" name="Ballpark history - games operation tests">
 
-        <parameter name="{excel_ds_args}" value="team_abbrev" />
+        <parameter name="{excel_ds_args}" value="team_abbrev"/>
         <parameter name="{excel_ds_file}" value="XLS_data/atb_team_abbrev.xls"/>
         <parameter name="{excel_ds_sheet}" value="team_abbrev"/>
         <parameter name="{excel_ds_custom_provider}" value="true"/>
-		<classes>
-			<class name="com.mlb.qa.tests.atb.android.AtbHistoryGamesTest" />
-		</classes>
-	</test>
-		
+        <classes>
+            <class name="com.mlb.qa.tests.atb.android.AtbHistoryGamesTest"/>
+        </classes>
+    </test>
+
 </suite>

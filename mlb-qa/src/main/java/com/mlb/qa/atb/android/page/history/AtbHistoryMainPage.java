@@ -71,7 +71,11 @@ public class AtbHistoryMainPage extends AtbAndroidPage {
     public AtbEventDetailsPage getRandomEvent() {
         List<WebElement> items = driver.findElements(historyContainer.getBy());
         Random random = new Random();
-        WebElement webElement = items.get(random.nextInt(items.size() - 1));
+        int element = random.nextInt(items.size());
+        if(element != 0){
+            element--;
+        }
+        WebElement webElement = items.get(element);
         logger.info("Click on random Ballpark: " + webElement.findElement(ballparkName.getBy()).getText());
         webElement.click();
         return new AtbEventDetailsPage(driver);

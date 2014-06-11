@@ -117,6 +117,8 @@ public class AtbHistoryGamesTest extends UITest {
             atbAddGamePage.clickAddDeleteButton();
             Assert.assertTrue(atbAddGamePage.checkSuccessText());
         } finally {
+           AtbAddGamePage atbAddGamePage = new AtbAddGamePage(getDriver());
+            atbAddGamePage.executeKeyEvent(4);
             authorizationService = new AuthorizationService(getDriver());
             authorizationService.reloginUser(
                     AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),

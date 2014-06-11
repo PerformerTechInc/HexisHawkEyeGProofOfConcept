@@ -103,14 +103,17 @@ public class AtbAddGamePage extends AtbAndroidPage {
         click(addDeleteButton);
     }
 
-    public void clickDeleteChekIn(){
+    public void clickDeleteChekIn() {
         click(deleteButton);
     }
 
     public boolean checkErrorText() {
-    return addDeleteStatus.getText().contains(ERROR_TEXT);
+        pause(5);
+        return addDeleteStatus.getText().contains(ERROR_TEXT);
     }
+
     public boolean checkSuccessText() {
+        pause(5);
         return addDeleteStatus.getText().contains(SUCCESS_TEXT);
     }
 
