@@ -12,7 +12,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  *
  */
 public class AtBatMenu extends AtBatAndroidPage {
-	public static String MENU_ITEM_LOCATOR_PATTERN = "//TextView[@text='%s']";
+	public static String MENU_ITEM_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
 	
 	@FindBy(id = "android:id/up")
 	private ExtendedWebElement openMenuButton;
@@ -23,11 +23,11 @@ public class AtBatMenu extends AtBatAndroidPage {
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/drawer_list_view")
 	private ExtendedWebElement menuListContainer;
 	
-	@FindBy(xpath = "//TextView[@text='News']")
+	@FindBy(xpath = "//android.widget.TextView[@text='News']")
 	private ExtendedWebElement newsMenuItem;
-	@FindBy(xpath = "//TextView[@text='Scoreboard']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Scoreboard']")
 	private ExtendedWebElement scoreboardMenuItem;
-	@FindBy(xpath = "//TextView[@text='Teams']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Teams']")
 	private ExtendedWebElement teamsMenuItem;
 	
 	@FindBy(id = "android:id/action_bar_title")

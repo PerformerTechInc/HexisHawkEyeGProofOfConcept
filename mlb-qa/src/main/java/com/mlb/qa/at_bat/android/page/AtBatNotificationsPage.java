@@ -21,7 +21,7 @@ public class AtBatNotificationsPage extends AtBatAndroidPage {
 	private ExtendedWebElement alertOkLink;
 
 	//Action Bar Items
-	@FindBy(xpath = "//TextView[@text='Notifications']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Notifications']")
 	private ExtendedWebElement notificationsExists;
 	@FindBy(xpath = "//Button[@text='Done']")
 	private ExtendedWebElement doneLink;
@@ -29,15 +29,15 @@ public class AtBatNotificationsPage extends AtBatAndroidPage {
 	//Notification Container Items
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/TeamListItem_teamName")
 	private List<ExtendedWebElement> teamNameContainerList;
-	@FindBy(xpath = "//TextView[@text='Game Start']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Game Start']")
 	private ExtendedWebElement gameStartLabel;
-	@FindBy(xpath = "//TextView[@text='Game End']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Game End']")
 	private ExtendedWebElement gameEndLabel;
-	@FindBy(xpath = "//TextView[@text='Scoring Plays']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Scoring Plays']")
 	private ExtendedWebElement scoringPlaysLabel;
-	@FindBy(xpath = "//TextView[@text='Lead Change']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Lead Change']")
 	private ExtendedWebElement leadChangeLabel;
-	@FindBy(xpath = "//TextView[@text='News']")
+	@FindBy(xpath = "//android.widget.TextView[@text='News']")
 	private ExtendedWebElement newsLabel;
 	
 	public enum NotificationsToggleItem {

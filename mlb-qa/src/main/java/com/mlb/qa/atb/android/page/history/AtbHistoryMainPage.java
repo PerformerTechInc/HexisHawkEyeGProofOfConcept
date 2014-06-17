@@ -26,7 +26,7 @@ public class AtbHistoryMainPage extends AtbAndroidPage {
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/menu_add_checkin")
     private ExtendedWebElement addButton;
 
-    @FindBy(xpath = "//TextView[@text='History']")
+    @FindBy(xpath = "//android.widget.TextView[@text='History']")
     private ExtendedWebElement pageHeader;
 
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/ballpark_score_container")

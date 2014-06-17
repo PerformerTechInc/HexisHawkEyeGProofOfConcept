@@ -34,10 +34,13 @@ public class AtbHistoryGamesTest extends UITest {
 
     @Test(dataProvider = "prepareTestData", description = "Add game from the future", priority = 1)
     public void checkAddFutureGame(String teamAbbrev) {
-        authorizationService = new AuthorizationService(getDriver());
+        
+    	authorizationService = new AuthorizationService(getDriver());
         authorizationService.reloginUser(
                 AtbParameter.MLB_ATB_ADITIONAL_USER.getValue(),
                 AtbParameter.MLB_ATB_ADITIONAL_PASSWORD.getValue());
+        
+        
         AtbLookupService lookupService = new AtbLookupService();
         String year = AtbParameter.MLB_ATB_SEASON.getValue();
         int month = new DateTime().getMonthOfYear() + 1;
@@ -69,10 +72,13 @@ public class AtbHistoryGamesTest extends UITest {
 
     @Test(dataProvider = "prepareTestData", description = "Add game from the past", priority = 2)
     public void checkAddPastGame(String teamAbbrev) {
+    	
         authorizationService = new AuthorizationService(getDriver());
         authorizationService.reloginUser(
                 AtbParameter.MLB_ATB_ADITIONAL_USER.getValue(),
                 AtbParameter.MLB_ATB_ADITIONAL_PASSWORD.getValue());
+        
+        
         AtbLookupService lookupService = new AtbLookupService();
         String year = AtbParameter.MLB_ATB_SEASON.getValue();
         int month = new DateTime().getMonthOfYear() - 1;
@@ -103,27 +109,28 @@ public class AtbHistoryGamesTest extends UITest {
 
     @Test(description = "Delete game from history", priority = 3)
     public void deleteGameTest() {
-        try {
-            authorizationService = new AuthorizationService(getDriver());
-            authorizationService.reloginUser(
-                    AtbParameter.MLB_ATB_ADITIONAL_USER.getValue(),
-                    AtbParameter.MLB_ATB_ADITIONAL_PASSWORD.getValue());
-            AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(
-                    getDriver());
-            atbHistoryMainPage.clickOnMenuItem(AtbAndroidPage.Menu.HISTORY);
-            atbHistoryMainPage.getRandomEvent();
-            AtbAddGamePage atbAddGamePage = new AtbAddGamePage(getDriver());
-            atbAddGamePage.clickDeleteChekIn();
-            atbAddGamePage.clickAddDeleteButton();
-            Assert.assertTrue(atbAddGamePage.checkSuccessText());
-        } finally {
-           AtbAddGamePage atbAddGamePage = new AtbAddGamePage(getDriver());
-            atbAddGamePage.executeKeyEvent(4);
-            authorizationService = new AuthorizationService(getDriver());
-            authorizationService.reloginUser(
-                    AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),
-                    AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue());
-        }
+    	
+        authorizationService = new AuthorizationService(getDriver());
+        authorizationService.reloginUser(
+                AtbParameter.MLB_ATB_ADITIONAL_USER.getValue(),
+                AtbParameter.MLB_ATB_ADITIONAL_PASSWORD.getValue());
+        
+        
+        AtbHistoryMainPage atbHistoryMainPage = new AtbHistoryMainPage(
+                getDriver());
+        atbHistoryMainPage.clickOnMenuItem(AtbAndroidPage.Menu.HISTORY);
+        atbHistoryMainPage.getRandomEvent();
+        AtbAddGamePage atbAddGamePage = new AtbAddGamePage(getDriver());
+        atbAddGamePage.clickDeleteChekIn();
+        atbAddGamePage.clickAddDeleteButton();
+        Assert.assertTrue(atbAddGamePage.checkSuccessText());
+    }
 
+    @Test(description = "Return defaul user", priority = 4)
+    public void reloginToDefaultUser() {
+        authorizationService = new AuthorizationService(getDriver());
+        authorizationService.reloginUser(
+                AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),
+                AtbParameter.MLB_ATB_DEFAULT_PASSWORD.getValue());
     }
 }

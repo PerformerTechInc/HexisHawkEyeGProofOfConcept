@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class AtbEventDetailsPage extends AtbAndroidPage {
 
-    @FindBy(xpath = "//TextView[@text='Event Detail']")
+    @FindBy(xpath = "//android.widget.TextView[@text='Event Detail']")
     private ExtendedWebElement pageHeader;
 
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/awaylogo")

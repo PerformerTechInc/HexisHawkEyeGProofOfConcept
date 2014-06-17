@@ -20,8 +20,11 @@ public class AtbMapPage extends AndroidPage {
 
     private final String MAP_LINK_NAME = "BALLPARK MAP";
 
-    @FindBy(xpath = "//TextView[contains(@text, 'BALLPARK MAP')]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, 'BALLPARK MAP')]")
     private ExtendedWebElement mapButton;
+
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, 'Ballpark Map')]")
+    private ExtendedWebElement mapButton2;
 
     @FindBy(id = "android:id/action_bar_title")
     private ExtendedWebElement stadiumName;
@@ -41,7 +44,7 @@ public class AtbMapPage extends AndroidPage {
     }
 
     public void openMap(){
-    	if(!isElementPresent(mapButton, 5) && driver.findElements(gridItem.getBy()).size() !=2) {
+    	if(!isElementPresent(mapButton, 5) && driver.findElements(gridItem.getBy()).size() != 2) {
     		try {
     			scrollTo(MAP_LINK_NAME, stadiumLinkList);
     		}
@@ -52,6 +55,8 @@ public class AtbMapPage extends AndroidPage {
     	
         if(isElementPresent(mapButton, 5)){
             click(mapButton);
+//        } else if (isElementPresent(mapButton2, 5)) {
+//        	click(mapButton2);
         } else if (driver.findElements(gridItem.getBy()).size() == 2){
             driver.findElements(gridItem.getBy()).get(1).click();
         }else{
@@ -69,6 +74,7 @@ public class AtbMapPage extends AndroidPage {
 
     public List<String> getLevelList(){
         click(spinner);
+        pause(3);
         List<String> levelsName =new ArrayList<String>();
         for (WebElement webElement : driver.findElements(levelList.getBy())){
             levelsName.add(webElement.getText());

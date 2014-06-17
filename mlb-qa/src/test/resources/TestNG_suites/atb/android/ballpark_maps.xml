@@ -1,12 +1,30 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark Mobile - Maps" annotations="JDK">
+
+	<test verbose="1" name="Login to Ballpark Application">
+		<classes>
+			<class name="com.mlb.qa.tests.atb.android.AtbBallparkLogin">
+				<methods>
+					<include name="login" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
 	<test verbose="1" name="Ballpark maps test">
 		<parameter name="{excel_ds_uid}" value="team_abbrev" />
 		<parameter name="{excel_ds_args}" value="team_abbrev;TUID" />
 		<parameter name="{excel_ds_file}" value="XLS_data/atb_web.xls" />
 		<parameter name="{excel_ds_sheet}" value="team_map" />
+
 		<classes>
-			<class name="com.mlb.qa.tests.atb.android.AtbBallparkMapsTest" />
+			<class name="com.mlb.qa.tests.atb.android.AtbBallparkMapsTest" >
+			<methods>
+				<include name="checkMapDescription" />
+			</methods>
+			</class>
 		</classes>
 	</test>
 </suite>
+
+

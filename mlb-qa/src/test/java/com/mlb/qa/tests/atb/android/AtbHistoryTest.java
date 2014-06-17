@@ -51,7 +51,9 @@ public class AtbHistoryTest extends UITest {
         Assert.assertTrue(atbHistoryMainPage.isOpened(), "History isn't opened");
         AtbAddGamePage atbAddGamePage = atbHistoryMainPage.getAtbAddGamePage();
         Assert.assertTrue(atbAddGamePage.isOpened(), "Add Game isn't opened");
-        atbAddGamePage.executeKeyEvent(4);
+        //atbAddGamePage.executeKeyEvent(4);
+        driver.navigate().back();
+        
         Assert.assertTrue(atbHistoryMainPage.isOpened(), "History isn't opened, after click on back button");
 
     }

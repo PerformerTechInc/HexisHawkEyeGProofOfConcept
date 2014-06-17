@@ -14,37 +14,37 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 public class AtBatSettingsPage extends AtBatAndroidPage {
 
 	//TODO:  Might be able to clean this up
-	@FindBy(xpath = "//TextView[@text='Favorite Teams']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Favorite Teams']")
 	private ExtendedWebElement favoriteTeamLink;
-	@FindBy(xpath = "//TextView[@text='Notifications']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Notifications']")
 	private ExtendedWebElement notificationsLink;
-	@FindBy(xpath = "//TextView[@text='Low Memory Settings']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Low Memory Settings']")
 	private ExtendedWebElement lowMemorySettingsLink;
-	@FindBy(xpath = "//TextView[@text='Audio Feed']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Audio Feed']")
 	private ExtendedWebElement audioFeedLink;
-	@FindBy(xpath = "//TextView[@text='Scoreboard Refresh Rate']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Scoreboard Refresh Rate']")
 	private ExtendedWebElement scoreboardRefreshRateLink;
-	@FindBy(xpath = "//TextView[@text='Widget Refresh Rate']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Widget Refresh Rate']")
 	private ExtendedWebElement widgetRefreshRateLink;
-	@FindBy(xpath = "//TextView[@text='Gameday Scout']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Gameday Scout']")
 	private ExtendedWebElement gamedayScoutLink;
-	@FindBy(xpath = "//TextView[@text='MLB.com Account']")
+	@FindBy(xpath = "//android.widget.TextView[@text='MLB.com Account']")
 	private ExtendedWebElement mlbAccountLoginLink;
-	@FindBy(xpath = "//TextView[@text='Extras URL']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Extras URL']")
 	private ExtendedWebElement extrasUrlLink;
-	@FindBy(xpath = "//TextView[@text='Mock Latitude/Longitude']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Mock Latitude/Longitude']")
 	private ExtendedWebElement mockLatLongLink;
-	@FindBy(xpath = "//TextView[@text='ENV Setting']")
+	@FindBy(xpath = "//android.widget.TextView[@text='ENV Setting']")
 	private ExtendedWebElement envSettingLink;
-	@FindBy(xpath = "//TextView[@text='Restore Purchases']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Restore Purchases']")
 	private ExtendedWebElement restorePurchasesLink;
-	@FindBy(xpath = "//TextView[@text='OverLoad URL']")
+	@FindBy(xpath = "//android.widget.TextView[@text='OverLoad URL']")
 	private ExtendedWebElement overLoadUrlLink;
 	@FindBy(id = "android:id/checkbox")
 	private ExtendedWebElement gamedayScoutCheckbox;
 	@FindBy(id = "android:id/list")
 	private ExtendedWebElement settingsListContainer;
-	public static String SETTINGS_LOCATOR_PATTERN = "//TextView[@text='%s']";
+	public static String SETTINGS_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
 
 	public AtBatSettingsPage(WebDriver driver) {
 		super(driver);

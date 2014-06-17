@@ -13,11 +13,11 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  */
 public class AtBatPaywallPage extends AtBatAndroidPage {
 
-	@FindBy(xpath = "//TextView[@text='Subscribe to At Bat 14']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Subscribe to At Bat 14']")
 	private ExtendedWebElement paywallTitleText;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallFragment_loginLabel")
 	private ExtendedWebElement existingUserLoginLink;
-	@FindBy(xpath = "//TextView[@text='Sign in with MLB.com account']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Sign in with MLB.com account']")
 	private ExtendedWebElement existingUserLoginText;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallFragment_restoreLabel")
 	private ExtendedWebElement restorePurchaseLink;
@@ -25,7 +25,7 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 	private ExtendedWebElement storeNotAvailableText;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallFragment_continueWithAtBatLite")
 	private ExtendedWebElement maybeLaterLink;
-	@FindBy(xpath = "//TextView[@text='No Thanks, Maybe Later']")
+	@FindBy(xpath = "//android.widget.TextView[@text='No Thanks, Maybe Later']")
 	private ExtendedWebElement maybeLaterText;
 
 	public AtBatPaywallPage(WebDriver driver) {

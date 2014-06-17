@@ -2,6 +2,8 @@ package com.mlb.qa.atb.android.page.settings;
 
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -11,11 +13,11 @@ import org.openqa.selenium.support.FindBy;
 public class AtbSettingsPage extends AtbAndroidPage {
 
 
-    @FindBy(xpath = "//TextView[@text='MLB.com Account']")
+    @FindBy(name = "MLB.com Account")
     public ExtendedWebElement accountSettingButton;
 
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/emailtext")
-    public ExtendedWebElement loginFild;
+    public ExtendedWebElement loginField;
 
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/clearcredentialsbutton")
     public ExtendedWebElement clearButton;
@@ -32,11 +34,13 @@ public class AtbSettingsPage extends AtbAndroidPage {
     }
 
     public String getCurrentUser() {
-        return loginFild.getText();
+        return loginField.getText();
     }
 
     public void clickLogout() {
         click(clearButton);
         click(okButton);
     }
+    
+   
 }

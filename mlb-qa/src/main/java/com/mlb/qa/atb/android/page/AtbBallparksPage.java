@@ -10,7 +10,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  * BALLBARKS page
  */
 public class AtbBallparksPage extends AtbAndroidPage {
-	public static String BALLPARK_NAME_LOCATOR_PATTERN = "//TextView[@text='%s']";
+	public static String BALLPARK_NAME_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
 	
 	@FindBy(id="com.bamnetworks.mobile.android.ballpark:id/ballparklistview")
 	private ExtendedWebElement ballparksListContainer;
@@ -19,10 +19,15 @@ public class AtbBallparksPage extends AtbAndroidPage {
 	}
 
 	public AtbBallparkPage openBallparkByTeamName(String ballParkName) {
+/*		int count = 0;
+		while (driver.findElements(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))).size() == 0  && ++count < 3) {
+			scrollTo(ballParkName, ballparksListContainer);
+		}*/
+
 		scrollTo(ballParkName, ballparksListContainer);
-		click(String.format("Ballpark '%s' name", ballParkName),
-				driver.findElement(By.xpath(String.format(
-						BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));
+		pause(3);
+		
+		click(String.format("Ballpark '%s' name", ballParkName), driver.findElement(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));
 		return new AtbBallparkPage(driver);
 	}
 }

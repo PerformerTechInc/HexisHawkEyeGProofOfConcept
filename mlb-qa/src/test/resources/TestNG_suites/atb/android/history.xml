@@ -3,7 +3,7 @@
 
     <test verbose="1" name="Ballpark history - general tests">
         <classes>
-            <class name="com.mlb.qa.tests.atb.android.AtbHistoryTest"/>
+        	<class name="com.mlb.qa.tests.atb.android.AtbHistoryTest"/>
         </classes>
     </test>
 

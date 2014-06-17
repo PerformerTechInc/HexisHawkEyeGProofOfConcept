@@ -3,6 +3,8 @@ package com.mlb.qa.atb.service.authorization;
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.mlb.qa.atb.android.page.AtbStartPage;
 import com.mlb.qa.atb.android.page.settings.AtbSettingsPage;
+
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -23,7 +25,8 @@ public class AuthorizationService {
             atbSettingsPage.clickOnMenuItem(AtbAndroidPage.Menu.GENERAL);
             atbSettingsPage.openAccountSetting();
             boolean isLoginCorrect = atbSettingsPage.getCurrentUser().equals(username);
-            atbSettingsPage.executeKeyEvent(4);
+            driver.navigate().back();
+            //atbSettingsPage.sendKeys(Keys.BACK_SPACE);
             return isLoginCorrect;
         } else {
             return false;
@@ -37,7 +40,7 @@ public class AuthorizationService {
             sp.passToLoginPage()
                     .login(username,
                             password)
-                    .skipFavoriteTeamSelection();
+                            .skipFavoriteTeamSelection();
             ;
         }
     }

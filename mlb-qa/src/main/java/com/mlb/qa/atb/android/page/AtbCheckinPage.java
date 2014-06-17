@@ -15,7 +15,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 public class AtbCheckinPage extends AtbAndroidPage {
 	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/confirmcheckinbutton")
 	private ExtendedWebElement confirmCheckinButton;
-	@FindBy(xpath = "//TextView[@text='Determining device location']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Determining device location']")
 	private ExtendedWebElement determiningLocationText;
 	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/refresh_text")
 	private ExtendedWebElement refreshButton;

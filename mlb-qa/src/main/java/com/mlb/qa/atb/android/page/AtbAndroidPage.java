@@ -27,7 +27,14 @@ public class AtbAndroidPage extends AndroidPage {
 	private ExtendedWebElement progressBar;
 	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/error_message")
 	private ExtendedWebElement errorMesssage;
+	@FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/miniheader")
+	private ExtendedWebElement miniHeader;
 
+	@FindBy(className = "android.widget.FrameLayout")
+	private ExtendedWebElement frameLayout;
+	
+	
+	
     @FindBy(id= "android:id/home")
     private ExtendedWebElement home;
 
@@ -37,9 +44,9 @@ public class AtbAndroidPage extends AndroidPage {
 				"Change Scoreboard Start Date"), CLEAR_SCOREBOARD_START_DATE(
 				"Clear Scoreboard Start Date"), OPEN_CHECKIN_WINDOW(
 				"Open Checkin Window"), CLOSE_CHECKIN_WINDOW(
-				"Close Checkin Window"), JOURNAL("JOURNAL"),HISTORY("History"),GENERAL("General");
+				"Close Checkin Window"), JOURNAL("JOURNAL"),HISTORY("History"),GENERAL("General"), ALL_BALLPARKS("ALL BALLPARKS");
 
-		public static final String MENU_ITEM_LOCATOR_PATTERN = "//TextView[@text='%s']";
+		public static final String MENU_ITEM_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
 
 		private String menuItemText;
 
@@ -66,6 +73,13 @@ public class AtbAndroidPage extends AndroidPage {
 	 * @param menu
 	 */
 	public void clickOnMenuItem(Menu menu) {
+		//return if ballparks window is already open
+		if (isElementPresent(miniHeader, delay/5) && miniHeader.getText().equals(Menu.ALL_BALLPARKS)) {
+			LOGGER.info("Already in BALLPARKS window.");
+			return;
+		}
+		
+		
 		if (!isElementPresent(menuLayout, delay)) {
 			click(openMenuButton);
 		}
@@ -182,5 +196,5 @@ public class AtbAndroidPage extends AndroidPage {
 			click(openMenuButton);
 		}
 	}
-
+	
 }
