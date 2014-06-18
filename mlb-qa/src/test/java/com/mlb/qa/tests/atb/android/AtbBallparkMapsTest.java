@@ -56,17 +56,17 @@ public class AtbBallparkMapsTest extends UITest {
         SoftAssert softAssert = new SoftAssert();
         String stadiumActualName = atbMapPage.getStadiumName();
         String stadiumExpectedName = response.getStadiumName();
-        //hardcode real value
+
         if (stadiumExpectedName.equals("AT"))
         	stadiumExpectedName = "AT&T Park";
-        		
-        
-        Assert.assertEquals(stadiumActualName, stadiumExpectedName, "Incorrect Stadium Name. Expected: "+ stadiumExpectedName + "; Actual: " +stadiumActualName + " \n");
+
+
+        softAssert.assertEquals(stadiumActualName, stadiumExpectedName, "Incorrect Stadium Name. Expected: "+ stadiumExpectedName + "; Actual: " +stadiumActualName + " \n");
         List<String> levelNames = atbMapPage.getLevelList();
         for (Level level : response.getStadium().getLevels()) {
-            Assert.assertTrue(levelNames.contains(level.getName()), "Expect: " + level.getName() + ", but wasn't present \n");
+            softAssert.assertTrue(levelNames.contains(level.getName()), "Expect: " + level.getName() + ", but wasn't present \n");
         }
-        Assert.assertEquals(levelNames.size(), response.getStadium().getLevels().size(), "Incorrect number of levels");
+        softAssert.assertEquals(levelNames.size(), response.getStadium().getLevels().size(), "Incorrect number of levels");
         softAssert.assertAll();
     }
 }
