@@ -114,7 +114,9 @@ public class AtbAndroidPage extends AndroidPage {
 	@Override
 	public boolean isOpened() {
 		String pageAction = getExpectedPageAction();
+		LOGGER.info("pageAction: " + pageAction);
 		if (null != pageAction) {
+			LOGGER.info("Page Title: " + getActionTitle());
 			return pageAction.equalsIgnoreCase(getActionTitle());
 		}
 		// or return true by default
