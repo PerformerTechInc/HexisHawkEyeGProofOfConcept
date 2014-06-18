@@ -18,7 +18,9 @@ public class AtbSelectFavoriteTeamPage extends AtbAndroidPage {
 
 	public void skipFavoriteTeamSelection() {
 		if (isOpened()) {
-			click(nextLink);
+			if (isElementPresent(nextLink, 5)) {
+				click(nextLink);
+			}
 		}
 	}
 
