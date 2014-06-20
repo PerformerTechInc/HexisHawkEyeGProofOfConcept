@@ -35,7 +35,7 @@ public class AtbCheckInTest extends BaseCheckinTest {
 			throws UnsupportedEncodingException {
 		findNearestGameDateForBallpark(teamAbbrev);
 		allowCheckinForGameDate();
-		loginIfNotLogged();
+//		loginIfNotLogged();
 		openCheckinWindow();
 		checkin();
 	}
