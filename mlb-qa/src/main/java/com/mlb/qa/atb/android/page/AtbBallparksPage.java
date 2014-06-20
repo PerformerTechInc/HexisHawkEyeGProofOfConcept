@@ -26,8 +26,8 @@ public class AtbBallparksPage extends AtbAndroidPage {
 
 		scrollTo(ballParkName, ballparksListContainer);
 		pause(3);
-		
-		click(String.format("Ballpark '%s' name", ballParkName), driver.findElement(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));
+
+        click(String.format("Ballpark '%s' name", ballParkName), driver.findElement(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));
 		return new AtbBallparkPage(driver);
 	}
 }
