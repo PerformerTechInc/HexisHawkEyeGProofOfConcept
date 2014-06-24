@@ -48,7 +48,7 @@ public class AtbBallparkMapsTest extends UITest {
            atbBallparksPage.openBallparkByTeamName(teamName);
        }
         AtbMapPage atbMapPage = new AtbMapPage(driver);
-        atbMapPage.openMap();
+        atbMapPage.openMap(teamAbbrev);
         HttpResult httpResult = HttpHelper.executeGet(SERVICE_PATTERN + teamAbbrev.toLowerCase(), new HashMap<String, String>());
         Response response = new Response(httpResult.getResponseBody());
         SoftAssert softAssert = new SoftAssert();
