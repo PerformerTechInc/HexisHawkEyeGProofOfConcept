@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.browserlaunchers.Sleeper;
 import org.openqa.selenium.remote.RemoteWebElement;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -31,26 +30,26 @@ public class AndroidPage extends AbstractUIObject {
 
     public void swipeLeft() {
         logger.debug("Swipe left");
-        swipe(0.15, 0.5, 0.95, 0.5, 2);
-        Sleeper.sleepTight(2000l);
+        swipe(0.15, 0.5, 0.45, 0.5, 2);
+        pause(2);
     }
 
     public void swipeRight() {
         logger.debug("Swipe right");
-        swipe(0.95, 0.5, 0.15, 0.5, 2);
-        Sleeper.sleepTight(2000l);
+        swipe(0.95, 0.5, 0.65, 0.5, 1);
+        pause(2);
     }
 
     public void swipeUp() {
         logger.debug("Swipe Up");
-        swipe(0.5, 0.85, 0.5, 0.05, 2);
-        Sleeper.sleepTight(2000l);
+        swipe(0.5, 0.85, 0.5, 0.55, 1);
+        pause(2);
     }
 
     public void swipeDown() {
-        logger.debug("Swipe down");
-        swipe(0.5, 0.05, 0.5, 0.85, 2);
-        Sleeper.sleepTight(2000l);
+        logger.info("Swipe down");
+        swipe(0.5, 0.05, 0.5, 0.55, 2);
+        pause(5);
     }
 
     public void executeKeyEvent(int keyCode) {
