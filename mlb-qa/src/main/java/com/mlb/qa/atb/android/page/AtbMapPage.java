@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.mlb.qa.common.android.page.AndroidPage;
+import com.qaprosoft.carina.core.foundation.log.TestLogCollector;
+import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**
@@ -44,6 +46,7 @@ public class AtbMapPage extends AndroidPage {
     }
 
     public void openMap(){
+    	TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info 1");
     	if (isElementPresent(gridItem)) {
     		LOGGER.info("COORS FIELD images are present.");
     		int size = driver.findElements(gridItem.getBy()).size();
@@ -58,16 +61,18 @@ public class AtbMapPage extends AndroidPage {
     	if(!isElementPresent(mapButton, 5)) {
     		try {
     			scrollTo(MAP_LINK_NAME, stadiumLinkList);
+    			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info after scroll");
     		}
     		catch (Exception e){
     			e.printStackTrace();
     		}
     	}
     	
+    	TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info before click");    	
         if(isElementPresent(mapButton, 5)){
             click(mapButton);
         }else{
-            throw new RuntimeException("Map button not recognized!");
+            throw new RuntimeException("Map button is not recognized!");
         }
     }
 
