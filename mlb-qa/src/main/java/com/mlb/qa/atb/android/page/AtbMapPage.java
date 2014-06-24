@@ -44,7 +44,17 @@ public class AtbMapPage extends AndroidPage {
     }
 
     public void openMap(){
-    	if(!isElementPresent(mapButton, 5) && driver.findElements(gridItem.getBy()).size() != 2) {
+    	if (isElementPresent(gridItem)) {
+    		LOGGER.info("COORS FIELD images are present.");
+    		int size = driver.findElements(gridItem.getBy()).size();
+    		if (size >= 2) {
+    			LOGGER.info("Map & Directory image will be used. Grid image size is: " + size);
+    			driver.findElements(gridItem.getBy()).get(1).click();
+    			return;
+    		}    		
+    	}
+    	LOGGER.info("No COORS FIELD images discovered. Trying to scroll to '" + MAP_LINK_NAME + "' text caption");
+    	if(!isElementPresent(mapButton, 5)) {
     		try {
     			scrollTo(MAP_LINK_NAME, stadiumLinkList);
     		}
@@ -55,15 +65,9 @@ public class AtbMapPage extends AndroidPage {
     	
         if(isElementPresent(mapButton, 5)){
             click(mapButton);
-//        } else if (isElementPresent(mapButton2, 5)) {
-//        	click(mapButton2);
-        } else if (driver.findElements(gridItem.getBy()).size() == 2){
-            driver.findElements(gridItem.getBy()).get(1).click();
         }else{
-            throw new RuntimeException("Map button not present");
+            throw new RuntimeException("Map button not recognized!");
         }
-
-
     }
 
 
