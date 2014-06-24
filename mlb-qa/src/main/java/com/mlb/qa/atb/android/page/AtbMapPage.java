@@ -21,6 +21,7 @@ public class AtbMapPage extends AndroidPage {
     private ExtendedWebElement stadiumLinkList;
 
     private final String MAP_LINK_NAME = "BALLPARK MAP";
+    private final String SERVICES_NAME = "SERVICES";
 
     @FindBy(xpath = "//android.widget.TextView[contains(@text, 'BALLPARK MAP')]")
     private ExtendedWebElement mapButton;
@@ -49,16 +50,22 @@ public class AtbMapPage extends AndroidPage {
     	pause(3);
     	TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info 1");
     	if (isElementPresent(gridItem)) {
-    		LOGGER.info("COORS FIELD images are present.");
+    		LOGGER.info("Grid images are present.");
     		int size = driver.findElements(gridItem.getBy()).size();
     		LOGGER.info("Grid image size is: " + size);
+    		if (size < 2) {
+    			scrollTo(SERVICES_NAME, stadiumLinkList); 
+    			size = driver.findElements(gridItem.getBy()).size();
+    			LOGGER.info("Grid image size is after scrolling to SERVICES: " + size);
+    		}
+    		
     		if (size >= 2) {
     			LOGGER.info("Map & Directory image will be used.");
     			driver.findElements(gridItem.getBy()).get(1).click();
     			return;
     		}    		
     	}
-    	LOGGER.info("No COORS FIELD images discovered. Trying to scroll to '" + MAP_LINK_NAME + "' text caption");
+    	LOGGER.info("No Grid images discovered. Trying to scroll to '" + MAP_LINK_NAME + "' text caption");
     	if(!isElementPresent(mapButton, 5)) {
     		try {
     			scrollTo(MAP_LINK_NAME, stadiumLinkList);
