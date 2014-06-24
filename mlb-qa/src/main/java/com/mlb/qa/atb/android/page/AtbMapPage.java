@@ -54,11 +54,15 @@ public class AtbMapPage extends AndroidPage {
     		int size = driver.findElements(gridItem.getBy()).size();
     		LOGGER.info("Grid image size is: " + size);
     		if (size < 2) {
+    			swipeDown();
+    			size = driver.findElements(gridItem.getBy()).size();
+    			LOGGER.info("Grid image size is after swipeDown: " + size);
+    		}
+    		if (size < 2) {
     			scrollTo(ALL_STAR_NAME, stadiumLinkList); 
     			size = driver.findElements(gridItem.getBy()).size();
-    			LOGGER.info("Grid image size is after scrolling to SERVICES: " + size);
+    			LOGGER.info("Grid image size is after scrolling to All-Star Game Vote: " + size);
     		}
-    		
     		if (size >= 2) {
     			LOGGER.info("Map & Directory image will be used.");
     			driver.findElements(gridItem.getBy()).get(1).click();
