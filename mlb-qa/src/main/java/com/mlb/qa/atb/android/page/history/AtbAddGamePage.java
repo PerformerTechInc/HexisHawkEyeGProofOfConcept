@@ -12,25 +12,25 @@ import org.openqa.selenium.support.FindBy;
  */
 public class AtbAddGamePage extends AtbAndroidPage {
 
-    @FindBy(xpath = "//TextView[@text='Add Games']")
+    @FindBy(xpath = "//android.widget.TextView[@text='Add Games']")
     private ExtendedWebElement pageHeader;
 
     @FindBy(className = "android.widget.ListView")
     private ExtendedWebElement listView;
 
-    @FindBy(xpath = "//TextView[@text='Home Team *']")
+    @FindBy(xpath = "//android.widget.TextView[@text='Home Team *']")
     private ExtendedWebElement homeTeamButtom;
 
-    @FindBy(xpath = "//TextView[@text='Away Team']")
+    @FindBy(xpath = "//android.widget.TextView[@text='Away Team']")
     private ExtendedWebElement awayTeamButtom;
 
-    @FindBy(xpath = "//TextView[@text='Month']")
+    @FindBy(xpath = "//android.widget.TextView[@text='Month']")
     private ExtendedWebElement monthButtom;
 
-    @FindBy(xpath = "//TextView[@text='Year *']")
+    @FindBy(xpath = "//android.widget.TextView[@text='Year *']")
     private ExtendedWebElement yearButton;
 
-    @FindBy(xpath = "//TextView[@text='Day']")
+    @FindBy(xpath = "//android.widget.TextView[@text='Day']")
     private ExtendedWebElement dayButton;
 
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/GameSearchFilterFragment_searchButton")
@@ -45,9 +45,14 @@ public class AtbAddGamePage extends AtbAndroidPage {
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/AddDeleteCheckinFragment_status")
     private ExtendedWebElement addDeleteStatus;
 
-    private static String SEARCH_PAATERN = "//TextView[@text='%s']";
+    @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/menuitem_delete_checkin")
+    private ExtendedWebElement deleteButton;
+
+    private static String SEARCH_PAATERN = "//android.widget.TextView[@text='%s']";
 
     private final static String ERROR_TEXT = "You can only add games that have already been played. Please search again";
+
+    private final static String SUCCESS_TEXT = "Successfully updated";
 
     public AtbAddGamePage(WebDriver driver) {
         super(driver);
@@ -98,8 +103,17 @@ public class AtbAddGamePage extends AtbAndroidPage {
         click(addDeleteButton);
     }
 
+    public void clickDeleteChekIn() {
+        click(deleteButton);
+    }
+
     public boolean checkErrorText() {
-    return addDeleteStatus.getText().contains(ERROR_TEXT);
+        pause(5);
+        return addDeleteStatus.getText().contains(ERROR_TEXT);
+    }
+
+    public boolean checkSuccessText() {
+        return isElementWithTextPresent(addDeleteStatus,SUCCESS_TEXT,20);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class AtbLoginPage extends AtbAndroidPage {
 	}
 
 	public AtbSelectFavoriteTeamPage login(String email, String password) {
-		type(emailInput, email);
+        type(emailInput, email);
 		type(passwordInput, password);
 		click(loginButton);
 		return new AtbSelectFavoriteTeamPage(driver);

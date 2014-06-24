@@ -1,9 +1,11 @@
 package com.mlb.qa.at_bat.android.page;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,7 +21,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  */
 public class AtBatTeamPage extends AtBatAndroidPage {
 
-	public static String MENU_ITEM_LOCATOR_PATTERN = "//TextView[@text='%s']";
+	public static String MENU_ITEM_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
 	public static String BALLPARK_NAME_LOCATOR_PATTERN = "//ImageView[@name='%s']";
 
 	//Navigation Bar
@@ -67,21 +69,21 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	//Team Option Container
 	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/TeamHome_optionsContainer")
 	private ExtendedWebElement teamOptionContainer;
-	@FindBy(xpath = "//TextView[@text='Roster']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Roster']")
 	private ExtendedWebElement itemRoster;
-	@FindBy(xpath = "//TextView[@text='Notifications']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Notifications']")
 	private ExtendedWebElement itemNotifications;	
 
 	//Team More Area
-	@FindBy(xpath = "//TextView[contains(@text,'More from')]")
+	@FindBy(xpath = "//android.widget.TextView[contains(@text,'More from')]")
 	private ExtendedWebElement itemMorePartial;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/TeamHomeMoreFrag_container")
 	private ExtendedWebElement itemMoreContainer;
-	@FindBy(xpath = "//TextView[contains(@text,'on Instagram')]")
+	@FindBy(xpath = "//android.widget.TextView[contains(@text,'on Instagram')]")
 	private ExtendedWebElement itemInstagramPartial;
-	@FindBy(xpath = "//TextView[contains(@text,'on Facebook')]")
+	@FindBy(xpath = "//android.widget.TextView[contains(@text,'on Facebook')]")
 	private ExtendedWebElement itemFacebookPartial;
-	@FindBy(xpath = "//TextView[contains(@text,'on Twitter')]")
+	@FindBy(xpath = "//android.widget.TextView[contains(@text,'on Twitter')]")
 	private ExtendedWebElement itemTwitterPartial;
 
 	public AtBatTeamPage(WebDriver driver) {
@@ -90,8 +92,8 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 
 	public AtBatTeamPage selectDateItem(int i) {
 		if (isElementPresent(teamDatesAvailable, 10)) {
-			click(String.format("Day: '%s'", teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).get(i).getText()),
-					teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).get(i));
+			click(String.format("Day: '%s'", teamDatesAvailable.getElement().findElements(By.xpath("//android.widget.TextView")).get(i).getText()),
+					teamDatesAvailable.getElement().findElements(By.xpath("//android.widget.TextView")).get(i));
 		}
 
 		return new AtBatTeamPage(driver);
@@ -235,7 +237,7 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 		}
 		return false;
 	}
-	
+
 	public boolean isDateProgressBarPresent() {
 		return isElementPresent(gamePagerProgressBar, delay);
 	}
@@ -284,7 +286,7 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 		int counter = 0;
 		while (counter <= 5) {
 			if (isElementPresent(teamDatesAvailable, 10)) {
-				return teamDatesAvailable.getElement().findElements(By.xpath("//TextView")).size();				
+				return teamDatesAvailable.getElement().findElements(By.xpath("//android.widget.TextView")).size();				
 			}
 			counter = counter + 1;
 		}
@@ -293,9 +295,31 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 				"The 'Date Bar' hasn't loaded/or doesn't exist at this time and we're unable to gather the current size of it.");
 	}
 
+	public List<String> getDateItems() {
+		int counter = 0;
+		List<String> dateList = new LinkedList<String>();
+		while (counter <= 5) {
+			if (isElementPresent(teamDatesAvailable, 10)) {
+				List<WebElement> dateWebElementList = teamDatesAvailable.getElement().findElements(By.xpath("//android.widget.TextView"));
+				for (int i = 0; i < dateWebElementList.size(); i++) {
+					dateList.add(dateWebElementList.get(i).getText());
+				}
+				break;
+			}
+		}
+		return dateList;
+	}
+
+	public String getDateItem(int i) {
+		if (isElementPresent(teamDatesAvailable, 10)) {
+			return teamDatesAvailable.getElement().findElements(By.xpath("//android.widget.TextView")).get(i).getText();
+		}
+		return "";
+	}
+
 	public int getNumberOfMoreItems() {
 		if (isElementPresent(itemMoreContainer)) {
-			return itemMoreContainer.getElement().findElements(By.xpath("//TextView")).size();
+			return itemMoreContainer.getElement().findElements(By.xpath("//android.widget.TextView")).size();
 		} 
 		throw new TestRuntimeException(
 				"'More from' is not visible on this page and can't have its contents checked.");

@@ -12,7 +12,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  */
 public class AtBatWelcomePage extends AtBatAndroidPage {
 	
-	@FindBy(xpath = "//TextView[@text='No Thanks, Maybe Later']")
+	@FindBy(xpath = "//android.widget.TextView[@text='No Thanks, Maybe Later']")
 	public ExtendedWebElement maybeLaterText;
 
 	public AtBatWelcomePage(WebDriver driver) {

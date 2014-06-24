@@ -25,7 +25,7 @@ public class AtBatNewsPage extends AtBatAndroidPage {
 	private ExtendedWebElement shareWithButton;
 	@FindBy(id = "android:id/title")
 	private List<ExtendedWebElement> shareWithMessageOptions;
-	@FindBy(xpath = "//TextView[@text='See all']")
+	@FindBy(xpath = "//android.widget.TextView[@text='See all']")
 	private ExtendedWebElement seeAllButton;
 
 	public AtBatNewsPage(WebDriver driver) {

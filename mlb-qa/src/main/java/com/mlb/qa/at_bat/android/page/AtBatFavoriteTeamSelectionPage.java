@@ -16,7 +16,7 @@ public class AtBatFavoriteTeamSelectionPage extends AtBatMenu {
 	
 	@FindBy(xpath = "//Button[@text='Next']")
 	private ExtendedWebElement nextLink;
-	@FindBy(xpath = "//TextView[@text='Select a Favorite Team']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Select a Favorite Team']")
 	private ExtendedWebElement favoriteTeamTitle;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/MLBTeamListFragment_favoriteList")
 	private ExtendedWebElement favoriteTeamListContainer;

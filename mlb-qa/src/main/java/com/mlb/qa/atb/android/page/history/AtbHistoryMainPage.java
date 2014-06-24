@@ -26,11 +26,12 @@ public class AtbHistoryMainPage extends AtbAndroidPage {
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/menu_add_checkin")
     private ExtendedWebElement addButton;
 
-    @FindBy(xpath = "//TextView[@text='History']")
+    @FindBy(xpath = "//android.widget.TextView[@text='History']")
     private ExtendedWebElement pageHeader;
 
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/ballpark_score_container")
     private ExtendedWebElement historyContainer;
+
 
     public AtbHistoryMainPage(WebDriver driver) {
         super(driver);
@@ -66,10 +67,15 @@ public class AtbHistoryMainPage extends AtbAndroidPage {
         return new AtbAddGamePage(driver);
     }
 
+
     public AtbEventDetailsPage getRandomEvent() {
         List<WebElement> items = driver.findElements(historyContainer.getBy());
         Random random = new Random();
-        WebElement webElement = items.get(random.nextInt(items.size() - 1));
+        int element = random.nextInt(items.size());
+        if(element != 0){
+            element--;
+        }
+        WebElement webElement = items.get(element);
         logger.info("Click on random Ballpark: " + webElement.findElement(ballparkName.getBy()).getText());
         webElement.click();
         return new AtbEventDetailsPage(driver);

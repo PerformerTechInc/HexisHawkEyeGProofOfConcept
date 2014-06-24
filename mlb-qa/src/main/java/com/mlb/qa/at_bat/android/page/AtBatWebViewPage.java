@@ -13,7 +13,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  */
 public class AtBatWebViewPage extends AtBatAndroidPage {
 
-	public static String ACTION_BAR_NAME_LOCATOR_PATTERN = "//TextView[@text='%s']";
+	public static String ACTION_BAR_NAME_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
 
 	@FindBy(id = "android:id/action_bar_title")
 	private ExtendedWebElement actionBarTitle;

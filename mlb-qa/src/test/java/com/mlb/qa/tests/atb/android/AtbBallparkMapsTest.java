@@ -22,12 +22,17 @@ import java.util.List;
  * Check that content of Map page for each ballpark is correct<br>
  */
 public class AtbBallparkMapsTest extends UITest {
+
+	   
     private static final String PROD_SERVICE_PATTERN = "http://wap.mlb.com/ballpark/iphone/config/";
     private static final String QA_SERVICE_PATTERN = "http://wapqa.mlb.com/ballpark/iphone/config/";
 
-    @Test(dataProvider = "excel_ds", description = "Check ballpark maps")
-    @Parameters({"team_abbrev", "TUID"})
-    public void checkMapDescription(String teamAbbrev, String teamName) {
+
+
+    
+    @Test(dataProvider = "excel_ds", description = "Check ballpark maps"/*, dependsOnMethods = "login"*/)
+    @Parameters({"team_abbrev", "TUID","stadium_name"})
+    public void checkMapDescription(String teamAbbrev, String teamName, String stadiumName) {
     	String env = Configuration.get(Parameter.ENV);
     	String SERVICE_PATTERN = QA_SERVICE_PATTERN;
     	if (env.equalsIgnoreCase("prod")) {
@@ -37,14 +42,28 @@ public class AtbBallparkMapsTest extends UITest {
     	
         AtbBallparksPage atbBallparksPage = new AtbBallparksPage(driver);
         atbBallparksPage.clickOnMenuItem(AtbAndroidPage.Menu.BALLPARKS);
-        atbBallparksPage.openBallparkByTeamName(teamName);
+       try{
+           atbBallparksPage.openBallparkByTeamName(teamName);
+       } catch (Exception e){
+           atbBallparksPage.openBallparkByTeamName(teamName);
+       }
         AtbMapPage atbMapPage = new AtbMapPage(driver);
-        atbMapPage.openMap();
+        atbMapPage.openMap(teamAbbrev);
         HttpResult httpResult = HttpHelper.executeGet(SERVICE_PATTERN + teamAbbrev.toLowerCase(), new HashMap<String, String>());
         Response response = new Response(httpResult.getResponseBody());
         SoftAssert softAssert = new SoftAssert();
         String stadiumActualName = atbMapPage.getStadiumName();
-        softAssert.assertEquals(stadiumActualName,response.getStadiumName(), "Incorrect Stadium Name. Expected: "+response.getStadiumName() + "; Actual: " +stadiumActualName + " \n");
+
+        String stadiumExpectedName = null;
+
+        if (stadiumName.length()>0){
+        	stadiumExpectedName = stadiumName;}
+        else {
+            stadiumExpectedName = response.getStadiumName();
+        }
+
+
+        softAssert.assertEquals(stadiumActualName, stadiumExpectedName, "Incorrect Stadium Name. Expected: "+ stadiumExpectedName + "; Actual: " +stadiumActualName + " \n");
         List<String> levelNames = atbMapPage.getLevelList();
         for (Level level : response.getStadium().getLevels()) {
             softAssert.assertTrue(levelNames.contains(level.getName()), "Expect: " + level.getName() + ", but wasn't present \n");

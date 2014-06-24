@@ -12,9 +12,9 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  */
 public class AtBatSchedulePage extends AtBatAndroidPage {
 
-	@FindBy(xpath = "//TextView[@text='Month']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Month']")
 	private ExtendedWebElement monthLink;
-	@FindBy(xpath = "//TextView[@text='List']")
+	@FindBy(xpath = "//android.widget.TextView[@text='List']")
 	private ExtendedWebElement listLink;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/schedulemonthwrapper")
 	private ExtendedWebElement monthContainer;

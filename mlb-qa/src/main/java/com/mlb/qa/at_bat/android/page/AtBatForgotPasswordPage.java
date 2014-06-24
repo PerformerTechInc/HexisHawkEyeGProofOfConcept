@@ -16,7 +16,7 @@ public class AtBatForgotPasswordPage extends AtBatAndroidPage {
 	private ExtendedWebElement emailInput;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/sendbutton")
 	private ExtendedWebElement sendButton;
-	@FindBy(xpath = "//TextView[@text='New Password Sent!']")
+	@FindBy(xpath = "//android.widget.TextView[@text='New Password Sent!']")
 	private ExtendedWebElement newPasswordLabel;
 
 	public AtBatForgotPasswordPage(WebDriver driver) {

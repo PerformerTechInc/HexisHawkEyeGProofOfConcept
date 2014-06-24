@@ -13,11 +13,11 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  *
  */
 public class AtBatTeamRosterPage extends AtBatAndroidPage {
-	public static String ROSTER_NAME_LOCATOR_PATTERN = "//TextView[@text='%s']";
+	public static String ROSTER_NAME_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
 
-	@FindBy(xpath = "//TextView[@text='Name']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Name']")
 	private ExtendedWebElement nameLink;
-	@FindBy(xpath = "//TextView[@text='Position']")
+	@FindBy(xpath = "//android.widget.TextView[@text='Position']")
 	private ExtendedWebElement positionLink;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/RosterActivity_rosterList")
 	private ExtendedWebElement rosterList;
