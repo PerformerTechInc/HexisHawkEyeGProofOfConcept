@@ -47,16 +47,23 @@ public class AtbMapPage extends AndroidPage {
     }
     
 
-    public void openMap(){
+    public void openMap(String teamAbbrev){
     	pause(2);
     	
-    	if (isElementPresent(gridItem)) {
+    	if (isElementPresent(gridItem) && !teamAbbrev.equals("SD")) { //San Diego is the only team for which gridImage contains "express feedback" link
     		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info opened.");
     		LOGGER.info("Grid images are present.");
     		int size = driver.findElements(gridItem.getBy()).size();
     		LOGGER.info("Grid image size is: " + size);
     		if (size < 2) {
+    			swipeDown();
+    			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info after swipeDown.");
+    			size = driver.findElements(gridItem.getBy()).size();
+    			LOGGER.info("Grid image size is after swipeDown: " + size);
+    		}
+    		if (size < 2) {
     			scrollTo(ALL_STAR_NAME, stadiumLinkList); 
+    			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info after scrollTo " + ALL_STAR_NAME);
     			size = driver.findElements(gridItem.getBy()).size();
     			LOGGER.info("Grid image size is after scrolling to All-Star Game Vote: " + size);
     		}
