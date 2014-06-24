@@ -47,17 +47,12 @@ public class AtbMapPage extends AndroidPage {
     }
 
     public void openMap(){
-    	pause(3);
-    	TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info 1");
+    	pause(1);
     	if (isElementPresent(gridItem)) {
+    		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info opened.");
     		LOGGER.info("Grid images are present.");
     		int size = driver.findElements(gridItem.getBy()).size();
     		LOGGER.info("Grid image size is: " + size);
-    		if (size < 2) {
-    			swipeDown();
-    			size = driver.findElements(gridItem.getBy()).size();
-    			LOGGER.info("Grid image size is after swipeDown: " + size);
-    		}
     		if (size < 2) {
     			scrollTo(ALL_STAR_NAME, stadiumLinkList); 
     			size = driver.findElements(gridItem.getBy()).size();
@@ -65,6 +60,7 @@ public class AtbMapPage extends AndroidPage {
     		}
     		if (size >= 2) {
     			LOGGER.info("Map & Directory image will be used.");
+    			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Before Ballpark Maps activation.");
     			driver.findElements(gridItem.getBy()).get(1).click();
     			return;
     		}    		
