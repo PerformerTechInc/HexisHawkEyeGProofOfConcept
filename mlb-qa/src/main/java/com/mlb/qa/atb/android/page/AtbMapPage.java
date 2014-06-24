@@ -21,7 +21,7 @@ public class AtbMapPage extends AndroidPage {
     private ExtendedWebElement stadiumLinkList;
 
     private final String MAP_LINK_NAME = "BALLPARK MAP";
-    private final String SERVICES_NAME = "SERVICES";
+    private final String ALL_STAR_NAME = "All-Star Game Vote";
 
     @FindBy(xpath = "//android.widget.TextView[contains(@text, 'BALLPARK MAP')]")
     private ExtendedWebElement mapButton;
@@ -54,7 +54,7 @@ public class AtbMapPage extends AndroidPage {
     		int size = driver.findElements(gridItem.getBy()).size();
     		LOGGER.info("Grid image size is: " + size);
     		if (size < 2) {
-    			scrollTo(SERVICES_NAME, stadiumLinkList); 
+    			scrollTo(ALL_STAR_NAME, stadiumLinkList); 
     			size = driver.findElements(gridItem.getBy()).size();
     			LOGGER.info("Grid image size is after scrolling to SERVICES: " + size);
     		}
