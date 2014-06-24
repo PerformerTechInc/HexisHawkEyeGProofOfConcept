@@ -46,6 +46,7 @@ public class AtbMapPage extends AndroidPage {
     }
 
     public void openMap(){
+    	pause(3);
     	TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info 1");
     	if (isElementPresent(gridItem)) {
     		LOGGER.info("COORS FIELD images are present.");
