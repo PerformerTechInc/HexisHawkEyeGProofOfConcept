@@ -14,6 +14,10 @@ public class AtbBallparksPage extends AtbAndroidPage {
 	
 	@FindBy(id="com.bamnetworks.mobile.android.ballpark:id/ballparklistview")
 	private ExtendedWebElement ballparksListContainer;
+	
+    @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/statusprogressbar")
+    private ExtendedWebElement progressBar;
+    
 	public AtbBallparksPage(WebDriver driver) {
 		super(driver);
 	}
@@ -24,8 +28,13 @@ public class AtbBallparksPage extends AtbAndroidPage {
 			scrollTo(ballParkName, ballparksListContainer);
 		}*/
 
+		while(isElementPresent(progressBar, 2)) {
+			LOGGER.info("FINDING NEARBY BALLPARKS spinner exists. Waiting 5 sec.");
+			pause(5);
+		}
+		
 		scrollTo(ballParkName, ballparksListContainer);
-		pause(3);
+		pause(2);
 
         click(String.format("Ballpark '%s' name", ballParkName), driver.findElement(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));
 		return new AtbBallparkPage(driver);

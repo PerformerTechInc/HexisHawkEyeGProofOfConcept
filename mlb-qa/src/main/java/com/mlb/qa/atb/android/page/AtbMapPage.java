@@ -45,9 +45,11 @@ public class AtbMapPage extends AndroidPage {
     public AtbMapPage(WebDriver driver) {
         super(driver);
     }
+    
 
     public void openMap(){
-    	pause(1);
+    	pause(2);
+    	
     	if (isElementPresent(gridItem)) {
     		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info opened.");
     		LOGGER.info("Grid images are present.");
