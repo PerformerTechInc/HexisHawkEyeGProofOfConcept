@@ -47,9 +47,9 @@ public class AndroidPage extends AbstractUIObject {
     }
 
     public void swipeDown() {
-        logger.debug("Swipe down");
-        swipe(0.5, 0.05, 0.5, 0.35, 1);
-        pause(2);
+        logger.info("Swipe down");
+        swipe(0.5, 0.05, 0.5, 0.55, 2);
+        pause(5);
     }
 
     public void executeKeyEvent(int keyCode) {
