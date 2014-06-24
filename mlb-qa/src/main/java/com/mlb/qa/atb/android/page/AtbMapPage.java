@@ -47,8 +47,9 @@ public class AtbMapPage extends AndroidPage {
     	if (isElementPresent(gridItem)) {
     		LOGGER.info("COORS FIELD images are present.");
     		int size = driver.findElements(gridItem.getBy()).size();
+    		LOGGER.info("Grid image size is: " + size);
     		if (size >= 2) {
-    			LOGGER.info("Map & Directory image will be used. Grid image size is: " + size);
+    			LOGGER.info("Map & Directory image will be used.");
     			driver.findElements(gridItem.getBy()).get(1).click();
     			return;
     		}    		
