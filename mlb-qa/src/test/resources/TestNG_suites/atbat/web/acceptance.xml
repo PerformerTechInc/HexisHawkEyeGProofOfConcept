@@ -45,7 +45,21 @@
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
-			<class name="com.mlb.qa.tests.atbat.web.AtBatStandingsTest"/>
+			<class name="com.mlb.qa.tests.atbat.web.AtBatStandingsTest">
+			    <methods>
+			    	<exclude name="checkStandingsLegend"/>
+				</methods>
+			</class>
 		</classes>
 	</test>
+	<test verbose="1" name="AtBat - Standings Playoff Legend Check">	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.web.AtBatStandingsTest">
+			    <methods>
+			        <include name="checkStandingsLegend"/>
+			    	<exclude name="checkStandingsFavoriteTeamHighlighted"/>
+				</methods>
+			</class>
+		</classes>
+	</test>	
 </suite>
