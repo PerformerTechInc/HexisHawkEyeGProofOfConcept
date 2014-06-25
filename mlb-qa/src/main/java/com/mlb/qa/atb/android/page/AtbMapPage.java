@@ -52,7 +52,36 @@ public class AtbMapPage extends AndroidPage {
     public void openMap(String teamAbbrev){
     	pause(2);
     	
-    	if (isElementPresent(gridItem) && !teamAbbrev.equals("SD")) { //San Diego is the only team for which gridImage contains "express feedback" link
+    	if (!teamAbbrev.equals("SD")) { //San Diego is the only team for which gridImage contains "express feedback" link
+    		LOGGER.info("Looking for Grid images...");
+    		int i = 0;
+    		while (!isElementPresent(gridItem, 2) && ++i<10) {
+    			swipe(0.5, 0.85, 0.5, 0.65, 1);
+    			LOGGER.info("swiping up to find Grid images, attempt: " + i);
+    			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "swiping up to Grid images " + i);
+    		}
+    		i = 0;
+    		if (isElementPresent(gridItem)) {
+        		while (driver.findElements(gridItem.getBy()).size() < 2 && ++i<10) {
+        			swipe(0.5, 0.85, 0.5, 0.65, 1);
+        			LOGGER.info("swiping up to open all Grid images, attempt: " + i);
+        			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "swiping up to open all Grid images " + i);
+        		}
+    		} else {
+    			LOGGER.info("Grid images are not recognized!");
+    		}
+    		
+    		if (driver.findElements(gridItem.getBy()).size() >= 2) {
+    			LOGGER.info("Map & Directory Grid image will be used.");
+    			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Before Ballpark Maps & Directory activation.");
+    			driver.findElements(gridItem.getBy()).get(1).click();
+    			return;
+    		}
+    		else {
+    			LOGGER.warn("Map & Directory Grid images were not opened with size > 2!");
+    		}
+    	} 
+/*    	if (isElementPresent(gridItem) && !teamAbbrev.equals("SD")) { //San Diego is the only team for which gridImage contains "express feedback" link
     		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info opened.");
     		LOGGER.info("Grid images are present.");
     		int size = driver.findElements(gridItem.getBy()).size();
@@ -83,7 +112,7 @@ public class AtbMapPage extends AndroidPage {
     			driver.findElements(gridItem.getBy()).get(1).click();
     			return;
     		}    		
-    	}
+    	}*/
     	LOGGER.info("No Grid images discovered. Trying to scroll to '" + MAP_LINK_NAME + "' text caption");
     	if(!isElementPresent(mapButton, 5)) {
     		try {
