@@ -57,17 +57,25 @@ public class AtbMapPage extends AndroidPage {
     		LOGGER.info("Grid images are present.");
     		int size = driver.findElements(gridItem.getBy()).size();
     		LOGGER.info("Grid image size is: " + size);
+    		
+    		if (size < 2) {
+    			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info before swipeUp");
+    			swipeUp(); 
+    			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info after swipeUp");
+    			size = driver.findElements(gridItem.getBy()).size();
+    			LOGGER.info("Grid image size after after swipeUp is: " + size);
+    		}
     		if (size < 2) {
     			scrollTo(ALL_STAR_NAME, stadiumLinkList); 
     			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info after scrollTo " + ALL_STAR_NAME);
     			size = driver.findElements(gridItem.getBy()).size();
-    			LOGGER.info("Grid image size is after scrolling to All-Star Game Vote: " + size);
+    			LOGGER.info("Grid image size after scrolling to " + ALL_STAR_NAME + " is: " + size);
     		}
     		if (size < 2) {
     			scrollTo(TWINS_NAME, stadiumLinkList); 
     			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info after scrollTo " + TWINS_NAME);
     			size = driver.findElements(gridItem.getBy()).size();
-    			LOGGER.info("Grid image size is after scrolling to " + TWINS_NAME + ": " + size);
+    			LOGGER.info("Grid image size after scrolling to " + TWINS_NAME + " is: " + size);
     		}
     		if (size >= 2) {
     			LOGGER.info("Map & Directory image will be used.");

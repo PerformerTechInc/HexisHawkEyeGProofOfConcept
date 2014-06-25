@@ -42,6 +42,8 @@ public class AtbBallparksPage extends AtbAndroidPage {
 		pause(2);
 		
 		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "before ballpark click.");
+		swipeUp();
+		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "ballparks after swipeUp.");
 
         click(String.format("Ballpark '%s' name", ballParkName), driver.findElement(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));
 		return new AtbBallparkPage(driver);
