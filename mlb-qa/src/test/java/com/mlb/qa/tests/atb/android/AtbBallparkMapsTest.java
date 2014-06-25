@@ -42,11 +42,14 @@ public class AtbBallparkMapsTest extends UITest {
     	
         AtbBallparksPage atbBallparksPage = new AtbBallparksPage(driver);
         atbBallparksPage.clickOnMenuItem(AtbAndroidPage.Menu.BALLPARKS);
-       try{
-           atbBallparksPage.openBallparkByTeamName(teamName);
-       } catch (Exception e){
-           atbBallparksPage.openBallparkByTeamName(teamName);
-       }
+        atbBallparksPage.openBallparkByTeamName(teamName);
+
+/*		try {
+			atbBallparksPage.openBallparkByTeamName(teamName);
+		} catch (Exception e) {
+			atbBallparksPage.openBallparkByTeamName(teamName);
+		}
+*/
         AtbMapPage atbMapPage = new AtbMapPage(driver);
         atbMapPage.openMap(teamAbbrev);
         HttpResult httpResult = HttpHelper.executeGet(SERVICE_PATTERN + teamAbbrev.toLowerCase(), new HashMap<String, String>());

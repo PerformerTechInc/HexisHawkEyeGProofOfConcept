@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import com.mlb.qa.common.android.page.AndroidPage;
 import com.qaprosoft.carina.core.foundation.log.TestLogCollector;
@@ -52,6 +53,34 @@ public class AtbMapPage extends AndroidPage {
     public void openMap(String teamAbbrev){
     	pause(2);
     	
+		LOGGER.info("Looking for Grid images...");
+		int i = 0;
+		while ((driver.findElements(gridItem.getBy()).size() < 2) && !isElementPresent(mapButton, 1) && ++i<10) {
+			swipe(0.5, 0.85, 0.5, 0.55, 1);
+			pause(1);
+			LOGGER.info("swiping up to open Grid images or find BALLPARK maps , attempt: " + i);
+			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "swiping up to Grid images " + i);
+		}
+		
+		if(isElementPresent(mapButton, 5)){
+			LOGGER.info("BALLPARK MAPS link will be used to activate required page.");
+			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "BALLPARK MAPS link will be used to activate required page.");
+            click(mapButton);
+            return;
+		} else if (driver.findElements(gridItem.getBy()).size() >= 2) {
+			LOGGER.info("Map & Directory Grid image will be used to activate required page.");
+			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Map & Directory Grid image will be used to activate required page.");
+			driver.findElements(gridItem.getBy()).get(1).click();
+			return;
+		}
+		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Map button/link is not recognized!");
+		Assert.fail("Unable to activate BALLPARK MAPS. Map button/link is not recognized!");
+    		
+    }
+
+/*    public void openMap(String teamAbbrev){
+    	pause(2);
+    	
     	if (!teamAbbrev.equals("SD")) { //San Diego is the only team for which gridImage contains "express feedback" link
     		LOGGER.info("Looking for Grid images...");
     		int i = 0;
@@ -81,7 +110,7 @@ public class AtbMapPage extends AndroidPage {
     			LOGGER.warn("Map & Directory Grid images were not opened with size > 2!");
     		}
     	} 
-/*    	if (isElementPresent(gridItem) && !teamAbbrev.equals("SD")) { //San Diego is the only team for which gridImage contains "express feedback" link
+    	if (isElementPresent(gridItem) && !teamAbbrev.equals("SD")) { //San Diego is the only team for which gridImage contains "express feedback" link
     		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info opened.");
     		LOGGER.info("Grid images are present.");
     		int size = driver.findElements(gridItem.getBy()).size();
@@ -112,7 +141,7 @@ public class AtbMapPage extends AndroidPage {
     			driver.findElements(gridItem.getBy()).get(1).click();
     			return;
     		}    		
-    	}*/
+    	}
     	LOGGER.info("No Grid images discovered. Trying to scroll to '" + MAP_LINK_NAME + "' text caption");
     	if(!isElementPresent(mapButton, 5)) {
     		try {
@@ -130,7 +159,7 @@ public class AtbMapPage extends AndroidPage {
         }else{
             throw new RuntimeException("Map button is not recognized!");
         }
-    }
+    }*/
 
 
     public String getStadiumName(){

@@ -33,26 +33,25 @@ public class AtbBallparksPage extends AtbAndroidPage {
 		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "All Ballparks window.");
 		while(isElementPresent(progressBar, 2)) {
 			LOGGER.info("FINDING NEARBY BALLPARKS spinner exists. Waiting 5 sec.");
-			pause(5);
+			pause(3);
 		}
 		
-		pause(3);
-		
 		scrollTo(ballParkName, ballparksListContainer);
-		pause(2);
+		pause(3);
 		
 		String xpath = String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName);
 		ExtendedWebElement ballparkLink = new ExtendedWebElement(driver.findElement(By.xpath(xpath)), "ballparkLink");
 		click(ballparkLink);
 		
-		pause(5);
+/*		pause(3);
 		if (isElementPresent(ballparkLink)) {
 			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "before ballpark click.");
 			swipe(0.5, 0.85, 0.5, 0.65, 1);
+			pause(5);
 			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "ballparks after swipeUp.");
 			clickIfPresent(ballparkLink, 5);	
 		}
-		
+*/		
         //click(String.format("Ballpark '%s' name", ballParkName), driver.findElement(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));
 
 		return new AtbBallparkPage(driver);
