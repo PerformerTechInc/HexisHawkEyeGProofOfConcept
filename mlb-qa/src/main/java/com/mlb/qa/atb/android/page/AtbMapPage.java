@@ -60,7 +60,7 @@ public class AtbMapPage extends AndroidPage {
     		
     		if (size < 2) {
     			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info before swipeUp");
-    			swipeUp(); 
+    			swipe(0.5, 0.85, 0.5, 0.65, 1);
     			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Ballpark info after swipeUp");
     			size = driver.findElements(gridItem.getBy()).size();
     			LOGGER.info("Grid image size after after swipeUp is: " + size);
