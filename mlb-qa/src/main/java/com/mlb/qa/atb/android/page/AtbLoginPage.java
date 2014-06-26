@@ -27,7 +27,7 @@ public class AtbLoginPage extends AtbAndroidPage {
 		pause(3);
 		
 		int i = 0;
-		while (isElementPresent(loginButton, 5) && ++i <10) {
+		while (isElementPresent(loginButton, 5) && ++i <60) {
 			LOGGER.warn("login button still present! Slow device! waiting 10 sec...");
 			pause(10);
 		}
