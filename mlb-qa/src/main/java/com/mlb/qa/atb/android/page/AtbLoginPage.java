@@ -25,6 +25,13 @@ public class AtbLoginPage extends AtbAndroidPage {
 		type(passwordInput, password);
 		click(loginButton);
 		pause(3);
+		
+		int i = 0;
+		while (isElementPresent(loginButton, 5) && ++i <10) {
+			LOGGER.warn("login button still present! Slow device! waiting 10 sec...");
+			pause(10);
+		}
+		
 		return new AtbSelectFavoriteTeamPage(driver);
 	}
 
