@@ -20,6 +20,10 @@ public class AtbBallparksPage extends AtbAndroidPage {
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/statusprogressbar")
     private ExtendedWebElement progressBar;
     
+    @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/miniheader")
+    private ExtendedWebElement miniHeader;
+    
+    
 	public AtbBallparksPage(WebDriver driver) {
 		super(driver);
 	}
@@ -42,6 +46,14 @@ public class AtbBallparksPage extends AtbAndroidPage {
 		String xpath = String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName);
 		ExtendedWebElement ballparkLink = new ExtendedWebElement(driver.findElement(By.xpath(xpath)), "ballparkLink");
 		click(ballparkLink);
+		pause(3);
+		
+		int i = 0;
+		while (isElementPresent(miniHeader, 2) && miniHeader.getText().equals("ALL BALLPARKS") && ++i  <10) {
+			LOGGER.error("ALL BALPARKS activity is still displayed! Trying to click again. Attempt: " + i);
+			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "ALL BALPARKS activity is still displayed! Attempt: " + i);
+			click(String.format("Ballpark '%s' name", ballParkName), driver.findElement(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));
+		}
 		
 /*		pause(3);
 		if (isElementPresent(ballparkLink)) {
