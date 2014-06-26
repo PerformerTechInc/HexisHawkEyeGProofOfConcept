@@ -40,7 +40,7 @@ public class AtbBallparkMapsTest extends UITest {
     	}
     		
     	
-        AtbBallparksPage atbBallparksPage = new AtbBallparksPage(driver);
+        AtbBallparksPage atbBallparksPage = new AtbBallparksPage(getDriver());
         atbBallparksPage.clickOnMenuItem(AtbAndroidPage.Menu.BALLPARKS);
         atbBallparksPage.openBallparkByTeamName(teamName);
 
@@ -50,7 +50,7 @@ public class AtbBallparkMapsTest extends UITest {
 			atbBallparksPage.openBallparkByTeamName(teamName);
 		}
 */
-        AtbMapPage atbMapPage = new AtbMapPage(driver);
+        AtbMapPage atbMapPage = new AtbMapPage(getDriver());
         atbMapPage.openMap(teamAbbrev);
         HttpResult httpResult = HttpHelper.executeGet(SERVICE_PATTERN + teamAbbrev.toLowerCase(), new HashMap<String, String>());
         Response response = new Response(httpResult.getResponseBody());

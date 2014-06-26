@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<com.qaprosoft.carina-core.version>2.1.21</com.qaprosoft.carina-core.version>
+		<com.qaprosoft.carina-core.version>2.1.22</com.qaprosoft.carina-core.version>
 		<org.eclipse.persistence.version>2.5.1</org.eclipse.persistence.version>
 	</properties>
 
@@ -44,8 +44,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
