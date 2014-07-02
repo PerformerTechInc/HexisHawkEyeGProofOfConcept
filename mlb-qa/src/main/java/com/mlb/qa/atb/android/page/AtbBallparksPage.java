@@ -14,9 +14,14 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 public class AtbBallparksPage extends AtbAndroidPage {
 	public static String BALLPARK_NAME_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
 	
+	
+	
 	@FindBy(id="com.bamnetworks.mobile.android.ballpark:id/ballparklistview")
 	private ExtendedWebElement ballparksListContainer;
 	
+    @FindBy(xpath = "//android.widget.TextView[@text='LOADING BALLPARKS...']")
+    private ExtendedWebElement loadingMessage;
+    
     @FindBy(id = "com.bamnetworks.mobile.android.ballpark:id/statusprogressbar")
     private ExtendedWebElement progressBar;
     
@@ -36,6 +41,12 @@ public class AtbBallparksPage extends AtbAndroidPage {
 
 		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "All Ballparks window.");
 		int i=0;
+
+		while(isElementPresent(loadingMessage, 2) && ++i<10) {
+			LOGGER.info("LOADING BALLPARKS spinner exists. Waiting 5 sec.");
+			pause(5);
+		}
+		i = 0;
 		while(isElementPresent(progressBar, 2) && ++i<10) {
 			LOGGER.info("FINDING NEARBY BALLPARKS spinner exists. Waiting 5 sec.");
 			pause(5);
