@@ -170,7 +170,7 @@ public class AtbMapPage extends AndroidPage {
 
     public List<String> getLevelList(){
         click(spinner);
-        pause(9);
+        pause(10);
         List<String> levelsName = new ArrayList<String>();
         int i = 0;
         while (driver.findElements(levelList.getBy()).size() != 0 && ++i<10) {
@@ -178,6 +178,8 @@ public class AtbMapPage extends AndroidPage {
         	pause(5);
         }
         	
+        pause(5);
+        
         for (WebElement webElement : driver.findElements(levelList.getBy())){
             levelsName.add(webElement.getText());
         }
