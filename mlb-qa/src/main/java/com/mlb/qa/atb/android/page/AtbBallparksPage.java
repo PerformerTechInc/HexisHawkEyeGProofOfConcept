@@ -35,9 +35,10 @@ public class AtbBallparksPage extends AtbAndroidPage {
 		}*/
 
 		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "All Ballparks window.");
-		while(isElementPresent(progressBar, 2)) {
+		int i=0;
+		while(isElementPresent(progressBar, 2) && ++i<10) {
 			LOGGER.info("FINDING NEARBY BALLPARKS spinner exists. Waiting 5 sec.");
-			pause(3);
+			pause(5);
 		}
 		
 		scrollTo(ballParkName, ballparksListContainer);
@@ -48,8 +49,8 @@ public class AtbBallparksPage extends AtbAndroidPage {
 		click(ballparkLink);
 		pause(3);
 		
-		int i = 0;
-		while (isElementPresent(miniHeader, 2) && miniHeader.getText().equals("ALL BALLPARKS") && ++i  <10) {
+		i = 0;
+		while (isElementPresent(miniHeader, 2) && miniHeader.getText().equals("ALL BALLPARKS") && ++i<10) {
 			LOGGER.error("ALL BALPARKS activity is still displayed! Trying to click again. Attempt: " + i);
 			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "ALL BALPARKS activity is still displayed! Attempt: " + i);
 			click(String.format("Ballpark '%s' name", ballParkName), driver.findElement(By.xpath(String.format(BALLPARK_NAME_LOCATOR_PATTERN, ballParkName))));

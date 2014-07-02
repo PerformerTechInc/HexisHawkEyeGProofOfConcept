@@ -21,9 +21,9 @@ public class AtbMapPage extends AndroidPage {
     @FindBy(id="com.bamnetworks.mobile.android.ballpark:id/root")
     private ExtendedWebElement stadiumLinkList;
 
-    private final String MAP_LINK_NAME = "BALLPARK MAP";
-    private final String ALL_STAR_NAME = "All-Star Game Vote";
-    private final String TWINS_NAME = "Twins at the Plate";
+//    private final String MAP_LINK_NAME = "BALLPARK MAP";
+//    private final String ALL_STAR_NAME = "All-Star Game Vote";
+//    private final String TWINS_NAME = "Twins at the Plate";
     
 
     @FindBy(xpath = "//android.widget.TextView[contains(@text, 'BALLPARK MAP')]")
@@ -73,6 +73,7 @@ public class AtbMapPage extends AndroidPage {
 			driver.findElements(gridItem.getBy()).get(1).click();
 			return;
 		}
+		pause(5);
 		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Map button/link is not recognized!");
 		Assert.fail("Unable to activate BALLPARK MAPS. Map button/link is not recognized!");
     		
@@ -170,7 +171,13 @@ public class AtbMapPage extends AndroidPage {
     public List<String> getLevelList(){
         click(spinner);
         pause(9);
-        List<String> levelsName =new ArrayList<String>();
+        List<String> levelsName = new ArrayList<String>();
+        int i = 0;
+        while (driver.findElements(levelList.getBy()).size() != 0 && ++i<10) {
+        	LOGGER.info("Level list is not loaded yet. Waiting for 5 sec...");
+        	pause(5);
+        }
+        	
         for (WebElement webElement : driver.findElements(levelList.getBy())){
             levelsName.add(webElement.getText());
         }
