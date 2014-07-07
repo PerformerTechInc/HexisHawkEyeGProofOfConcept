@@ -21,7 +21,7 @@ public class AtBatNewsPage extends AtBatAndroidPage {
 	private ExtendedWebElement sponsorImage;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/NewsArticleFragment_body")
 	private ExtendedWebElement newsArticleBody;
-	@FindBy(xpath = "//ImageView[@desc='Share with']")
+	@FindBy(xpath = "//android.widget.ImageView[@desc='Share with']")
 	private ExtendedWebElement shareWithButton;
 	@FindBy(id = "android:id/title")
 	private List<ExtendedWebElement> shareWithMessageOptions;
@@ -58,4 +58,19 @@ public class AtBatNewsPage extends AtBatAndroidPage {
 		}
 		return shareOptions;
 	}
+
+	//Neeed to override the default swipe's here due to the elasticity of the news page swipes.
+	@Override
+    public void swipeLeft() {
+        logger.debug("Swipe left");
+        swipe(0.15, 0.5, 0.95, 0.5, 2);
+        pause(2);
+    }
+
+	@Override
+    public void swipeRight() {
+        logger.debug("Swipe right");
+        swipe(0.95, 0.5, 0.15, 0.5, 1);
+        pause(2);
+    }
 }

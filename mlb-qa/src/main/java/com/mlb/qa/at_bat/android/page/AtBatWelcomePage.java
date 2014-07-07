@@ -21,7 +21,7 @@ public class AtBatWelcomePage extends AtBatAndroidPage {
 	
 	@Override
 	public boolean isOpened() {
-		return isElementPresent(maybeLaterText, delay);
+		return isElementPresent(maybeLaterText, 10);
 	}
 	
 	public AtBatPaywallPage passToPaywallPage() {

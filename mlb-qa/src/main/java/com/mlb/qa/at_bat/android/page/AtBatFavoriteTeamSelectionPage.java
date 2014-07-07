@@ -20,6 +20,8 @@ public class AtBatFavoriteTeamSelectionPage extends AtBatMenu {
 	private ExtendedWebElement favoriteTeamTitle;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/MLBTeamListFragment_favoriteList")
 	private ExtendedWebElement favoriteTeamListContainer;
+    @FindBy(id= "android:id/home")
+    private ExtendedWebElement home;
 	
 	public AtBatFavoriteTeamSelectionPage(WebDriver driver) {
 		super(driver);
@@ -61,5 +63,17 @@ public class AtBatFavoriteTeamSelectionPage extends AtBatMenu {
 			throw new TestRuntimeException(
 					"'Next' button not found on this page");
 		}
+	}
+
+	@Override
+	public boolean isOpened() {
+		return isElementPresent(favoriteTeamTitle, 10);
+	}
+
+	public AtBatSettingsPage clickHome() {
+		if (isElementPresent(home)) {
+			click(home);
+		}
+		return new AtBatSettingsPage(driver);
 	}
 }
