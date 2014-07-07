@@ -42,12 +42,12 @@ public class AtbBallparksPage extends AtbAndroidPage {
 		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "All Ballparks window.");
 		int i=0;
 
-		while(isElementPresent(loadingMessage, 2) && ++i<10) {
+		while(isElementPresent(loadingMessage, 2) && ++i<20) {
 			LOGGER.info("LOADING BALLPARKS spinner exists. Waiting 5 sec.");
 			pause(5);
 		}
 		i = 0;
-		while(isElementPresent(progressBar, 2) && ++i<10) {
+		while(isElementPresent(progressBar, 2) && ++i<20) {
 			LOGGER.info("FINDING NEARBY BALLPARKS spinner exists. Waiting 5 sec.");
 			pause(5);
 		}
