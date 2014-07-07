@@ -172,7 +172,7 @@ public class AtBatTeamPageTest extends AtBatTest {
 						.selectTeamVideo();
 
 		AtBatPaywallPage paywallPage = new AtBatPaywallPage(driver);
-
+		//Sad Panda, we got rid of this!
 		Assert.assertTrue(paywallPage.paywallPageAvailable(), "That paywall was supposed to display, but didn't");
 	}
 

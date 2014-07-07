@@ -24,7 +24,7 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 	private AtbLookupService lookupService = new AtbLookupService();
 	private TeamPageUtils teamUtils = new TeamPageUtils();
 	
-	@Test(dataProvider = "excel_ds", priority = 1, description = "Testing Team Date Bar - 3 Games Exist", enabled = false)
+	@Test(dataProvider = "excel_ds", priority = 1, description = "Testing Team Date Bar - 3 Games Exist", enabled = true)
 	public void testTeamDateBar3GamesExist(String teamName) {
 		liteUserInitialPath();
 		
@@ -35,7 +35,7 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 		Assert.assertEquals(teamPage.getNumberOfDateItems(), 3, "The number of games supposed to be displayed is incorrect.");
 	}
 	
-	@Test(dataProvider = "excel_ds", priority = 2, description = "Testing Team Date Bar - Switching Between Days", enabled = false)
+	@Test(dataProvider = "excel_ds", priority = 2, description = "Testing Team Date Bar - Switching Between Days", enabled = true)
 	public void testTeamDatebarSwitchDays(String teamName, String teamShortCode) {
 		liteUserInitialPath();
 
@@ -98,14 +98,14 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 		Assert.assertTrue(0 == new ListComparator<String>(new TeamDateComparator()).compareContentAndOrder(backEndList, frontEndList), "Dates do not match");
 	}
 
-	@Test(dataProvider = "excel_ds", priority = 4, description = "Testing Team Correct Game Icons Appear", enabled = true)
+	@Test(dataProvider = "excel_ds", priority = 4, description = "Testing Team Correct Game Icons Appear", enabled = false)
 	public void testTeamCorrectGameButtons(String teamName, String teamShortCode) {
-		/*liteUserInitialPath();
+		liteUserInitialPath();
 		
 		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
 		.openTeamsMenu()
 			.openTeamByName(teamName)
-				.waitForDateProgressBarLoad();*/
+				.waitForDateProgressBarLoad();
 		
 		httpService.getScoreboard("05", "29");
 	}

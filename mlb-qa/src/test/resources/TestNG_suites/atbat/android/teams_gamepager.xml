@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="MLB - Android At Bat - Game Pager" annotations="JDK"> 
+	<test verbose="1" name="Android At Bat Teams Page Test - Team Game Pager Date Bar Test">
+	    <parameter name="{excel_ds_args}" value="TUID"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageGamePagerTest">
+			    <methods>
+					<include name="testTeamDateBar3GamesExist"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test verbose="2" name="Android At Bat Teams Page Test - Team Game Pager Date Bar Switching Test">
+	    <parameter name="{excel_ds_args}" value="TUID;team_shortcode"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageGamePagerTest">
+					<methods>
+					    	<include name="testTeamDatebarSwitchDays"/>
+					</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

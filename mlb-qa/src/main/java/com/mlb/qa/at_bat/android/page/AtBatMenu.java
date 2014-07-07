@@ -36,7 +36,7 @@ public class AtBatMenu extends AtBatAndroidPage {
 	// Menu
 	public enum MenuItem {
 		FAVORITE_TEAM("Favorite Team"), SCOREBOARD("Scoreboard"), 
-		NEWS("News"), TEAMS("Teams");
+		NEWS("News"), SETTINGS("Settings"), TEAMS("Teams");
 
 		private String menuTitle;
 

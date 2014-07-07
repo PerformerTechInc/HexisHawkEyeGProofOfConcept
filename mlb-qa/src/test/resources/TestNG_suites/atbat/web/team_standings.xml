@@ -17,6 +17,7 @@
 		<classes>
 			<class name="com.mlb.qa.tests.atbat.web.AtBatStandingsTest">
 			    <methods>
+			        <include name="checkStandingsLegend"/>
 			    	<exclude name="checkStandingsFavoriteTeamHighlighted"/>
 				</methods>
 			</class>

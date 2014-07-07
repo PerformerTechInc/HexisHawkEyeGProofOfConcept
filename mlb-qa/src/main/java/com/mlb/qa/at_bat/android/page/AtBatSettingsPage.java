@@ -45,6 +45,8 @@ public class AtBatSettingsPage extends AtBatAndroidPage {
 	@FindBy(id = "android:id/list")
 	private ExtendedWebElement settingsListContainer;
 	public static String SETTINGS_LOCATOR_PATTERN = "//android.widget.TextView[@text='%s']";
+    @FindBy(id= "android:id/home")
+    private ExtendedWebElement home;
 
 	public AtBatSettingsPage(WebDriver driver) {
 		super(driver);
@@ -59,13 +61,20 @@ public class AtBatSettingsPage extends AtBatAndroidPage {
 		return new AtBatLoginAlert(driver);
 	}
 
-	public AtBatAndroidPage tapMenuOption(String menuOption) {
+	public AtBatSettingsPage tapMenuOption(String menuOption) {
 		//TODO:  Test that this works.
 		scrollTo(menuOption, settingsListContainer);
 		click(String.format("Settings Option: '%s'", menuOption),
 				driver.findElement(By.xpath(String.format(
 						SETTINGS_LOCATOR_PATTERN, menuOption))));
 
+		return new AtBatSettingsPage(driver);
+	}
+
+	public AtBatAndroidPage clickHome() {
+		if (isElementPresent(home)) {
+			click(home);
+		}
 		return new AtBatAndroidPage(driver);
 	}
 }
