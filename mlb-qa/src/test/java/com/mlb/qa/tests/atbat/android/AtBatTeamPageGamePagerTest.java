@@ -77,7 +77,7 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 		softAssert.assertAll();
 	}
 
-	@Test(dataProvider = "excel_ds", priority = 3, description = "Testing Team Date Bar - Valid Dates Are Loaded", enabled = false)
+	@Test(dataProvider = "excel_ds", priority = 3, description = "Testing Team Date Bar - Valid Dates Are Loaded", enabled = true)
 	public void testTeamDatebarValidDatesLoaded(String teamName, String teamShortCode) {
 		liteUserInitialPath();
 

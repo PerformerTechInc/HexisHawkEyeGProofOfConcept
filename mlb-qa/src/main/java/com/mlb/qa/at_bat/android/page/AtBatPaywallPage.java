@@ -1,5 +1,6 @@
 package com.mlb.qa.at_bat.android.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,16 +28,23 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 	private ExtendedWebElement maybeLaterLink;
 	@FindBy(xpath = "//android.widget.TextView[@text='No Thanks, Maybe Later']")
 	private ExtendedWebElement maybeLaterText;
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallSponsorAppFragment_redeemSponsorButton")
+	private ExtendedWebElement sponsorRedeemButton;
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallSponsorAppFragment_continueContainer")
+	private ExtendedWebElement paywallContinueContainer;
 
 	public AtBatPaywallPage(WebDriver driver) {
 		super(driver);
 	}
 
 	public AtBatFavoriteTeamSelectionPage continueWithLiteVersion() {
-		logger.debug("Skip 'buy premium version' step if displayed");
+		logger.info("Skip 'buy premium version' step if displayed");
 		// present just for 1st run
 		if (isElementPresent(maybeLaterLink, 10)) {
 			click(maybeLaterLink);
+		} else if (isElementPresent(paywallContinueContainer, 10)) {
+			click("No Thanks, Maybe Later! - Container",
+					paywallContinueContainer.getElement().findElement(By.className("android.widget.TextView")));
 		} else if (isElementPresent(maybeLaterText, 10)) {
 			click(maybeLaterText);
 		} else {
@@ -58,6 +66,10 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 		}
 
 		return new AtBatLoginPage(driver);
+	}
+
+	public void selectRedeemOption() {
+		click(sponsorRedeemButton);
 	}
 
 	public boolean storeAvailable() {
