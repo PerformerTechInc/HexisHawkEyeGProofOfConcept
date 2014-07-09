@@ -14,7 +14,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
  */
 public class AtBatFavoriteTeamSelectionPage extends AtBatMenu {
 	
-	@FindBy(xpath = "//Button[@text='Next']")
+	@FindBy(xpath = "//android.widget.Button[@text='Next']")
 	private ExtendedWebElement nextLink;
 	@FindBy(xpath = "//android.widget.TextView[@text='Select a Favorite Team']")
 	private ExtendedWebElement favoriteTeamTitle;

@@ -13,7 +13,9 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 public class AtBatWelcomePage extends AtBatAndroidPage {
 	
 	@FindBy(xpath = "//android.widget.TextView[@text='No Thanks, Maybe Later']")
-	public ExtendedWebElement maybeLaterText;
+	private ExtendedWebElement maybeLaterText;
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallSponsorAppFragment_continueWithAtBatLite")
+	private ExtendedWebElement maybeLaterId;
 
 	public AtBatWelcomePage(WebDriver driver) {
 		super(driver);
@@ -21,7 +23,12 @@ public class AtBatWelcomePage extends AtBatAndroidPage {
 	
 	@Override
 	public boolean isOpened() {
-		return isElementPresent(maybeLaterText, 10);
+		if (isElementPresent(maybeLaterId, 10)) {
+			return true;
+		} else if (isElementPresent(maybeLaterText, 10)) {
+			return true;
+		}
+		return false;
 	}
 	
 	public AtBatPaywallPage passToPaywallPage() {
