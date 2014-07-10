@@ -18,8 +18,6 @@ public class AtBatMenu extends AtBatAndroidPage {
 	private ExtendedWebElement openMenuButton;
 	@FindBy(name = "Navigate up")
 	private ExtendedWebElement openMenuButtonText;
-	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/drawer_navdrawer_frame")
-	private ExtendedWebElement menuLayout;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/drawer_list_view")
 	private ExtendedWebElement menuListContainer;
 	
@@ -66,7 +64,7 @@ public class AtBatMenu extends AtBatAndroidPage {
 	 * @param item is the menu item being searched for.
 	 */
 	public void clickOnMenuItem(MenuItem item) {
-		if (!isElementPresent(menuLayout, delay)) {
+		if (!isElementPresent(menuListContainer, delay)) {
 			openMenu();
 		}
 		scrollTo(item.getMenuTitle(), menuListContainer);
@@ -80,7 +78,7 @@ public class AtBatMenu extends AtBatAndroidPage {
 	 * @param favoriteTeam the name of the Team that we wish to select.
 	 */
 	public void clickOnMenuItem(MenuItem item, String favoriteTeam) {
-		if (!isElementPresent(menuLayout, delay)) {
+		if (!isElementPresent(menuListContainer, delay)) {
 			openMenu();
 		}
 		scrollTo(favoriteTeam, menuListContainer);
