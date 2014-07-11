@@ -18,14 +18,19 @@ public class HomebaseTestSuite extends UITest {
 	public static String loginPassword = "B@tter1Up!";
 	//************ LOGIN OBJECTS ************//	
 
+	//************ BETA/PROD OBJECTS ************//	
+	public static String valueBeta = "beta";
+	public static String valueProd = "prod";
+	//************ BETA/PROD OBJECTS ************//	
+
 	//************ MINOR LEAGUE OBJECTS ************//	
 	public static String minorLeagueSiteSelection = "milb";
-	public static String valueMinorTagToolPlayer = "heller";
+	public static String valueMinorTagToolPlayer = "smith";
 	//************ MINOR LEAGUE OBJECTS ************//	
 
 	//************ MAJOR LEAGUE OBJECTS ************//	
 	public static String majorLeagueSiteSelection = "mlb";
-	public static String valueMajorTagToolPlayer = "jeter";
+	public static String valueMajorTagToolPlayer = "smith";
 	//************ MAJOR LEAGUE OBJECTS ************//	
 
 	//************ SEARCH OBJECTS ************//	
@@ -254,6 +259,24 @@ public class HomebaseTestSuite extends UITest {
 	public static String valueFieldOptionValue = "Value";
 	//************ FIELD OPTION OBJECTS ************//	
 	
+	//************ GAME PREVIEW OBJECTS ************//	
+	public static String valueGamePreviewInternalName = "Internal Name";
+	public static String valueGamePreviewHeadline = "Headline";
+	public static String valueGamePreviewHomeHeadline = "Home Headline";
+	public static String valueGamePreviewAwayHeadline = "Away Headline";
+	public static String valueGamePreviewSubhead = "Subhead";
+	public static String valueGamePreviewAltHeadline = "Alt Headline";
+	public static String valueGamePreviewByline = "Byline";
+	public static String valueGamePreviewBlurb = "Blurb";
+	//************ GAME PREVIEW OBJECTS ************//	
+
+	//************ GAME WRAP OBJECTS ************//	
+	public static String valueGameWrapInternalName = "Internal Name";
+	public static String valueGameWrapHeadline = "Headline";
+	public static String valueGameWrapBlurb = "Blurb";
+
+	//************ GAME WRAP OBJECTS ************//	
+
 	//************ HIGHLIGHT OBJECTS ************//	
 	public static String valueHighlightInternalName = "Internal Name";
 	public static String valueHighlightYear = "1982";
@@ -309,6 +332,16 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 
 	@Test
+	public void homeBaseTestMLB000DepthChart() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
+	{
+		HB_HomePage homePage = new HB_HomePage(driver);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.testDepthCharts(mainURL);
+		return;
+	}	
+
+	@Test
 	public void homeBaseTestMLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -334,7 +367,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Article");
-		homePage.fillAndSaveNewArticle(mainURL,"beta",valueArticleInternalName,valueArticleHeadline,valueArticleSubhead,valueArticleAltHeadline,valueArticleByline,valueArticleSeoHeadline,valueArticlePoll,valueMajorTagToolPlayer,valueArticleBlurb, valueArticleNotes,valueArticleTagline);
+		homePage.fillAndSaveNewArticle(mainURL,valueBeta,valueArticleInternalName,valueArticleHeadline,valueArticleSubhead,valueArticleAltHeadline,valueArticleByline,valueArticleSeoHeadline,valueArticlePoll,valueMajorTagToolPlayer,valueArticleBlurb, valueArticleNotes,valueArticleTagline);
 		return;
 	}	
 
@@ -345,7 +378,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Article View");
-		homePage.fillAndSaveNewArticleView(mainURL,"beta", valueArticleViewInternalName,valueArticleViewName,valueArticleViewViewKey, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewArticleView(mainURL,valueBeta, valueArticleViewInternalName,valueArticleViewName,valueArticleViewViewKey, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -356,7 +389,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Audio Schedule");
-		homePage.fillAndSaveNewAudioSchedule(mainURL,"beta", valueAudioScheduleInternalName,valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewAudioSchedule(mainURL,valueBeta, valueAudioScheduleInternalName,valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -367,7 +400,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Ballpark");
-		homePage.fillAndSaveNewBallpark(mainURL,"beta", valueBallparkInternalName, valueBallparkID, valueBallparkName, valueBallparkAddress1, valueBallparkAddress2, valueBallparkLocation, valueBallparkMapType, valueBallparkMapVersion, valueBallparkFacebookID, valueBallparkFoursquareID, valueBallparkWebsiteURL, valueBallparkThumbnailURL, valueBallparkThumbnailCaption, valueBallparkTwitterHashTags, valueBallparkAboutURL, valueBallparkScheduleURL, valueBallparkSmallThumbnailURL, valueBallparkStartYear, valueBallparkEndYear, valueBallparkUpgradeURL, valueBallparkAbout, valueBallparkEventsText, valueBallparkSponsorImageText, valueBallparkSponsorImageURL, valueBallparkSponsorImage2Text, valueBallparkSponsorImage2URL, valueBallparkTicketsText, valueBallparkTicketsURL, valueBallparkTicketsErrorText, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewBallpark(mainURL,valueBeta, valueBallparkInternalName, valueBallparkID, valueBallparkName, valueBallparkAddress1, valueBallparkAddress2, valueBallparkLocation, valueBallparkMapType, valueBallparkMapVersion, valueBallparkFacebookID, valueBallparkFoursquareID, valueBallparkWebsiteURL, valueBallparkThumbnailURL, valueBallparkThumbnailCaption, valueBallparkTwitterHashTags, valueBallparkAboutURL, valueBallparkScheduleURL, valueBallparkSmallThumbnailURL, valueBallparkStartYear, valueBallparkEndYear, valueBallparkUpgradeURL, valueBallparkAbout, valueBallparkEventsText, valueBallparkSponsorImageText, valueBallparkSponsorImageURL, valueBallparkSponsorImage2Text, valueBallparkSponsorImage2URL, valueBallparkTicketsText, valueBallparkTicketsURL, valueBallparkTicketsErrorText, valueMajorTagToolPlayer);
  		return;
 	}	
 
@@ -378,7 +411,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Ballpark Menu");
-		homePage.fillAndSaveNewBallparkMenu(mainURL,"beta", valueBallparkMenuInternalName, valueBallparkMenuDisplayName, valueBallparkMenuDisplayImageURL, valueBallparkMenuLinkURL, valueBallparkMenuLinkName, valueBallparkMenuBundleKey, valueBallparkMenuBundleName, valueBallparkMenuBundleURL, valueBallparkMenuSharingURL, valueBallparkMenuSharingText, valueBallparkMenuErrorText, valueBallparkMenuSourceURL, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewBallparkMenu(mainURL,valueBeta, valueBallparkMenuInternalName, valueBallparkMenuDisplayName, valueBallparkMenuDisplayImageURL, valueBallparkMenuLinkURL, valueBallparkMenuLinkName, valueBallparkMenuBundleKey, valueBallparkMenuBundleName, valueBallparkMenuBundleURL, valueBallparkMenuSharingURL, valueBallparkMenuSharingText, valueBallparkMenuErrorText, valueBallparkMenuSourceURL, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -389,7 +422,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Ballpark Music");
-		homePage.fillAndSaveNewBallparkMusic(mainURL,"beta", valueBallparkMusicInternalName, valueBallparkMusicTitle, valueBallparkMusicArtist, valueBallparkMusicDescription, valueBallparkMusicThumbnail, valueBallparkMusicRank, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewBallparkMusic(mainURL,valueBeta, valueBallparkMusicInternalName, valueBallparkMusicTitle, valueBallparkMusicArtist, valueBallparkMusicDescription, valueBallparkMusicThumbnail, valueBallparkMusicRank, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -400,7 +433,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Ballpark Submenu");
-		homePage.fillAndSaveNewBallparkSubmenu(mainURL,"beta", valueBallparkMenuInternalName, valueBallparkMenuDisplayName, valueBallparkMenuDisplayImageURL, valueBallparkMenuLinkURL, valueBallparkMenuLinkName, valueBallparkMenuBundleKey, valueBallparkMenuBundleName, valueBallparkMenuBundleURL, valueBallparkMenuSharingURL, valueBallparkMenuSharingText, valueBallparkMenuErrorText, valueBallparkMenuSourceURL, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewBallparkSubmenu(mainURL,valueBeta, valueBallparkMenuInternalName, valueBallparkMenuDisplayName, valueBallparkMenuDisplayImageURL, valueBallparkMenuLinkURL, valueBallparkMenuLinkName, valueBallparkMenuBundleKey, valueBallparkMenuBundleName, valueBallparkMenuBundleURL, valueBallparkMenuSharingURL, valueBallparkMenuSharingText, valueBallparkMenuErrorText, valueBallparkMenuSourceURL, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -411,7 +444,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Blog Content");
-		homePage.fillAndSaveNewBlogContent(mainURL,"beta",  valueBlogContentInternalName, valueBlogContentURL, valueBlogContentURLText, valueBlogContentHeadline, valueBlogContentAltHeadline, valueBlogContentSEOHeadline, valueBlogContentBlurb, valueBlogContentByline, valueBlogContentCaption, valueBlogContentMediaCredit, valueBlogContentBody, valueBlogContentSummary, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewBlogContent(mainURL,valueBeta,  valueBlogContentInternalName, valueBlogContentURL, valueBlogContentURLText, valueBlogContentHeadline, valueBlogContentAltHeadline, valueBlogContentSEOHeadline, valueBlogContentBlurb, valueBlogContentByline, valueBlogContentCaption, valueBlogContentMediaCredit, valueBlogContentBody, valueBlogContentSummary, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -422,7 +455,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Chron");
-		homePage.fillAndSaveNewChron(mainURL,"beta", valueChronInternalName, valueChronDateNotation, valueChronYear, valueChronDisplayYear, valueChronTitle, valueChronCMSDescription, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewChron(mainURL,valueBeta, valueChronInternalName, valueChronDateNotation, valueChronYear, valueChronDisplayYear, valueChronTitle, valueChronCMSDescription, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -433,7 +466,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Closed Caption");
-		homePage.fillAndSaveNewClosedCaption(mainURL,"beta", valueClosedCaptionInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewClosedCaption(mainURL,valueBeta, valueClosedCaptionInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -444,7 +477,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Club Promo");
-		homePage.fillAndSaveNewClubPromo(mainURL,"beta", valueClubPromoInternalName, valueClubPromoURLExtension, valueClubPromoEventTitle, valueClubPromoEventSubtitle, valueClubPromoPromoText, valueClubPromoMobileTicketsText, valueClubPromoMobileTicketsURL, valueClubPromoTicketsURL, valueClubPromoTextCampaignPromo, valueClubPromoSocialKeyword, valueClubPromoHighlightsTitle, valueClubPromoLocationAddress, valueClubPromoEventMapTitle, valueClubPromoScheduleTitle, valueClubPromoFAQTitle, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewClubPromo(mainURL,valueBeta, valueClubPromoInternalName, valueClubPromoURLExtension, valueClubPromoEventTitle, valueClubPromoEventSubtitle, valueClubPromoPromoText, valueClubPromoMobileTicketsText, valueClubPromoMobileTicketsURL, valueClubPromoTicketsURL, valueClubPromoTextCampaignPromo, valueClubPromoSocialKeyword, valueClubPromoHighlightsTitle, valueClubPromoLocationAddress, valueClubPromoEventMapTitle, valueClubPromoScheduleTitle, valueClubPromoFAQTitle, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -455,7 +488,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Contributor");
-		homePage.fillAndSaveNewContributor(mainURL,"beta", valueContributorInternalName, valueContributorFirstName, valueContributorLastName, valueContributorTitle, valueContributorEmail, valueContributorTwitterHandle, valueContributorBlog, valueContributorBlogTitle, valueContributorRSSFeed, valueContributorFacebookID, valueContributorActiveTab, valueContributorHideArticles, valueContributorVideoKeywordType, valueContributorVideoKeywordValue, valueContributorVideoLandingPage, valueContributorBlurb, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewContributor(mainURL,valueBeta, valueContributorInternalName, valueContributorFirstName, valueContributorLastName, valueContributorTitle, valueContributorEmail, valueContributorTwitterHandle, valueContributorBlog, valueContributorBlogTitle, valueContributorRSSFeed, valueContributorFacebookID, valueContributorActiveTab, valueContributorHideArticles, valueContributorVideoKeywordType, valueContributorVideoKeywordValue, valueContributorVideoLandingPage, valueContributorBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -466,7 +499,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Daily Email");
-		homePage.fillAndSaveNewDailyEmail(mainURL,"beta", valueDailyEmailInternalName, valueDailyEmailSubject, valueDailyEmailSubjectB, valueDailyEmailTriviaQuestion, valueDailyEmailTriviaAnswer, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewDailyEmail(mainURL,valueBeta, valueDailyEmailInternalName, valueDailyEmailSubject, valueDailyEmailSubjectB, valueDailyEmailTriviaQuestion, valueDailyEmailTriviaAnswer, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -477,7 +510,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Device Page");
-		homePage.fillAndSaveNewDevicePage(mainURL,"beta", valueDevicePageInternalName, valueDevicePageHeadline, valueDevicePageBlurb, valueDevicePageYearlyPurchaseFlow, valueDevicePageMonthlyPurchaseFlow, valueDevicePageUpgradeLink, valueDevicePageActivationLink, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewDevicePage(mainURL,valueBeta, valueDevicePageInternalName, valueDevicePageHeadline, valueDevicePageBlurb, valueDevicePageYearlyPurchaseFlow, valueDevicePageMonthlyPurchaseFlow, valueDevicePageUpgradeLink, valueDevicePageActivationLink, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -488,7 +521,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Digital Asset");
-		homePage.fillAndSaveNewDigitalAsset(mainURL,"beta", valueDigitalAssetInternalName,valueDigitalAssetHeadline, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewDigitalAsset(mainURL,valueBeta, valueDigitalAssetInternalName,valueDigitalAssetHeadline, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -499,7 +532,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Drawer");
-		homePage.fillAndSaveNewDrawer(mainURL,"beta", valueDrawerInternalName, valueDrawerKicker, valueDrawerCustomContent, valueDrawerBlurb, valueDrawerURL, valueDrawerURLText, valueDrawerNumberOfItems, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewDrawer(mainURL,valueBeta, valueDrawerInternalName, valueDrawerKicker, valueDrawerCustomContent, valueDrawerBlurb, valueDrawerURL, valueDrawerURLText, valueDrawerNumberOfItems, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -510,7 +543,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Event");
-		homePage.fillAndSaveNewEvent(mainURL,"beta", valueEventInternalName, valueEventProgramID, valueEventProgram, valueEventLocation, valueEventEventTitle, valueEventDescription, valueEventURL, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewEvent(mainURL,valueBeta, valueEventInternalName, valueEventProgramID, valueEventProgram, valueEventLocation, valueEventEventTitle, valueEventDescription, valueEventURL, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -521,7 +554,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Feature");
-		homePage.fillAndSaveNewFeature(mainURL,"beta", valueFeatureInternalName, valueFeatureHeadline, valueFeatureURL, valueFeatureURLText, valueFeatureMobileURL, valueFeatureBlurb, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewFeature(mainURL,valueBeta, valueFeatureInternalName, valueFeatureHeadline, valueFeatureURL, valueFeatureURLText, valueFeatureMobileURL, valueFeatureBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -532,7 +565,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Features");
-		homePage.fillAndSaveNewFeatures(mainURL,"beta", valueFeaturesInternalName, valueFeaturesNumberOfItems, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewFeatures(mainURL,valueBeta, valueFeaturesInternalName, valueFeaturesNumberOfItems, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -543,7 +576,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Field Option");
-		homePage.fillAndSaveNewFieldOption(mainURL,"beta", valueFieldOptionInternalName,valueFieldOptionDisplayName,valueFieldOptionValue,valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewFieldOption(mainURL,valueBeta, valueFieldOptionInternalName,valueFieldOptionDisplayName,valueFieldOptionValue,valueMinorTagToolPlayer);
 		return;
 	}	
 
@@ -554,7 +587,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Game Preview");
-		homePage.fillAndSaveNewGamePreview(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewGamePreview(mainURL,valueBeta, valueGamePreviewInternalName, valueGamePreviewHeadline, valueGamePreviewHomeHeadline, valueGamePreviewAwayHeadline, valueGamePreviewSubhead, valueGamePreviewAltHeadline, valueGamePreviewByline, valueGamePreviewBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -565,7 +598,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Game Wrap");
-		homePage.fillAndSaveNewGameWrap(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewGameWrap(mainURL,valueBeta, valueGameWrapInternalName, valueGameWrapHeadline, valueGameWrapBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -576,7 +609,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Hightlight");
-		homePage.fillAndSaveNewHighlight(mainURL,"beta", valueHighlightInternalName,valueHighlightYear,valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewHighlight(mainURL,valueBeta, valueHighlightInternalName,valueHighlightYear,valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -587,7 +620,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Homepage Tab");
-		homePage.fillAndSaveNewHomepageTab(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewHomepageTab(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -598,7 +631,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("HP Config");
-		homePage.fillAndSaveNewHPConfig(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewHPConfig(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -609,7 +642,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Instagram Photo");
-		homePage.fillAndSaveNewInstagramPhoto(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewInstagramPhoto(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -620,7 +653,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Kiosk");
-		homePage.fillAndSaveNewKiosk(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewKiosk(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -631,7 +664,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Link");
-		homePage.fillAndSaveNewLink(mainURL,"beta", valueLinkInternalName,valueLinkLinkText,valueLinkLinkURL, valueLinkWidth,valueLinkHeight, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewLink(mainURL,valueBeta, valueLinkInternalName,valueLinkLinkText,valueLinkLinkURL, valueLinkWidth,valueLinkHeight, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -642,7 +675,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("List");
-		homePage.fillAndSaveNewList(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewList(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -653,7 +686,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Mediawall");
-		homePage.fillAndSaveNewMediawall(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMediawall(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -664,7 +697,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Mediawall Overlay");
-		homePage.fillAndSaveNewMediawallOverlay(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMediawallOverlay(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -675,7 +708,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Mediawall Panel");
-		homePage.fillAndSaveNewMediaWallPanel(mainURL,"beta", valueMediawallInternalName,valueMediawallHeadline,valueMediawallURLText, valueMediawallURL,valueMediawallMobileURL,valueMediawallSponsorURL,valueMediawallBlurb,valueMediawallNotes, valueMediawallDisplayTimeInSeconds, valueMediawallVideoAlias, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMediaWallPanel(mainURL,valueBeta, valueMediawallInternalName,valueMediawallHeadline,valueMediawallURLText, valueMediawallURL,valueMediawallMobileURL,valueMediawallSponsorURL,valueMediawallBlurb,valueMediawallNotes, valueMediawallDisplayTimeInSeconds, valueMediawallVideoAlias, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -686,7 +719,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("MLBTV Ad Module");
-		homePage.fillAndSaveNewMLBTVAdModule(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMLBTVAdModule(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -697,7 +730,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Mound Ball");
-		homePage.fillAndSaveNewMoundBall(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMoundBall(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -708,7 +741,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Music Link");
-		homePage.fillAndSaveNewMusicLink(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMusicLink(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -719,7 +752,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Note");
-		homePage.fillAndSaveNewNote(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewNote(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -730,7 +763,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Notebook");
-		homePage.fillAndSaveNewNotebook(mainURL,"beta", valueNotebookInternalName,valueNotebookHeadline,valueNotebookByline,valueNotebookSource, valueNotebookTagline, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewNotebook(mainURL,valueBeta, valueNotebookInternalName,valueNotebookHeadline,valueNotebookByline,valueNotebookSource, valueNotebookTagline, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -741,7 +774,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Page");
-		homePage.fillAndSaveNewPage(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPage(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -752,7 +785,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Photo Gallery");
-		homePage.fillAndSaveNewPhotoGallery(mainURL,"beta", valuePhotoGalleryInternalName,valuePhotoGalleryTitle,valuePhotoGallerySpanishTitle,valuePhotoGalleryBlurb,valuePhotoGallerySpanishBlurb, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPhotoGallery(mainURL,valueBeta, valuePhotoGalleryInternalName,valuePhotoGalleryTitle,valuePhotoGallerySpanishTitle,valuePhotoGalleryBlurb,valuePhotoGallerySpanishBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 	
@@ -763,7 +796,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Photo Gallery Alias");
-		homePage.fillAndSaveNewPhotoGalleryAlias(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPhotoGalleryAlias(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -774,7 +807,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Photo Gallery List");
-		homePage.fillAndSaveNewPhotoGalleryList(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPhotoGalleryList(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -785,7 +818,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Prospect");
-		homePage.fillAndSaveNewProspect(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewProspect(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -796,7 +829,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Podcast Detail");
-		homePage.fillAndSaveNewPodcastDetail(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPodcastDetail(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -807,7 +840,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Podcast Episode");
-		homePage.fillAndSaveNewPodcastEpisode(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPodcastEpisode(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -818,7 +851,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Press Release");
-		homePage.fillAndSaveNewPressRelease(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPressRelease(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -829,7 +862,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Pressbox Asset");
-		homePage.fillAndSaveNewPressboxAsset(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPressboxAsset(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -840,7 +873,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Pressbox Asset List");
-		homePage.fillAndSaveNewPressboxAssetList(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPressboxAssetList(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -851,7 +884,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Preview Alias");
-		homePage.fillAndSaveNewPreviewAlias(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPreviewAlias(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -862,7 +895,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Program Show");
-		homePage.fillAndSaveNewProgramShow(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewProgramShow(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -873,7 +906,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Promo Application");
-		homePage.fillAndSaveNewPromoApplication(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPromoApplication(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -884,7 +917,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Quote Sheet");
-		homePage.fillAndSaveNewQuoteSheet(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewQuoteSheet(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -895,7 +928,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Raffle");
-		homePage.fillAndSaveNewRaffle(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewRaffle(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -906,7 +939,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Schedule");
-		homePage.fillAndSaveNewSchedule(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewSchedule(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -917,7 +950,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Scrapbook");
-		homePage.fillAndSaveNewScrapbook(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewScrapbook(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -928,7 +961,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Scrapbook Page");
-		homePage.fillAndSaveNewScrapbookPage(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewScrapbookPage(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -939,7 +972,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Section");
-		homePage.fillAndSaveNewSection(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewSection(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -950,7 +983,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Series Configuration");
-		homePage.fillAndSaveNewSeriesConfiguration(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewSeriesConfiguration(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -961,7 +994,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Short Content");
-		homePage.fillAndSaveNewShortContent(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewShortContent(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -972,7 +1005,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Ticket Page");
-		homePage.fillAndSaveNewTicketPage(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewTicketPage(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -983,7 +1016,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Trending Module");
-		homePage.fillAndSaveNewTrendingModule(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewTrendingModule(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -994,7 +1027,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Tweet");
-		homePage.fillAndSaveNewTweet(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewTweet(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -1005,7 +1038,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Video Topic Page");
-		homePage.fillAndSaveNewVideoTopicPage(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewVideoTopicPage(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -1016,7 +1049,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Twitter Handle");
-		homePage.fillAndSaveNewTwitterHandle(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewTwitterHandle(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -1027,7 +1060,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Video Clip List");
-		homePage.fillAndSaveNewVideoClipList(mainURL,"beta", valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewVideoClipList(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -1078,7 +1111,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("Article");
-		homePage.fillAndSaveNewArticle(mainURL,"beta",valueArticleInternalName,valueArticleHeadline,valueArticleSubhead,valueArticleAltHeadline,valueArticleByline,valueArticleSeoHeadline,valueArticlePoll,valueMinorTagToolPlayer,valueArticleBlurb, valueArticleNotes,valueArticleTagline);
+		homePage.fillAndSaveNewArticle(mainURL,valueBeta,valueArticleInternalName,valueArticleHeadline,valueArticleSubhead,valueArticleAltHeadline,valueArticleByline,valueArticleSeoHeadline,valueArticlePoll,valueMinorTagToolPlayer,valueArticleBlurb, valueArticleNotes,valueArticleTagline);
 		return;
 	}	
 
@@ -1089,7 +1122,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("Digital Asset");
-		homePage.fillAndSaveNewDigitalAsset(mainURL,"beta", valueDigitalAssetInternalName,valueDigitalAssetHeadline, valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewDigitalAsset(mainURL,valueBeta, valueDigitalAssetInternalName,valueDigitalAssetHeadline, valueMinorTagToolPlayer);
 		return;
 	}	
 
@@ -1100,7 +1133,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("Field Option");
-		homePage.fillAndSaveNewFieldOption(mainURL,"beta", valueFieldOptionInternalName,valueFieldOptionDisplayName,valueFieldOptionValue,valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewFieldOption(mainURL,valueBeta, valueFieldOptionInternalName,valueFieldOptionDisplayName,valueFieldOptionValue,valueMinorTagToolPlayer);
 		return;
 	}	
 
@@ -1111,7 +1144,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("Hightlight");
-		homePage.fillAndSaveNewHighlight(mainURL,"beta", valueHighlightInternalName,valueHighlightYear,valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewHighlight(mainURL,valueBeta, valueHighlightInternalName,valueHighlightYear,valueMinorTagToolPlayer);
 		return;
 	}	
 
@@ -1122,7 +1155,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("HTML Page");
-		homePage.fillAndSaveNewHTMLPage(mainURL,"beta", valueHTMLPageInternalName,valueHTMLPageHeadline,valueHTMLPageBlurb, valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewHTMLPage(mainURL,valueBeta, valueHTMLPageInternalName,valueHTMLPageHeadline,valueHTMLPageBlurb, valueMinorTagToolPlayer);
 		return;
 	}	
 
@@ -1133,7 +1166,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("Link");
-		homePage.fillAndSaveNewLink(mainURL,"beta", valueLinkInternalName,valueLinkLinkText,valueLinkLinkURL, valueLinkWidth,valueLinkHeight, valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewLink(mainURL,valueBeta, valueLinkInternalName,valueLinkLinkText,valueLinkLinkURL, valueLinkWidth,valueLinkHeight, valueMinorTagToolPlayer);
 		return;
 	}	
 
@@ -1144,7 +1177,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("Mediawall Panel");
-		homePage.fillAndSaveNewMediaWallPanel(mainURL,"beta", valueMediawallInternalName,valueMediawallHeadline,valueMediawallURLText, valueMediawallURL,valueMediawallMobileURL,valueMediawallSponsorURL,valueMediawallBlurb,valueMediawallNotes, valueMediawallDisplayTimeInSeconds, valueMediawallVideoAlias, valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewMediaWallPanel(mainURL,valueBeta, valueMediawallInternalName,valueMediawallHeadline,valueMediawallURLText, valueMediawallURL,valueMediawallMobileURL,valueMediawallSponsorURL,valueMediawallBlurb,valueMediawallNotes, valueMediawallDisplayTimeInSeconds, valueMediawallVideoAlias, valueMinorTagToolPlayer);
 		return;
 	}	
 
@@ -1155,7 +1188,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("Notebook");
-		homePage.fillAndSaveNewNotebook(mainURL,"beta", valueNotebookInternalName,valueNotebookHeadline,valueNotebookByline,valueNotebookSource, valueNotebookTagline, valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewNotebook(mainURL,valueBeta, valueNotebookInternalName,valueNotebookHeadline,valueNotebookByline,valueNotebookSource, valueNotebookTagline, valueMinorTagToolPlayer);
 		return;
 	}	
 
@@ -1166,7 +1199,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem("Photo Gallery");
-		homePage.fillAndSaveNewPhotoGallery(mainURL,"beta", valuePhotoGalleryInternalName,valuePhotoGalleryTitle,valuePhotoGallerySpanishTitle,valuePhotoGalleryBlurb,valuePhotoGallerySpanishBlurb, valueMinorTagToolPlayer);
+		homePage.fillAndSaveNewPhotoGallery(mainURL,valueBeta, valuePhotoGalleryInternalName,valuePhotoGalleryTitle,valuePhotoGallerySpanishTitle,valuePhotoGalleryBlurb,valuePhotoGallerySpanishBlurb, valueMinorTagToolPlayer);
 		return;
 	}	
 

@@ -145,6 +145,38 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ LOGIN OBJECTS ************//	
 
+	//************ MENU BAR OBJECTS ************//	
+
+	@FindBy(xpath="//span[contains(text(), 'Dashboard')]")
+	public ExtendedWebElement btnMenuBarDashboard;
+
+	@FindBy(xpath="//span[contains(text(), 'Upload Photos')]")
+	public ExtendedWebElement btnMenuBarUploadPhotos;
+
+	@FindBy(xpath="//span[contains(text(), 'Item Editor')]")
+	public ExtendedWebElement btnMenuBarItemEditor;
+
+	@FindBy(xpath="//span[contains(text(), 'Control Panel')]")
+	public ExtendedWebElement btnMenuBarControlPanel;
+
+	@FindBy(xpath="//span[contains(text(), 'Settings')]")
+	public ExtendedWebElement btnMenuBarSettings;
+
+	//************ MENU BAR OBJECTS ************//	
+
+	//************ SETTINGS OBJECTS ************//	
+
+	@FindBy(xpath="//option[contains(text(), '120SPORTS')]")
+	public ExtendedWebElement dropDownCurrentDomain120SPORTS;
+
+	@FindBy(xpath="//option[contains(text(), 'MILB')]")
+	public ExtendedWebElement dropDownCurrentDomainMILB;
+
+	@FindBy(xpath="//option[contains(text(), 'MLB')]")
+	public ExtendedWebElement dropDownCurrentDomainMLB;
+
+	//************ SETTINGS OBJECTS ************//	
+
 	//************ HISTORY PANEL OBJECTS ************//	
 
 	@FindBy(id="history-panel-icon-search")
@@ -713,6 +745,16 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ FIELD OPTION CREATION OBJECTS ************//	
 
+	//************ GAME PREVIEW CREATION OBJECTS ************//	
+
+	@FindBy(name="home-headline")
+	public ExtendedWebElement FieldHomeHeadline;
+
+	@FindBy(name="away-headline")
+	public ExtendedWebElement FieldAwayHeadline;
+
+	//************ GAME PREVIEW CREATION OBJECTS ************//	
+
 	//************ HIGHLIGHT CREATION OBJECTS ************//	
 
 	//************ HIGHLIGHT CREATION OBJECTS ************//	
@@ -738,24 +780,160 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ MEDIAWALL CREATION OBJECTS ************//	
 
+	//************ DASHBOARD TEAM CONTENT OBJECTS ************//	
+
+	@FindBy(id="tabBtn-team")
+	public ExtendedWebElement btnDashboardTeamContent;
+
+	@FindBy(xpath="//a[contains(text(), 'Depth Charts')]")
+	public ExtendedWebElement btnDashboardTeamContentDepthCharts;
+
+	@FindBy(id="tabBtn-team-_-mlb")
+	public ExtendedWebElement btnDashboardTeamContentMLB;
+
+	@FindBy(id="tabBtn-team-_-mlbcom")
+	public ExtendedWebElement btnDashboardTeamContentMLBcom;
+
+	@FindBy(id="tabBtn-team-_-mlb_network")
+	public ExtendedWebElement btnDashboardTeamContentMLBNetwork;
+
+	@FindBy(id="tabBtn-team-_-ari")
+	public ExtendedWebElement btnDashboardTeamContentArizonaDiamondbacks;
+
+	@FindBy(id="tabBtn-team-_-atl")
+	public ExtendedWebElement btnDashboardTeamContentAtlantaBraves;
+
+	@FindBy(id="tabBtn-team-_-bal")
+	public ExtendedWebElement btnDashboardTeamContentBaltimoreOrioles;
+
+	@FindBy(id="tabBtn-team-_-bos")
+	public ExtendedWebElement btnDashboardTeamContentBostonRedSox;
+
+	@FindBy(id="tabBtn-team-_-chc")
+	public ExtendedWebElement btnDashboardTeamContentChicagoCubs;
+
+	@FindBy(id="tabBtn-team-_-cws")
+	public ExtendedWebElement btnDashboardTeamContentChicagoWhiteSox;
+
+	@FindBy(id="tabBtn-team-_-cin")
+	public ExtendedWebElement btnDashboardTeamContentCincinnatiReds;
+
+	@FindBy(id="tabBtn-team-_-cle")
+	public ExtendedWebElement btnDashboardTeamContentClevelandIndians;
+
+	@FindBy(id="tabBtn-team-_-col")
+	public ExtendedWebElement btnDashboardTeamContentColoradoRockies;
+
+	@FindBy(id="tabBtn-team-_-det")
+	public ExtendedWebElement btnDashboardTeamContentDetroitTigers;
+
+	@FindBy(id="tabBtn-team-_-hou")
+	public ExtendedWebElement btnDashboardTeamContentHoustonAstros;
+
+	@FindBy(id="tabBtn-team-_-kc")
+	public ExtendedWebElement btnDashboardTeamContentKansasCityRoyals;
+
+	@FindBy(id="tabBtn-team-_-ana")
+	public ExtendedWebElement btnDashboardTeamContentLosAngelesAngels;
+
+	@FindBy(id="tabBtn-team-_-la")
+	public ExtendedWebElement btnDashboardTeamContentLosAngelesDodgers;
+
+	@FindBy(id="tabBtn-team-_-mia")
+	public ExtendedWebElement btnDashboardTeamContentMiamiMarlins;
+
+	@FindBy(id="tabBtn-team-_-mil")
+	public ExtendedWebElement btnDashboardTeamContentMilwaukeeBrewers;
+
+	@FindBy(id="tabBtn-team-_-min")
+	public ExtendedWebElement btnDashboardTeamContentMinnesotaTwins;
+
+	@FindBy(id="tabBtn-team-_-nym")
+	public ExtendedWebElement btnDashboardTeamContentNewYorkMets;
+
+	@FindBy(id="tabBtn-team-_-nyy")
+	public ExtendedWebElement btnDashboardTeamContentNewYorkYankees;
+
+	@FindBy(id="tabBtn-team-_-oak")
+	public ExtendedWebElement btnDashboardTeamContentOaklandAthletics;
+
+	@FindBy(id="tabBtn-team-_-phi")
+	public ExtendedWebElement btnDashboardTeamContentPhiladelphiaPhillies;
+
+	@FindBy(id="tabBtn-team-_-pit")
+	public ExtendedWebElement btnDashboardTeamContentPittsburghPirates;
+
+	@FindBy(id="tabBtn-team-_-sd")
+	public ExtendedWebElement btnDashboardTeamContentSanDiegoPadres;
+
+	@FindBy(id="tabBtn-team-_-sf")
+	public ExtendedWebElement btnDashboardTeamContentSanFranciscoGiants;
+
+	@FindBy(id="tabBtn-team-_-sea")
+	public ExtendedWebElement btnDashboardTeamContentSeattleMariners;
+
+	@FindBy(id="tabBtn-team-_-stl")
+	public ExtendedWebElement btnDashboardTeamContentSaintLouisCardinals;
+
+	@FindBy(id="tabBtn-team-_-tb")
+	public ExtendedWebElement btnDashboardTeamContentTampaBayRays;
+
+	@FindBy(id="tabBtn-team-_-tex")
+	public ExtendedWebElement btnDashboardTeamContentTexasRangers;
+
+	@FindBy(id="tabBtn-team-_-tor")
+	public ExtendedWebElement btnDashboardTeamContentTorontoBlueJays;
+
+	@FindBy(id="tabBtn-team-_-was")
+	public ExtendedWebElement btnDashboardTeamContentWashingtonNationals;
+
+	//************ DASHBOARD TEAM CONTENT OBJECTS ************//	
+
+	//************ DASHBOARD GAME CONTENT OBJECTS ************//	
+
+	@FindBy(id="tabBtn-game")
+	public ExtendedWebElement btnDashboardGameContent;
+
+	@FindBy(id="dashDayBrowse")
+	public ExtendedWebElement btnDashboardGameContentChangeDate;
+
+	@FindBy(xpath="//a[contains(text(), 'Probables')]")
+	public ExtendedWebElement btnDashboardGameContentProbables;
+
+	//************ DASHBOARD GAME CONTENT OBJECTS ************//	
+
+	//************ DASHBOARD TEAM CONTENT DEPTH CHART OBJECTS ************//	
+
+	@FindBy(xpath="//div[@class='reloadIcon rosterControlIcons triggerAble']")
+	public ExtendedWebElement iconDepthChartRosterControlsReSync;
+
+	@FindBy(xpath="//div[@class='addRoster rosterControlIcons triggerAble']")
+	public ExtendedWebElement iconDepthChartRosterControlsAddPlayer;
+
+	@FindBy(xpath="//button[contains(text(), 'Save Depth Chart')]")
+	public ExtendedWebElement btnSaveDepthChart;
+
+	//************ DASHBOARD TEAM CONTENT DEPTH CHART OBJECTS ************//	
+
 	public void login(String username, String password, String profile) {
 //		Boolean doINeedToLogin = (isElementNotPresent(txtUsername));
 		if (isElementPresent(txtUsername) == true) {
 		type(txtUsername, username);
 		type(txtUserPassword, password);
 		click(btnSubmit);
+		if (isElementPresent(selProfile) == true) {
 		select(selProfile, profile);
-//		Assert.assertTrue("Search results not found! Login operation is not successful!", isElementPresent(headerLabel, 60));
-
 		click(btnSubmitProfile);
+	}
 		Assert.assertTrue("Profile label was not found! Login operation is not successful!", isElementPresent(headerLabel, 60));
 		Assert.assertEquals("Profile name is not match!", profile, headerLabel.getText().toLowerCase());
 	}
+//		Assert.assertTrue("Search results not found! Login operation is not successful!", isElementPresent(headerLabel, 60));
 	}
 
 	public void oldUIToNewUI(String majorVSMinor) {
 //	Boolean isThisTheOldUI = (isElementNotPresent(dropDownSelectSite));
-	if (isElementPresent(dropDownSelectSite) == true) {
+	if (isElementPresent(dropDownSelectSite,10) == true) {
 			click(dropDownSelectSite);
 	if (majorVSMinor == "mlb") {
 		click(dropDownSelectMLB);
@@ -986,6 +1164,10 @@ public class HB_HomePage extends AbstractPage {
 		click(btnNewItem);
 	}
 	
+	public void selectDashboard()	{
+		click(btnMenuBarDashboard);
+	}
+	
 	public void selectHomePageUploadPhotos()	{
 //		click(dropDownListNewItem);
 		click(BtnHomePageUploadPhotos);
@@ -1051,6 +1233,212 @@ public class HB_HomePage extends AbstractPage {
 
 	}
 	
+	public void testDepthCharts(String mainURLCall) throws InterruptedException, AWTException	{
+		Selenium seleniumDepthCharts = new WebDriverBackedSelenium(driver, mainURLCall);
+		selectDashboard();
+		click(btnDashboardTeamContentArizonaDiamondbacks);
+		click(btnDashboardTeamContentDepthCharts);
+		pause(3);
+		Robot robot = new Robot();
+		pause(1);
+		robot.mouseMove(750,250);
+		pause(1);
+		robot.mousePress(InputEvent.BUTTON1_MASK);
+		robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		pressTab();
+		pressTab();
+		robot.keyPress(KeyEvent.VK_A);
+		robot.keyRelease(KeyEvent.VK_A);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_B);
+		robot.keyRelease(KeyEvent.VK_B);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_C);
+		robot.keyRelease(KeyEvent.VK_C);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_D);
+		robot.keyRelease(KeyEvent.VK_D);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_F);
+		robot.keyRelease(KeyEvent.VK_F);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_G);
+		robot.keyRelease(KeyEvent.VK_G);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_H);
+		robot.keyRelease(KeyEvent.VK_H);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_L);
+		robot.keyRelease(KeyEvent.VK_L);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_M);
+		robot.keyRelease(KeyEvent.VK_M);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_N);
+		robot.keyRelease(KeyEvent.VK_N);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_P);
+		robot.keyRelease(KeyEvent.VK_P);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		click(btnDashboardTeamContentWashingtonNationals);
+		click(btnDashboardTeamContentArizonaDiamondbacks);
+		click(btnDashboardTeamContentDepthCharts);
+		pause(3);
+		robot.mouseMove(750,250);
+		pause(1);
+		robot.mousePress(InputEvent.BUTTON1_MASK);
+		robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		pause(1);
+		pressTab();
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_A);
+		robot.keyRelease(KeyEvent.VK_A);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_B);
+		robot.keyRelease(KeyEvent.VK_B);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_C);
+		robot.keyRelease(KeyEvent.VK_C);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_D);
+		robot.keyRelease(KeyEvent.VK_D);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_F);
+		robot.keyRelease(KeyEvent.VK_F);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_G);
+		robot.keyRelease(KeyEvent.VK_G);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_H);
+		robot.keyRelease(KeyEvent.VK_H);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_L);
+		robot.keyRelease(KeyEvent.VK_L);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_M);
+		robot.keyRelease(KeyEvent.VK_M);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_N);
+		robot.keyRelease(KeyEvent.VK_N);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		robot.keyPress(KeyEvent.VK_P);
+		robot.keyRelease(KeyEvent.VK_P);
+		pause(1);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		pause(1);
+		pressTab();
+		pause(1);
+		click(btnSaveDepthChart);		
+		pause(15);
+	}
+
 	public void fillAndSaveNewArticle(String mainURLCall, String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) throws InterruptedException, AWTException	{
 //		newArticlePageSource = driver.getPageSource();
 //		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
@@ -1503,12 +1891,20 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewGamePreview(String mainURLCall, String betaOrProd, String gamePreviewReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewGamePreview(String mainURLCall, String betaOrProd, String gamePreviewReqFieldInternalName, String gamePreviewReqFieldHeadline, String gamePreviewReqFieldHomeHeadline, String gamePreviewReqFieldAwayHeadline, String gamePreviewReqFieldSubhead, String gamePreviewReqFieldAltHeadline, String gamePreviewReqFieldByline, String gamePreviewReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 //		newArticlePageSource = driver.getPageSource();
 //		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
 		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, gamePreviewReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldHeadline, gamePreviewReqFieldHeadline);
+		type(FieldHomeHeadline, gamePreviewReqFieldHomeHeadline);
+		type(FieldAwayHeadline, gamePreviewReqFieldAwayHeadline);
+		type(FieldSubhead, gamePreviewReqFieldSubhead);
+		type(FieldAltHeadline, gamePreviewReqFieldAltHeadline);
+		type(FieldByline, gamePreviewReqFieldByline);
+		type(FieldBlurb, gamePreviewReqFieldBlurb); 
+		testCMSTool(700,700);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -1517,12 +1913,14 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewGameWrap(String mainURLCall, String betaOrProd, String gameWrapReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewGameWrap(String mainURLCall, String betaOrProd, String gameWrapReqFieldInternalName, String gameWrapReqFieldHeadline, String gameWrapReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 //		newArticlePageSource = driver.getPageSource();
 //		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
 		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, gameWrapReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldHeadline, gameWrapReqFieldHeadline);
+		type(FieldBlurb, gameWrapReqFieldBlurb); 
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
