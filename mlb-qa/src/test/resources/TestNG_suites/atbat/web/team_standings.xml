@@ -3,7 +3,7 @@
 	<test verbose="1" name="AtBat - Team - Standings Highlight Test">
 	    <parameter name="{excel_ds_args}" value="TUID;team_shortcode"/> 
 		<parameter name="{excel_ds_uid}" value="TUID"/>
-	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_web.xls"/>
 	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
 		<classes>
 			<class name="com.mlb.qa.tests.atbat.web.AtBatStandingsTest">
@@ -17,6 +17,7 @@
 		<classes>
 			<class name="com.mlb.qa.tests.atbat.web.AtBatStandingsTest">
 			    <methods>
+			        <include name="checkStandingsLegend"/>
 			    	<exclude name="checkStandingsFavoriteTeamHighlighted"/>
 				</methods>
 			</class>

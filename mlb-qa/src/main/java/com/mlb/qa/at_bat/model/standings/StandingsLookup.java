@@ -38,12 +38,10 @@ public class StandingsLookup extends AtbLookupService {
 		for (int i = 0; i < listStandings.size(); i++) {
 			if (listStandings.get(i).getClinchedSW() != null) {
 					if (listStandings.get(i).getClinchedSW().contains("Y")) {
-						logger.info("Returning True");
 						return true;
 					}
 				} 
 		}
-		logger.info("Returning False");
 		return false;
 	}
 }

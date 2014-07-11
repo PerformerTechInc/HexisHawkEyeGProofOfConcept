@@ -24,9 +24,9 @@ public class AtBatLoginAlert extends AtBatAndroidPage {
 	private ExtendedWebElement registerButton;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/clearbutton")
 	private ExtendedWebElement clearCredentialsButton;
-	@FindBy(xpath = "//Button[@text='Cancel]'")
+	@FindBy(id = "android:id/button2")
 	private ExtendedWebElement cancelButton;
-	@FindBy(xpath = "//Button[@text='OK']")
+	@FindBy(id = "android:id/button1")
 	private ExtendedWebElement okButton;
 
 	public AtBatLoginAlert(WebDriver driver) {
@@ -53,5 +53,15 @@ public class AtBatLoginAlert extends AtBatAndroidPage {
 	public AtBatForgotPasswordPage forgotPasword() {
 		click(forgottenPasswordLink);
 		return new AtBatForgotPasswordPage(driver);
+	}
+
+	public Boolean isLoggedIn() {
+		return isElementPresent(clearCredentialsButton, delay);
+	}
+
+	public AtBatSettingsPage clearCredentials() {
+		click(clearCredentialsButton);
+
+		return new AtBatSettingsPage(driver);
 	}
 }

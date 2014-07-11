@@ -23,7 +23,7 @@ public class AtBatNotificationsPage extends AtBatAndroidPage {
 	//Action Bar Items
 	@FindBy(xpath = "//android.widget.TextView[@text='Notifications']")
 	private ExtendedWebElement notificationsExists;
-	@FindBy(xpath = "//Button[@text='Done']")
+	@FindBy(xpath = "//android.widget.Button[@text='Done']")
 	private ExtendedWebElement doneLink;
 
 	//Notification Container Items
