@@ -19,6 +19,14 @@ public class AtBatLoginPage extends AtBatIOSPage {
     @FindBy(xpath = "//UIAScrollView[1]/UIAButton[2]")
     private ExtendedWebElement loginButton;
 
+    @FindBy(name = "Done")
+    private ExtendedWebElement doneButton;
+
+
+    @FindBy(xpath = "//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIATableView[2]")
+    private ExtendedWebElement okButton;
+
+
     public AtBatLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -27,5 +35,9 @@ public class AtBatLoginPage extends AtBatIOSPage {
         type(emailInput, "media6@mlbtest.com");
         type(passwordInput,"p@ssw0rd");
         click(loginButton);
+
+        click(doneButton);
+        click(okButton);
+
     }
 }

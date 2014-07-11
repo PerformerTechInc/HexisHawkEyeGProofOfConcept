@@ -26,7 +26,9 @@ public class AtBatStartPage extends AtBatIOSPage {
     }
 
     public AtBatLoginPage getAtBatLoginPage() {
-        clickIfPresent(subscribersLogIn, SHORT_TIMEOUT);
+        if (isElementPresent(subscribersLogIn)) {
+            click(subscribersLogIn);
+        }
         return new AtBatLoginPage(driver);
     }
 

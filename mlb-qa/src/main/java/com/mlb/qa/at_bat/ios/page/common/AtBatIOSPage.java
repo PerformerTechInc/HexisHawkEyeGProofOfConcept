@@ -8,11 +8,14 @@ import org.openqa.selenium.WebDriver;
  */
 public class AtBatIOSPage extends AbstractUIObject {
 
-    protected static long SHORT_TIMEOUT = 5;
+    //protected static long SHORT_TIMEOUT = 5;
 
     public AtBatIOSPage(WebDriver driver) {
         super(driver);
     }
 
+    public boolean isOpened() {
+        return true;
+    }
 
 }
