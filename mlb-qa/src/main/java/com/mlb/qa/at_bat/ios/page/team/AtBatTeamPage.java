@@ -42,6 +42,9 @@ public class AtBatTeamPage extends AtBatBaseTeamPage {
     @FindBy(name = "Video")
     public ExtendedWebElement videosButton;
 
+    @FindBy(name= "Highlights")
+    public ExtendedWebElement highlightsButton;
+
     @FindBy(name = "Tickets")
     public ExtendedWebElement ticketsButton;
 
@@ -59,7 +62,6 @@ public class AtBatTeamPage extends AtBatBaseTeamPage {
 
     public AtBatFacebookPage getAtBatFacebookPage() {
         click(facebookButton);
-
         return new AtBatFacebookPage(driver);
     }
 
@@ -79,7 +81,10 @@ public class AtBatTeamPage extends AtBatBaseTeamPage {
     }
 
     public AtBatVideosPage getAtBatVideosPage() {
-        click(videosButton);
+        if(!isElementPresent(videosButton,5)){
+            click(highlightsButton);
+        }else {
+        click(videosButton);}
         return new AtBatVideosPage(driver);
     }
 

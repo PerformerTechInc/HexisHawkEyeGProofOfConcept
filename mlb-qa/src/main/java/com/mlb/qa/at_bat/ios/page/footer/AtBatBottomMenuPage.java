@@ -1,6 +1,7 @@
 package com.mlb.qa.at_bat.ios.page.footer;
 
 import com.mlb.qa.at_bat.ios.page.common.AtBatIOSPage;
+import com.qaprosoft.carina.core.foundation.webdriver.appium.AppiumNativeDriver;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -26,9 +27,9 @@ public class AtBatBottomMenuPage extends AtBatIOSPage {
     private ExtendedWebElement more;
 
 
-    public AtBatMorePage getAtBatMorePage(){
-        //System.out.println(driver.getPageSource());
-        click(more);
+    public AtBatMorePage getAtBatMorePage() {
+        ExtendedWebElement webElement = ((AppiumNativeDriver) driver).findElementByIosUIAutomation(".tabBar().buttons()['More']");
+        click(webElement);
         return new AtBatMorePage(driver);
     }
 

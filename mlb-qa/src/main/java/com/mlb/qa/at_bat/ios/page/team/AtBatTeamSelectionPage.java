@@ -20,8 +20,8 @@ public class AtBatTeamSelectionPage extends AtBatIOSPage {
         super(driver);
     }
 
-    public AtBatTeamPage selectTeam(String teamNema) {
-        driver.findElement(By.name(teamNema)).click();
+    public AtBatTeamPage selectTeam(String teamName) {
+        driver.findElement(By.name(teamName)).click();
         return new AtBatTeamPage(driver);
     }
 

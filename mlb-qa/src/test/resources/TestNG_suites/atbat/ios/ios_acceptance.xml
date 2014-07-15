@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="At Bat iOS: Acceptance tests"
+       skipfailedinvocationcounts="false" junit="false" parallel="methods"
+       data-provider-thread-count="4" annotations="JDK">
+    <test verbose="1" name="Android At Bat Teams Page Test">
+        <parameter name="{excel_ds_args}" value="TUID;team_name" />
+        <parameter name="{excel_ds_uid}" value="TUID"/>
+        <parameter name="{excel_ds_file}" value="XLS_data/atb_team_abbrev.xls"/>
+        <parameter name="{excel_ds_sheet}" value="team_abbrev"/>
+        <classes>
+            <class name="com.mlb.qa.tests.atbat.ios.AtBatAcceptanceTest">
+            </class>
+        </classes>
+    </test>
+
+</suite>
