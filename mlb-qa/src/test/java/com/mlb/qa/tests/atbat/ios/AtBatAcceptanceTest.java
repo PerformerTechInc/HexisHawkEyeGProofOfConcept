@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Igor Vayner on 6/25/14.
  */
-public class AtBatLoginTest extends UITest {
+public class AtBatAcceptanceTest extends UITest {
 
 
     @Parameters({"TUID", "team_name"})
