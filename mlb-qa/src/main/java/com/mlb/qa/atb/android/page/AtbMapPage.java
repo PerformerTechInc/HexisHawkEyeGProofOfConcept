@@ -69,12 +69,12 @@ public class AtbMapPage extends AndroidPage {
             return;
 		} else if (driver.findElements(gridItem.getBy()).size() >= 2) {
 			LOGGER.info("Map & Directory Grid image will be used to activate required page.");
-			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Map & Directory Grid image will be used to activate required page.");
+			//TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Map & Directory Grid image will be used to activate required page.");
 			driver.findElements(gridItem.getBy()).get(1).click();
 			return;
 		}
 		pause(5);
-		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Map button/link is not recognized!");
+		//TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "Map button/link is not recognized!");
 		Assert.fail("Unable to activate BALLPARK MAPS. Map button/link is not recognized!");
     		
     }
