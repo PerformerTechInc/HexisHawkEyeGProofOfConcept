@@ -59,7 +59,7 @@ public class AtbMapPage extends AndroidPage {
 			swipe(0.5, 0.85, 0.5, 0.55, 1);
 			pause(1);
 			LOGGER.info("swiping up to open Grid images or find BALLPARK maps , attempt: " + i);
-			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "swiping up to Grid images " + i);
+			//TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "swiping up to Grid images " + i);
 		}
 		
 		if(isElementPresent(mapButton, 5)){
