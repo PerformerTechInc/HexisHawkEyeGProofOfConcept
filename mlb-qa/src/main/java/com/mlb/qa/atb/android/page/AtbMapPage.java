@@ -89,7 +89,7 @@ public class AtbMapPage extends AndroidPage {
         pause(10);
         List<String> levelsName = new ArrayList<String>();
         int i = 0;
-        while (driver.findElements(levelList.getBy()).size() == 0 && ++i<10) {
+        while (!isElementPresent(levelList, 3) && ++i<10) {
         	LOGGER.info("Level list is not loaded yet. Waiting for 5 sec...");
         	pause(5);
         }
