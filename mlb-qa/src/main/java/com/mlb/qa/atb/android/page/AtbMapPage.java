@@ -64,7 +64,7 @@ public class AtbMapPage extends AndroidPage {
 		
 		if(isElementPresent(mapButton, 5)){
 			LOGGER.info("BALLPARK MAPS link will be used to activate required page.");
-			TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "BALLPARK MAPS link will be used to activate required page.");
+			//TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "BALLPARK MAPS link will be used to activate required page.");
             click(mapButton);
             return;
 		} else if (driver.findElements(gridItem.getBy()).size() >= 2) {

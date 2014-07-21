@@ -39,7 +39,7 @@ public class AtbBallparksPage extends AtbAndroidPage {
 			scrollTo(ballParkName, ballparksListContainer);
 		}*/
 
-		TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "All Ballparks window.");
+		//TestLogCollector.addScreenshotComment(Screenshot.capture(driver, true), "All Ballparks window.");
 		int i=0;
 
 		while(isElementPresent(loadingMessage, 2) && ++i<20) {
