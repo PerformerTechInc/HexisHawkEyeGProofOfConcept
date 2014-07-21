@@ -1,7 +1,9 @@
 package com.mlb.qa.at_bat.ios.page.authentication;
 
 import com.mlb.qa.at_bat.ios.page.common.AtBatIOSPage;
+import com.mlb.qa.atb.AtbParameter;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -32,8 +34,8 @@ public class AtBatLoginPage extends AtBatIOSPage {
     }
 
     public void login(){
-        type(emailInput, "media6@mlbtest.com");
-        type(passwordInput,"p@ssw0rd");
+        type(emailInput, AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue());
+        type(passwordInput, AtbParameter.MLB_ATBAT_DEFAULT_PASSWORD.getValue());
         click(loginButton);
 
         click(doneButton);

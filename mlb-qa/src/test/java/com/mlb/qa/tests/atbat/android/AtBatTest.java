@@ -7,6 +7,7 @@ import com.mlb.qa.at_bat.android.page.AtBatMenu.MenuItem;
 import com.mlb.qa.at_bat.android.page.AtBatFavoriteTeamSelectionPage;
 import com.mlb.qa.at_bat.android.page.AtBatSettingsPage;
 import com.mlb.qa.at_bat.android.page.AtBatWelcomePage;
+import com.mlb.qa.atb.AtbParameter;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 /**
@@ -70,14 +71,14 @@ public class AtBatTest extends UITest {
 		if (welcomePage.isOpened()) {
 			welcomePage.passToPaywallPage()
 				.loginAsExistingUser()
-				.login("media6@mlbtest.com", "p@ssw0rd");
+				.login(AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue(), AtbParameter.MLB_ATBAT_DEFAULT_PASSWORD.getValue());
 		} else {
 			AtBatSettingsPage settingsPage = new AtBatSettingsPage(driver);
 			settingsPage.openMenu()
 				.clickOnMenuItem(MenuItem.SETTINGS);
 			settingsPage.tapMenuOption("MLB.com Account")
 				.accessMLBAccount()
-				.login("media6@mlbtest.com", "p@ssw0rd")
+				.login(AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue(), AtbParameter.MLB_ATBAT_DEFAULT_PASSWORD.getValue())
 				.clickHome();
 		}
 	}

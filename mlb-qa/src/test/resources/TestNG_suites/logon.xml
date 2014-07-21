@@ -6,7 +6,7 @@
 	
 	<test verbose="1" name="Verify Logon">
 	    <parameter name="email" value="media6@mlbtest.com"/>
-	    <parameter name="password" value="password"/>
+	    <parameter name="password" value="fenway100"/>
 	    <parameter name="profile" value="mlbMedia"/>
 	    
 		<classes>
