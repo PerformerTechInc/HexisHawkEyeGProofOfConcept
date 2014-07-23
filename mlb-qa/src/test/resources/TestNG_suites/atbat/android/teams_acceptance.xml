@@ -1,8 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="MLB - Android At Bat"
-	skipfailedinvocationcounts="false" junit="false" parallel="tests"
-	data-provider-thread-count="5" annotations="JDK"> 
-	<test verbose="1" name="Android At Bat Teams Page Test - Carousel Full">
+<suite verbose="1" name="MLB - Android At Bat" annotations="JDK"> 
+	<!--<test verbose="1" name="Android At Bat Teams Page Test - Carousel Full">
 	    <parameter name="{excel_ds_args}" value="TUID"/> 
 		<parameter name="{excel_ds_uid}" value="TUID"/>
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
@@ -207,7 +205,7 @@
 					</methods>
 			</class>
 		</classes>	    
-	</test>
+	</test>-->
 	<test verbose="1" name="Android At Bat Teams Page Favorite Team Entry Point Test">
 	    <parameter name="{excel_ds_args}" value="TUID;team_abbrev"/> 
 		<parameter name="{excel_ds_uid}" value="TUID"/>
@@ -221,7 +219,7 @@
 			</class>
 		</classes>	    
 	</test>
-	<test verbose="1" name="Android At Bat Teams Page Test - Notification Entry Point">
+	<!--<test verbose="1" name="Android At Bat Teams Page Test - Notification Entry Point">
 	    <parameter name="{excel_ds_args}" value="TUID"/> 
 		<parameter name="{excel_ds_uid}" value="TUID"/>
 	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
@@ -246,5 +244,5 @@
 					</methods>
 			</class>
 		</classes>
-	</test>
+	</test>-->
 </suite>
