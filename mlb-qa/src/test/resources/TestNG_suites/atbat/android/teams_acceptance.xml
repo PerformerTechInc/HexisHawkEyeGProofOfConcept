@@ -1,7 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite verbose="1" name="MLB - Android At Bat"
-	skipfailedinvocationcounts="false" junit="false" parallel="tests"
-	data-provider-thread-count="5" annotations="JDK"> 
+<suite verbose="1" name="MLB - Android At Bat" annotations="JDK"> 
 	<test verbose="1" name="Android At Bat Teams Page Test - Carousel Full">
 	    <parameter name="{excel_ds_args}" value="TUID"/> 
 		<parameter name="{excel_ds_uid}" value="TUID"/>
@@ -243,6 +241,32 @@
 			<class name="com.mlb.qa.tests.atbat.android.AtBatTeamPageMenuTest">
 					<methods>
 					    	<include name="testTeamNotificationTeamExpanded"/>
+					</methods>
+			</class>
+		</classes>
+	</test>
+		<test verbose="1" name="Android At Bat Ads Test - Lite User Team Page Ad Visible">
+	    <parameter name="{excel_ds_args}" value="TUID"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.android.AtBatAdsTest">
+					<methods>
+					    	<include name="testTeamAdVisible"/>
+					</methods>
+			</class>
+		</classes>
+	</test>
+		<test verbose="1" name="Android At Bat Ads Test - Full User Team Page Ad Not Visible">
+	    <parameter name="{excel_ds_args}" value="TUID"/> 
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.android.AtBatAdsTest">
+					<methods>
+					    	<include name="testTeamAdNotVisible"/>
 					</methods>
 			</class>
 		</classes>

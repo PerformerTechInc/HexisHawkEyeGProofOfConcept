@@ -86,6 +86,10 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	@FindBy(xpath = "//android.widget.TextView[contains(@text,'on Twitter')]")
 	private ExtendedWebElement itemTwitterPartial;
 
+	//Team Ad
+	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/AdWrapperActivity_bannerView")
+	private ExtendedWebElement teamAdWrapper;
+
 	public AtBatTeamPage(WebDriver driver) {
 		super(driver);
 	}
@@ -244,6 +248,10 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 
 	public boolean isCarouselProgressBarPresent() {
 		return isElementPresent(teamCarouselProgressBar, delay);
+	}
+
+	public boolean isAdVisible() {
+		return isElementPresent(teamAdWrapper, delay);
 	}
 
 	public AtBatTeamPage waitForDateProgressBarLoad() {

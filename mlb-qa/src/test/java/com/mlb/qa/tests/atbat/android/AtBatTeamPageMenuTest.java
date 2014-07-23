@@ -195,6 +195,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 				.waitForDateProgressBarLoad();
 		teamPage.swipeUp();
 		teamPage.swipeUp();
+		teamPage.swipeUp();
 		AtBatNotificationsPage notificationsPage = teamPage.selectTeamNotifications();
 		
 		Assert.assertTrue(notificationsPage.checkIfTeamVisible(teamName), "The team in question is not present on the screen on initial entry.");
@@ -208,6 +209,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();
+		teamPage.swipeUp();
 		teamPage.swipeUp();
 		teamPage.swipeUp();
 		AtBatNotificationsPage notificationsPage = teamPage.selectTeamNotifications();
