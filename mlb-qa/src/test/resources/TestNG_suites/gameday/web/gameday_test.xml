@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="MLB - Gameday - Web" skipfailedinvocationcounts="false" junit="false" parallel="methods" data-provider-thread-count="5" annotations="JDK"> 
+	<test verbose="1" name="Gameday">
+		<classes>
+			<class name="com.mlb.qa.tests.gameday.web.GamedayTest"/>
+		</classes>
+	</test>
+
+</suite>

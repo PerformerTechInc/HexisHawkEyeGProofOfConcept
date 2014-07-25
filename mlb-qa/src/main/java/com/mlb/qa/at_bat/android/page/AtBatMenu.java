@@ -27,6 +27,8 @@ public class AtBatMenu extends AtBatAndroidPage {
 	private ExtendedWebElement scoreboardMenuItem;
 	@FindBy(xpath = "//android.widget.TextView[@text='Teams']")
 	private ExtendedWebElement teamsMenuItem;
+    @FindBy(xpath = "//android.widget.TextView[@text='Settings']")
+    private ExtendedWebElement settingsMenuItem;
 	
 	@FindBy(id = "android:id/action_bar_title")
 	private ExtendedWebElement selectedMenuItem;
@@ -67,7 +69,21 @@ public class AtBatMenu extends AtBatAndroidPage {
 		if (!isElementPresent(menuListContainer, delay)) {
 			openMenu();
 		}
-		scrollTo(item.getMenuTitle(), menuListContainer);
+		
+		int i = 0;
+		boolean found = false;
+		
+		while (!found && ++i < 10) {
+            logger.info("Attempt #" + i);
+			try {
+				isElementPresent(String.format("Checking Element '%s'", item.getMenuTitle()),
+	                    driver.findElement(By.xpath(item.getMenuItemLocator())));
+				found = true;
+			} catch (Exception ex) {
+				scrollTo(item.getMenuTitle(), menuListContainer);
+			}
+		}
+
 		click(String.format("Menu item with text '%s'", item.getMenuTitle()),
 				driver.findElement(By.xpath(item.getMenuItemLocator())));
 	}
@@ -81,7 +97,20 @@ public class AtBatMenu extends AtBatAndroidPage {
 		if (!isElementPresent(menuListContainer, delay)) {
 			openMenu();
 		}
-		scrollTo(favoriteTeam, menuListContainer);
+
+        int i = 0;
+        boolean found = false;
+
+        while (!found && ++i < 10) {
+            logger.info("Favorite Team Attempt #" + i);
+            try {
+                isElementPresent(String.format("Checking Element '%s'", favoriteTeam),
+                        driver.findElement(By.xpath(item.getMenuItemLocator(favoriteTeam))));
+            } catch (Exception ex) {
+                scrollTo(favoriteTeam, menuListContainer);
+            }
+        }
+
 		click(String.format("Menu item with text '%s'", favoriteTeam),
 				driver.findElement(By.xpath(item.getMenuItemLocator(favoriteTeam))));
 	}

@@ -83,7 +83,7 @@ public class AndroidPage extends AbstractUIObject {
             executor.executeScript("mobile: scrollTo", scrollMap);
         } catch (Exception e) {
             //do nothing
-            logger.warn("Exception occured for scroll operation! " + String.format("Scrolling to text '%s', Scroll container: %s", scrollToText, containerElement.getNameWithLocator()));
+            logger.warn("Exception occurred for scroll operation! " + String.format("Scrolling to text '%s', Scroll container: %s", scrollToText, containerElement.getNameWithLocator()));
         }
 
     }
