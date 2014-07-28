@@ -50,17 +50,31 @@ public class AtBatTeamRosterPage extends AtBatAndroidPage {
 	}
 
 	public AtBatTeamRosterPage selectNameLink() {
-		if (isElementPresent(nameLink, delay)) {
-			click(nameLink);
-		}
+
+        int i = 0;
+        while (!nameLink.getElement().isSelected() && ++i <= 10) {
+            click(nameLink);
+            pause(1);
+        }
+
+//		if (isElementPresent(nameLink, delay)) {
+//			click(nameLink);
+//		}
 
 		return new AtBatTeamRosterPage(driver);
 	}
 
 	public AtBatTeamRosterPage selectPositionLink() {
-		if (isElementPresent(positionLink, delay)) {
-			click(positionLink);
-		}
+
+        int i = 0;
+        while (!positionLink.getElement().isSelected() && ++i <= 10) {
+            click(positionLink);
+            pause(1);
+        }
+
+//		if (isElementPresent(positionLink, delay)) {
+//            click(positionLink);
+//        }
 
 		return new AtBatTeamRosterPage(driver);
 	}
@@ -68,8 +82,10 @@ public class AtBatTeamRosterPage extends AtBatAndroidPage {
 	public boolean isTabSelected(RosterTabItem item) {
 		switch (item) {
 			case NAME:
+                pause(3);
 				return nameLink.getElement().isSelected();
 			case POSITION:
+                pause(3);
 				return positionLink.getElement().isSelected();
 			default:
 				throw new TestRuntimeException(
