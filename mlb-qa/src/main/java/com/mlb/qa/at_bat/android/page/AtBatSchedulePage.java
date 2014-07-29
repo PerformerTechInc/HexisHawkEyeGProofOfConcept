@@ -26,17 +26,21 @@ public class AtBatSchedulePage extends AtBatAndroidPage {
 	}
 
 	public AtBatSchedulePage selectList() {
-		if (isElementPresent(listLink, delay)) {
+		/*if (isElementPresent(listLink, delay)) {
 			click(listLink);
-		}
+		}*/
+
+        retrySelectionMechanism(listLink);
 
 		return new AtBatSchedulePage(driver);
 	}
 
 	public AtBatSchedulePage selectMonth() {
-		if (isElementPresent(monthLink, delay)) {
+		/*if (isElementPresent(monthLink, delay)) {
 			click(monthLink);
-		}
+		}*/
+
+        retrySelectionMechanism(monthLink);
 
 		return new AtBatSchedulePage(driver);
 	}
@@ -54,4 +58,13 @@ public class AtBatSchedulePage extends AtBatAndroidPage {
 		}
 		return false;
 	}
+
+    /*private void retrySelectionMechanism(ExtendedWebElement passedElement) {
+        int i = 0;
+        while (!passedElement.getElement().isSelected() && ++i < 10) {
+            logger.info("Attempting to select Element: " + i);
+            click(passedElement);
+            pause(1);
+        }
+    }*/
 }

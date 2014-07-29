@@ -54,4 +54,17 @@ public class AtBatAndroidPage extends AndroidPage {
 		
 		return new AtBatTeamPage(driver);
 	}
+
+    /**
+     * Pass ExtendedWebElement which will then be retried up to 10 times
+     * @param passedElement
+     */
+    public void retrySelectionMechanism(ExtendedWebElement passedElement) {
+        int i = 0;
+        while (!passedElement.getElement().isSelected() && ++i < 10) {
+            logger.info("Attempting to select Element: " + i);
+            click(passedElement);
+            pause(1);
+        }
+    }
 }

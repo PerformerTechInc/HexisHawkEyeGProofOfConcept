@@ -51,11 +51,7 @@ public class AtBatTeamRosterPage extends AtBatAndroidPage {
 
 	public AtBatTeamRosterPage selectNameLink() {
 
-        int i = 0;
-        while (!nameLink.getElement().isSelected() && ++i <= 10) {
-            click(nameLink);
-            pause(1);
-        }
+        retrySelectionMechanism(nameLink);
 
 //		if (isElementPresent(nameLink, delay)) {
 //			click(nameLink);
@@ -66,11 +62,7 @@ public class AtBatTeamRosterPage extends AtBatAndroidPage {
 
 	public AtBatTeamRosterPage selectPositionLink() {
 
-        int i = 0;
-        while (!positionLink.getElement().isSelected() && ++i <= 10) {
-            click(positionLink);
-            pause(1);
-        }
+        retrySelectionMechanism(positionLink);
 
 //		if (isElementPresent(positionLink, delay)) {
 //            click(positionLink);
