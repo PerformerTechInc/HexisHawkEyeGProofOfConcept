@@ -299,7 +299,7 @@ public class WWE_HomePage extends AbstractPage {
 	public ExtendedWebElement fieldSubscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodCreditCardExpirationYear;
 	
 	@FindBy(id="submitButton")
-	public ExtendedWebElement btnSubscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodCreditCard;
+	public ExtendedWebElement btnSubscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodSubmit;
 	
 	@FindBy(xpath="//span[contains(text(), 'Thank you! Your order has been confirmed.')]")
 	public ExtendedWebElement frameSubscribeToWWENetworkStepThreeConfirmSubscription;
@@ -419,8 +419,7 @@ public class WWE_HomePage extends AbstractPage {
 		type(fieldSubscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodCreditCardSecurityCode, subscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodReqFieldCreditCardSecurityCode);
 		select(fieldSubscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodCreditCardExpirationMonth, subscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodReqFieldCreditCardExpirationMonth);
 		select(fieldSubscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodCreditCardExpirationYear, subscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodReqFieldCreditCardExpirationYear);
-		click(btnSubscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodCreditCard);
-		pause(600);
+		click(btnSubscribeToWWENetworkStepTwoEnterBillingInformationPaymentMethodSubmit);
 	}
 
 	public void subscribeToWWENetworkStepThreeConfirmSubscription() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
