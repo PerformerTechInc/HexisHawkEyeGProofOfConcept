@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="WWE - WWE Main Purchase Flow Test"
+	skipfailedinvocationcounts="false" junit="false" parallel="tests"
+	data-provider-thread-count="50" annotations="JDK"> 
+	
+	<test verbose="1" name="Verify Home Page">
+	    	    
+		<classes>
+			<class name="com.mlb.qa.tests.web.wwe.WWETestSuite" />
+		</classes>
+	</test>
+</suite>
