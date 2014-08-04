@@ -52,7 +52,7 @@ public class AtbBallparkMapsTest extends UITest {
 */
         AtbMapPage atbMapPage = new AtbMapPage(getDriver());
         atbMapPage.openMap(teamAbbrev);
-        HttpResult httpResult = HttpHelper.executeGet(SERVICE_PATTERN + teamAbbrev.toLowerCase(), new HashMap<String, String>());
+        HttpResult httpResult = HttpHelper.executeGet(SERVICE_PATTERN + teamAbbrev.toLowerCase() + "_map.json", new HashMap<String, String>());
         Response response = new Response(httpResult.getResponseBody());
         SoftAssert softAssert = new SoftAssert();
         String stadiumActualName = atbMapPage.getStadiumName();

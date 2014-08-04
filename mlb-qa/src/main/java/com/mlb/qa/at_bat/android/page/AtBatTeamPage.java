@@ -35,6 +35,8 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	private ExtendedWebElement gamePagerLayout;
 	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/TeamGamePagerFragment_gamesPagerTitleStrip")
 	private ExtendedWebElement teamDatesAvailable;
+    @FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/TeamGamePagerFragment_reloadView")
+    private ExtendedWebElement gamePagerReloadView;
 
 	//Team Home Wall / Carousel
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id.TeamHomeWallFragment_progressBar")
@@ -49,6 +51,8 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 	private ExtendedWebElement teamCarouselItem;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/TeamHomeWallAd_imageDefaultView")
 	private ExtendedWebElement teamCarouselAdImage;
+    @FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/TeamHomeWallFragment_reloadView")
+    private ExtendedWebElement teamCarouselReloadView;
 
 	//Team Main Menu Options
 	@FindBy(id="com.bamnetworks.mobile.android.gameday.atbat:id/teamhome_scrollcontainer")
@@ -254,6 +258,28 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 		return isElementPresent(teamAdWrapper, delay);
 	}
 
+    private boolean isDateProgressBarOrReloadPresent() {
+
+        int i = 0;
+        while (isElementPresent(gamePagerReloadView) && i++ <= 10) {
+            logger.info("Game Pager Reload View Retry: " + i);
+            click(gamePagerReloadView);
+        }
+
+        return isElementPresent(gamePagerProgressBar, delay);
+    }
+
+    private boolean isCarouselProgressBarPresentOrReloadPresent() {
+
+        int i = 0;
+        while (isElementPresent(teamCarouselReloadView) && i++ <= 10) {
+            logger.info("Carousel Reload View Retry: " + i);
+            click(teamCarouselReloadView);
+        }
+
+        return isElementPresent(teamCarouselProgressBar, delay);
+    }
+
 	public AtBatTeamPage waitForDateProgressBarLoad() {
 		new WebDriverWait(driver,
 				120)
@@ -263,7 +289,7 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 					public boolean apply(WebDriver arg0) {
 						logger.info("Progress Bar Not Present: " + !isDateProgressBarPresent());
 						logger.info("Date Container Present: " + isElementPresent(teamDatesAvailable));
-						return (!isDateProgressBarPresent() && isElementPresent(teamDatesAvailable, delay));
+						return (!isDateProgressBarOrReloadPresent() && isElementPresent(teamDatesAvailable, delay));
 					}
 				});
 
@@ -279,7 +305,7 @@ public class AtBatTeamPage extends AtBatAndroidPage {
 					public boolean apply(WebDriver arg0) {
 						logger.info("Carousel Progress Bar Not Present: " + !isCarouselProgressBarPresent());
 						logger.info("Carousel Indicators Present: " + isElementPresent(teamCarouselIndicatorContainer));
-						return (!isCarouselProgressBarPresent() && isElementPresent(teamCarouselIndicatorContainer));
+						return (!isCarouselProgressBarPresentOrReloadPresent() && isElementPresent(teamCarouselIndicatorContainer));
 					}
 				});
 
