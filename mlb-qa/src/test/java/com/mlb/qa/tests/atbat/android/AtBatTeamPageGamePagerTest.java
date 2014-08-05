@@ -43,37 +43,44 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 						.waitForDateProgressBarLoad();
-		
-		String currentDateItem = DateUtils.dateToString(teamUtils.getCorrectScoreboardDate(), teamUtils.gamePagerDateFormat);
+
+        String year = AtBatParameter.MLB_ATBAT_SEASON.getValue();
+        Team team = lookupService.lookupTeamByAbbrev(teamShortCode, year);
+        DateTime currentDate = new DateTime();
+
+        List<Game> gameList = lookupService.lookupListofGamesBetweenDates(team.getTeamId(), year,
+                currentDate.minusDays(7), currentDate.plusDays(7));
+        List<String> backEndList = teamUtils.getCurrentGamePagerDates(gameList);
+        List<String> frontEndList = teamPage.getDateItems();
+
+        //Making it easier to read what is going on in the asserts.
+        String dateItemPreviousDay = frontEndList.get(0);
+        String dateItemCurrentDay = frontEndList.get(1);
+        String dateItemNextDay = frontEndList.get(2);
 		
 		SoftAssert softAssert = new SoftAssert();
-		softAssert.assertEquals(teamPage.getDateItem(1), currentDateItem, 
-				String.format("Date Test (0) - Expected: %s Actual: %s", currentDateItem, teamPage.getDateItem(1)));
+		softAssert.assertEquals(teamPage.getDateItem(1), dateItemCurrentDay,
+				String.format("Date Test (0) - Expected: %s Actual: %s", dateItemCurrentDay, teamPage.getDateItem(1)));
 		
 		teamPage.selectDateItem(0);
-		currentDateItem = DateUtils.dateToString(teamUtils.getCorrectScoreboardDate().minusDays(1), teamUtils.gamePagerDateFormat);
-		softAssert.assertEquals(teamPage.getDateItem(0), currentDateItem, 
-				String.format("Date Test (1) - Expected: %s Actual: %s", currentDateItem, teamPage.getDateItem(0)));
+		softAssert.assertEquals(teamPage.getDateItem(0), dateItemPreviousDay,
+				String.format("Date Test (1) - Expected: %s Actual: %s", dateItemPreviousDay, teamPage.getDateItem(0)));
 		
 		teamPage.selectDateItem(1);
-		currentDateItem = DateUtils.dateToString(teamUtils.getCorrectScoreboardDate(), teamUtils.gamePagerDateFormat);
-		softAssert.assertEquals(teamPage.getDateItem(1), currentDateItem, 
-				String.format("Date Test (2) - Expected: %s Actual: %s", currentDateItem, teamPage.getDateItem(1)));
+		softAssert.assertEquals(teamPage.getDateItem(1), dateItemCurrentDay,
+				String.format("Date Test (2) - Expected: %s Actual: %s", dateItemCurrentDay, teamPage.getDateItem(1)));
 		
 		teamPage.selectDateItem(2);
-		currentDateItem = DateUtils.dateToString(teamUtils.getCorrectScoreboardDate().plusDays(1), teamUtils.gamePagerDateFormat);
-		softAssert.assertEquals(teamPage.getDateItem(1), currentDateItem, 
-				String.format("Date Test (3) - Expected: %s Actual: %s", currentDateItem, teamPage.getDateItem(1)));
+		softAssert.assertEquals(teamPage.getDateItem(1), dateItemNextDay,
+				String.format("Date Test (3) - Expected: %s Actual: %s", dateItemNextDay, teamPage.getDateItem(1)));
 		
 		teamPage.selectDateItem(0);
-		currentDateItem = DateUtils.dateToString(teamUtils.getCorrectScoreboardDate(), teamUtils.gamePagerDateFormat);
-		softAssert.assertEquals(teamPage.getDateItem(1), currentDateItem, 
-				String.format("Date Test (4) - Expected: %s Actual: %s", currentDateItem, teamPage.getDateItem(1)));
+		softAssert.assertEquals(teamPage.getDateItem(1), dateItemCurrentDay,
+				String.format("Date Test (4) - Expected: %s Actual: %s", dateItemCurrentDay, teamPage.getDateItem(1)));
 		
 		teamPage.selectDateItem(0);
-		currentDateItem = DateUtils.dateToString(teamUtils.getCorrectScoreboardDate().minusDays(1), teamUtils.gamePagerDateFormat);
-		softAssert.assertEquals(teamPage.getDateItem(0), currentDateItem, 
-				String.format("Date Test (5) - Expected: %s Actual: %s", currentDateItem, teamPage.getDateItem(0)));
+		softAssert.assertEquals(teamPage.getDateItem(0), dateItemPreviousDay,
+				String.format("Date Test (5) - Expected: %s Actual: %s", dateItemPreviousDay, teamPage.getDateItem(0)));
 		softAssert.assertAll();
 	}
 

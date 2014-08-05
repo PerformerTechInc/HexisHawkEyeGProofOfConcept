@@ -332,13 +332,13 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 
 	@Test
-	public void homeBaseTestMLB000DepthChart() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
+	public void homeBaseTestMLB000GameContentLineup() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.testDepthCharts(mainURL);
-		return;
+		homePage.lineupGameContentAddPlayers(mainURL);
+//		homePage.lineupGameContentDeletePlayers(mainURL);
 	}	
 
 	@Test
@@ -1073,6 +1073,38 @@ public class HomebaseTestSuite extends UITest {
 		homePage.selectHomePageUploadPhotos();
 		homePage.uploadPhotos(mainURL, valueMajorTagToolPlayer);
 		return;
+	}	
+
+	@Test
+	public void homeBaseTestMLB068DepthChart() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
+	{
+		HB_HomePage homePage = new HB_HomePage(driver);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.depthChartsAddPlayers(mainURL);
+		homePage.depthChartsRepositionPlayers(mainURL);
+		homePage.depthChartsDeletePlayers(mainURL);
+	}	
+
+	@Test
+	public void homeBaseTestMLB069TeamContentProbables() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
+	{
+		HB_HomePage homePage = new HB_HomePage(driver);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.probablesTeamContentAddPlayers(mainURL);
+		homePage.probablesTeamContentRepositionPlayers(mainURL);
+		homePage.probablesTeamContentDeletePlayers(mainURL);
+	}	
+
+	@Test
+	public void homeBaseTestMLB070GameContentProbables() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
+	{
+		HB_HomePage homePage = new HB_HomePage(driver);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.probablesGameContentAddPlayers(mainURL);
+		homePage.probablesGameContentDeletePlayers(mainURL);
 	}	
 
 	
