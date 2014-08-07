@@ -1,5 +1,8 @@
-package com.mlb.qa.at_bat.android.page;
+package com.mlb.qa.at_bat.android.page.common;
 
+import com.mlb.qa.at_bat.android.page.*;
+import com.mlb.qa.at_bat.android.page.media.AtBatVideoPage;
+import com.mlb.qa.at_bat.android.page.teams.AtBatTeamPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -54,6 +57,18 @@ public class AtBatAndroidPage extends AndroidPage {
 		
 		return new AtBatTeamPage(driver);
 	}
+
+    public AtBatStandingsPage openStandings() {
+        openMenu().clickOnMenuItem(MenuItem.STANDINGS);
+
+        return new AtBatStandingsPage(driver);
+    }
+
+    public AtBatVideoPage openVideo() {
+        openMenu().clickOnMenuItem(MenuItem.VIDEO);
+
+        return new AtBatVideoPage(driver);
+    }
 
     /**
      * Pass ExtendedWebElement which will then be retried up to 10 times

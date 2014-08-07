@@ -3,16 +3,16 @@ package com.mlb.qa.tests.atbat.android;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.mlb.qa.at_bat.android.page.AtBatAndroidPage;
+import com.mlb.qa.at_bat.android.page.common.AtBatAndroidPage;
 import com.mlb.qa.at_bat.android.page.AtBatMenu;
 import com.mlb.qa.at_bat.android.page.AtBatNewsPage;
 import com.mlb.qa.at_bat.android.page.AtBatNotificationsPage;
 import com.mlb.qa.at_bat.android.page.AtBatNotificationsPage.NotificationsToggleItem;
-import com.mlb.qa.at_bat.android.page.AtBatPaywallPage;
+import com.mlb.qa.at_bat.android.page.paywalls.AtBatPaywallPage;
 import com.mlb.qa.at_bat.android.page.AtBatSchedulePage;
-import com.mlb.qa.at_bat.android.page.AtBatTeamPage;
-import com.mlb.qa.at_bat.android.page.AtBatTeamRosterPage;
-import com.mlb.qa.at_bat.android.page.AtBatTeamRosterPage.RosterTabItem;
+import com.mlb.qa.at_bat.android.page.teams.AtBatTeamPage;
+import com.mlb.qa.at_bat.android.page.teams.AtBatTeamRosterPage;
+import com.mlb.qa.at_bat.android.page.teams.AtBatTeamRosterPage.RosterTabItem;
 import com.mlb.qa.at_bat.android.page.AtBatWebViewPage;
 
 /**
