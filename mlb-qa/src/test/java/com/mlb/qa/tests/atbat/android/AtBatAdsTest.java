@@ -3,8 +3,8 @@ package com.mlb.qa.tests.atbat.android;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.mlb.qa.at_bat.android.page.AtBatAndroidPage;
-import com.mlb.qa.at_bat.android.page.AtBatTeamPage;
+import com.mlb.qa.at_bat.android.page.common.AtBatAndroidPage;
+import com.mlb.qa.at_bat.android.page.teams.AtBatTeamPage;
 
 /**
  * Tests that involve Ads inside of the At Bat Application

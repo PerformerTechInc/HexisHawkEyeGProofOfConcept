@@ -1,5 +1,8 @@
-package com.mlb.qa.at_bat.android.page;
+package com.mlb.qa.at_bat.android.page.authentication;
 
+import com.mlb.qa.at_bat.android.page.common.AtBatAndroidPage;
+import com.mlb.qa.at_bat.android.page.AtBatForgotPasswordPage;
+import com.mlb.qa.at_bat.android.page.AtBatSettingsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

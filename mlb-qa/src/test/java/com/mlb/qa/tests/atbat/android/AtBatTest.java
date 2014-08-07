@@ -1,14 +1,20 @@
 package com.mlb.qa.tests.atbat.android;
 
+import com.mlb.qa.at_bat.android.page.media.AtBatAudioPage;
+import com.mlb.qa.at_bat.android.page.media.AtBatTvPage;
+import com.mlb.qa.at_bat.android.page.media.AtBatVideoStreamPage;
+import com.mlb.qa.at_bat.android.page.paywalls.AtBatPaywallPage;
+import com.mlb.qa.at_bat.android.page.paywalls.AtBatPaywallTVPage;
 import org.apache.log4j.Logger;
 
-import com.mlb.qa.at_bat.android.page.AtBatLoginAlert;
+import com.mlb.qa.at_bat.android.page.authentication.AtBatLoginAlert;
 import com.mlb.qa.at_bat.android.page.AtBatMenu.MenuItem;
 import com.mlb.qa.at_bat.android.page.AtBatFavoriteTeamSelectionPage;
 import com.mlb.qa.at_bat.android.page.AtBatSettingsPage;
-import com.mlb.qa.at_bat.android.page.AtBatWelcomePage;
+import com.mlb.qa.at_bat.android.page.common.AtBatWelcomePage;
 import com.mlb.qa.atb.AtbParameter;
 import com.qaprosoft.carina.core.foundation.UITest;
+import org.testng.Assert;
 
 /**
  * Generic Class for Methods that can be utilized by the different At Bat Tests
@@ -91,4 +97,33 @@ public class AtBatTest extends UITest {
 			.skipSettingNotifications();
 		}
 	}
+
+    public void assertLiteTVResults(String pageType) {
+        AtBatTvPage tvPage = new AtBatTvPage(driver);
+
+        //Loop through days from present backwards looking for a day with games.
+        while (!tvPage.doGamesExist() && tvPage.isPreviousDayAvailable()) {
+            tvPage.tapPreviousDay();
+        }
+
+        tvPage.selectStream(1);
+
+        AtBatVideoStreamPage mediaPlayer = new AtBatVideoStreamPage(driver);
+
+        Assert.assertFalse(mediaPlayer.isOpen(), String.format("%s (Assert True) - Paywall not visible, TV visible", pageType));
+
+        AtBatPaywallTVPage paywallPage = new AtBatPaywallTVPage(driver);
+
+        Assert.assertTrue(paywallPage.paywallPageAvailable(), String.format("%s (Assert True) - Paywall not visible, TV visible", pageType));
+    }
+
+    public void assertLiteAudioResults(String pageType) {
+        AtBatAudioPage audioPage = new AtBatAudioPage(driver);
+
+        Assert.assertFalse(audioPage.isOpen(), String.format("%s (Assert False) - Paywall not visible, Audio page visible", pageType));
+
+        AtBatPaywallPage paywallPage = new AtBatPaywallPage(driver);
+
+        Assert.assertTrue(paywallPage.paywallPageAvailable(), String.format("%s (Assert True) - Paywall not visible, Audio page visible", pageType));
+    }
 }

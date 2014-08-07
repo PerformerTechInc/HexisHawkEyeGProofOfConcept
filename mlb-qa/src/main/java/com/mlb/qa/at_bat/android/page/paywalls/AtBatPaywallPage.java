@@ -1,5 +1,8 @@
-package com.mlb.qa.at_bat.android.page;
+package com.mlb.qa.at_bat.android.page.paywalls;
 
+import com.mlb.qa.at_bat.android.page.common.AtBatAndroidPage;
+import com.mlb.qa.at_bat.android.page.AtBatFavoriteTeamSelectionPage;
+import com.mlb.qa.at_bat.android.page.authentication.AtBatLoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -32,6 +35,8 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 	private ExtendedWebElement sponsorRedeemButton;
 	@FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallSponsorAppFragment_continueContainer")
 	private ExtendedWebElement paywallContinueContainer;
+    @FindBy(id = "com.bamnetworks.mobile.android.gameday.atbat:id/PaywallSponsorAppFragment_loginLabel")
+    private ExtendedWebElement loginLabel;
 
 	public AtBatPaywallPage(WebDriver driver) {
 		super(driver);
@@ -80,9 +85,12 @@ public class AtBatPaywallPage extends AtBatAndroidPage {
 	}
 
 	public boolean paywallPageAvailable() {
+        //TODO:  Need something that works for both T-Mobile and Non-T-Mobile
 		if (isElementPresent(paywallTitleText, delay)) {
 			return true;
-		}
+		} else if (isElementPresent(loginLabel, delay)) {
+            return true;
+        }
 		return false;
 	}
 }

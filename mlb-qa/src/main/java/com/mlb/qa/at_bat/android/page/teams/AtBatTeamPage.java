@@ -1,8 +1,13 @@
-package com.mlb.qa.at_bat.android.page;
+package com.mlb.qa.at_bat.android.page.teams;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import com.mlb.qa.at_bat.android.page.AtBatNewsPage;
+import com.mlb.qa.at_bat.android.page.AtBatNotificationsPage;
+import com.mlb.qa.at_bat.android.page.AtBatSchedulePage;
+import com.mlb.qa.at_bat.android.page.AtBatWebViewPage;
+import com.mlb.qa.at_bat.android.page.common.AtBatAndroidPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
