@@ -63,6 +63,8 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 		int year = Integer.parseInt(StringUtils.substringAfter(monthYear, " "));
 		int month = Month.getMonthOfYearByFullName(StringUtils.substringBefore(monthYear, " "));
 		List<GamePromotion> gamePromotions = new LinkedList<GamePromotion>();
+		logger.info("gamePromotionContainers size: " + gamePromotionContainers.size());
+		
 		for (ExtendedWebElement gamePromotionContainer : gamePromotionContainers) {
 			GamePromotion gamePromotion = new GamePromotion();
 			int day = Integer.parseInt((new ExtendedWebElement(gamePromotionContainer.getElement().findElement(
