@@ -26,8 +26,9 @@ public class AtbBallparkPromotionsTest extends AtbBaseWebTest {
     @Test(dataProvider = "excel_ds", description = "Check list of promotions correct")
     @Parameters({"team_abbrev", "team_promotions_web"})
     public void checkListOfPromotions(String teamAbbrev, String promotionsUrl) {
-        List<GamePromotion> promotionsOnUi = AtbBallparkPromotionsPage.open(getDriver(),
-                promotionsUrl).loadListOfGamePromotions();
+        //List<GamePromotion> promotionsOnUi = AtbBallparkPromotionsPage.open(getDriver(), promotionsUrl).loadListOfGamePromotions();
+    	AtbBallparkPromotionsPage promotionsPage = new AtbBallparkPromotionsPage(getDriver(), promotionsUrl);
+        List<GamePromotion> promotionsOnUi = promotionsPage.loadListOfGamePromotions();
         String year = AtbParameter.MLB_ATB_SEASON.getValue();
         int month = new DateTime().getMonthOfYear();
         Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
