@@ -48,13 +48,19 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 	public AtbBallparkPromotionsPage(WebDriver driver) {
 		super(driver);
 	}
-
+	
+	public AtbBallparkPromotionsPage(WebDriver driver, String url) {
+		super(driver);		
+		logger.info("Open " + url);
+		driver.get(url);
+	}
+/*
 	public static AtbBallparkPromotionsPage open(WebDriver driver, String url) {
 		logger.info("Open " + url);
 		driver.get(url);
 		return new AtbBallparkPromotionsPage(driver);
 	}
-
+*/
 	public List<GamePromotion> loadListOfGamePromotions() {
 		logger.info("Load list of game promotions");
 		pause(1);
