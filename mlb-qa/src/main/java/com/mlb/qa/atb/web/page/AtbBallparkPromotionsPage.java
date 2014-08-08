@@ -67,6 +67,7 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 			GamePromotion gamePromotion = new GamePromotion();
 			int day = Integer.parseInt((new ExtendedWebElement(gamePromotionContainer.getElement().findElement(
 					By.xpath(DAY_LOCATOR)))).getText());
+			LOGGER.info("gamePromotionContainer text: " + gamePromotionContainer.getText());
 			gamePromotion.setGameDate(new DateTime(year, month, day, 0, 0));
 			gamePromotion.setAwayNameTeam(StringUtils.substringAfter(
 					getTextIfPresent(gamePromotionContainer, OPPONENT_LOCATOR), "vs. "));
@@ -74,6 +75,7 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 			List<Promotion> promotions = new LinkedList<Promotion>();
 			for (WebElement promoItemContainer : gamePromotionContainer.getElement().findElements(
 					By.xpath(PROMOTION_CONTAINER_LOCATOR))) {
+				LOGGER.info("promoItemContainer text: " + promoItemContainer.getText());
 				Promotion promotion = new Promotion();
 //				promotion.setDescription(getTextIfPresent(new ExtendedWebElement(promoItemContainer),
 //						DESCRIPTION_LOCATOR));
