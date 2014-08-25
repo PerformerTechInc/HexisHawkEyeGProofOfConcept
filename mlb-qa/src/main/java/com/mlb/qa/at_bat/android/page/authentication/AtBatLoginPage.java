@@ -1,5 +1,7 @@
-package com.mlb.qa.at_bat.android.page;
+package com.mlb.qa.at_bat.android.page.authentication;
 
+import com.mlb.qa.at_bat.android.page.common.AtBatAndroidPage;
+import com.mlb.qa.at_bat.android.page.AtBatFavoriteTeamSelectionPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

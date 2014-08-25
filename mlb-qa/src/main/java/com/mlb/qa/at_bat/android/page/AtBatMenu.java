@@ -1,5 +1,6 @@
 package com.mlb.qa.at_bat.android.page;
 
+import com.mlb.qa.at_bat.android.page.common.AtBatAndroidPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -25,6 +26,10 @@ public class AtBatMenu extends AtBatAndroidPage {
 	private ExtendedWebElement newsMenuItem;
 	@FindBy(xpath = "//android.widget.TextView[@text='Scoreboard']")
 	private ExtendedWebElement scoreboardMenuItem;
+    @FindBy(xpath = "//android.widget.TextView[@text='Video']")
+    private ExtendedWebElement videoMenuItem;
+    @FindBy(xpath = "//android.widget.TextView[@text='Standings']")
+    private ExtendedWebElement standingsMenuItem;
 	@FindBy(xpath = "//android.widget.TextView[@text='Teams']")
 	private ExtendedWebElement teamsMenuItem;
     @FindBy(xpath = "//android.widget.TextView[@text='Settings']")
@@ -36,7 +41,8 @@ public class AtBatMenu extends AtBatAndroidPage {
 	// Menu
 	public enum MenuItem {
 		FAVORITE_TEAM("Favorite Team"), SCOREBOARD("Scoreboard"), 
-		NEWS("News"), SETTINGS("Settings"), TEAMS("Teams");
+		NEWS("News"), SETTINGS("Settings"), STANDINGS("Standings"),
+        TEAMS("Teams"), VIDEO("Video");
 
 		private String menuTitle;
 

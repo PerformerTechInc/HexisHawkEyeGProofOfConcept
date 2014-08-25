@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="MLB - Android At Bat - Features Lite Suite" annotations="JDK">
+	<test verbose="1" name="Android At Bat Features Lite Tests">
+	    <parameter name="{excel_ds_args}" value="TUID"/>
+		<parameter name="{excel_ds_uid}" value="TUID"/>
+	    <parameter name="{excel_ds_file}" value="XLS_data/atbat_team.xls"/>
+	    <parameter name="{excel_ds_sheet}" value="team_name"/>	
+		<classes>
+			<class name="com.mlb.qa.tests.atbat.android.AtBatFeaturesLiteTest"/>
+		</classes>
+	</test>
+</suite>

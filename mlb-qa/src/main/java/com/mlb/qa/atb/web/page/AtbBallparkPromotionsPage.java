@@ -48,13 +48,19 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 	public AtbBallparkPromotionsPage(WebDriver driver) {
 		super(driver);
 	}
-
+	
+	public AtbBallparkPromotionsPage(WebDriver driver, String url) {
+		super(driver);		
+		logger.info("Open " + url);
+		driver.get(url);
+	}
+/*
 	public static AtbBallparkPromotionsPage open(WebDriver driver, String url) {
 		logger.info("Open " + url);
 		driver.get(url);
 		return new AtbBallparkPromotionsPage(driver);
 	}
-
+*/
 	public List<GamePromotion> loadListOfGamePromotions() {
 		logger.info("Load list of game promotions");
 		pause(1);
@@ -63,10 +69,13 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 		int year = Integer.parseInt(StringUtils.substringAfter(monthYear, " "));
 		int month = Month.getMonthOfYearByFullName(StringUtils.substringBefore(monthYear, " "));
 		List<GamePromotion> gamePromotions = new LinkedList<GamePromotion>();
+		logger.info("gamePromotionContainers size: " + gamePromotionContainers.size());
+		
 		for (ExtendedWebElement gamePromotionContainer : gamePromotionContainers) {
 			GamePromotion gamePromotion = new GamePromotion();
 			int day = Integer.parseInt((new ExtendedWebElement(gamePromotionContainer.getElement().findElement(
 					By.xpath(DAY_LOCATOR)))).getText());
+			LOGGER.info("gamePromotionContainer text: " + gamePromotionContainer.getText());
 			gamePromotion.setGameDate(new DateTime(year, month, day, 0, 0));
 			gamePromotion.setAwayNameTeam(StringUtils.substringAfter(
 					getTextIfPresent(gamePromotionContainer, OPPONENT_LOCATOR), "vs. "));
@@ -74,6 +83,7 @@ public class AtbBallparkPromotionsPage extends AbstractPage {
 			List<Promotion> promotions = new LinkedList<Promotion>();
 			for (WebElement promoItemContainer : gamePromotionContainer.getElement().findElements(
 					By.xpath(PROMOTION_CONTAINER_LOCATOR))) {
+				LOGGER.info("promoItemContainer text: " + promoItemContainer.getText());
 				Promotion promotion = new Promotion();
 //				promotion.setDescription(getTextIfPresent(new ExtendedWebElement(promoItemContainer),
 //						DESCRIPTION_LOCATOR));

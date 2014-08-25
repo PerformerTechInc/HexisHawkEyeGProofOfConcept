@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.mlb.qa.at_bat.AtBatParameter;
-import com.mlb.qa.at_bat.android.page.AtBatAndroidPage;
-import com.mlb.qa.at_bat.android.page.AtBatTeamPage;
+import com.mlb.qa.at_bat.android.page.common.AtBatAndroidPage;
+import com.mlb.qa.at_bat.android.page.teams.AtBatTeamPage;
 import com.mlb.qa.at_bat.model.team.TeamDateComparator;
 import com.mlb.qa.at_bat.model.team.TeamPageUtils;
 import com.mlb.qa.at_bat.service.http.AtBatHttpService;
@@ -17,7 +17,6 @@ import com.mlb.qa.atb.model.Team;
 import com.mlb.qa.atb.model.game.Game;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.mlb.qa.common.comparator.ListComparator;
-import com.mlb.qa.common.date.DateUtils;
 
 public class AtBatTeamPageGamePagerTest extends AtBatTest {
 	private AtBatHttpService httpService = new AtBatHttpService();
