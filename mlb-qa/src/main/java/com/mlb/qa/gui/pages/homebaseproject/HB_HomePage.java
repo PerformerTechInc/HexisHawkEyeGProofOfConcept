@@ -18,10 +18,14 @@ import com.qaprosoft.carina.core.foundation.http.*;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.common.http.*;
 
+import java.util.Set;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -115,14 +119,6 @@ public class HB_HomePage extends AbstractPage {
 	private static final String multipleCutUploadURLCreateThumb = "yes";
 	private static final String multipleCutUploadURLPhotoTemplateID = "43123107";
 	private static final String multipleCutUploadURLResizeQuality = "100";
-	private static final String multipleCutUploadURL = addressMultipleCutUpload + "create-thumb=" + multipleCutUploadURLCreateThumb + "&photo-template-id=" + multipleCutUploadURLPhotoTemplateID + "&resize-quality=" + multipleCutUploadURLResizeQuality;
-	private static final String[] GameContentLineupPlayerType = {"P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF"};
-//	private static final String requestPayload = "------WebKitFormBoundary1AWUxDbKNDwCkBcK\r\nContent-Disposition: form-data; name='name'\r\n\r\ntestphoto010.jpg\r\n------WebKitFormBoundary1AWUxDbKNDwCkBcK\r\nContent-Disposition: form-data; name='raw-image'; filename='testphoto010.jpg'\r\nContent-Type: image/jpeg\r\ndata:image/jpeg;base64,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mm5pc0AOzRmm5pc0AOzRmm5ozSAdmjNNzRmgB2aM03NGaAHZpM0maM0ALmkzSZozTAXNJmkzSZoAXNGaTNJmgBc0maTNJmgBc0lJSZoAWkozSZoACaSkopgBpDQTTaAFptLSUAJSE0tITQAhoopDQAUhoopgJRRRQAUUUUAFFFFABRRRQAtLTaWgB1FJS0gFpabS0AOpabS5oAdS5poNLQA6lpoNLQA4GlzTKXNADs0uabmlzSAdmlzTc0ZoAdmlzTc0ZoAfmjNNzRmgB+aM03NGaAHZpc0zNLmgBc0ZpM0ZoAXNGaTNGaAFzRmkzSZoAdmkzSZpM0ALmjNJmkzQAuaTNGaTNAC5pM0maM0AGaTNGaTNABmkopKYBRSUlACmkopKACkopCaAA0lFJQAUlFFABSUUUwCiiigAooooAKKKKACiiigAooooAWlptLQA6jNJS0gFpabS0AOpabS0ALS5puaWgB2aWm0uaAHZozTc0uaAHZpc03NGaAHZpc03NFIB+aM02jNADs0uabmjNADs0ZpuaM0AOzRmm5ozQA7NGabmjNADs0maSjNAC5ozSZpM0ALmjNJmkzQAuaM0maTNAC5pM0maM0wCjNJmkoAXNJmikzQAUlFJQAUUUhNAATSUUmaAFptLSUwCkoooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAFpabS0AOopKKQDqWm0oNAC0tNpaAHUU2loAdS02jNADs0tNzS5oAXNLmm5pc0ALmlpuaKAHZopM0ZoAdRmm5ozSAdmjNNzRmgB2aM03NGaAFopM0ZpgLmjNJmkzQAtGaTNJmgBaKSkzQAuaSikoAWkozSUAFFJRQAUlGaSgAoopKACkpaSmAUlFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFLSUUALmikpaAFpabS0gFpc02loAdRTc0uaAHZopKAaAHZozTaWgB1GabS5oAXNLmm0ZoAdmikzRQA7NGabRmgB2aM03NGaAFzS5puaM0AOzSZpKKAFzRmkzSUALmjNJmjNAC5pKSigAzRmkooAKM0maM0AGaM0lFABRSUZoAM0lFJTAWkoooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBaKSigB2aKSigB1FJmikAuaXNJRQAuaXNNooAdRSZozQA7NGaSjNAC5pc03NFADs0ZptLQAuaM0lFAC5ozSUlADs0ZptGaAFozSZozQAuaSikzQAuaM0lJmgBc0ZpKKACikooAM0UlFMAopKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAFopKKAHZopBRQAuaWkopALRSUtABSg0lFAC5ozSUUALmikpaADNGaKKACjNFJQAuaM0lFAC5pM0UUAFFFJQAtFJRQAGjNJRTAKKSigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==\r\n\r\n\r\n------WebKitFormBoundary1AWUxDbKNDwCkBcK--";
-/*	public void selenium(){
-		
-	}
-*/	
-	//	private ExtendedWebElement waitPeriod;
 	
 	//************ LOGIN OBJECTS ************//	
 
@@ -204,6 +200,9 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(id="searchHeaderText")
 	public ExtendedWebElement FieldMainSearch;
+
+	@FindBy(xpath="//ul[@class='ui-sortable']")
+	public ExtendedWebElement panelSearchUISortable;
 
 	//************ SEARCH OBJECTS ************//	
 	
@@ -348,13 +347,6 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//div[@style='font-size: 13px;min-height:16px;']")
 	public ExtendedWebElement valuePhotoAsset;
 	
-//	@FindBy(xpath="//input[@value=[contains(text(), '265x150')]]")
-//	public ExtendedWebElement FieldPhotoAssetCut001;
-
-//	@FindBy(xpath="//*[@value='265']")
-//	public ExtendedWebElement FieldPhotoAssetCut002;
-
-
 	@FindBy(xpath="//*[@value='265']")
 	public ExtendedWebElement FieldPhotoAssetCutWidth001;
 
@@ -375,6 +367,12 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(id="taggingGameDayBrowse")
 	public ExtendedWebElement BtnTagToolChangeDate;
+
+	@FindBy(xpath="//td[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']")
+	public ExtendedWebElement BtnTagToolSelectCurrentDate;
+
+	@FindBy(xpath="//div[@class='autocompleteResultsContainer'][@style='width:330px']")
+	public ExtendedWebElement FieldTagToolPlayerTag;
 
 	@FindBy(xpath="(//button[@type='button'])[2]")
 	public ExtendedWebElement BtnApplyTagsAndClose;
@@ -678,6 +676,92 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ DAILY EMAIL CREATION OBJECTS ************//	
 
+	//************ DEVICE ANNOUNCEMENT CREATION OBJECTS ************//	
+
+	@FindBy(name="appVersion")
+	public ExtendedWebElement FieldAppVersion;
+
+	@FindBy(name="osVersion")
+	public ExtendedWebElement FieldOSVersion;
+
+	@FindBy(name="entitlement")
+	public ExtendedWebElement FieldEntitlement;
+
+	@FindBy(name="screen")
+	public ExtendedWebElement FieldScreen;
+
+	@FindBy(name="type")
+	public ExtendedWebElement FieldType;
+
+	@FindBy(name="displayType")
+	public ExtendedWebElement FieldDisplayType;
+
+	@FindBy(name="text")
+	public ExtendedWebElement FieldMessage;
+
+	@FindBy(name="open-title")
+	public ExtendedWebElement FieldOpenLabel;
+
+	@FindBy(name="openLink")
+	public ExtendedWebElement FieldOpenLink;
+
+	@FindBy(name="close-title")
+	public ExtendedWebElement FieldCloseLabel;
+
+	@FindBy(name="closeLink")
+	public ExtendedWebElement FieldCloseLink;
+
+	//************ DEVICE ANNOUNCEMENT CREATION OBJECTS ************//	
+
+	//************ DEVICE BANNER CREATION OBJECTS ************//	
+
+	@FindBy(name="accessFeature")
+	public ExtendedWebElement FieldAccessFeature;
+
+	@FindBy(name="viewid")
+	public ExtendedWebElement FieldViewID;
+
+	@FindBy(name="webviewtype")
+	public ExtendedWebElement FieldWebViewType;
+
+	@FindBy(name="link")
+	public ExtendedWebElement FieldLink;
+
+	@FindBy(name="bgcolor")
+	public ExtendedWebElement FieldBackgroundColor;
+
+	@FindBy(name="trackingString")
+	public ExtendedWebElement FieldTrackingString;
+
+	@FindBy(name="adMarvelId")
+	public ExtendedWebElement FieldAdMarvelID;
+
+	@FindBy(name="sizeWidth")
+	public ExtendedWebElement FieldAdMarvelWidth;
+
+	@FindBy(name="sizeHeight")
+	public ExtendedWebElement FieldAdMarvelHeight;
+
+	@FindBy(name="sectionId")
+	public ExtendedWebElement FieldAdMarvelSectionID;
+
+	@FindBy(name="mlbtarget")
+	public ExtendedWebElement FieldAdMarvelMLBTarget;
+
+	@FindBy(name="admarvelExpiryTime")
+	public ExtendedWebElement FieldAdMarvelExpiryTime;
+
+	@FindBy(name="contentID")
+	public ExtendedWebElement FieldMLBTVContentID;
+
+	@FindBy(name="calendarEventID")
+	public ExtendedWebElement FieldMLBTVCalendarEventID;
+
+	@FindBy(name="sponsor")
+	public ExtendedWebElement FieldSponsor;
+
+	//************ DEVICE BANNER CREATION OBJECTS ************//	
+
 	//************ DEVICE PAGE CREATION OBJECTS ************//	
 
 	@FindBy(name="yearly-purchase-flow")
@@ -758,11 +842,130 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ HIGHLIGHT CREATION OBJECTS ************//	
 
+	@FindBy(xpath="//input[@data-field-key='default-alt-text']")
+	public ExtendedWebElement FieldDefaultAltText;
+
+	@FindBy(xpath="//input[@data-field-key='default-clickthrough-url']")
+	public ExtendedWebElement FieldDefaultClickthroughURL;
+
 	//************ HIGHLIGHT CREATION OBJECTS ************//	
 
+	//************ HP CONFIG CREATION OBJECTS ************//	
+	@FindBy(xpath="//input[@data-field-key='breaking-news']")
+	public ExtendedWebElement FieldBreakingNews;
+
+	@FindBy(xpath="//input[@data-field-key='breaking-news-url']")
+	public ExtendedWebElement FieldBreakingNewsURL;
+
+	@FindBy(xpath="//input[@data-field-key='abTests']")
+	public ExtendedWebElement FieldABTests;
+
+	@FindBy(xpath="//input[@data-field-key='header-url']")
+	public ExtendedWebElement FieldHeaderURL;
+
+	@FindBy(xpath="//input[@data-field-key='header-alt']")
+	public ExtendedWebElement FieldHeaderAlt;
+
+	//************ HP CONFIG CREATION OBJECTS ************//	
+
 	//************ HTML PAGE CREATION OBJECTS ************//	
 
 	//************ HTML PAGE CREATION OBJECTS ************//	
+
+	//************ INSTAGRAM PHOTO CREATION OBJECTS ************//	
+
+	@FindBy(name="approver")
+	public ExtendedWebElement FieldApprover;
+
+	@FindBy(xpath="//input[@data-field-key='approvedTime']")
+	public ExtendedWebElement FieldApprovedTime;
+
+	@FindBy(name="id")
+	public ExtendedWebElement FieldInstagramID;
+
+	@FindBy(name="image")
+	public ExtendedWebElement FieldImageURL;
+
+	@FindBy(name="bigImage")
+	public ExtendedWebElement FieldLargeImageURL;
+
+	@FindBy(name="userID")
+	public ExtendedWebElement FieldCreatorID;
+
+	@FindBy(name="userName")
+	public ExtendedWebElement FieldCreatorName;
+
+	@FindBy(name="userImage")
+	public ExtendedWebElement FieldCreatorProfilePicture;
+
+	@FindBy(xpath="//input[@data-field-key='createdTime']")
+	public ExtendedWebElement FieldCreatedTime;
+
+	@FindBy(name="latitude")
+	public ExtendedWebElement FieldLatitude;
+
+	@FindBy(name="latitude")
+	public ExtendedWebElement FieldLongitude;
+
+	//************ INSTAGRAM PHOTO CREATION OBJECTS ************//	
+
+	//************ INSTAGRAM STREAM CREATION OBJECTS ************//
+	
+	@FindBy(name="name")
+	public ExtendedWebElement FieldInstagramStreamDisplayName;
+
+	@FindBy(name="key")
+	public ExtendedWebElement FieldKey;
+
+	//************ INSTAGRAM STREAM CREATION OBJECTS ************//
+
+	//************ KIOSK CREATION OBJECTS ************//	
+
+	@FindBy(name="calendar-event-id")
+	public ExtendedWebElement FieldCalendarEventID;
+
+	@FindBy(name="content-id")
+	public ExtendedWebElement FieldContentID;
+
+	//************ KIOSK CREATION OBJECTS ************//	
+	
+	//************ LINEUP CREATION OBJECTS ************//	
+
+	@FindBy(xpath="//input[@data-field-key='umpire_id_hp']")
+	public ExtendedWebElement FieldUmpireHP;
+
+	@FindBy(xpath="//input[@data-field-key='umpire_id_1b']")
+	public ExtendedWebElement FieldUmpire1st;
+
+	@FindBy(xpath="//input[@data-field-key='umpire_id_2b']")
+	public ExtendedWebElement FieldUmpire2nd;
+
+	@FindBy(xpath="//input[@data-field-key='umpire_id_3b']")
+	public ExtendedWebElement FieldUmpire3rd;
+
+	@FindBy(xpath="//input[@data-field-key='umpire_id_lf']")
+	public ExtendedWebElement FieldUmpireLF;
+
+	@FindBy(xpath="//input[@data-field-key='umpire_id_rf']")
+	public ExtendedWebElement FieldUmpireRF;
+
+	@FindBy(xpath="//input[@data-field-key='official_scorer_id']")
+	public ExtendedWebElement FieldUmpireOS;
+
+	@FindBy(name="notes")
+	public ExtendedWebElement FieldLineupNotes;
+
+	@FindBy(xpath="//button[@data-sub-item-type='lineup-player']")
+	public ExtendedWebElement btnSearchForLineupPlayer;
+
+	//************ LINEUP CREATION OBJECTS ************//	
+
+	//************ LINEUP PLAYER CREATION OBJECTS ************//	
+
+	//************ LINEUP PLAYER CREATION OBJECTS ************//	
+
+	@FindBy(name="position")
+	public ExtendedWebElement FieldPosition;
 
 	//************ LINK CREATION OBJECTS ************//	
 
@@ -777,7 +980,14 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ LINK CREATION OBJECTS ************//	
 
+	//************ LIST CREATION OBJECTS ************//	
+
+	//************ LIST CREATION OBJECTS ************//	
+
 	//************ MEDIAWALL CREATION OBJECTS ************//	
+
+	@FindBy(name="numpanels")
+	public ExtendedWebElement FieldNumberOfPanels;
 
 	//************ MEDIAWALL CREATION OBJECTS ************//	
 
@@ -947,12 +1157,110 @@ public class HB_HomePage extends AbstractPage {
 	
 	//************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//	
 
-	@FindBy(xpath="//div[@class='ui components form content lineup  processedYes'][@data-listens-for='click change'][@data-controller='components/form/controllers/dashboard.lineup.js']")
+//	@FindBy(xpath="//div[@class='ui components form content lineup  processedYes'][@data-listens-for='click change'][@data-controller='components/form/controllers/dashboard.lineup.js']")
+//	@FindBy(xpath="//div[@class='ui components form content lineup  processedYes'][@data-listens-for='click change']")
+	@FindBy(xpath="//div[@class='collectionPanel positionRelative ui-tabs-panel ui-widget-content ui-corner-bottom lineupParent']")
 	public ExtendedWebElement lineupGameContentFieldDataPositionDescription;
 
-	@FindBy(xpath="//div[@class='fb-a'][@style='width:30px;']")
+	@FindBy(xpath="//div[@class='lineupColumn']")
+	public ExtendedWebElement lineupGameContentFieldDataPositionDescription2;
+
+	@FindBy(xpath="//div[@class='ac-holder'][@style='width:30px;']")
 	public ExtendedWebElement lineupGameContentFieldDataPositionSetDescription;
 
+	@FindBy(xpath="//div[@class='bit-box'][@data-tag-type='baseballpositions']")
+	public ExtendedWebElement lineupGameContentFieldDataPositionPlayerTypeExistingIndicator;
+
+	@FindBy(xpath="//button[contains(text(), 'Save')]")
+	public ExtendedWebElement btnLineupSave;
+
+	@FindBy(xpath="//button[contains(text(), 'To Beta')]")
+	public ExtendedWebElement btnLineupToBeta;
+
+	@FindBy(xpath="//button[contains(text(), 'To Prod')]")
+	public ExtendedWebElement btnLineupToProd;
+
+	@FindBy(xpath="//div[@class='awayRemove1 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway1;
+
+	@FindBy(xpath="//div[@class='awayRemove2 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway2;
+
+	@FindBy(xpath="//div[@class='awayRemove3 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway3;
+
+	@FindBy(xpath="//div[@class='awayRemove4 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway4;
+
+	@FindBy(xpath="//div[@class='awayRemove5 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway5;
+
+	@FindBy(xpath="//div[@class='awayRemove6 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway6;
+
+	@FindBy(xpath="//div[@class='awayRemove7 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway7;
+
+	@FindBy(xpath="//div[@class='awayRemove8 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway8;
+
+	@FindBy(xpath="//div[@class='awayRemove9 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway9;
+
+	@FindBy(xpath="//div[@class='awayRemoveSP removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryAway10;
+
+	@FindBy(xpath="//div[@class='homeRemove1 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome1;
+
+	@FindBy(xpath="//div[@class='homeRemove2 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome2;
+
+	@FindBy(xpath="//div[@class='homeRemove3 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome3;
+
+	@FindBy(xpath="//div[@class='homeRemove4 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome4;
+
+	@FindBy(xpath="//div[@class='homeRemove5 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome5;
+
+	@FindBy(xpath="//div[@class='homeRemove6 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome6;
+
+	@FindBy(xpath="//div[@class='homeRemove7 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome7;
+
+	@FindBy(xpath="//div[@class='homeRemove8 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome8;
+
+	@FindBy(xpath="//div[@class='homeRemove9 removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome9;
+
+	@FindBy(xpath="//div[@class='homeRemoveSP removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryHome10;
+
+	@FindBy(xpath="//div[@class='hpRemove removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryOfficialHP;
+
+	@FindBy(xpath="//div[@class='1bRemove removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryOfficial1B;
+
+	@FindBy(xpath="//div[@class='2bRemove removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryOfficial2B;
+
+	@FindBy(xpath="//div[@class='3bRemove removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryOfficial3B;
+
+	@FindBy(xpath="//div[@class='lfRemove removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryOfficialLF;
+
+	@FindBy(xpath="//div[@class='rfRemove removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryOfficialRF;
+
+	@FindBy(xpath="//div[@class='osRemove removeLineupEntry triggerAble']")
+	public ExtendedWebElement btnLineupDeleteEntryOfficialOS;
+	
 	//************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//	
 	
 	
@@ -968,8 +1276,7 @@ public class HB_HomePage extends AbstractPage {
 	
 	
 	
-	public void login(String username, String password, String profile) {
-//		Boolean doINeedToLogin = (isElementNotPresent(txtUsername));
+	public void login(String username, String password, String profile) throws AWTException {
 		if (isElementPresent(txtUsername) == true) {
 		type(txtUsername, username);
 		type(txtUserPassword, password);
@@ -981,11 +1288,9 @@ public class HB_HomePage extends AbstractPage {
 		Assert.assertTrue("Profile label was not found! Login operation is not successful!", isElementPresent(headerLabel, 60));
 		Assert.assertEquals("Profile name is not match!", profile, headerLabel.getText().toLowerCase());
 	}
-//		Assert.assertTrue("Search results not found! Login operation is not successful!", isElementPresent(headerLabel, 60));
 	}
 
 	public void oldUIToNewUI(String majorVSMinor) {
-//	Boolean isThisTheOldUI = (isElementNotPresent(dropDownSelectSite));
 	if (isElementPresent(dropDownSelectSite,10) == true) {
 			click(dropDownSelectSite);
 	if (majorVSMinor == "mlb") {
@@ -998,8 +1303,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 	
 	public void testPhotoFileDialog() throws AWTException {
-
-		Robot robot = new Robot();
 		pause(1);
 		clickPosition(760,130);
 		pause(1);
@@ -1063,17 +1366,14 @@ public class HB_HomePage extends AbstractPage {
 		pause(1);
 	}
 
-	public void useTagTool(String mainURL, String tagToolPlayer) throws InterruptedException {
-		Selenium seleniumTagTool = new WebDriverBackedSelenium(driver, mainURL);
+	public void useTagTool(String mainURL, String tagToolPlayer) throws InterruptedException, AWTException {
+//		Selenium seleniumTagTool = new WebDriverBackedSelenium(driver, mainURL);
 		click(BtnTagTool);
 		click(CheckboxTagToolAdvancedFields);
 		click(BtnTagToolChangeDate);
-		pause(1);
-		seleniumTagTool.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
-		pause(1);
-		pressTab();
-		pause(1);
-		pressTab();
+		click(BtnTagToolSelectCurrentDate);
+		pause(0.5);
+		pressEnter();
 		pause(1);
 		pressTab();
 		pause(1);
@@ -1086,10 +1386,9 @@ public class HB_HomePage extends AbstractPage {
 
 	public void saveItemAndPublishToBeta() throws AWTException {
 		click(BtnSave);
-		pause(3);
+		pause(1);
 		click(BtnToBeta);
-		pause(3);
-		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 120));
+		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 300));
 		if (isElementPresent(statusPublishComplete) == true) {
 		deleteCreatedItem();
 		}		
@@ -1097,11 +1396,10 @@ public class HB_HomePage extends AbstractPage {
 	
 	public void saveItemAndPublishToProd() throws AWTException{
 		click(BtnSave);
-		pause(3);
+		pause(1);
 		click(BtnToProd);
 		click(BtnToProdConfirm);
-		pause(3);
-		Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 120));
+		Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 300));
 		if (isElementPresent(statusPublishComplete) == true) {
 		deleteCreatedItem();
 		}		
@@ -1111,11 +1409,12 @@ public class HB_HomePage extends AbstractPage {
 		String valueItemNumber = StatusPublishComplete.getText();
 		int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
 		String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue+1);
+		click(FieldMainSearch);
 		type(FieldMainSearch, valueItemNumberTrimmed);
 		click(btnSearch);
-		pause(6);
-		pause(3);
-		clickPosition(980, 255);
+		pause(1);
+		clickPosition(900,220);
+		pause(1);
 		click(deleteItem);
 		click(deleteItemConfirm);
 	}	
@@ -1164,7 +1463,6 @@ public class HB_HomePage extends AbstractPage {
 		String valuePhotoAssetTrimmed = valuePhotoAsset.substring(15);
 		type(FieldMainSearch, valuePhotoAssetTrimmed);
 		click(btnSearch);
-		Robot robot = new Robot();
 		pause(3);
 		clickPosition(980, 255);
 		Assert.assertTrue("Cut Width Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutWidth001, 5));
@@ -1174,8 +1472,7 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void testCMSTool (int coordinateX, int coordinateY) throws AWTException {
-		Robot robot = new Robot();
-		pause(1);
+		pause(3);
 		clickPosition(coordinateX, coordinateY);
 		pause(1);
 		clickPosition(coordinateX, coordinateY);
@@ -1184,6 +1481,18 @@ public class HB_HomePage extends AbstractPage {
 		pressE();
 		pressS();
 		pressT();
+		pause(1);
+
+	}
+	
+	public void testCMSToolWithClipBoard (String testCMSToolWithClipBoardContents, int coordinateX, int coordinateY) throws AWTException {
+		pause(1);
+		clickPosition(coordinateX, coordinateY);
+		pause(1);
+		clickPosition(coordinateX, coordinateY);
+		pause(1);
+		clipBoardCopy(testCMSToolWithClipBoardContents);
+		clipBoardPaste();
 		pause(1);
 
 	}
@@ -1211,13 +1520,13 @@ public class HB_HomePage extends AbstractPage {
 			(FieldDataPosition.get(a)).sendKeys("6");
 			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+//			pause(0.5);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+//			pause(0.5);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-			pause(0.5);
+//			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
 			pause(0.5);
 			(FieldDataPosition.get(a)).click();
@@ -1225,13 +1534,13 @@ public class HB_HomePage extends AbstractPage {
 			(FieldDataPosition.get(a)).sendKeys("5");
 			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+//			pause(0.5);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+//			pause(0.5);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-			pause(0.5);
+//			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
 			pause(0.5);
 		}
@@ -1293,15 +1602,15 @@ public class HB_HomePage extends AbstractPage {
 
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
 			(FieldDataPosition.get(a)).click();
-			pause(0.5);
+//			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+//			pause(0.5);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+//			pause(0.5);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-			pause(0.5);
+//			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.TAB);
 			pause(0.5);
 		}
@@ -1361,15 +1670,15 @@ public class HB_HomePage extends AbstractPage {
 
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
 			(FieldDataPosition.get(a)).click();
-			pause(0.5);
+//			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+//			pause(0.5);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+//			pause(0.5);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-			pause(0.5);
+//			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.TAB);
 			pause(0.5);
 		}
@@ -1390,7 +1699,7 @@ public class HB_HomePage extends AbstractPage {
 	public void lineupGameContentBaseState(String mainURLCall) throws InterruptedException, AWTException	{
 		selectGameContent();
 		List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
-		(gameContentSelectGame.get(0)).click();
+		(gameContentSelectGame.get(1)).click();
 		click(btnDashboardGameContentLineup);
 		pause(0.5);
 		clickPosition(750,250);
@@ -1402,216 +1711,599 @@ public class HB_HomePage extends AbstractPage {
 		lineupGameContentBaseState(hostName);
 		List<WebElement> FieldDataPosition = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:220px']"));
 		List<WebElement> FieldDataPosition2 = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:280px']"));
-//		List<WebElement> FieldDataPosition3 = lineupGameContentFieldDataPositionSetDescription.getElement().findElements(By.xpath("//div[@data-tag-type='baseballpositions']"));
-//		logger.info(FieldDataPosition.size());
-//		logger.info(FieldDataPosition2.size());
-//		logger.info(FieldDataPosition3.size());
 
 		int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
 		int NumberOfFieldDataPosition2PlayerTextInputBoxes = FieldDataPosition2.size();
-//		int NumberOfFieldDataPosition3PlayerTextInputBoxes = FieldDataPosition3.size();
-/*				
+		
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
-			(FieldDataPosition.get(a)).click();
+
+			if (NumberOfFieldDataPositionPlayerTextInputBoxes == 20) {
+				
+			if (a == 0) {
+				(FieldDataPosition.get(a)).click();				
+			}
+			
+			if (a == 10) {
+				(FieldDataPosition.get(a)).click();				
+			}
+			
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
-			for (int b = (a+a); b > a; b--) {
+			for (int b = (a+1); b > 0; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
+			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
 			pause(0.5);
-			(FieldDataPosition.get(a)).sendKeys(Keys.TAB);
+			}
+
+			if (NumberOfFieldDataPositionPlayerTextInputBoxes == 18) {
+				
+			if (a == 0) {
+				(FieldDataPosition.get(a)).click();				
+			}
+			
+			if (a == 9) {
+				(FieldDataPosition.get(a)).click();				
+			}
+			
+			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
+			for (int b = (a+1); b > 0; b--) {
+			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
+			}
+			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
+			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
 			pause(0.5);
+			}
+
 		}
-*/
-		for (int e = 0; e < NumberOfFieldDataPositionPlayerTextInputBoxes; e++) {
-			List<WebElement> FieldDataPositionPlayerType2 = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//ul[@class='fb-holder'][@style='width:30px']"));
-			logger.info(FieldDataPositionPlayerType2.size());
-			FieldDataPositionPlayerType2.get(e).findElement(By.xpath("//input[@class='autocomplete-maininput processedYes'][@style='width:30px']")).click();
-			logger.info(NumberOfFieldDataPositionPlayerTextInputBoxes);
-			if (NumberOfFieldDataPositionPlayerTextInputBoxes == 20) {
-				logger.info(e);
-			if (e == 0) {
-				pause(3);
+
+		List<WebElement> FieldDataPositionPlayerType2Child = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='lineupColumn']"));
+		List<WebElement> fieldPlayerTypeDataDataSourceAL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsAL']")));
+		List<WebElement> fieldPlayerTypeDataDataSourceNL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsNL']")));
+		
+		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
+			WebElement lineupAwayPlayerPosition1 = fieldPlayerTypeDataDataSourceAL.get(0);
+			WebElement lineupAwayPlayerPosition2 = fieldPlayerTypeDataDataSourceAL.get(1);
+			WebElement lineupAwayPlayerPosition3 = fieldPlayerTypeDataDataSourceAL.get(2);
+			WebElement lineupAwayPlayerPosition4 = fieldPlayerTypeDataDataSourceAL.get(3);
+			WebElement lineupAwayPlayerPosition5 = fieldPlayerTypeDataDataSourceAL.get(4);
+			WebElement lineupAwayPlayerPosition6 = fieldPlayerTypeDataDataSourceAL.get(5);
+			WebElement lineupAwayPlayerPosition7 = fieldPlayerTypeDataDataSourceAL.get(6);
+			WebElement lineupAwayPlayerPosition8 = fieldPlayerTypeDataDataSourceAL.get(7);
+			WebElement lineupAwayPlayerPosition9 = fieldPlayerTypeDataDataSourceAL.get(8);
+			WebElement lineupAwayPlayerPosition10 = fieldPlayerTypeDataDataSourceAL.get(9);
+			WebElement lineupHomePlayerPosition1 = fieldPlayerTypeDataDataSourceAL.get(10);
+			WebElement lineupHomePlayerPosition2 = fieldPlayerTypeDataDataSourceAL.get(11);
+			WebElement lineupHomePlayerPosition3 = fieldPlayerTypeDataDataSourceAL.get(12);
+			WebElement lineupHomePlayerPosition4 = fieldPlayerTypeDataDataSourceAL.get(13);
+			WebElement lineupHomePlayerPosition5 = fieldPlayerTypeDataDataSourceAL.get(14);
+			WebElement lineupHomePlayerPosition6 = fieldPlayerTypeDataDataSourceAL.get(15);
+			WebElement lineupHomePlayerPosition7 = fieldPlayerTypeDataDataSourceAL.get(16);
+			WebElement lineupHomePlayerPosition8 = fieldPlayerTypeDataDataSourceAL.get(17);
+			WebElement lineupHomePlayerPosition9 = fieldPlayerTypeDataDataSourceAL.get(18);
+			WebElement lineupHomePlayerPosition10 = fieldPlayerTypeDataDataSourceAL.get(19);
+			List<WebElement> PlayerPositionDropDownList = lineupAwayPlayerPosition1.findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@style='width:30px']"));
+			
+			if (lineupAwayPlayerPosition1.getText().toString().equals("P")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(0).click();
+				pause(0.5);
 				pressP();
-				pause(3);
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 1) {
-				pause(3);
+
+			if (lineupAwayPlayerPosition2.getText().toString().equals("C")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(1).click();
+				pause(0.5);
 				pressC();
-				pause(3);
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 2) {
-				pause(3);
-				press1();
-				pause(3);
-				pressB();
-				pause(3);
-				pressEnter();
+
+			if (lineupAwayPlayerPosition3.getText().toString().equals("1B")) {
 			}
-			if (e == 3) {
-				pause(3);
-				press2();
-				pause(3);
-				pressB();
-				pause(3);
-				pressEnter();
-			}
-			if (e == 4) {
-				pause(3);
-				press3();
-				pause(3);
-				pressB();
-				pause(3);
-				pressEnter();
-			}
-			if (e == 5) {
-				pause(3);
-				pressS();
-				pause(3);
-				pressS();
-				pause(3);
-				pressEnter();
-			}
-			if (e == 6) {
-				pressL();
-				pressF();
-				pressEnter();
-			}
-			if (e == 7) {
-				pressC();
-				pressF();
-				pressEnter();
-			}
-			if (e == 8) {
-				pressR();
-				pressF();
-				pressEnter();
-			}
-			if (e == 9) {
-				pressD();
-				pressH();
-				pressEnter();
-			}
-			if (e == 10) {
-				pressP();
-				pressEnter();
-			}
-			if (e == 11) {
-				pressC();
-				pressEnter();
-			}
-			if (e == 12) {
+			else {
+				PlayerPositionDropDownList.get(2).click();
+				pause(0.5);
 				press1();
 				pressB();
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 13) {
+
+			if (lineupAwayPlayerPosition4.getText().toString().equals("2B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(3).click();
+				pause(0.5);
 				press2();
 				pressB();
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 14) {
+
+			if (lineupAwayPlayerPosition5.getText().toString().equals("3B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(4).click();
+				pause(0.5);
 				press3();
 				pressB();
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 15) {
+
+			if (lineupAwayPlayerPosition6.getText().toString().equals("SS")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(5).click();
+				pause(0.5);
 				pressS();
 				pressS();
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 16) {
+
+			if (lineupAwayPlayerPosition7.getText().toString().equals("LF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(6).click();
+				pause(0.5);
 				pressL();
 				pressF();
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 17) {
+
+			if (lineupAwayPlayerPosition8.getText().toString().equals("CF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(7).click();
+				pause(0.5);
 				pressC();
 				pressF();
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 18) {
+
+			if (lineupAwayPlayerPosition9.getText().toString().equals("RF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(8).click();
+				pause(0.5);
 				pressR();
 				pressF();
+				pause(0.5);
 				pressEnter();
 			}
-			if (e == 19) {
+
+			if (lineupAwayPlayerPosition10.getText().toString().equals("DH")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(9).click();
+				pause(0.5);
 				pressD();
 				pressH();
+				pause(0.5);
 				pressEnter();
 			}
+
+			if (lineupHomePlayerPosition1.getText().toString().equals("P")) {
 			}
-/*
-			pause(0.5);
-			pause(0.5);
-			(FieldDataPosition3.get(e)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
-			for (int f = (e+e); f > e; f--) {
-			(FieldDataPosition3.get(e)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
+			else {
+				PlayerPositionDropDownList.get(10).click();
+				pause(0.5);
+				pressP();
+				pause(0.5);
+				pressEnter();
 			}
-			(FieldDataPosition3.get(e)).sendKeys(Keys.ARROW_UP);
-			pause(0.5);
-			(FieldDataPosition3.get(e)).sendKeys(Keys.TAB);
-			pause(0.5);
-*/
+
+			if (lineupHomePlayerPosition2.getText().toString().equals("C")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(11).click();
+				pause(0.5);
+				pressC();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition3.getText().toString().equals("1B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(12).click();
+				pause(0.5);
+				press1();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition4.getText().toString().equals("2B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(13).click();
+				pause(0.5);
+				press2();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition5.getText().toString().equals("3B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(14).click();
+				pause(0.5);
+				press3();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition6.getText().toString().equals("SS")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(15).click();
+				pause(0.5);
+				pressS();
+				pressS();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition7.getText().toString().equals("LF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(16).click();
+				pause(0.5);
+				pressL();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition8.getText().toString().equals("CF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(17).click();
+				pause(0.5);
+				pressC();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition9.getText().toString().equals("RF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(18).click();
+				pause(0.5);
+				pressR();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition10.getText().toString().equals("DH")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(19).click();
+				pause(0.5);
+				pressD();
+				pressH();
+				pause(0.5);
+				pressEnter();
+			}
 		}
-/*
+
+		if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
+			WebElement lineupAwayPlayerPosition1 = fieldPlayerTypeDataDataSourceNL.get(0);
+			WebElement lineupAwayPlayerPosition2 = fieldPlayerTypeDataDataSourceNL.get(1);
+			WebElement lineupAwayPlayerPosition3 = fieldPlayerTypeDataDataSourceNL.get(2);
+			WebElement lineupAwayPlayerPosition4 = fieldPlayerTypeDataDataSourceNL.get(3);
+			WebElement lineupAwayPlayerPosition5 = fieldPlayerTypeDataDataSourceNL.get(4);
+			WebElement lineupAwayPlayerPosition6 = fieldPlayerTypeDataDataSourceNL.get(5);
+			WebElement lineupAwayPlayerPosition7 = fieldPlayerTypeDataDataSourceNL.get(6);
+			WebElement lineupAwayPlayerPosition8 = fieldPlayerTypeDataDataSourceNL.get(7);
+			WebElement lineupAwayPlayerPosition9 = fieldPlayerTypeDataDataSourceNL.get(8);
+			WebElement lineupHomePlayerPosition1 = fieldPlayerTypeDataDataSourceNL.get(9);
+			WebElement lineupHomePlayerPosition2 = fieldPlayerTypeDataDataSourceNL.get(10);
+			WebElement lineupHomePlayerPosition3 = fieldPlayerTypeDataDataSourceNL.get(11);
+			WebElement lineupHomePlayerPosition4 = fieldPlayerTypeDataDataSourceNL.get(12);
+			WebElement lineupHomePlayerPosition5 = fieldPlayerTypeDataDataSourceNL.get(13);
+			WebElement lineupHomePlayerPosition6 = fieldPlayerTypeDataDataSourceNL.get(14);
+			WebElement lineupHomePlayerPosition7 = fieldPlayerTypeDataDataSourceNL.get(15);
+			WebElement lineupHomePlayerPosition8 = fieldPlayerTypeDataDataSourceNL.get(16);
+			WebElement lineupHomePlayerPosition9 = fieldPlayerTypeDataDataSourceNL.get(17);
+			List<WebElement> PlayerPositionDropDownList = lineupAwayPlayerPosition1.findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@style='width:30px']"));
+			
+			if (lineupAwayPlayerPosition1.getText().toString().equals("P")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(0).click();
+				pause(0.5);
+				pressP();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupAwayPlayerPosition2.getText().toString().equals("C")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(1).click();
+				pause(0.5);
+				pressC();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupAwayPlayerPosition3.getText().toString().equals("1B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(2).click();
+				pause(0.5);
+				press1();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupAwayPlayerPosition4.getText().toString().equals("2B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(3).click();
+				pause(0.5);
+				press2();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupAwayPlayerPosition5.getText().toString().equals("3B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(4).click();
+				pause(0.5);
+				press3();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupAwayPlayerPosition6.getText().toString().equals("SS")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(5).click();
+				pause(0.5);
+				pressS();
+				pressS();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupAwayPlayerPosition7.getText().toString().equals("LF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(6).click();
+				pause(0.5);
+				pressL();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupAwayPlayerPosition8.getText().toString().equals("CF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(7).click();
+				pause(0.5);
+				pressC();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupAwayPlayerPosition9.getText().toString().equals("RF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(8).click();
+				pause(0.5);
+				pressR();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition1.getText().toString().equals("P")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(9).click();
+				pause(0.5);
+				pressP();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition2.getText().toString().equals("C")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(10).click();
+				pause(0.5);
+				pressC();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition3.getText().toString().equals("1B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(11).click();
+				pause(0.5);
+				press1();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition4.getText().toString().equals("2B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(12).click();
+				pause(0.5);
+				press2();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition5.getText().toString().equals("3B")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(13).click();
+				pause(0.5);
+				press3();
+				pressB();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition6.getText().toString().equals("SS")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(14).click();
+				pause(0.5);
+				pressS();
+				pressS();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition7.getText().toString().equals("LF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(15).click();
+				pause(0.5);
+				pressL();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition8.getText().toString().equals("CF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(16).click();
+				pause(0.5);
+				pressC();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+
+			if (lineupHomePlayerPosition9.getText().toString().equals("RF")) {
+			}
+			else {
+				PlayerPositionDropDownList.get(17).click();
+				pause(0.5);
+				pressR();
+				pressF();
+				pause(0.5);
+				pressEnter();
+			}
+		}
+
+		(FieldDataPosition2.get(0)).click();
 		for (int c = 0; c < NumberOfFieldDataPosition2PlayerTextInputBoxes; c++) {
-			(FieldDataPosition2.get(c)).click();
-			pause(0.5);
 			(FieldDataPosition2.get(c)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
-			for (int d = (c+c); d > c; d--) {
+			for (int d = (c+1); d > 0; d--) {
 			(FieldDataPosition2.get(c)).sendKeys(Keys.ARROW_DOWN);
-			pause(0.5);
 			}
 			(FieldDataPosition2.get(c)).sendKeys(Keys.ARROW_UP);
-			pause(0.5);
 			(FieldDataPosition2.get(c)).sendKeys(Keys.TAB);
 			pause(0.5);
 		}
-*/
-		pause(500);
-//		click(btnSaveProbables);		
+
+		click(btnLineupSave);
+		click(btnLineupToBeta);
+
+		List<WebElement> FieldDataPositionPlayerFieldsAfterLineupPopulate = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
+
+		if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
+		Assert.assertEquals(("Number of Bit-Box fields after Delete: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 46."), FieldDataPositionPlayerFieldsAfterLineupPopulate.size(), 46);		
+		}
+		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {		
+		Assert.assertEquals(("Number of Bit-Box fields after Delete: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 50."), FieldDataPositionPlayerFieldsAfterLineupPopulate.size(), 50);		
+		}
 	}
 
 	public void lineupGameContentDeletePlayers(String mainURLCall) throws InterruptedException, AWTException	{
 		lineupGameContentBaseState(hostName);
-		List<WebElement> FieldDataPosition = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removeProbableEntry triggerAble']"));
-		int lineupPlayerNumberOfDeleteButtons = FieldDataPosition.size();
-		for (int a = 0; a < lineupPlayerNumberOfDeleteButtons; a++) {
-			WebElement depthChartsPlayerDeleteButton = FieldDataPosition.get(a);
-			depthChartsPlayerDeleteButton.click();
-		}
-		click(btnSaveProbables);
-		}
+		List<WebElement> FieldDataPositionPlayerType2Child = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='lineupColumn']"));
+		List<WebElement> fieldPlayerTypeDataDataSourceAL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsAL']")));
+		List<WebElement> fieldPlayerTypeDataDataSourceNL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsNL']")));
 
-	public void testFunction(String mainURLCall) throws InterruptedException, AWTException	{
-		depthChartsBaseState(hostName);
-		List<WebElement> FieldDataPosition = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
-		int depthChartPlayerValueExpectedBeforeDelete = 22;
-		int depthChartsPlayerNumberOfDeleteButtonsBefore = FieldDataPosition.size();
-		for (int a = 0; a < depthChartsPlayerNumberOfDeleteButtonsBefore; a++) {
-
-			WebElement depthChartsPlayerDeleteButton = FieldDataPosition.get(a);
-			depthChartsPlayerDeleteButton.click();
+		if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
+			click(btnLineupDeleteEntryAway1);
+			click(btnLineupDeleteEntryAway2);
+			click(btnLineupDeleteEntryAway3);
+			click(btnLineupDeleteEntryAway4);
+			click(btnLineupDeleteEntryAway5);
+			click(btnLineupDeleteEntryAway6);
+			click(btnLineupDeleteEntryAway7);
+			click(btnLineupDeleteEntryAway8);
+			click(btnLineupDeleteEntryAway9);
+			click(btnLineupDeleteEntryHome1);
+			click(btnLineupDeleteEntryHome2);
+			click(btnLineupDeleteEntryHome3);
+			click(btnLineupDeleteEntryHome4);
+			click(btnLineupDeleteEntryHome5);
+			click(btnLineupDeleteEntryHome6);
+			click(btnLineupDeleteEntryHome7);
+			click(btnLineupDeleteEntryHome8);
+			click(btnLineupDeleteEntryHome9);
 		}
-		click(btnSaveDepthChart);
-		int depthChartPlayerValueExpectedAfterDelete = 0;
-		int depthChartsPlayerNumberOfDeleteButtonsAfter = FieldDataPosition.size();	
-//		Assert.assertTrue((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartsPlayerNumberOfDeleteButtonsAfter == 0);		
-		Assert.assertEquals((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartPlayerValueExpectedAfterDelete, depthChartsPlayerNumberOfDeleteButtonsAfter);
-	}
+						
+		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
+			click(btnLineupDeleteEntryAway1);
+			click(btnLineupDeleteEntryAway2);
+			click(btnLineupDeleteEntryAway3);
+			click(btnLineupDeleteEntryAway4);
+			click(btnLineupDeleteEntryAway5);
+			click(btnLineupDeleteEntryAway6);
+			click(btnLineupDeleteEntryAway7);
+			click(btnLineupDeleteEntryAway8);
+			click(btnLineupDeleteEntryAway9);
+			click(btnLineupDeleteEntryAway10);
+			click(btnLineupDeleteEntryHome1);
+			click(btnLineupDeleteEntryHome2);
+			click(btnLineupDeleteEntryHome3);
+			click(btnLineupDeleteEntryHome4);
+			click(btnLineupDeleteEntryHome5);
+			click(btnLineupDeleteEntryHome6);
+			click(btnLineupDeleteEntryHome7);
+			click(btnLineupDeleteEntryHome8);
+			click(btnLineupDeleteEntryHome9);
+			click(btnLineupDeleteEntryHome10);
+		}
+						
+		click(btnLineupDeleteEntryOfficialHP);
+		click(btnLineupDeleteEntryOfficial1B);
+		click(btnLineupDeleteEntryOfficial2B);
+		click(btnLineupDeleteEntryOfficial3B);
+		click(btnLineupDeleteEntryOfficialLF);
+		click(btnLineupDeleteEntryOfficialRF);
+		click(btnLineupDeleteEntryOfficialOS);
+
+		List<WebElement> FieldDataPositionPlayerFieldsAfterDelete = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
+		Assert.assertEquals(("Number of Bit-Box fields after Delete: " + FieldDataPositionPlayerFieldsAfterDelete.size() + ". Expected number is 3."), FieldDataPositionPlayerFieldsAfterDelete.size(), 3);		
+		}
 
 	public void fillAndSaveNewArticle(String mainURLCall, String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) throws InterruptedException, AWTException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, articleReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, articleReqFieldHeadline);
@@ -1620,7 +2312,7 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldByline, articleReqFieldByline);
 		type(FieldSeoHeadline, articleReqFieldSeoHeadline);
 		type(FieldBlurb, articleBlurbValue);
-		if (tagToolPlayerValue == "jeter") {
+		if (tagToolPlayerValue == "smith") {
 			type(FieldNotes, articleNotesValue);
 		}
 		type(FieldTagline, articleTaglineValue);
@@ -1636,9 +2328,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewArticleView(String mainURLCall, String betaOrProd, String articleViewReqFieldInternalName, String articleViewReqFieldName, String articleViewReqFieldViewKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException {
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, articleViewReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldName, articleViewReqFieldName);
@@ -1652,12 +2341,8 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewAudioSchedule(String mainURLCall, String betaOrProd, String audioScheduleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException {
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, audioScheduleReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
-//		click(btnNewAudioShow);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -1667,9 +2352,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewBallpark(String mainURLCall, String betaOrProd, String ballparkReqFieldInternalName, String ballparkReqFieldID, String ballparkReqFieldName, String ballparkReqFieldAddress1, String ballparkReqFieldAddress2, String ballparkReqFieldLocation, String ballparkReqFieldMapType, String ballparkReqFieldMapVersion, String ballparkReqFieldFacebookID, String ballparkReqFieldFoursquareID, String ballparkReqFieldWebsiteURL, String ballparkReqFieldThumbnailURL, String ballparkReqFieldThumbnailCaption, String ballparkReqFieldTwitterHashTags, String ballparkReqFieldAboutURL, String ballparkReqFieldScheduleURL, String ballparkReqFieldSmallThumbnailURL, String ballparkReqFieldStartYear, String ballparkReqFieldEndYear, String ballparkReqFieldUpgradeURL, String ballparkReqFieldAbout, String ballparkReqFieldEventsText, String ballparkReqFieldSponsorImageText, String ballparkReqFieldSponsorImageURL, String ballparkReqFieldSponsorImage2Text, String ballparkReqFieldSponsorImage2URL, String ballparkReqFieldTicketsText, String ballparkReqFieldTicketsURL, String ballparkReqFieldTicketsErrorText, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, ballparkReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldID, ballparkReqFieldID);
@@ -1709,9 +2391,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewBallparkMenu(String mainURLCall, String betaOrProd, String ballparkMenuReqFieldInternalName, String ballparkMenuReqFieldDisplayName, String ballparkMenuReqFieldDisplayImageURL, String ballparkMenuReqFieldLinkURL, String ballparkMenuReqFieldLinkName, String ballparkMenuReqFieldBundleKey, String ballparkMenuReqFieldBundleName, String ballparkMenuReqFieldBundleURL, String ballparkMenuReqFieldSharingURL, String ballparkMenuReqFieldSharingText, String ballparkMenuReqFieldErrorText, String ballparkMenuReqFieldSourceURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, ballparkMenuReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldDisplayName, ballparkMenuReqFieldDisplayName);
@@ -1734,9 +2413,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewBallparkMusic(String mainURLCall, String betaOrProd, String ballparkMusicReqFieldInternalName, String ballparkMusicReqFieldTitle, String ballparkMusicReqFieldArtist, String ballparkMusicReqFieldDescription, String ballparkMusicReqFieldThumbnail, String ballparkMusicReqFieldRank, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, ballparkMusicReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldTitle, ballparkMusicReqFieldTitle);
@@ -1753,9 +2429,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewBallparkSubmenu(String mainURLCall, String betaOrProd, String ballparkSubmenuReqFieldInternalName, String ballparkSubmenuReqFieldDisplayName, String ballparkSubmenuReqFieldDisplayImageURL, String ballparkSubmenuReqFieldLinkURL, String ballparkSubmenuReqFieldLinkName, String ballparkSubmenuReqFieldBundleKey, String ballparkSubmenuReqFieldBundleName, String ballparkSubmenuReqFieldBundleURL, String ballparkSubmenuReqFieldSharingURL, String ballparkSubmenuReqFieldSharingText, String ballparkSubmenuReqFieldErrorText, String ballparkSubmenuReqFieldSourceURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, ballparkSubmenuReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldDisplayName, ballparkSubmenuReqFieldDisplayName);
@@ -1778,9 +2451,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewBlogContent(String mainURLCall, String betaOrProd, String blogContentReqFieldInternalName, String blogContentReqFieldURL, String blogContentReqFieldURLText, String blogContentReqFieldHeadline, String blogContentReqFieldAltHeadline, String blogContentReqFieldSEOHeadline, String blogContentReqFieldBlurb, String blogContentReqFieldByline, String blogContentReqFieldCaption, String blogContentReqFieldMediaCredit, String blogContentReqFieldBody, String blogContentReqFieldSummary, String tagToolPlayerValue) throws InterruptedException, AWTException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, blogContentReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldURL, blogContentReqFieldURL);
@@ -1804,10 +2474,20 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 	
+	public void fillAndSaveNewBlogContentAlias(String mainURLCall, String betaOrProd, String blogContentAliasReqFieldInternalName, String blogContentAliasReqFieldHeadline, String blogContentAliasReqFieldBlurb, String blogContentAliasReqFieldSummary, String tagToolPlayerValue) throws InterruptedException, AWTException	{
+		type(FieldInternalName, blogContentAliasReqFieldInternalName);
+		type(FieldHeadline, blogContentAliasReqFieldHeadline);
+		type(FieldBlurb, blogContentAliasReqFieldBlurb);
+		type(FieldSummary, blogContentAliasReqFieldSummary);
+		if (betaOrProd == "beta") {
+			saveItemAndPublishToBeta();
+		}
+		if (betaOrProd == "prod") {
+			saveItemAndPublishToProd();
+		}
+	}
+	
 	public void fillAndSaveNewChron(String mainURLCall, String betaOrProd, String chronReqFieldInternalName, String chronReqFieldDateNotation, String chronReqFieldYear, String chronReqFieldDisplayYear, String chronReqFieldTitle, String chronReqFieldCMSDescription, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, chronReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldDateNotation, chronReqFieldDateNotation);
@@ -1824,9 +2504,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 	
 	public void fillAndSaveNewClosedCaption(String mainURLCall, String betaOrProd, String closedCaptionReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, AWTException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, closedCaptionReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		testCMSTool(500,500);
@@ -1839,9 +2516,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewClubPromo(String mainURLCall, String betaOrProd, String clubPromoReqFieldInternalName, String clubPromoReqFieldURLExtension, String clubPromoReqFieldEventTitle, String clubPromoReqFieldEventSubtitle, String clubPromoReqFieldPromoText, String clubPromoReqFieldMobileTicketsText, String clubPromoReqFieldMobileTicketsURL, String clubPromoReqFieldTicketsURL, String clubPromoReqFieldTextCampaignPromo, String clubPromoReqFieldSocialKeyword, String clubPromoReqFieldHighlightsTitle, String clubPromoReqFieldLocationAddress, String clubPromoReqFieldEventMapTitle, String clubPromoReqFieldScheduleTitle, String clubPromoReqFieldFAQTitle, String tagToolPlayerValue) throws InterruptedException, AWTException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, clubPromoReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldURLExtension, clubPromoReqFieldURLExtension);
@@ -1869,9 +2543,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewContributor(String mainURLCall, String betaOrProd, String contributorReqFieldInternalName, String contributorReqFieldFirstName, String contributorReqFieldLastName, String contributorReqFieldTitle, String contributorReqFieldEmail, String contributorReqFieldTwitterHandle, String contributorReqFieldBlog, String contributorReqFieldBlogTitle, String contributorReqFieldRSSFeed, String contributorReqFieldFacebookID, String contributorReqFieldActiveTab, String contributorReqFieldHideArticles, String contributorReqFieldVideoKeywordType, String contributorReqFieldVideoKeywordValue, String contributorReqFieldVideoLandingPage, String contributorReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, AWTException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, contributorReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldFirstName, contributorReqFieldFirstName);
@@ -1900,9 +2571,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewDailyEmail(String mainURLCall, String betaOrProd, String dailyEmailReqFieldInternalName, String dailyEmailReqFieldSubject, String dailyEmailReqFieldSubjectB, String dailyEmailReqFieldTriviaQuestion, String dailyEmailReqFieldTriviaAnswer, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, dailyEmailReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldSubject, dailyEmailReqFieldSubject);
@@ -1917,10 +2585,62 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
+	public void fillAndSaveNewDeviceAnnouncement(String mainURLCall, String betaOrProd, String deviceAnnouncementReqFieldInternalName, String deviceAnnouncementReqFieldAppVersion, String deviceAnnouncementReqFieldOSVersion, String deviceAnnouncementReqFieldEntitlement, String deviceAnnouncementReqFieldScreen, String deviceAnnouncementReqFieldType, String deviceAnnouncementReqFieldDisplayType, String deviceAnnouncementReqFieldTitle, String deviceAnnouncementReqFieldMessage, String deviceAnnouncementReqFieldOpenLabel, String deviceAnnouncementReqFieldOpenLink, String deviceAnnouncementReqFieldCloseLabel, String deviceAnnouncementReqFieldCloseLink, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		type(FieldInternalName, deviceAnnouncementReqFieldInternalName);
+		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldAppVersion, deviceAnnouncementReqFieldAppVersion);
+		type(FieldOSVersion, deviceAnnouncementReqFieldOSVersion);
+		type(FieldEntitlement, deviceAnnouncementReqFieldEntitlement);
+		type(FieldScreen, deviceAnnouncementReqFieldScreen);
+		type(FieldType, deviceAnnouncementReqFieldType);
+		type(FieldDisplayType, deviceAnnouncementReqFieldDisplayType);
+		type(FieldTitle, deviceAnnouncementReqFieldTitle);
+		type(FieldMessage, deviceAnnouncementReqFieldMessage);
+		type(FieldOpenLabel, deviceAnnouncementReqFieldOpenLabel);
+		type(FieldOpenLink, deviceAnnouncementReqFieldOpenLink);
+		type(FieldCloseLabel, deviceAnnouncementReqFieldCloseLabel);
+		type(FieldCloseLink, deviceAnnouncementReqFieldCloseLink);
+		if (betaOrProd == "beta") {
+			saveItemAndPublishToBeta();
+		}
+		if (betaOrProd == "prod") {
+			saveItemAndPublishToProd();
+		}
+	}
+
+	public void fillAndSaveNewDeviceBanner(String mainURLCall, String betaOrProd, String deviceBannerReqFieldInternalName, String deviceBannerReqFieldAppVersion, String deviceBannerReqFieldOSVersion, String deviceBannerReqFieldEntitlement, String deviceBannerReqFieldAccessFeature, String deviceBannerReqFieldScreen, String deviceBannerReqFieldViewID, String deviceBannerReqFieldType, String deviceBannerReqFieldWebViewType, String deviceBannerReqFieldTitle, String deviceBannerReqFieldLink, String deviceBannerReqFieldBackgroundColor, String deviceBannerReqFieldTrackingString, String deviceBannerReqFieldAdMarvelID, String deviceBannerReqFieldAdMarvelWidth, String deviceBannerReqFieldAdMarvelHeight, String deviceBannerReqFieldAdMarvelSectionID, String deviceBannerReqFieldAdMarvelMLBTarget, String deviceBannerReqFieldAdMarvelExpiryTime, String deviceBannerReqFieldMLBTVContentID, String deviceBannerReqFieldMLBTVCalendarEventID, String deviceBannerReqFieldSponsor, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		type(FieldInternalName, deviceBannerReqFieldInternalName);
+		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldAppVersion, deviceBannerReqFieldAppVersion);
+		type(FieldOSVersion, deviceBannerReqFieldOSVersion);
+		type(FieldEntitlement, deviceBannerReqFieldEntitlement);
+		type(FieldAccessFeature, deviceBannerReqFieldAccessFeature);
+		type(FieldScreen, deviceBannerReqFieldScreen);
+		type(FieldViewID, deviceBannerReqFieldViewID);
+		type(FieldType, deviceBannerReqFieldType);
+		type(FieldWebViewType, deviceBannerReqFieldWebViewType);
+		type(FieldTitle, deviceBannerReqFieldTitle);
+		type(FieldLink, deviceBannerReqFieldLink);
+		type(FieldBackgroundColor, deviceBannerReqFieldBackgroundColor);
+		type(FieldTrackingString, deviceBannerReqFieldTrackingString);
+		type(FieldAdMarvelID, deviceBannerReqFieldAdMarvelID);
+		type(FieldAdMarvelWidth, deviceBannerReqFieldAdMarvelWidth);
+		type(FieldAdMarvelHeight, deviceBannerReqFieldAdMarvelHeight);
+		type(FieldAdMarvelSectionID, deviceBannerReqFieldAdMarvelSectionID);
+		type(FieldAdMarvelMLBTarget, deviceBannerReqFieldAdMarvelMLBTarget);
+		type(FieldAdMarvelExpiryTime, deviceBannerReqFieldAdMarvelExpiryTime);
+		type(FieldMLBTVContentID, deviceBannerReqFieldMLBTVContentID);
+		type(FieldMLBTVCalendarEventID, deviceBannerReqFieldMLBTVCalendarEventID);
+		type(FieldSponsor, deviceBannerReqFieldSponsor);
+		if (betaOrProd == "beta") {
+			saveItemAndPublishToBeta();
+		}
+		if (betaOrProd == "prod") {
+			saveItemAndPublishToProd();
+		}
+	}
+
 	public void fillAndSaveNewDevicePage(String mainURLCall, String betaOrProd, String devicePageReqFieldInternalName, String devicePageReqFieldHeadline, String devicePageReqFieldBlurb, String devicePageReqFieldYearlyPurchaseFlow, String devicePageReqFieldMonthlyPurchaseFlow, String devicePageReqFieldUpgradeLink, String devicePageReqFieldActivationLink, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, devicePageReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, devicePageReqFieldHeadline);
@@ -1938,8 +2658,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewDigitalAsset(String mainURLCall, String betaOrProd, String digitalAssetReqFieldInternalName, String digitalAssetReqFieldHeadline, String tagToolPlayerValue) throws InterruptedException, AWTException	{
-		newDigitalAssetPageSource = driver.getPageSource();
-		Selenium seleniumDigitalAsset = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, digitalAssetReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, digitalAssetReqFieldHeadline);
@@ -1955,8 +2673,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewDrawer(String mainURLCall, String betaOrProd, String drawerReqFieldInternalName, String drawerReqFieldKicker, String drawerReqFieldCustomContent, String drawerReqFieldBlurb, String drawerReqFieldURL, String drawerReqFieldURLText, String drawerReqFieldNumberOfItems, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
 		Selenium seleniumDrawer = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, drawerReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
@@ -1983,8 +2699,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewEvent(String mainURLCall, String betaOrProd, String eventReqFieldInternalName, String eventReqFieldProgramID, String eventReqFieldProgram, String eventReqFieldLocation, String eventReqFieldEventTitle, String eventReqFieldEventDescription, String eventReqFieldEventURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
 		Selenium seleniumEvent = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, eventReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
@@ -2011,9 +2725,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewFeature(String mainURLCall, String betaOrProd, String featureReqFieldInternalName, String featureReqFieldHeadline, String featureReqFieldURL, String featureReqFieldURLText, String featureReqFieldMobileURL, String featureReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, featureReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, featureReqFieldHeadline);
@@ -2030,9 +2741,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewFeatures(String mainURLCall, String betaOrProd, String featuresReqFieldInternalName, String featuresReqFieldNumberOfItems, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, featuresReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldNumberOfItems, featuresReqFieldNumberOfItems);
@@ -2045,9 +2753,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewFieldOption(String mainURLCall, String betaOrProd, String fieldOptionReqFieldInternalName, String fieldOptionReqFieldDisplayName, String fieldOptionReqFieldValue, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumFieldOption = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, fieldOptionReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldDisplayName, fieldOptionReqFieldDisplayName);
@@ -2061,9 +2766,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewGamePreview(String mainURLCall, String betaOrProd, String gamePreviewReqFieldInternalName, String gamePreviewReqFieldHeadline, String gamePreviewReqFieldHomeHeadline, String gamePreviewReqFieldAwayHeadline, String gamePreviewReqFieldSubhead, String gamePreviewReqFieldAltHeadline, String gamePreviewReqFieldByline, String gamePreviewReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, gamePreviewReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, gamePreviewReqFieldHeadline);
@@ -2083,9 +2785,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewGameWrap(String mainURLCall, String betaOrProd, String gameWrapReqFieldInternalName, String gameWrapReqFieldHeadline, String gameWrapReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, gameWrapReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, gameWrapReqFieldHeadline);
@@ -2099,9 +2798,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewHighlight(String mainURLCall, String betaOrProd, String highlightReqFieldInternalName, String highlightReqFieldYear, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumHighlight = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, highlightReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldYear, highlightReqFieldYear);
@@ -2113,12 +2809,11 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewHomepageTab(String mainURLCall, String betaOrProd, String homepageTabReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
+	public void fillAndSaveNewHomepageTab(String mainURLCall, String betaOrProd, String homepageTabReqFieldInternalName, String homepageTabReqFieldDefaultAltText, String homepageTabReqFieldDefaultClickthroughURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, homepageTabReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldDefaultAltText, homepageTabReqFieldDefaultAltText);
+		type(FieldDefaultClickthroughURL, homepageTabReqFieldDefaultClickthroughURL);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2127,11 +2822,24 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewHPConfig(String mainURLCall, String betaOrProd, String hPConfigReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
+	public void fillAndSaveNewHPConfig(String mainURLCall, String betaOrProd, String hPConfigReqFieldInternalName, String hPConfigReqFieldBreakingNews, String hPConfigReqFieldBreakingNewsURL, String hPConfigReqFieldABTests, String hPConfigReqFieldHeaderURL, String hPConfigReqFieldHeaderAlt, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, hPConfigReqFieldInternalName);
+		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldBreakingNews, hPConfigReqFieldBreakingNews);
+		type(FieldBreakingNewsURL, hPConfigReqFieldBreakingNewsURL);
+		type(FieldABTests, hPConfigReqFieldABTests);
+		type(FieldHeaderURL, hPConfigReqFieldHeaderURL);
+		type(FieldHeaderAlt, hPConfigReqFieldHeaderAlt);
+		if (betaOrProd == "beta") {
+			saveItemAndPublishToBeta();
+		}
+		if (betaOrProd == "prod") {
+			saveItemAndPublishToProd();
+		}
+	}
+
+	public void fillAndSaveNewHTMLInclude(String mainURLCall, String betaOrProd, String hTMLIncludeReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		type(FieldInternalName, hTMLIncludeReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
@@ -2142,9 +2850,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewHTMLPage(String mainURLCall, String betaOrProd, String hTMLPageReqFieldInternalName, String hTMLPageReqFieldHeadline, String hTMLPageBlurbValue, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumHTMLPage = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, hTMLPageReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, hTMLPageReqFieldHeadline);
@@ -2160,12 +2865,21 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewInstagramPhoto(String mainURLCall, String betaOrProd, String instagramPhotoReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
+	public void fillAndSaveNewInstagramPhoto(String mainURLCall, String betaOrProd, String instagramPhotoReqFieldInternalName, String instagramPhotoReqFieldApprover, String instagramPhotoReqFieldApprovedTime, String instagramPhotoReqFieldInstagramID, String instagramPhotoReqFieldImageURL, String instagramPhotoReqFieldLargeImageURL, String instagramPhotoReqFieldCaption, String instagramPhotoReqFieldCreatorID, String instagramPhotoReqFieldCreatorName, String instagramPhotoReqFieldCreatorProfilePicture, String instagramPhotoReqFieldCreatedTime, String instagramPhotoReqFieldLatitude, String instagramPhotoReqFieldLongitude, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, instagramPhotoReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldApprover, instagramPhotoReqFieldApprover);
+		type(FieldApprovedTime, instagramPhotoReqFieldApprovedTime);
+		type(FieldInstagramID, instagramPhotoReqFieldInstagramID);
+		type(FieldImageURL, instagramPhotoReqFieldImageURL);
+		type(FieldLargeImageURL, instagramPhotoReqFieldLargeImageURL);
+		type(FieldCaption, instagramPhotoReqFieldCaption);
+		type(FieldCreatorID, instagramPhotoReqFieldCreatorID);
+		type(FieldCreatorName, instagramPhotoReqFieldCreatorName);
+		type(FieldCreatorProfilePicture, instagramPhotoReqFieldCreatorProfilePicture);
+		type(FieldCreatedTime, instagramPhotoReqFieldCreatedTime);
+		type(FieldLatitude, instagramPhotoReqFieldLatitude);
+		type(FieldLongitude, instagramPhotoReqFieldLongitude);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2174,12 +2888,55 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewKiosk(String mainURLCall, String betaOrProd, String kioskReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
+	public void fillAndSaveNewInstagramStream(String mainURLCall, String betaOrProd, String instagramStreamReqFieldInternalName, String instagramStreamReqFieldDisplayName, String instagramStreamReqFieldKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		type(FieldInternalName, instagramStreamReqFieldInternalName);
+		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldInstagramStreamDisplayName, instagramStreamReqFieldDisplayName);
+		type(FieldKey, instagramStreamReqFieldKey);
+		if (betaOrProd == "beta") {
+			saveItemAndPublishToBeta();
+		}
+		if (betaOrProd == "prod") {
+			saveItemAndPublishToProd();
+		}
+	}
+
+	public void fillAndSaveNewKiosk(String mainURLCall, String betaOrProd, String kioskReqFieldInternalName, String kioskReqFieldCalendarEventID, String kioskReqFieldContentID, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, kioskReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldCalendarEventID, kioskReqFieldCalendarEventID);
+		type(FieldContentID, kioskReqFieldContentID);
+		if (betaOrProd == "beta") {
+			saveItemAndPublishToBeta();
+		}
+		if (betaOrProd == "prod") {
+			saveItemAndPublishToProd();
+		}
+	}
+
+	public void fillAndSaveNewLineup(String mainURLCall, String betaOrProd, String lineupReqFieldInternalName, String lineupReqFieldUmpireHP, String lineupReqFieldUmpire1st, String lineupReqFieldUmpire2nd, String lineupReqFieldUmpire3rd, String lineupReqFieldUmpireLF, String lineupReqFieldUmpireRF, String lineupReqFieldUmpireOS, String lineupReqFieldNotes, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		type(FieldInternalName, lineupReqFieldInternalName);
+		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldUmpireHP, lineupReqFieldUmpireHP);
+		type(FieldUmpire1st, lineupReqFieldUmpire1st);
+		type(FieldUmpire2nd, lineupReqFieldUmpire2nd);
+		type(FieldUmpire3rd, lineupReqFieldUmpire3rd);
+		type(FieldUmpireLF, lineupReqFieldUmpireLF);
+		type(FieldUmpireRF, lineupReqFieldUmpireRF);
+		type(FieldUmpireOS, lineupReqFieldUmpireOS);
+		type(FieldLineupNotes, lineupReqFieldNotes);
+		if (betaOrProd == "beta") {
+			saveItemAndPublishToBeta();
+		}
+		if (betaOrProd == "prod") {
+			saveItemAndPublishToProd();
+		}
+	}
+
+	public void fillAndSaveNewLineupPlayer(String mainURLCall, String betaOrProd, String lineupPlayerReqFieldInternalName, String lineupPlayerReqFieldPosition, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		type(FieldInternalName, lineupPlayerReqFieldInternalName);
+		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldPosition, lineupPlayerReqFieldPosition);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2189,9 +2946,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewLink(String mainURLCall, String betaOrProd, String linkReqFieldInternalName, String linkReqFieldLinkText, String linkReqFieldLinkURL, String linkReqFieldWidth, String linkReqFieldHeight, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumLink = new WebDriverBackedSelenium(driver, mainURLCall);
 		pause(3);
 		sendKeys(linkReqFieldLinkText);
 		pressTab();
@@ -2218,12 +2972,12 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewList(String mainURLCall, String betaOrProd, String listReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
+	public void fillAndSaveNewList(String mainURLCall, String betaOrProd, String listReqFieldInternalName, String listReqFieldKey, String listReqFieldNumberOfItems, String listReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, listReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldKey, listReqFieldKey);
+		type(FieldNumberOfItems, listReqFieldNumberOfItems);
+		type(FieldBlurb, listReqFieldBlurb);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2232,12 +2986,10 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewMediawall(String mainURLCall, String betaOrProd, String mediawallReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
+	public void fillAndSaveNewMediawall(String mainURLCall, String betaOrProd, String mediawallReqFieldInternalName, String mediawallReqFieldNumberOfPanels, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, mediawallReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldNumberOfPanels, mediawallReqFieldNumberOfPanels);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2247,9 +2999,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewMediawallOverlay(String mainURLCall, String betaOrProd, String mediawallOverlayReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, mediawallOverlayReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2261,10 +3010,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewMediaWallPanel(String mainURLCall, String betaOrProd, String mediawallPanelReqFieldInternalName, String mediawallReqFieldHeadline, String mediawallReqFieldURLText, String mediawallReqFieldURL, String mediawallReqFieldMobileURL, String mediawallReqFieldSponsorURL, String mediawallReqFieldBlurb, String mediawallReqFieldNotes, String mediawallReqFieldDisplayTimeInSeconds, String mediawallReqFieldVideoAlias, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-		newMediaWallPageSource = driver.getPageSource();
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumMediawallPanel = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, mediawallPanelReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, mediawallReqFieldHeadline);
@@ -2291,9 +3036,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 	
 	public void fillAndSaveNewMLBTVAdModule(String mainURLCall, String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, mLBTVAdModuleReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2305,9 +3047,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewMoundBall(String mainURLCall, String betaOrProd, String moundBallReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, moundBallReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2319,9 +3058,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewMusicLink(String mainURLCall, String betaOrProd, String musicLinkReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, musicLinkReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2333,9 +3069,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewNote(String mainURLCall, String betaOrProd, String noteReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, noteReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2347,10 +3080,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewNotebook(String mainURLCall, String betaOrProd, String notebookReqFieldInternalName, String notebookReqFieldHeadline, String notebookReqFieldByline, String notebookReqFieldSource, String notebookTaglineValue, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-		newMediaWallPageSource = driver.getPageSource();
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumNotebook = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, notebookReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, notebookReqFieldHeadline);
@@ -2371,9 +3100,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPage(String mainURLCall, String betaOrProd, String pageReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, pageReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2385,10 +3111,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPhotoGallery(String mainURLCall, String betaOrProd, String photoGalleryReqFieldInternalName, String photoGalleryReqFieldTitle, String photoGalleryReqFieldSpanishTitle, String photoGalleryReqFieldBlurb, String photoGalleryReqFieldSpanishBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-		newMediaWallPageSource = driver.getPageSource();
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumPhotoGallery = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, photoGalleryReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldTitle, photoGalleryReqFieldTitle);
@@ -2411,9 +3133,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPhotoGalleryAlias(String mainURLCall, String betaOrProd, String photoGalleryAliasReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, photoGalleryAliasReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2425,9 +3144,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPhotoGalleryList(String mainURLCall, String betaOrProd, String photoGalleryListReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, photoGalleryListReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2439,9 +3155,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewProspect(String mainURLCall, String betaOrProd, String prospectReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, prospectReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2453,9 +3166,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPodcastDetail(String mainURLCall, String betaOrProd, String podcastDetailReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, podcastDetailReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2467,9 +3177,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPodcastEpisode(String mainURLCall, String betaOrProd, String podcastEpisodeReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, podcastEpisodeReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2481,9 +3188,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, pressReleaseReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2495,9 +3199,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPressboxAsset(String mainURLCall, String betaOrProd, String pressboxAssetReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, pressboxAssetReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2509,9 +3210,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPressboxAssetList(String mainURLCall, String betaOrProd, String pressboxAssetListReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, pressboxAssetListReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2523,9 +3221,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPreviewAlias(String mainURLCall, String betaOrProd, String previewAliasReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, previewAliasReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2537,9 +3232,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewProgramShow(String mainURLCall, String betaOrProd, String programShowReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, programShowReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2551,9 +3243,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPromoApplication(String mainURLCall, String betaOrProd, String promoApplicationReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, promoApplicationReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2565,9 +3254,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewQuoteSheet(String mainURLCall, String betaOrProd, String quoteSheetReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, quoteSheetReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2579,9 +3265,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewRaffle(String mainURLCall, String betaOrProd, String raffleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, raffleReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2593,9 +3276,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewSchedule(String mainURLCall, String betaOrProd, String scheduleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, scheduleReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2607,9 +3287,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewScrapbook(String mainURLCall, String betaOrProd, String scrapbookReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, scrapbookReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2621,9 +3298,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewScrapbookPage(String mainURLCall, String betaOrProd, String scrapbookPageReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, scrapbookPageReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2635,9 +3309,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewSection(String mainURLCall, String betaOrProd, String sectionReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, sectionReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2649,9 +3320,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewSeriesConfiguration(String mainURLCall, String betaOrProd, String seriesConfigurationReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, seriesConfigurationReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2663,9 +3331,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewShortContent(String mainURLCall, String betaOrProd, String shortContentReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, shortContentReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2677,9 +3342,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewTicketPage(String mainURLCall, String betaOrProd, String ticketPageReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, ticketPageReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2691,9 +3353,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewTrendingModule(String mainURLCall, String betaOrProd, String trendingModuleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, trendingModuleReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2705,9 +3364,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewTweet(String mainURLCall, String betaOrProd, String tweetReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, tweetReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2719,9 +3375,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewVideoTopicPage(String mainURLCall, String betaOrProd, String videoTopicPageReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, videoTopicPageReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2733,9 +3386,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewTwitterHandle(String mainURLCall, String betaOrProd, String twitterHandleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, twitterHandleReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -2747,9 +3397,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewVideoClipList(String mainURLCall, String betaOrProd, String videoClipListReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		newArticlePageSource = driver.getPageSource();
-//		DefaultSelenium seleniumDefault = new DefaultSelenium("localhost",4444,"*firefox","https://qahomebase.mlbcontrol.net");
-		Selenium seleniumArticle = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, videoClipListReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
@@ -3018,6 +3665,35 @@ public class HB_HomePage extends AbstractPage {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 	}
+
+	public void clipBoardCopy(String stringToCopyToClipboard) {
+		String str = stringToCopyToClipboard.toString();
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Clipboard clipboard = toolkit.getSystemClipboard();
+		StringSelection strSel = new StringSelection(str);
+		clipboard.setContents(strSel, null);
+	}
 	
+	public void clipBoardPaste() throws AWTException {
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_PASTE);
+		robot.keyRelease(KeyEvent.VK_PASTE);
+	}
 	
+	public void testFunction(String mainURLCall) throws InterruptedException, AWTException	{
+		depthChartsBaseState(hostName);
+		List<WebElement> FieldDataPosition = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
+		int depthChartsPlayerNumberOfDeleteButtonsBefore = FieldDataPosition.size();
+		for (int a = 0; a < depthChartsPlayerNumberOfDeleteButtonsBefore; a++) {
+
+			WebElement depthChartsPlayerDeleteButton = FieldDataPosition.get(a);
+			depthChartsPlayerDeleteButton.click();
+		}
+		click(btnSaveDepthChart);
+		int depthChartPlayerValueExpectedAfterDelete = 0;
+		int depthChartsPlayerNumberOfDeleteButtonsAfter = FieldDataPosition.size();	
+//		Assert.assertTrue((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartsPlayerNumberOfDeleteButtonsAfter == 0);		
+		Assert.assertEquals((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartPlayerValueExpectedAfterDelete, depthChartsPlayerNumberOfDeleteButtonsAfter);
+	}
+
 }
