@@ -274,7 +274,7 @@ public class HomebaseTestSuite extends UITest {
 	public static String valueDrawerBlurb = "Blurb";
 	public static String valueDrawerURL = "http://www.URL.com";
 	public static String valueDrawerURLText = "URL Text";
-	public static String valueDrawerNumberOfItems = "Number Of Items";
+	public static String valueDrawerNumberOfItems = "2";
 	//************ DRAWER OBJECTS ************//	
 
 	//************ EVENT OBJECTS ************//	
@@ -298,7 +298,7 @@ public class HomebaseTestSuite extends UITest {
 
 	//************ FEATURES OBJECTS ************//	
 	public static String valueFeaturesInternalName = "Internal Name";
-	public static String valueFeaturesNumberOfItems = "Number Of Items";
+	public static String valueFeaturesNumberOfItems = "2";
 	//************ FEATURES OBJECTS ************//	
 
 	//************ FIELD OPTION OBJECTS ************//	
@@ -411,13 +411,13 @@ public class HomebaseTestSuite extends UITest {
 	//************ LINK OBJECTS ************//	
 	public static String valueListInternalName = "Internal Name";
 	public static String valueListKey = "Key";
-	public static String valueListNumberOfItems = "Number of Items";
+	public static String valueListNumberOfItems = "2";
 	public static String valueListBlurb = "Blurb";
 	//************ LINK OBJECTS ************//	
 
 	//************ MEDIAWALL OBJECTS ************//	
 	public static String valueMediawallInternalName = "Internal Name";
-	public static String valueMediawallNumberOfPanels = "Number Of Panels";
+	public static String valueMediawallNumberOfPanels = "2";
 	//************ MEDIAWALL OBJECTS ************//	
 
 	//************ MEDIAWALL PANEL OBJECTS ************//	
@@ -433,6 +433,13 @@ public class HomebaseTestSuite extends UITest {
 	public static String valueMediawallPanelVideoAlias = "Baseball.mov";
 	//************ MEDIAWALL PANEL OBJECTS ************//	
 
+	//************ MLBTV AD MODULE OBJECTS ************//	
+	public static String valueMLBTVAdModuleInternalName = "Internal Name";
+	public static String valueMLBTVAdModuleURL = "http://www.URL.com";
+	public static String valueMLBTVAdModuleMobileURL = "http://m.URL.com";
+	public static String valueMLBTVAdModuleTabletURL = "http://m.tabletURL.com";	
+	//************ MLBTV AD MODULE OBJECTS ************//	
+	
 	//************ NOTEBOOK OBJECTS ************//	
 	public static String valueNotebookInternalName = "Internal Name";
 	public static String valueNotebookHeadline = "Headline";
@@ -455,7 +462,7 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 
-	@Test
+//	@Test
 	public void homeBaseTestMLB000GameContentLineup() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -645,7 +652,7 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(driver);
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.selectNewItem("Device Page");
+		homePage.selectNewItem("Device Announcement");
 		homePage.fillAndSaveNewDeviceAnnouncement(mainURL,valueBeta, valueDeviceAnnouncementInternalName, valueDeviceAnnouncementAppVersion, valueDeviceAnnouncementOSVersion, valueDeviceAnnouncementEntitlement, valueDeviceAnnouncementScreen, valueDeviceAnnouncementType, valueDeviceAnnouncementDisplayType, valueDeviceAnnouncementTitle, valueDeviceAnnouncementMessage, valueDeviceAnnouncementOpenLabel, valueDeviceAnnouncementOpenLink, valueDeviceAnnouncementCloseLabel, valueDeviceAnnouncementCloseLink, valueMajorTagToolPlayer);
 		return;
 	}	
@@ -656,7 +663,7 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(driver);
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.selectNewItem("Device Page");
+		homePage.selectNewItem("Device Banner");
 		homePage.fillAndSaveNewDeviceBanner(mainURL,valueBeta, valueDeviceBannerInternalName, valueDeviceBannerAppVersion, valueDeviceBannerOSVersion, valueDeviceBannerEntitlement, valueDeviceBannerAccessFeature, valueDeviceBannerScreen, valueDeviceBannerViewID, valueDeviceBannerType, valueDeviceBannerWebViewType, valueDeviceAnnouncementTitle, valueDeviceBannerLink, valueDeviceBannerBackgroundColor, valueDeviceBannerTrackingString, valueDeviceBannerAdMarvelID, valueDeviceBannerAdMarvelWidth, valueDeviceBannerAdMarvelHeight, valueDeviceBannerAdMarvelSectionID, valueDeviceBannerAdMarvelMLBTarget, valueDeviceBannerAdMarvelExpiryTime, valueDeviceBannerMLBTVContentID, valueDeviceBannerMLBTVCalendarEventID, valueDeviceBannerSponsor, valueMajorTagToolPlayer);
 		return;
 	}	
@@ -921,7 +928,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("MLBTV Ad Module");
-		homePage.fillAndSaveNewMLBTVAdModule(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMLBTVAdModule(mainURL,valueBeta, valueMLBTVAdModuleInternalName, valueMLBTVAdModuleURL, valueMLBTVAdModuleMobileURL, valueMLBTVAdModuleTabletURL, valueMajorTagToolPlayer);
 		return;
 	}	
 

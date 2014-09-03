@@ -203,9 +203,22 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//ul[@class='ui-sortable']")
 	public ExtendedWebElement panelSearchUISortable;
-
+	
 	//************ SEARCH OBJECTS ************//	
 	
+	//************ TAG TOOL OBJECTS ************//	
+
+	@FindBy(xpath="//input[@type='text'][@style='width:330px']")
+	public ExtendedWebElement fieldTagToolPlayerTagByName;
+	
+	@FindBy(xpath="//input[@type='text'][@style='width:245px']")
+	public ExtendedWebElement fieldTagToolPlayerTagByTeam;
+	
+	@FindBy(xpath="//input[@type='text'][@style='width:320px']")
+	public ExtendedWebElement fieldTagToolPlayerTagByTeamPlayerName;
+	
+	//************ TAG TOOL OBJECTS ************//	
+
 	//************ ITEM CREATION OBJECTS ************//	
 
 	@FindBy(xpath="//div[contains(text(), 'Publish Complete')]")
@@ -340,7 +353,6 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//span[contains(text(), 'Upload Photos')]")
 	public ExtendedWebElement BtnHomePageUploadPhotos;
 
-//	@FindBy(xpath="//div[contains(text(), 'Photo Asset -')]")
 	@FindBy(xpath="//div[@class='monitorForItem']")
 	public ExtendedWebElement StatusPublishComplete;
 
@@ -991,6 +1003,13 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ MEDIAWALL CREATION OBJECTS ************//	
 
+	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
+
+	@FindBy(name="tablet-url")
+	public ExtendedWebElement FieldTabletURL;
+
+	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
+
 	//************ DASHBOARD TEAM CONTENT OBJECTS ************//	
 
 	@FindBy(id="tabBtn-team")
@@ -1157,8 +1176,9 @@ public class HB_HomePage extends AbstractPage {
 	
 	//************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//	
 
-//	@FindBy(xpath="//div[@class='ui components form content lineup  processedYes'][@data-listens-for='click change'][@data-controller='components/form/controllers/dashboard.lineup.js']")
-//	@FindBy(xpath="//div[@class='ui components form content lineup  processedYes'][@data-listens-for='click change']")
+	@FindBy(xpath="//button[contains(text(), 'Unlock')]")
+	public ExtendedWebElement btnUnlock;
+
 	@FindBy(xpath="//div[@class='collectionPanel positionRelative ui-tabs-panel ui-widget-content ui-corner-bottom lineupParent']")
 	public ExtendedWebElement lineupGameContentFieldDataPositionDescription;
 
@@ -1380,8 +1400,42 @@ public class HB_HomePage extends AbstractPage {
 		sendKeys(tagToolPlayer);
 		pause(1);
 		pressTab();
-		click(BtnApplyTagsAndClose);
-	
+		pause(1);
+		pressTab();
+		pressA();
+		pause(1);
+		pressEnter();
+		pause(1);
+		pressA();
+		pause(1);
+		pressEnter();
+		click(BtnApplyTagsAndClose);	
+	}
+
+	public void useTagToolNew(String mainURL, String tagToolPlayer) throws InterruptedException, AWTException {
+//		Selenium seleniumTagTool = new WebDriverBackedSelenium(driver, mainURL);
+		click(BtnTagTool);
+		click(CheckboxTagToolAdvancedFields);
+		click(BtnTagToolChangeDate);
+		click(BtnTagToolSelectCurrentDate);
+		pause(0.5);
+		pressEnter();
+		pause(1);
+		pressTab();
+		pause(1);
+		sendKeys(tagToolPlayer);
+		pause(1);
+		pressTab();
+		pause(1);
+		pressTab();
+		pressA();
+		pause(1);
+		pressEnter();
+		pause(1);
+		pressA();
+		pause(1);
+		pressEnter();
+		click(BtnApplyTagsAndClose);	
 	}
 
 	public void saveItemAndPublishToBeta() throws AWTException {
@@ -1412,9 +1466,8 @@ public class HB_HomePage extends AbstractPage {
 		click(FieldMainSearch);
 		type(FieldMainSearch, valueItemNumberTrimmed);
 		click(btnSearch);
-		pause(1);
-		clickPosition(900,220);
-		pause(1);
+		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
+		btnItemSearchedForDeletion.click();
 		click(deleteItem);
 		click(deleteItemConfirm);
 	}	
@@ -1714,6 +1767,12 @@ public class HB_HomePage extends AbstractPage {
 
 		int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
 		int NumberOfFieldDataPosition2PlayerTextInputBoxes = FieldDataPosition2.size();
+
+		if (isElementPresent(btnUnlock) == true) {
+		while (isElementPresent(btnUnlock) == true) {
+			click(btnUnlock);
+		}
+		}
 		
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
 
@@ -2247,6 +2306,12 @@ public class HB_HomePage extends AbstractPage {
 		List<WebElement> fieldPlayerTypeDataDataSourceAL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsAL']")));
 		List<WebElement> fieldPlayerTypeDataDataSourceNL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsNL']")));
 
+		if (isElementPresent(btnUnlock) == true) {
+		while (isElementPresent(btnUnlock) == true) {
+			click(btnUnlock);
+		}
+		}
+		
 		if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
 			click(btnLineupDeleteEntryAway1);
 			click(btnLineupDeleteEntryAway2);
@@ -3035,9 +3100,12 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 	
-	public void fillAndSaveNewMLBTVAdModule(String mainURLCall, String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewMLBTVAdModule(String mainURLCall, String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String mLBTVAdModuleReqFieldURL, String mLBTVAdModuleReqFieldMobileURL, String mLBTVAdModuleReqFieldTabletURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, mLBTVAdModuleReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldURL, mLBTVAdModuleReqFieldURL);
+		type(FieldMobileURL, mLBTVAdModuleReqFieldMobileURL);
+		type(FieldTabletURL, mLBTVAdModuleReqFieldTabletURL);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3134,7 +3202,6 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPhotoGalleryAlias(String mainURLCall, String betaOrProd, String photoGalleryAliasReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, photoGalleryAliasReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3222,7 +3289,6 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPreviewAlias(String mainURLCall, String betaOrProd, String previewAliasReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, previewAliasReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
