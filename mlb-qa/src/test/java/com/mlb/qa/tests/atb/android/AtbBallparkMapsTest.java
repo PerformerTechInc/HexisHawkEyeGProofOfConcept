@@ -1,5 +1,12 @@
 package com.mlb.qa.tests.atb.android;
 
+import java.util.HashMap;
+import java.util.List;
+
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.mlb.qa.atb.android.page.AtbBallparksPage;
 import com.mlb.qa.atb.android.page.AtbMapPage;
@@ -11,13 +18,6 @@ import com.qaprosoft.carina.core.foundation.UITest;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 import com.qaprosoft.carina.core.foundation.utils.Configuration.Parameter;
 
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
-import java.util.HashMap;
-import java.util.List;
-
 /**
  * Check that content of Map page for each ballpark is correct<br>
  */
@@ -28,8 +28,6 @@ public class AtbBallparkMapsTest extends UITest {
     private static final String QA_SERVICE_PATTERN = "http://wapqa.mlb.com/ballpark/iphone/config/";
 
 
-
-    
     @Test(dataProvider = "excel_ds", description = "Check ballpark maps"/*, dependsOnMethods = "login"*/)
     @Parameters({"team_abbrev", "TUID","stadium_name"})
     public void checkMapDescription(String teamAbbrev, String teamName, String stadiumName) {
@@ -39,7 +37,6 @@ public class AtbBallparkMapsTest extends UITest {
     		SERVICE_PATTERN = PROD_SERVICE_PATTERN;
     	}
     		
-    	
         AtbBallparksPage atbBallparksPage = new AtbBallparksPage(getDriver());
         atbBallparksPage.clickOnMenuItem(AtbAndroidPage.Menu.BALLPARKS);
         atbBallparksPage.openBallparkByTeamName(teamName);

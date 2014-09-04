@@ -32,7 +32,11 @@ public class AtBatBottomMenuPage extends AtBatIOSPage {
         click(webElement);
         return new AtBatMorePage(driver);
     }
-
+    public AtBatNewsPage getAtBatNewsPage() {
+        ExtendedWebElement webElement = ((AppiumNativeDriver) driver).findElementByIosUIAutomation(".tabBar().buttons()['News']");
+        click(webElement);
+        return new AtBatNewsPage(driver);
+    }
     public AtBatBottomMenuPage(WebDriver driver) {
         super(driver);
     }

@@ -27,6 +27,7 @@ public class CustomJiraUpdater implements IJiraUpdater{
 package com.mlb.util;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,11 +76,12 @@ public class CustomJiraUpdater implements IJiraUpdater
 	@Override
 	public void updateAfterTest(final JiraClient jira, final ITestResult result) 
 	{
-		//String description = jiraId.equals("")?result.getMethod().getDescription(): jiraId;
-		String id = result.getAttribute(SpecialKeywords.JIRA_TICKET).toString();
-		if (id.isEmpty())
-			return;
+		@SuppressWarnings("unchecked")
+		ArrayList <String> jiraTickets = (ArrayList <String>)result.getAttribute(SpecialKeywords.JIRA_TICKET); 
 		
+		if (jiraTickets.size() == 0)
+			return;
+	
 		String status = "Fixed";
 		//String status = "PASS";
 		if(result.getStatus() != 1) {
@@ -91,7 +93,9 @@ public class CustomJiraUpdater implements IJiraUpdater
 		String testcase = result.getMethod().getTestClass().getXmlTest().getName();
 			
 		String comment = generateJiraComment(status, testsuite, testcase);
-		commentIssue(jira, id, status, comment);
+		for (String id : jiraTickets) {
+			commentIssue(jira, id, status, comment);
+		}		
 	}
 
 	@Override
