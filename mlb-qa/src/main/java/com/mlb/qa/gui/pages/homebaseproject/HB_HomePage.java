@@ -203,6 +203,9 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//ul[@class='ui-sortable']")
 	public ExtendedWebElement panelSearchUISortable;
+
+    @FindBy(xpath="//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[@class='tileInfo ']/div")
+    public ExtendedWebElement panelSearchTileInfo;
 	
 	//************ SEARCH OBJECTS ************//	
 	
@@ -1442,8 +1445,6 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnSave);
 		pause(1);
 		click(BtnToBeta);
-
-
 		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 300));
 		if (isElementPresent(statusPublishComplete) == true) {
 		deleteCreatedItem();
@@ -1465,11 +1466,11 @@ public class HB_HomePage extends AbstractPage {
 		String valueItemNumber = StatusPublishComplete.getText();
 		int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
 		String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue+1);
-		click(FieldMainSearch);
-		type(FieldMainSearch, valueItemNumberTrimmed);
-		click(btnSearch);
-		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
-		btnItemSearchedForDeletion.click();
+        click(FieldMainSearch);
+        type(FieldMainSearch, valueItemNumberTrimmed);
+        click(btnSearch);
+        WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
+        btnItemSearchedForDeletion.click();
 		click(deleteItem);
 		click(deleteItemConfirm);
 	}	
@@ -3763,5 +3764,4 @@ public class HB_HomePage extends AbstractPage {
 //		Assert.assertTrue((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartsPlayerNumberOfDeleteButtonsAfter == 0);		
 		Assert.assertEquals((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartPlayerValueExpectedAfterDelete, depthChartsPlayerNumberOfDeleteButtonsAfter);
 	}
-
 }
