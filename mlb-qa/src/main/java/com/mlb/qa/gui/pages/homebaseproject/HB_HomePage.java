@@ -1442,6 +1442,8 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnSave);
 		pause(1);
 		click(BtnToBeta);
+
+
 		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 300));
 		if (isElementPresent(statusPublishComplete) == true) {
 		deleteCreatedItem();
