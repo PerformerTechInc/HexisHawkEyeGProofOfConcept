@@ -1780,7 +1780,7 @@ public class HB_HomePage extends AbstractPage {
 	public void lineupGameContentBaseState(String mainURLCall) throws InterruptedException, AWTException	{
 		selectGameContent();
 		List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
-		(gameContentSelectGame.get(1)).click();
+		(gameContentSelectGame.get(0)).click();
 		click(btnDashboardGameContentLineup);
 		pause(0.5);
 		clickPosition(750,250);
