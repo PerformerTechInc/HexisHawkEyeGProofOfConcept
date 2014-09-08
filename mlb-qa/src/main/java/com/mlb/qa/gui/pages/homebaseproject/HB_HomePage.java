@@ -1466,11 +1466,36 @@ public class HB_HomePage extends AbstractPage {
 		String valueItemNumber = StatusPublishComplete.getText();
 		int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
 		String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue+1);
-        click(FieldMainSearch);
-        type(FieldMainSearch, valueItemNumberTrimmed);
-        click(btnSearch);
-        WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
-        btnItemSearchedForDeletion.click();
+		String valueItemNumberTrimmedHardcoded = "93095880";
+/*
+		pause(300);
+		
+		click(FieldMainSearch);
+		type(FieldMainSearch, valueItemNumberTrimmedHardcoded);
+		click(btnSearch);
+		pause(5);
+		WebElement btnItemSearchedForDeletion2 = panelSearchUISortable.getElement().findElement(By.xpath("//h4[contains(text(), '" + valueItemNumberTrimmedHardcoded + "')]"));
+		btnItemSearchedForDeletion2.click();
+
+		
+*/		
+		click(FieldMainSearch);		
+//		type(FieldMainSearch, valueItemNumberTrimmedHardcoded);
+		type(FieldMainSearch, valueItemNumberTrimmed);
+		click(btnSearch);
+		pause(5);
+		logger.info("//h4[contains(text(), '" + valueItemNumberTrimmed + "')]");
+		logger.info("//h4[contains(text(), '" + valueItemNumberTrimmedHardcoded + "')]");
+//		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed.toString() + "')]"));
+		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
+//		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//h4"));
+//		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//h4[contains(text(), '" + valueItemNumberTrimmedHardcoded + "')]"));
+//		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//div[@data-item-id='" + valueItemNumberTrimmed + "']"));
+//		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//div[@class='tileDisplayDataText']"));
+//		driver.switchTo().
+		logger.info(btnItemSearchedForDeletion.isEnabled() + " " + btnItemSearchedForDeletion.isDisplayed() + " " + btnItemSearchedForDeletion.isSelected());
+//		pause(300);
+		btnItemSearchedForDeletion.click();
 		click(deleteItem);
 		click(deleteItemConfirm);
 	}	
@@ -1771,12 +1796,14 @@ public class HB_HomePage extends AbstractPage {
 		int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
 		int NumberOfFieldDataPosition2PlayerTextInputBoxes = FieldDataPosition2.size();
 
+/*
 		if (isElementPresent(btnUnlock) == true) {
+
 		while (isElementPresent(btnUnlock) == true) {
 			click(btnUnlock);
 		}
 		}
-		
+*/		
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
 
 			if (NumberOfFieldDataPositionPlayerTextInputBoxes == 20) {
