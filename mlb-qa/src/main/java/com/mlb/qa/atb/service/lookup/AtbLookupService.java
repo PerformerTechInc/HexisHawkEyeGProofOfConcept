@@ -159,7 +159,8 @@ public class AtbLookupService {
         List<String> titles = new ArrayList<String>();
         List<com.mlb.qa.at_bat.model.news.List> newsList = newsReaderJson.getList();
         for (com.mlb.qa.at_bat.model.news.List list : newsList) {
-            titles.add(list.getHeadline());
+            if (list.getType().equals("article")){
+            titles.add(list.getHeadline());}
         }
         return titles;
     }

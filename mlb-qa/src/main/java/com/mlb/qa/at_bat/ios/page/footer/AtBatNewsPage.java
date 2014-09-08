@@ -21,13 +21,8 @@ public class AtBatNewsPage extends AtBatIOSPage {
         super(driver);
     }
 
-    public ArrayList<String> getAllNewsTitles() {
-
-        List<WebElement> newsNodes = driver.findElements(By.xpath(""));
-        ArrayList<String> titles = new ArrayList<String>();
-        for (WebElement newsNode : newsNodes) {
-            titles.add(newsNode.getText());
-        }
-        return titles;
+    public boolean getAllNewsTitles(String title) {
+        List<WebElement> newsNodes = driver.findElements(By.name(title));
+        return newsNodes.size()>0;
     }
 }
