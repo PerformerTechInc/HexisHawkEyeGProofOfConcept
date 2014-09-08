@@ -3,22 +3,27 @@ package com.mlb.qa.tests.atbat.ios;
 import com.mlb.qa.at_bat.ios.page.authentication.AtBatLoginPage;
 import com.mlb.qa.at_bat.ios.page.common.AtBatStartPage;
 import com.mlb.qa.at_bat.ios.page.footer.AtBatBottomMenuPage;
+import com.mlb.qa.at_bat.ios.page.footer.AtBatMorePage;
 import com.mlb.qa.at_bat.ios.page.footer.AtBatNewsPage;
+import com.mlb.qa.at_bat.ios.page.team.AtBatTeamPage;
+import com.mlb.qa.at_bat.ios.page.team.AtBatTeamSelectionPage;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.qaprosoft.carina.core.foundation.UITest;
 import org.openqa.selenium.By;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class AtBatNewsTest extends UITest {
+public class AtBatNewsTeamTest extends UITest {
 
 
-    @Test
-    public void checkNewsGlobal() {
+    @Parameters({"TUID", "team_name"})
+    @Test(dataProvider = "excel_ds")
+    public void checkNewsGlobal(String TUID, String team_name) {
         AtbLookupService lookupService = new AtbLookupService();
-        List<String> news = lookupService.getNewsTitles();
+        List<String> news = lookupService.getNewsTitles("nym");
         int i = 1;
         for (String aNew : news) {
             if (aNew != null) {
@@ -26,11 +31,19 @@ public class AtBatNewsTest extends UITest {
                 i++;
             }
         }
+
+
         AtBatStartPage atBatStartPage = new AtBatStartPage(driver);
         AtBatLoginPage atBatLoginPage = atBatStartPage.getAtBatLoginPage();
         atBatLoginPage.login();
+
         AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(driver);
-        atBatBottomMenuPage.getAtBatNewsPage();
+        AtBatMorePage atBatMorePage = atBatBottomMenuPage.getAtBatMorePage();
+
+        AtBatTeamSelectionPage atBatTeamSelectionPage = atBatMorePage.getAtBatTeamSelectionPage();
+        AtBatTeamPage atBatTeamPage = atBatTeamSelectionPage.selectTeam(TUID);
+        atBatTeamPage.getAtBatNewsPage();
+
         i = 1;
         SoftAssert softAssert = new SoftAssert();
         for (String aNew : news) {
@@ -43,6 +56,7 @@ public class AtBatNewsTest extends UITest {
             }
         }
         softAssert.assertAll();
+
 
 
     }
