@@ -462,7 +462,7 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 
-	@Test
+//	@Test
 	public void homeBaseTestMLB000GameContentLineup() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -473,7 +473,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.lineupGameContentDeletePlayers(mainURL);
 	}	
 
-	@Test
+//	@Test
 	public void homeBaseTestMLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -482,7 +482,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-	@Test
+//	@Test
 	public void homeBaseTestMLB002BasicSearch() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
