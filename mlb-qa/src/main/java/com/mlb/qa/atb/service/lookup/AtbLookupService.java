@@ -40,6 +40,8 @@ public class AtbLookupService {
 
     private static final String TOTAL_NEWS_REQUEST = "http://mlb.mlb.com/gen/hb/list/mlb/newsreader.json";
 
+    private static final String TEAM_NEWS_REQUEST = "http://mlb.mlb.com/gen/hb/list/%s/newsreader.json";
+
     /**
      * * Lookup for the game by home team id and return the first found
      *
@@ -160,7 +162,18 @@ public class AtbLookupService {
         List<com.mlb.qa.at_bat.model.news.List> newsList = newsReaderJson.getList();
         for (com.mlb.qa.at_bat.model.news.List list : newsList) {
             if (list.getType().equals("article")){
-            titles.add(list.getHeadline());}
+                titles.add(list.getHeadline());}
+        }
+        return titles;
+    }
+    public List<String> getNewsTitles(String teamName) {
+        HttpResult result = HttpHelper.executeGet(String.format(TEAM_NEWS_REQUEST,teamName), new HashMap<String, String>());
+        NewsReaderJson newsReaderJson = JsonUtils.fromJson(result.getResponseBody(), NewsReaderJson.class);
+        List<String> titles = new ArrayList<String>();
+        List<com.mlb.qa.at_bat.model.news.List> newsList = newsReaderJson.getList();
+        for (com.mlb.qa.at_bat.model.news.List list : newsList) {
+            if (list.getType().equals("article")){
+                titles.add(list.getHeadline());}
         }
         return titles;
     }
