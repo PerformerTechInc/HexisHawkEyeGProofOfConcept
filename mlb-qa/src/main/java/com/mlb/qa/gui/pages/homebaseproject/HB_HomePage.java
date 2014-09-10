@@ -204,8 +204,14 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//ul[@class='ui-sortable']")
 	public ExtendedWebElement panelSearchUISortable;
 
+	@FindBy(xpath="//div[contains(text(), 'Hide Options')]")
+	public ExtendedWebElement btnSearchHideOptions; 
+	
     @FindBy(xpath="//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[@class='tileInfo ']/div")
     public ExtendedWebElement panelSearchTileInfo;
+	
+    @FindBy(xpath="//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[@class='tileControls']/div")
+    public ExtendedWebElement panelSearchTileControls;
 	
 	//************ SEARCH OBJECTS ************//	
 	
@@ -997,6 +1003,9 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ LIST CREATION OBJECTS ************//	
 
+	@FindBy(xpath="//button[contains(text(), 'Search for Items')]")
+	public ExtendedWebElement btnSearchForItems;
+	
 	//************ LIST CREATION OBJECTS ************//	
 
 	//************ MEDIAWALL CREATION OBJECTS ************//	
@@ -1012,6 +1021,62 @@ public class HB_HomePage extends AbstractPage {
 	public ExtendedWebElement FieldTabletURL;
 
 	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
+
+	//************ VIDEO TOPIC PAGE CREATION OBJECTS ************//	
+
+	@FindBy(xpath="//textarea[@data-field-key='description']")
+	public ExtendedWebElement FieldFacebookDescription;
+
+	@FindBy(xpath="//input[@data-field-key='max-items']")
+	public ExtendedWebElement FieldMaxItems;
+
+	@FindBy(xpath="//input[@data-field-key='items-per-page']")
+	public ExtendedWebElement FieldItemsPerPage;
+
+	@FindBy(xpath="//input[@data-field-key='search_criteria']")
+	public ExtendedWebElement FieldSearchCriteria;
+
+	@FindBy(xpath="//input[@data-field-key='related_link']")
+	public ExtendedWebElement FieldRelatedLink;
+
+	@FindBy(xpath="//input[@data-field-key='jsp_path']")
+	public ExtendedWebElement FieldCustomTemplatePath;
+
+	@FindBy(xpath="//input[@data-field-key='js_path']")
+	public ExtendedWebElement FieldJavascriptPath;
+
+	@FindBy(xpath="//input[@data-field-key='css_path']")
+	public ExtendedWebElement FieldStylesheetPath;
+
+	@FindBy(xpath="//input[@data-field-key='customPanel']")
+	public ExtendedWebElement FieldCustomPanel;
+
+	@FindBy(xpath="//input[@data-field-key='twitter-handle']")
+	public ExtendedWebElement FieldTwitterHandleVTP;
+
+	@FindBy(xpath="//input[@data-field-key='poll_key']")
+	public ExtendedWebElement FieldPollKey;
+
+	@FindBy(xpath="//button[@data-sub-item-type='video_clip_list']")
+	public ExtendedWebElement btnSearchForVideoClipList;
+
+    @FindBy(xpath="//*[@id='search-autocompleteQuery']/div[@class='autocompleteResultsContainer']/ul[@class='ac-holder']/li/input[@class='autocomplete-maininput processedYes']")
+	public ExtendedWebElement FieldSearchWordOrPhraseOrContentID;
+
+	@FindBy(id="refreshSearchBot")
+	public ExtendedWebElement btnSearchForVideoClipListSearchButton;
+
+	//************ VIDEO TOPIC PAGE CREATION OBJECTS ************//	
+	
+	//************ VIDEO CLIP LIST CREATION OBJECTS ************//	
+
+	@FindBy(xpath="//input[@data-field-key='listDefaultView']")
+	public ExtendedWebElement FieldListDefaultView;
+	
+	@FindBy(xpath="//button[@data-sub-item-type='video']")
+	public ExtendedWebElement btnSearchForVideo;
+
+	//************ VIDEO CLIP LIST CREATION OBJECTS ************//	
 
 	//************ DASHBOARD TEAM CONTENT OBJECTS ************//	
 
@@ -1445,7 +1510,7 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnSave);
 		pause(1);
 		click(BtnToBeta);
-		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 300));
+		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 600));
 		if (isElementPresent(statusPublishComplete) == true) {
 		deleteCreatedItem();
 		}		
@@ -1456,7 +1521,7 @@ public class HB_HomePage extends AbstractPage {
 		pause(1);
 		click(BtnToProd);
 		click(BtnToProdConfirm);
-		Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 300));
+		Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 600));
 		if (isElementPresent(statusPublishComplete) == true) {
 		deleteCreatedItem();
 		}		
@@ -1466,35 +1531,11 @@ public class HB_HomePage extends AbstractPage {
 		String valueItemNumber = StatusPublishComplete.getText();
 		int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
 		String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue+1);
-		String valueItemNumberTrimmedHardcoded = "93095880";
-/*
-		pause(300);
-		
-		click(FieldMainSearch);
-		type(FieldMainSearch, valueItemNumberTrimmedHardcoded);
-		click(btnSearch);
-		pause(5);
-		WebElement btnItemSearchedForDeletion2 = panelSearchUISortable.getElement().findElement(By.xpath("//h4[contains(text(), '" + valueItemNumberTrimmedHardcoded + "')]"));
-		btnItemSearchedForDeletion2.click();
-
-		
-*/		
 		click(FieldMainSearch);		
-//		type(FieldMainSearch, valueItemNumberTrimmedHardcoded);
 		type(FieldMainSearch, valueItemNumberTrimmed);
 		click(btnSearch);
-		pause(5);
-		logger.info("//h4[contains(text(), '" + valueItemNumberTrimmed + "')]");
-		logger.info("//h4[contains(text(), '" + valueItemNumberTrimmedHardcoded + "')]");
-//		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed.toString() + "')]"));
+//		pause(5);
 		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
-//		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//h4"));
-//		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//h4[contains(text(), '" + valueItemNumberTrimmedHardcoded + "')]"));
-//		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//div[@data-item-id='" + valueItemNumberTrimmed + "']"));
-//		WebElement btnItemSearchedForDeletion = panelSearchUISortable.getElement().findElement(By.xpath("//div[@class='tileDisplayDataText']"));
-//		driver.switchTo().
-		logger.info(btnItemSearchedForDeletion.isEnabled() + " " + btnItemSearchedForDeletion.isDisplayed() + " " + btnItemSearchedForDeletion.isSelected());
-//		pause(300);
 		btnItemSearchedForDeletion.click();
 		click(deleteItem);
 		click(deleteItemConfirm);
@@ -3073,6 +3114,26 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldKey, listReqFieldKey);
 		type(FieldNumberOfItems, listReqFieldNumberOfItems);
 		type(FieldBlurb, listReqFieldBlurb);
+
+		click(btnSearchForItems);
+		click(btnSearchHideOptions);
+
+		type(FieldMainSearch, "89238938");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-link']"));
+		btnAddVideoClipListBeingSearched.click();
+
+		type(FieldMainSearch, "91905926");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-digital-asset']"));
+		btnAddVideoClipListBeingSearched2.click();
+		
+		type(FieldMainSearch, "92932056");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-tweet']"));
+		btnAddVideoClipListBeingSearched3.click();
+
+
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3470,9 +3531,40 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewVideoTopicPage(String mainURLCall, String betaOrProd, String videoTopicPageReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewVideoTopicPage(String mainURLCall, String betaOrProd, String videoTopicPageReqFieldInternalName, String videoTopicPageReqFieldHeadline, String videoTopicPageReqFieldFacebookDescription, String videoTopicPageReqFieldMaxItems, String videoTopicPageReqFieldItemsPerPage, String videoTopicPageReqFieldSearchCriteria, String videoTopicPageReqFieldRelatedLink, String videoTopicPageReqFieldCustomTemplatePath, String videoTopicPageReqFieldJavascriptPath, String videoTopicPageReqFieldStylesheetPath, String videoTopicPageReqFieldCustomPanel, String videoTopicPageReqFieldTwitterHandle, String videoTopicPageReqFieldPollKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, videoTopicPageReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldHeadline, videoTopicPageReqFieldHeadline);
+		type(FieldFacebookDescription, videoTopicPageReqFieldFacebookDescription);
+		type(FieldMaxItems, videoTopicPageReqFieldMaxItems);
+		type(FieldItemsPerPage, videoTopicPageReqFieldItemsPerPage);
+		type(FieldSearchCriteria, videoTopicPageReqFieldSearchCriteria);
+		type(FieldRelatedLink, videoTopicPageReqFieldRelatedLink);
+		type(FieldCustomTemplatePath, videoTopicPageReqFieldCustomTemplatePath);
+		type(FieldJavascriptPath, videoTopicPageReqFieldJavascriptPath);
+		type(FieldStylesheetPath, videoTopicPageReqFieldStylesheetPath);
+		type(FieldCustomPanel, videoTopicPageReqFieldCustomPanel);
+		type(FieldTwitterHandleVTP, videoTopicPageReqFieldTwitterHandle);
+		type(FieldPollKey, videoTopicPageReqFieldPollKey);
+
+		click(btnSearchForVideoClipList);
+		click(btnSearchHideOptions);
+
+		type(FieldMainSearch, "90754964");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video_clip_list']"));
+		btnAddVideoClipListBeingSearched.click();
+
+		type(FieldMainSearch, "85559162");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video_clip_list']"));
+		btnAddVideoClipListBeingSearched2.click();
+		
+		type(FieldMainSearch, "81881448");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video_clip_list']"));
+		btnAddVideoClipListBeingSearched3.click();
+
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3492,9 +3584,30 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewVideoClipList(String mainURLCall, String betaOrProd, String videoClipListReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewVideoClipList(String mainURLCall, String betaOrProd, String videoClipListReqFieldInternalName, String videoClipListReqFieldHeadline, String videoClipListReqFieldListDefaultView, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, videoClipListReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldHeadline, videoClipListReqFieldHeadline);
+		type(FieldListDefaultView, videoClipListReqFieldListDefaultView);
+
+		click(btnSearchForVideo);
+		click(btnSearchHideOptions);
+
+		type(FieldMainSearch, "100000121569");
+		click(btnSearch);
+		WebElement btnAddVideoBeingSearched = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video']"));
+		btnAddVideoBeingSearched.click();
+
+		type(FieldMainSearch, "100000121579");
+		click(btnSearch);
+		WebElement btnAddVideoBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video']"));
+		btnAddVideoBeingSearched2.click();
+		
+		type(FieldMainSearch, "100000121581");
+		click(btnSearch);
+		WebElement btnAddVideoBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video']"));
+		btnAddVideoBeingSearched3.click();
+
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}

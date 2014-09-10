@@ -412,13 +412,13 @@ public class HomebaseTestSuite extends UITest {
 	//************ LINK OBJECTS ************//	
 	public static String valueListInternalName = "Internal Name";
 	public static String valueListKey = "Key";
-	public static String valueListNumberOfItems = "2";
+	public static String valueListNumberOfItems = "3";
 	public static String valueListBlurb = "Blurb";
 	//************ LINK OBJECTS ************//	
 
 	//************ MEDIAWALL OBJECTS ************//	
 	public static String valueMediawallInternalName = "Internal Name";
-	public static String valueMediawallNumberOfPanels = "2";
+	public static String valueMediawallNumberOfPanels = "3";
 	//************ MEDIAWALL OBJECTS ************//	
 
 	//************ MEDIAWALL PANEL OBJECTS ************//	
@@ -458,13 +458,44 @@ public class HomebaseTestSuite extends UITest {
 	public static String valuePhotoGallerySpanishBlurb = "El Blurb En Espanol";
 	//************ PHOTO GALLERY OBJECTS ************//	
 
-	
+	//************ VIDEO TOPIC PAGE OBJECTS ************//	
+	public static String valueVideoTopicPageInternalName = "Internal Name";
+	public static String valueVideoTopicPageHeadline = "Headline";
+	public static String valueVideoTopicPageFacebookDescription = "Facebook Description";
+	public static String valueVideoTopicPageMaxItems = "3";
+	public static String valueVideoTopicPageItemsPerPage = "3";
+	public static String valueVideoTopicPageSearchCriteria = "Page Search Criteria";
+	public static String valueVideoTopicPageRelatedLink = "Link";
+	public static String valueVideoTopicPageCustomTemplatePath = "Custom Template Path";
+	public static String valueVideoTopicPageJavascriptPath = "Javascript Path";
+	public static String valueVideoTopicPageStylesheetPath = "Stylesheet Path";
+	public static String valueVideoTopicPageCustomPanel = "Custom Panel";
+	public static String valueVideoTopicPageTwitterHandle = "Twitter Handle";
+	public static String valueVideoTopicPagePollKey = "Poll Key";
+	//************ VIDEO TOPIC PAGE OBJECTS ************//	
+
+	//************ VIDEO TOPIC PAGE OBJECTS ************//	
+	public static String valueVideoClipListInternalName = "Internal Name";
+	public static String valueVideoClipListHeadline = "Headline";
+	public static String valueVideoClipListListDefaultView = "123";	
+	//************ VIDEO TOPIC PAGE OBJECTS ************//	
 	
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 
-	@Test
+//	@Test
+	public void homeBaseTestMLB000CreateSaveBetaNewVideoClipList() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
+	{
+		HB_HomePage homePage = new HB_HomePage(driver);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.selectNewItem("Video Clip List");
+		homePage.fillAndSaveNewVideoClipList(mainURL,valueBeta, valueVideoClipListInternalName, valueVideoClipListHeadline, valueVideoClipListListDefaultView, valueMajorTagToolPlayer);
+		return;
+	}	
+
+//	@Test
 	public void homeBaseTestMLB000GameContentLineup() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -879,7 +910,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-//	@Test
+	@Test
 	public void homeBaseTestMLB038CreateSaveBetaNewList() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -1249,7 +1280,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Video Topic Page");
-		homePage.fillAndSaveNewVideoTopicPage(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewVideoTopicPage(mainURL,valueBeta, valueVideoTopicPageInternalName, valueVideoTopicPageHeadline, valueVideoTopicPageFacebookDescription, valueVideoTopicPageMaxItems, valueVideoTopicPageItemsPerPage, valueVideoTopicPageSearchCriteria, valueVideoTopicPageRelatedLink, valueVideoTopicPageCustomTemplatePath, valueVideoTopicPageJavascriptPath, valueVideoTopicPageStylesheetPath, valueVideoTopicPageCustomPanel, valueVideoTopicPageTwitterHandle, valueVideoTopicPagePollKey, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -1271,7 +1302,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Video Clip List");
-		homePage.fillAndSaveNewVideoClipList(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewVideoClipList(mainURL,valueBeta, valueVideoClipListInternalName, valueVideoClipListHeadline, valueVideoClipListListDefaultView, valueMajorTagToolPlayer);
 		return;
 	}	
 
