@@ -485,28 +485,6 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 
   	@Test
-	public void homeBaseTestMLB000CreateSaveBetaNewVideoClipList() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
-	{
-		HB_HomePage homePage = new HB_HomePage(driver);
-		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
-		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.selectNewItem("Video Clip List");
-		homePage.fillAndSaveNewVideoClipList(mainURL,valueBeta, valueVideoClipListInternalName, valueVideoClipListHeadline, valueVideoClipListListDefaultView, valueMajorTagToolPlayer);
-		return;
-	}	
-
-  	@Test
-	public void homeBaseTestMLB000GameContentLineup() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
-	{
-		HB_HomePage homePage = new HB_HomePage(driver);
-		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
-		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.lineupGameContentDeletePlayers(mainURL);
-		homePage.lineupGameContentAddPlayers(mainURL);
-		homePage.lineupGameContentDeletePlayers(mainURL);
-	}	
-
-  	@Test
 	public void homeBaseTestMLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -1059,7 +1037,7 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(driver);
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.selectNewItem("Prospect");
+		homePage.selectNewItem("Player Prospect");
 		homePage.fillAndSaveNewProspect(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
@@ -1347,6 +1325,17 @@ public class HomebaseTestSuite extends UITest {
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.probablesGameContentAddPlayers(mainURL);
 		homePage.probablesGameContentDeletePlayers(mainURL);
+	}	
+
+  	@Test
+	public void homeBaseTestMLB078GameContentLineup() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
+	{
+		HB_HomePage homePage = new HB_HomePage(driver);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.lineupGameContentDeletePlayers(mainURL);
+		homePage.lineupGameContentAddPlayers(mainURL);
+		homePage.lineupGameContentDeletePlayers(mainURL);
 	}	
 
 	

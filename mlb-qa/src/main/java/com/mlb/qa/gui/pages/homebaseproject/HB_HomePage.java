@@ -1459,8 +1459,9 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnTagTool);
 		click(CheckboxTagToolAdvancedFields);
 		click(BtnTagToolChangeDate);
+		pause(1);
 		click(BtnTagToolSelectCurrentDate);
-		pause(0.5);
+		pause(1);
 		pressEnter();
 		pause(1);
 		pressTab();
@@ -1534,7 +1535,7 @@ public class HB_HomePage extends AbstractPage {
 		click(FieldMainSearch);		
 		type(FieldMainSearch, valueItemNumberTrimmed);
 		click(btnSearch);
-//		pause(5);
+		pause(1);
 		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
 		btnItemSearchedForDeletion.click();
 		click(deleteItem);
