@@ -386,20 +386,20 @@ public class HomebaseTestSuite extends UITest {
 	
 	//************ LINEUP OBJECTS ************//	
 	public static String valueLineupInternalName = "Internal Name";
-	public static String valueLineupUmpireHP = "Umpire HP";
-	public static String valueLineupUmpire1st = "Umpire 1st";
-	public static String valueLineupUmpire2nd = "Umpire 2nd";
-	public static String valueLineupUmpire3rd = "Umpire 3rd";
-	public static String valueLineupUmpireLF = "Umpire LF";
-	public static String valueLineupUmpireRF = "Umpire RF";
-	public static String valueLineupUmpireOS = "Umpire OS";
+	public static String valueLineupUmpireHP = "1";
+	public static String valueLineupUmpire1st = "2";
+	public static String valueLineupUmpire2nd = "3";
+	public static String valueLineupUmpire3rd = "4";
+	public static String valueLineupUmpireLF = "5";
+	public static String valueLineupUmpireRF = "6";
+	public static String valueLineupUmpireOS = "7";
 	public static String valueLineupNotes = "Notes";
 	//************ LINEUP OBJECTS ************//	
  
-	//************ LINEUP OBJECTS ************//	
+	//************ LINEUP PLAYER OBJECTS ************//	
 	public static String valueLineupPlayerInternalName = "Internal Name";
 	public static String valueLineupPlayerPosition = "Player Position";
-	//************ LINEUP OBJECTS ************//	
+	//************ LINEUP PLAYER OBJECTS ************//	
 
 	//************ LINK OBJECTS ************//	
 	public static String valueLinkInternalName = "Internal Name";
@@ -420,6 +420,10 @@ public class HomebaseTestSuite extends UITest {
 	public static String valueMediawallInternalName = "Internal Name";
 	public static String valueMediawallNumberOfPanels = "3";
 	//************ MEDIAWALL OBJECTS ************//	
+
+	//************ MEDIAWALL OVERLAY OBJECTS ************//	
+	public static String valueMediawallOverlayInternalName = "Internal Name";
+	//************ MEDIAWALL OVERLAY OBJECTS ************//	
 
 	//************ MEDIAWALL PANEL OBJECTS ************//	
 	public static String valueMediawallPanelInternalName = "Internal Name";
@@ -458,6 +462,26 @@ public class HomebaseTestSuite extends UITest {
 	public static String valuePhotoGallerySpanishBlurb = "El Blurb En Espanol";
 	//************ PHOTO GALLERY OBJECTS ************//	
 
+	//************ PRESS RELEASE OBJECTS ************//	
+	public static String valuePressReleaseInternalName = "Internal Name";
+	public static String valuePressReleaseNotes = "Notes";
+	public static String valuePressReleaseDisplayHeadline = "Display Headline";
+	public static String valuePressReleaseHeadline = "Press Release Headline";
+	public static String valuePressReleaseSubHeadline = "Sub Headline";
+	public static String valuePressReleaseBlurb = "Blurb";
+	//************ PRESS RELEASE OBJECTS ************//	
+
+	//************ SECTION OBJECTS ************//	
+	public static String valueSectionInternalName = "Internal Name";
+	public static String valueSectionSectionID = "1";
+	public static String valueSectionShortTitle = "Short Title";
+	public static String valueSectionLongTitle = "Long Title";
+	public static String valueSectionWiredURL = "http://www.WiredURL.com";
+	public static String valueSectionMobileURL = "http://www.MobileURL.com";
+	public static String valueSectionTarget = "http://www.WiredURL.com";
+	public static String valueSectionType = "http://www.WiredURL.com";
+	//************ SECTION OBJECTS ************//	
+
 	//************ VIDEO TOPIC PAGE OBJECTS ************//	
 	public static String valueVideoTopicPageInternalName = "Internal Name";
 	public static String valueVideoTopicPageHeadline = "Headline";
@@ -484,7 +508,7 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 
-  	@Test
+ 	@Test
 	public void homeBaseTestMLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -917,7 +941,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Mediawall Overlay");
-		homePage.fillAndSaveNewMediawallOverlay(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMediawallOverlay(mainURL,valueBeta, valueMediawallOverlayInternalName, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -1071,7 +1095,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Press Release");
-		homePage.fillAndSaveNewPressRelease(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewPressRelease(mainURL,valueBeta, valuePressReleaseInternalName, valuePressReleaseNotes, valuePressReleaseDisplayHeadline, valuePressReleaseHeadline, valuePressReleaseSubHeadline, valuePressReleaseBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -1192,7 +1216,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Section");
-		homePage.fillAndSaveNewSection(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewSection(mainURL,valueBeta, valueSectionInternalName, valueSectionSectionID, valueSectionShortTitle, valueSectionLongTitle, valueSectionWiredURL, valueSectionMobileURL, valueSectionTarget, valueSectionType, valueMajorTagToolPlayer);
 		return;
 	}	
 

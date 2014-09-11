@@ -1022,6 +1022,35 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
 
+	//************ PRESS RELEASE CREATION OBJECTS ************//	
+
+	@FindBy(name="alt-headline")
+	public ExtendedWebElement FieldDisplayHeadline;
+
+	@FindBy(name="subheadline")
+	public ExtendedWebElement FieldSubHeadline;
+
+	//************ PRESS RELEASE CREATION OBJECTS ************//	
+
+	//************ SECTION CREATION OBJECTS ************//	
+
+	@FindBy(name="id")
+	public ExtendedWebElement FieldSectionID;
+
+	@FindBy(name="short_title")
+	public ExtendedWebElement FieldShortTitle;
+
+	@FindBy(name="long_title")
+	public ExtendedWebElement FieldLongTitle;
+
+	@FindBy(xpath="//textarea[@data-field-key='url']")
+	public ExtendedWebElement FieldWiredURL;
+
+	@FindBy(name="target")
+	public ExtendedWebElement FieldTarget;
+
+	//************ SECTION CREATION OBJECTS ************//	
+
 	//************ VIDEO TOPIC PAGE CREATION OBJECTS ************//	
 
 	@FindBy(xpath="//textarea[@data-field-key='description']")
@@ -1528,14 +1557,34 @@ public class HB_HomePage extends AbstractPage {
 		}		
 	}
 	
+	public void saveItemAndPublishToBetaWithoutDelete() throws AWTException {
+		click(BtnSave);
+		pause(1);
+		click(BtnToBeta);
+		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 600));
+		if (isElementPresent(statusPublishComplete) == true) {
+		}		
+	}
+	
+	public void saveItemAndPublishToProdWithoutDelete() throws AWTException{
+		click(BtnSave);
+		pause(1);
+		click(BtnToProd);
+		click(BtnToProdConfirm);
+		Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 600));
+		if (isElementPresent(statusPublishComplete) == true) {
+		}		
+	}
+	
 	public void deleteCreatedItem() throws AWTException {
 		String valueItemNumber = StatusPublishComplete.getText();
 		int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
 		String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue+1);
 		click(FieldMainSearch);		
+		pause(1);
 		type(FieldMainSearch, valueItemNumberTrimmed);
 		click(btnSearch);
-		pause(1);
+		pause(3);
 		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
 		btnItemSearchedForDeletion.click();
 		click(deleteItem);
@@ -1597,7 +1646,7 @@ public class HB_HomePage extends AbstractPage {
 	public void testCMSTool (int coordinateX, int coordinateY) throws AWTException {
 		pause(3);
 		clickPosition(coordinateX, coordinateY);
-		pause(1);
+//		pause(1);
 		clickPosition(coordinateX, coordinateY);
 		pause(1);
 		pressT();
@@ -3148,16 +3197,17 @@ public class HB_HomePage extends AbstractPage {
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldNumberOfPanels, mediawallReqFieldNumberOfPanels);
 		if (betaOrProd == "beta") {
-			saveItemAndPublishToBeta();
+			saveItemAndPublishToBetaWithoutDelete();
 		}
 		if (betaOrProd == "prod") {
-			saveItemAndPublishToProd();
+			saveItemAndPublishToProdWithoutDelete();
 		}
 	}
 
 	public void fillAndSaveNewMediawallOverlay(String mainURLCall, String betaOrProd, String mediawallOverlayReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, mediawallOverlayReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldInternalName, mediawallOverlayReqFieldInternalName);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3346,9 +3396,15 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		testCMSTool(200,700);
 		type(FieldInternalName, pressReleaseReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldNotes, pressReleaseReqFieldNotes);
+		type(FieldDisplayHeadline, pressReleaseReqFieldDisplayHeadline);
+		type(FieldHeadline, pressReleaseReqFieldHeadline);
+		type(FieldSubHeadline, pressReleaseReqFieldSubHeadline);
+		type(FieldBlurb, pressReleaseReqFieldBlurb);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3466,9 +3522,17 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewSection(String mainURLCall, String betaOrProd, String sectionReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewSection(String mainURLCall, String betaOrProd, String sectionReqFieldInternalName, String sectionReqFieldSectionID, String sectionReqFieldShortTitle, String sectionReqFieldLongTitle, String sectionReqFieldWiredURL, String sectionReqFieldMobileURL, String sectionReqFieldTarget, String sectionReqFieldType, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		testCMSTool(240,720);
 		type(FieldInternalName, sectionReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
+		type(FieldSectionID, sectionReqFieldSectionID);
+		type(FieldShortTitle, sectionReqFieldShortTitle);
+		type(FieldLongTitle, sectionReqFieldLongTitle);
+		type(FieldWiredURL, sectionReqFieldWiredURL);
+		type(FieldMobileURL, sectionReqFieldMobileURL);
+		type(FieldTarget, sectionReqFieldTarget);
+		type(FieldType, sectionReqFieldType);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3872,8 +3936,8 @@ public class HB_HomePage extends AbstractPage {
 	public void clickPosition(int coordinateX, int coordinateY) throws AWTException	{
 		Robot robot = new Robot();
 		robot.mouseMove(coordinateX, coordinateY);
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
+		robot.mousePress(InputEvent.BUTTON1_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);
 	}
 
 	public void clipBoardCopy(String stringToCopyToClipboard) {
