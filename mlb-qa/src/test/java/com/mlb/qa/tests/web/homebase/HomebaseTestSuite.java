@@ -26,7 +26,7 @@ public class HomebaseTestSuite extends UITest {
 
 	//************ MINOR LEAGUE OBJECTS ************//	
 	public static String minorLeagueSiteSelection = "milb";
-	public static String valueMinorTagToolPlayer = "smith";
+	public static String valueMinorTagToolPlayer = "jones";
 	//************ MINOR LEAGUE OBJECTS ************//	
 
 	//************ MAJOR LEAGUE OBJECTS ************//	
@@ -507,6 +507,17 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
+
+  	@Test
+	public void homeBaseTestMLB000CreateSaveBetaNewPressRelease() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
+	{
+		HB_HomePage homePage = new HB_HomePage(driver);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.selectNewItem("Press Release");
+		homePage.fillAndSaveNewPressRelease(mainURL,valueBeta, valuePressReleaseInternalName, valuePressReleaseNotes, valuePressReleaseDisplayHeadline, valuePressReleaseHeadline, valuePressReleaseSubHeadline, valuePressReleaseBlurb, valueMajorTagToolPlayer);
+		return;
+	}	
 
  	@Test
 	public void homeBaseTestMLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
