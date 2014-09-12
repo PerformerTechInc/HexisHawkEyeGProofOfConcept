@@ -512,22 +512,10 @@ public class HomebaseTestSuite extends UITest {
 	public void homeBaseTestMLB000TestFunction() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
-		homePage.clickPosition(100,100);
-		pause(3);
-		homePage.clickPosition(200,200);
-		pause(3);
-		homePage.clickPosition(300,300);
-		pause(3);
-		homePage.clickPosition(400,400);
-		pause(3);
-		homePage.clickPosition(500,500);
-		pause(3);
-		homePage.clickPosition(600,600);
-		pause(3);
-		homePage.clickPosition(700,700);
-		pause(3);
-		homePage.clickPosition(800,800);
-		pause(3);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.selectNewItem("Press Release");
+		homePage.fillAndSaveNewPressRelease(mainURL,valueBeta, valuePressReleaseInternalName, valuePressReleaseNotes, valuePressReleaseDisplayHeadline, valuePressReleaseHeadline, valuePressReleaseSubHeadline, valuePressReleaseBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 

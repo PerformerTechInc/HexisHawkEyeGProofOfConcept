@@ -122,6 +122,15 @@ public class HB_HomePage extends AbstractPage {
 	
 	//************ LOGIN OBJECTS ************//	
 
+	@FindBy(xpath="//div[@id='cke_16_contents']")
+	public ExtendedWebElement FieldWYSIWYGParent;
+	
+	@FindBy(xpath="//iframe[@class='cke_wysiwyg_frame cke_reset']")
+	public ExtendedWebElement FieldWYSIWYG;
+
+	@FindBy(xpath="//br[@type='_moz']")
+	public ExtendedWebElement FieldWYSIWYGBody;
+
 	@FindBy(id="userName")
 	public ExtendedWebElement txtUsername;
 
@@ -3397,23 +3406,53 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-		clickPosition(100,100);
-		pause(2);
-		clickPosition(200,200);
-		pause(2);
-		clickPosition(300,300);
-		pause(2);
-		clickPosition(400,400);
-		pause(2);
-		clickPosition(500,500);
-		pause(2);
-		clickPosition(600,600);
-		pause(2);
-		clickPosition(700,700);
-		pause(2);
-		clickPosition(800,800);
-		pause(2);
-		testCMSTool(400,900);
+//		WebElement FieldWYSIWYGFrameGeneric = FieldWYSIWYGParent.getElement().findElement(By.xpath("//iframe"));
+		WebElement FieldWYSIWYGFrame = FieldWYSIWYGParent.getElement().findElement(By.xpath("//iframe"));
+		WebElement FieldWYSIWYGFrameGeneric = FieldWYSIWYGFrame.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']"));
+
+/*
+		List<WebElement> framesList = driver.findElements(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']"));
+
+	        if (framesList.size() > 0) {
+	            logger.info("iFrames Found! Size: " + framesList.size());
+	            for (WebElement frame : framesList) {
+	                logger.info("Found Frame: " + frame.getTagName());
+	                try {
+	                    if(frame.isDisplayed()) {
+	                        logger.info("Element is Visible");
+	                        click(String.format("Frame '%s' name", "Frame"),
+	                                frame);
+	                        frame.sendKeys("Hi Snehal!  Hi Chris!");
+	                        pause(10);
+	                        logger.info("Keys Sent!!!");
+	                        pause(10);
+	                        //type(String.format("Frame '%s' name", "Frame"),
+	                        //        frame, "Test");
+	                    } else {
+	                        logger.info("Element Not Visible");
+	                    }
+	                } catch (Exception ex) {
+	                    logger.info("Not Happy");
+	                }
+	             }
+	            logger.info("Exiting Frame Looping.");
+	        } else {
+	            logger.info("No iFrames found!");
+	        }
+*/
+		
+//		driver.switchTo().frame(FieldWYSIWYGFrame);
+		driver.switchTo().frame(FieldWYSIWYGFrameGeneric);
+//		WebElement FieldWYSIWYGFrameBody = FieldWYSIWYGFrame.findElement(By.xpath("//br[@type='_moz']"));
+//		driver.switchTo().frame(FieldWYSIWYGFrame.findElement(By.xpath("//body")));
+		WebElement FieldWYSIWYGFrameBody = FieldWYSIWYGFrameGeneric.findElement(By.xpath("//br[@type='_moz']"));
+		logger.info(FieldWYSIWYGFrameBody.isDisplayed());
+//		logger.info(FieldWYSIWYGFrameBody.isEnabled());
+		FieldWYSIWYGFrameBody.click();
+		FieldWYSIWYGFrameBody.sendKeys("Hello");
+//		type(FieldWYSIWYGFrameBody,"Hudddoooo");
+		pause(30);
+/*
 		type(FieldInternalName, pressReleaseReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldNotes, pressReleaseReqFieldNotes);
@@ -3427,6 +3466,7 @@ public class HB_HomePage extends AbstractPage {
 		if (betaOrProd == "prod") {
 			saveItemAndPublishToProd();
 		}
+*/
 	}
 
 	public void fillAndSaveNewPressboxAsset(String mainURLCall, String betaOrProd, String pressboxAssetReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
