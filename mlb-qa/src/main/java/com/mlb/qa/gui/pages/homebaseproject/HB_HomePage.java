@@ -3397,6 +3397,22 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+		clickPosition(100,100);
+		pause(2);
+		clickPosition(200,200);
+		pause(2);
+		clickPosition(300,300);
+		pause(2);
+		clickPosition(400,400);
+		pause(2);
+		clickPosition(500,500);
+		pause(2);
+		clickPosition(600,600);
+		pause(2);
+		clickPosition(700,700);
+		pause(2);
+		clickPosition(800,800);
+		pause(2);
 		testCMSTool(400,900);
 		type(FieldInternalName, pressReleaseReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
