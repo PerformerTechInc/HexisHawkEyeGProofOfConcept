@@ -3397,7 +3397,7 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-		testCMSTool(180,650);
+		testCMSTool(400,900);
 		type(FieldInternalName, pressReleaseReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldNotes, pressReleaseReqFieldNotes);
