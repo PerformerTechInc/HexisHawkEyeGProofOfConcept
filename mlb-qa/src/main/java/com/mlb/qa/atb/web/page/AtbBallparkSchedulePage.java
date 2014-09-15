@@ -271,8 +271,11 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 	private String findByRegexp(String source, String regexp) {
 		Matcher m = Pattern.compile(regexp).matcher(source);
 		if (!m.find()) {
-			throw new TestRuntimeException(String.format("No group found by regexp '%s' in the input string '%s'",
+			//additional verification onto presence of TBD, @, "vs.", 
+			if (!source.contains("TBD") && !source.contains("@") && !source.contains("vs.")) {
+				throw new TestRuntimeException(String.format("No group found by regexp '%s' in the input string '%s'",
 					regexp, source));
+			}
 		}
 		return regexp = m.group();
 	}
