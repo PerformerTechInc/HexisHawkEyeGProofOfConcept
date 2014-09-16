@@ -39,12 +39,12 @@ public class AtBatLoginPage extends AtBatIOSPage {
         type(passwordInput, AtbParameter.MLB_ATBAT_DEFAULT_PASSWORD.getValue());
         click(loginButton);
 
-        if (!isElementPresent(doneButton))
+        if (!isElementPresent(doneButton, EXPLICIT_TIMEOUT * 3))
         	Assert.fail("'Done' button is not recognized!");
         
         click(doneButton);
         
-        if (!isElementPresent(okButton))
+        if (!isElementPresent(okButton, EXPLICIT_TIMEOUT * 3))
         	Assert.fail("'ok' button is not recognized!");        
         click(okButton);
 
