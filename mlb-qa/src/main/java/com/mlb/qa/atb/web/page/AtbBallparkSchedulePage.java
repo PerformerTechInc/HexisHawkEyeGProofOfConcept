@@ -112,9 +112,11 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 			String gameTimeStr = getTextIfPresent(container, GAME_DAY_LIST_LOCATOR);
 			String gameOpponentStr = getTextIfPresent(container, GAME_OPPONENT_LOCATOR);
 			if (!gameOpponentStr.matches(GAME_OPPONENT_LIST_REGEXP)) {
-				throw new TestRuntimeException(String.format(
+				if (!gameOpponentStr.contains("TBD") && !gameOpponentStr.contains("@") && !gameOpponentStr.contains("vs.")) {				
+					throw new TestRuntimeException(String.format(
 						"Opponent string has wrong format. Regexp: '%s', but found: '%s'", GAME_OPPONENT_LIST_REGEXP,
 						gameOpponentStr));
+				}
 			}
 			Game game = new Game();
 			// home/away prefix
@@ -271,8 +273,11 @@ public class AtbBallparkSchedulePage extends AbstractPage {
 	private String findByRegexp(String source, String regexp) {
 		Matcher m = Pattern.compile(regexp).matcher(source);
 		if (!m.find()) {
-			throw new TestRuntimeException(String.format("No group found by regexp '%s' in the input string '%s'",
+			//additional verification onto presence of TBD, @, "vs.", 
+			if (!source.contains("Susp.")) {
+				throw new TestRuntimeException(String.format("No group found by regexp '%s' in the input string '%s'",
 					regexp, source));
+			}
 		}
 		return regexp = m.group();
 	}

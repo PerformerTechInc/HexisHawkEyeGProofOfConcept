@@ -9,6 +9,7 @@ import com.mlb.qa.at_bat.model.news.NewsReaderJson;
 import com.mlb.qa.atb.model.schedule_pk.SchedulePk;
 import com.mlb.qa.common.utils.JsonUtils;
 import com.mlb.qa.common.utils.marshaller.MarshallerHelper;
+import com.mlb.util.XPathUtils;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
@@ -19,6 +20,7 @@ import com.mlb.qa.atb.model.game.Game;
 import com.mlb.qa.common.date.DateUtils;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;
+import org.w3c.dom.NodeList;
 
 /**
  * Lookup service<br>
@@ -41,6 +43,8 @@ public class AtbLookupService {
     private static final String TOTAL_NEWS_REQUEST = "http://mlb.mlb.com/gen/hb/list/mlb/newsreader.json";
 
     private static final String TEAM_NEWS_REQUEST = "http://mlb.mlb.com/gen/hb/list/%s/newsreader.json";
+
+    private static final String VIDEO_TEAM = "http://mlb.mlb.com/gen/multimedia/videolist/search/%s.xml";
 
     /**
      * * Lookup for the game by home team id and return the first found
@@ -176,5 +180,17 @@ public class AtbLookupService {
                 titles.add(list.getHeadline());}
         }
         return titles;
+    }
+
+    public List<String> getVideoList(String teamName){
+        HttpResult result = HttpHelper.executeGet(String.format(VIDEO_TEAM,teamName.toLowerCase()), new HashMap<String, String>());
+        List<String> videosList =new ArrayList<String>();
+        NodeList nodeList = XPathUtils.getNodeList(result.getResponseBody(),"//mediaContent/title/text()");
+        for (int i = 0; i<nodeList.getLength(); i++){
+            videosList.add(nodeList.item(i).getTextContent());
+        }
+
+        return videosList;
+
     }
 }
