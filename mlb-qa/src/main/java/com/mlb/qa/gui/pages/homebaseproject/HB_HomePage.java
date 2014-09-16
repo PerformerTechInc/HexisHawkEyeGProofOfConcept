@@ -93,6 +93,7 @@ import com.mlb.qa.common.date.DateUtils;
 import com.mlb.qa.common.exception.TestRuntimeException;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;
+//import com.mlb.qa.tests.web.homebase.ChromeDriver;
 
 
 public class HB_HomePage extends AbstractPage {
@@ -421,6 +422,18 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//textarea[@data-field-key='tagline']")
 	public ExtendedWebElement FieldTagline;
+
+	@FindBy(xpath="//span[contains(text(), 'WYSIWYG')]")
+	public ExtendedWebElement BtnCmsToolWysiwyg;
+
+	@FindBy(xpath="//span[contains(text(), 'HTML')]")
+	public ExtendedWebElement BtnCmsToolHtml;
+
+	@FindBy(xpath="//span[2][contains(text(), 'WYSIWYG')]")
+	public ExtendedWebElement BtnCmsToolWysiwyg2;
+
+	@FindBy(xpath="//span[2][contains(text(), 'HTML')]")
+	public ExtendedWebElement BtnCmsToolHtml2;
 
 	//************ ITEM CREATION OBJECTS ************//	
 	
@@ -1039,6 +1052,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="subheadline")
 	public ExtendedWebElement FieldSubHeadline;
 
+	@FindBy(xpath="//label[@title='* Body']")
+	public ExtendedWebElement HeaderBody;
+
 	//************ PRESS RELEASE CREATION OBJECTS ************//	
 
 	//************ SECTION CREATION OBJECTS ************//	
@@ -1400,7 +1416,15 @@ public class HB_HomePage extends AbstractPage {
 	//************ BEGIN FUNCTIONS ************//	
 	//************ BEGIN FUNCTIONS ************//	
 	
-	
+	public void testGoogleSearch() {
+		  driver.get("http://www.google.com/xhtml");
+		  pause(10);  // Let the user actually see something!
+		  WebElement searchBox = driver.findElement(By.name("q"));
+		  searchBox.sendKeys("ChromeDriver");
+		  searchBox.submit();
+		  pause(10);  // Let the user actually see something!
+		  driver.quit();
+		}
 	
 	public void login(String username, String password, String profile) throws AWTException {
 		if (isElementPresent(txtUsername) == true) {
@@ -1663,6 +1687,19 @@ public class HB_HomePage extends AbstractPage {
 		pressS();
 		pressT();
 		pause(1);
+	}
+	
+	public void testCMSToolNewFunctionHTML () {
+		WebElement testBeforeElement = driver.findElement(By.xpath("//div[contains(@class, 'cke_reset') and not(contains(@class, 'cke_editor_htmlScrubber'))]/div[@class='cke_inner cke_reset']/div/iframe"));
+		testBeforeElement.sendKeys(Keys.TAB);
+		testBeforeElement.sendKeys("Hi Snehal!  Hi Chris!  Let's see if this works!");
+
+	}
+	
+	public void testCMSToolNewFunctionWYSIWYG () {
+		WebElement testBeforeElement = driver.findElement(By.xpath("//textarea[@class='cke_source cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr']"));
+		testBeforeElement.sendKeys(Keys.TAB);
+		testBeforeElement.sendKeys("Hi Snehal!  Hi Chris!  Let's see if this works!");
 
 	}
 	
@@ -2511,7 +2548,10 @@ public class HB_HomePage extends AbstractPage {
 			type(FieldNotes, articleNotesValue);
 		}
 		type(FieldTagline, articleTaglineValue);
-		testCMSTool(500,500);
+//		testCMSTool(500,500);
+		click(BtnCmsToolWysiwyg);
+		testCMSToolNewFunctionHTML();
+		click(BtnCmsToolHtml);
 		type(FieldPoll, articleReqFieldPoll);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
@@ -2657,10 +2697,13 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldByline, blogContentReqFieldByline);
 		type(FieldCaption, blogContentReqFieldCaption);
 		type(FieldMediaCredit, blogContentReqFieldMediaCredit);
-		testCMSTool(700,700);
-		pressTab();
-		testCMSTool(600,600);
-		pressTab();
+		click(BtnCmsToolHtml);
+		testCMSToolNewFunctionWYSIWYG();
+		click(BtnCmsToolHtml);
+		click(BtnCmsToolWysiwyg);
+		testCMSToolNewFunctionWYSIWYG();
+		click(BtnCmsToolWysiwyg);
+
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2689,7 +2732,7 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldYear, chronReqFieldYear);
 		type(FieldDisplayYear, chronReqFieldDisplayYear);
 		type(FieldTitle, chronReqFieldTitle);
-		testCMSTool(500,500);
+		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2701,7 +2744,7 @@ public class HB_HomePage extends AbstractPage {
 	public void fillAndSaveNewClosedCaption(String mainURLCall, String betaOrProd, String closedCaptionReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, closedCaptionReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
-		testCMSTool(500,500);
+		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2728,7 +2771,7 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldScheduleTitle, clubPromoReqFieldScheduleTitle);
 		type(FieldFAQTitle, clubPromoReqFieldFAQTitle);
 		click(labelSponsors);
-		testCMSTool(300,300);
+		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2756,7 +2799,7 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldVideoLandingPage, contributorReqFieldVideoLandingPage);
 		type(FieldBlurb, contributorReqFieldBlurb);
 		click(labelBigBlurb);
-		testCMSTool(300,300);
+		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2856,7 +2899,7 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldInternalName, digitalAssetReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, digitalAssetReqFieldHeadline);
-		testCMSTool(500,500);
+		testCMSToolNewFunctionHTML();
 		click(BtnChooseAFileToUpload);
 		testPhotoFileDialog();
 		if (betaOrProd == "beta") {
@@ -2970,7 +3013,7 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldAltHeadline, gamePreviewReqFieldAltHeadline);
 		type(FieldByline, gamePreviewReqFieldByline);
 		type(FieldBlurb, gamePreviewReqFieldBlurb); 
-		testCMSTool(700,700);
+		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3406,53 +3449,6 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-//		WebElement FieldWYSIWYGFrameGeneric = FieldWYSIWYGParent.getElement().findElement(By.xpath("//iframe"));
-		WebElement FieldWYSIWYGFrame = FieldWYSIWYGParent.getElement().findElement(By.xpath("//iframe"));
-		WebElement FieldWYSIWYGFrameGeneric = FieldWYSIWYGFrame.findElement(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']"));
-
-/*
-		List<WebElement> framesList = driver.findElements(By.xpath("//iframe[@class='cke_wysiwyg_frame cke_reset']"));
-
-	        if (framesList.size() > 0) {
-	            logger.info("iFrames Found! Size: " + framesList.size());
-	            for (WebElement frame : framesList) {
-	                logger.info("Found Frame: " + frame.getTagName());
-	                try {
-	                    if(frame.isDisplayed()) {
-	                        logger.info("Element is Visible");
-	                        click(String.format("Frame '%s' name", "Frame"),
-	                                frame);
-	                        frame.sendKeys("Hi Snehal!  Hi Chris!");
-	                        pause(10);
-	                        logger.info("Keys Sent!!!");
-	                        pause(10);
-	                        //type(String.format("Frame '%s' name", "Frame"),
-	                        //        frame, "Test");
-	                    } else {
-	                        logger.info("Element Not Visible");
-	                    }
-	                } catch (Exception ex) {
-	                    logger.info("Not Happy");
-	                }
-	             }
-	            logger.info("Exiting Frame Looping.");
-	        } else {
-	            logger.info("No iFrames found!");
-	        }
-*/
-		
-//		driver.switchTo().frame(FieldWYSIWYGFrame);
-		driver.switchTo().frame(FieldWYSIWYGFrameGeneric);
-//		WebElement FieldWYSIWYGFrameBody = FieldWYSIWYGFrame.findElement(By.xpath("//br[@type='_moz']"));
-//		driver.switchTo().frame(FieldWYSIWYGFrame.findElement(By.xpath("//body")));
-		WebElement FieldWYSIWYGFrameBody = FieldWYSIWYGFrameGeneric.findElement(By.xpath("//br[@type='_moz']"));
-		logger.info(FieldWYSIWYGFrameBody.isDisplayed());
-//		logger.info(FieldWYSIWYGFrameBody.isEnabled());
-		FieldWYSIWYGFrameBody.click();
-		FieldWYSIWYGFrameBody.sendKeys("Hello");
-//		type(FieldWYSIWYGFrameBody,"Hudddoooo");
-		pause(30);
-/*
 		type(FieldInternalName, pressReleaseReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldNotes, pressReleaseReqFieldNotes);
@@ -3460,13 +3456,13 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldHeadline, pressReleaseReqFieldHeadline);
 		type(FieldSubHeadline, pressReleaseReqFieldSubHeadline);
 		type(FieldBlurb, pressReleaseReqFieldBlurb);
+		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
 		if (betaOrProd == "prod") {
 			saveItemAndPublishToProd();
 		}
-*/
 	}
 
 	public void fillAndSaveNewPressboxAsset(String mainURLCall, String betaOrProd, String pressboxAssetReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
@@ -3579,7 +3575,7 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void fillAndSaveNewSection(String mainURLCall, String betaOrProd, String sectionReqFieldInternalName, String sectionReqFieldSectionID, String sectionReqFieldShortTitle, String sectionReqFieldLongTitle, String sectionReqFieldWiredURL, String sectionReqFieldMobileURL, String sectionReqFieldTarget, String sectionReqFieldType, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
-		testCMSTool(240,720);
+		testCMSToolNewFunctionHTML();
 		type(FieldInternalName, sectionReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldSectionID, sectionReqFieldSectionID);

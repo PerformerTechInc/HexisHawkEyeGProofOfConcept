@@ -508,18 +508,19 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 
-  	@Test
+//	@Test
 	public void homeBaseTestMLB000TestFunction() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.selectNewItem("Press Release");
-		homePage.fillAndSaveNewPressRelease(mainURL,valueBeta, valuePressReleaseInternalName, valuePressReleaseNotes, valuePressReleaseDisplayHeadline, valuePressReleaseHeadline, valuePressReleaseSubHeadline, valuePressReleaseBlurb, valueMajorTagToolPlayer);
+		homePage.selectHomePageUploadPhotos();
+		homePage.uploadPhotos(mainURL, valueMajorTagToolPlayer);
 		return;
 	}	
 
- 	@Test
+
+	@Test
 	public void homeBaseTestMLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -528,7 +529,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-  	@Test
+	@Test
 	public void homeBaseTestMLB002BasicSearch() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -538,7 +539,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-  	@Test
+	@Test
 	public void homeBaseTestMLB003CreateSaveBetaNewArticle() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -549,7 +550,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-  	@Test
+	@Test
 	public void homeBaseTestMLB004CreateSaveBetaNewArticleView() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -560,7 +561,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-  	@Test
+	@Test
 	public void homeBaseTestMLB005CreateSaveBetaNewAudioSchedule() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -571,7 +572,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-  	@Test
+	@Test
 	public void homeBaseTestMLB006CreateSaveBetaNewBallpark() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -582,7 +583,7 @@ public class HomebaseTestSuite extends UITest {
  		return;
 	}	
 
-  	@Test
+	@Test
 	public void homeBaseTestMLB007CreateSaveBetaNewBallparkMenu() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -593,7 +594,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-  	@Test
+	@Test
 	public void homeBaseTestMLB008CreateSaveBetaNewBallparkMusic() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
@@ -604,7 +605,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-  	@Test
+	@Test
 	public void homeBaseTestMLB009CreateSaveBetaNewBallparkSubmenu() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
