@@ -35,7 +35,14 @@ public class AtBatLoginPage extends AtBatIOSPage {
     }
 
     public void login(){
-        type(emailInput, AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue());
+    	String username = AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue();
+    	type(emailInput, username);
+    	int i = 1;
+        while (!emailInput.getText().equals(username) && ++i < 10) {
+        	LOGGER.info("Typing user email. Attempt #" + i + "; email input value: " + emailInput.getText());
+        	type(emailInput, username);
+        }
+        
         type(passwordInput, AtbParameter.MLB_ATBAT_DEFAULT_PASSWORD.getValue());
         click(loginButton);
 
