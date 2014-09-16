@@ -7,9 +7,12 @@ import com.mlb.qa.at_bat.ios.page.footer.AtBatMorePage;
 import com.mlb.qa.at_bat.ios.page.team.AtBatTeamPage;
 import com.mlb.qa.at_bat.ios.page.team.AtBatTeamSelectionPage;
 import com.mlb.qa.at_bat.ios.page.team.news.AtBatNewsPage;
+import com.mlb.qa.at_bat.ios.page.team.videos.AtBatVideosPage;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.qaprosoft.carina.core.foundation.UITest;
+import com.qaprosoft.carina.core.foundation.webdriver.appium.AppiumNativeDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.browserlaunchers.Sleeper;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -17,12 +20,13 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-public class AtBatNewsTeamTest extends UITest {
+public class AtBatVideoTeamTest extends UITest {
 
 
-    @Parameters({"team_abbrev","TUID", "team_name"})
+    @Parameters({"team_abbrev", "TUID", "team_name"})
     @Test(dataProvider = "excel_ds")
     public void checkNewsGlobal(String team_abbrev, String TUID, String team_name) {
+
         AtBatStartPage atBatStartPage = new AtBatStartPage(driver);
         AtBatLoginPage atBatLoginPage = atBatStartPage.getAtBatLoginPage();
         atBatLoginPage.login();
@@ -32,28 +36,23 @@ public class AtBatNewsTeamTest extends UITest {
 
         AtBatTeamSelectionPage atBatTeamSelectionPage = atBatMorePage.getAtBatTeamSelectionPage();
         AtBatTeamPage atBatTeamPage = atBatTeamSelectionPage.selectTeam(TUID);
-        AtBatNewsPage atBatNewsPage = atBatTeamPage.getAtBatNewsPage();
-
+        Sleeper.sleepTightInSeconds(3);
+        AtBatVideosPage atBatVideosPage = atBatTeamPage.getAtBatVideosPage();
+        Sleeper.sleepTightInSeconds(3);
         AtbLookupService lookupService = new AtbLookupService();
-        List<String> news = lookupService.getNewsTitles(team_abbrev.toLowerCase());
+        List<String> videos = lookupService.getVideoList(team_abbrev.toLowerCase());
+        List<String> uiVideosList = atBatVideosPage.getVideosListFromUI();
 
-        int i = 1;
         SoftAssert softAssert = new SoftAssert();
-        Sleeper.sleepTightInSeconds(7);
-        for (String aNew : news) {
-
-            if (aNew != null && !aNew.contains("'")) {
-                softAssert.assertTrue(driver.findElements(By.name(aNew)).size() > 0, "Post with title '" + aNew + "' not present");
-            }
+        for (int i =0; i < uiVideosList.size(); i++){
             System.out.println("Iteration: " + i);
-            i++;
-            if (i == 10) {
-                break;
-            }
+            System.out.println("Expected: " + videos.get(i));
+            System.out.println("Actual: " + uiVideosList.get(i));
+            softAssert.assertTrue(uiVideosList.get(i).contains(videos.get(i)), "Video with title '" + videos.get(i) + "' not present");
         }
-        atBatNewsPage.backToPrevious();
-        softAssert.assertAll();
 
+        atBatVideosPage.backToPrevious();
+        softAssert.assertAll();
 
 
     }
