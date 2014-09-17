@@ -2,6 +2,7 @@ package com.mlb.qa.at_bat.ios.page.authentication;
 
 import com.mlb.qa.at_bat.ios.page.common.AtBatIOSPage;
 import com.mlb.qa.atb.AtbParameter;
+import com.qaprosoft.carina.core.foundation.webdriver.appium.AppiumNativeDriver;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 import org.junit.Assert;
@@ -46,10 +47,11 @@ public class AtBatLoginPage extends AtBatIOSPage {
         type(passwordInput, AtbParameter.MLB_ATBAT_DEFAULT_PASSWORD.getValue());
         click(loginButton);
 
-        if (!isElementPresent(doneButton, EXPLICIT_TIMEOUT * 3))
-        	Assert.fail("'Done' button is not recognized!");
-        
-        click(doneButton);
+      //  if (!isElementPresent(doneButton, EXPLICIT_TIMEOUT * 3))
+        //	Assert.fail("'Done' button is not recognized!");
+        pause(5);
+        ExtendedWebElement donePredicate = ((AppiumNativeDriver) driver).findElementByIosUIAutomation(".navigationBars()[0].buttons()['Done']");
+        click(donePredicate);
         
         if (!isElementPresent(okButton, EXPLICIT_TIMEOUT * 3))
         	Assert.fail("'ok' button is not recognized!");        
