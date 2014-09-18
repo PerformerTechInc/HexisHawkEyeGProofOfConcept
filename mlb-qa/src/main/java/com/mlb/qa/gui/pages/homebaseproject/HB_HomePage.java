@@ -17,6 +17,7 @@ import static org.testng.Assert.*;
 import com.qaprosoft.carina.core.foundation.http.*;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.common.http.*;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.Set;
 import java.awt.AWTException;
@@ -1035,6 +1036,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="numpanels")
 	public ExtendedWebElement FieldNumberOfPanels;
 
+	@FindBy(xpath="//button[contains(text(), 'Search for Mediawall Panel')]")
+	public ExtendedWebElement btnSearchForMediawallPanel;
+	
 	//************ MEDIAWALL CREATION OBJECTS ************//	
 
 	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
@@ -1480,6 +1484,37 @@ public class HB_HomePage extends AbstractPage {
 		pause(1);
 	}
 
+	public void testPhotoFileDialogNoMouse(String mainURL) throws AWTException {
+		Selenium selenium = new WebDriverBackedSelenium(driver, mainURL);
+//		WebElement dragFilesHere001 = driver.findElement(By.xpath("//li[@class='dropHere']"));
+		Actions builder = new Actions(driver);
+//		builder.dragAndDropBy(dragFilesHere001, 0, -66).build().perform();
+		pause(3);
+		clickPosition(1100,200);
+		builder.sendKeys("ztestphoto").build().perform();
+		pause(3);
+//		selenium.keyPressNative("9");
+//		selenium.keyUpNative("9");
+//		pressTab();
+		pause(1);
+//		selenium.keyPressNative("122");
+/*
+		selenium.keyDownNative("116");
+		selenium.keyDownNative("101");
+		selenium.keyDownNative("115");
+		selenium.keyPressNative("116");
+		selenium.keyPressNative("112");
+		selenium.keyPressNative("104");
+		selenium.keyPressNative("111");
+		selenium.keyPressNative("116");
+		selenium.keyPressNative("111");
+		pause(1);
+		selenium.keyPressNative("15");
+		selenium.keyPressNative("9");
+		selenium.keyPressNative("14");
+*/
+		}
+
 	public void testPhotoFileDialog001() throws AWTException {
 
 		Robot robot = new Robot();
@@ -1660,7 +1695,7 @@ public class HB_HomePage extends AbstractPage {
 	public void uploadPhotos(String mainURLCall, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 
 		click(BtnMultipleCutUploadAddFiles);
-		testPhotoFileDialog();
+		testPhotoFileDialogNoMouse(hostName);
 		click(BtnSaveAllAndPublishToProd);
 		click(BtnSendToProd);
 		click(BtnClose);
@@ -1733,6 +1768,7 @@ public class HB_HomePage extends AbstractPage {
 		logger.info(FieldDataPosition.size());
 		int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
+			pause(1);
 			(FieldDataPosition.get(a)).click();
 			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys("6");
@@ -1917,11 +1953,11 @@ public class HB_HomePage extends AbstractPage {
 	public void lineupGameContentBaseState(String mainURLCall) throws InterruptedException, AWTException	{
 		selectGameContent();
 		List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
-		(gameContentSelectGame.get(2)).click();
+		(gameContentSelectGame.get(3)).click();
 		click(btnDashboardGameContentLineup);
 		pause(0.5);
-		clickPosition(750,250);
-		clickPosition(750,250);
+//		clickPosition(750,250);
+//		clickPosition(750,250);
 		pause(0.5);
 	}
 
@@ -2548,7 +2584,6 @@ public class HB_HomePage extends AbstractPage {
 			type(FieldNotes, articleNotesValue);
 		}
 		type(FieldTagline, articleTaglineValue);
-//		testCMSTool(500,500);
 		click(BtnCmsToolWysiwyg);
 		testCMSToolNewFunctionHTML();
 		click(BtnCmsToolHtml);
@@ -3248,6 +3283,26 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldInternalName, mediawallReqFieldInternalName);
 		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldNumberOfPanels, mediawallReqFieldNumberOfPanels);
+
+		click(btnSearchForMediawallPanel);
+		click(btnSearchHideOptions);
+
+		type(FieldMainSearch, "91532570");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-mediawall-panel']"));
+		btnAddVideoClipListBeingSearched.click();
+
+		type(FieldMainSearch, "91520048");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-mediawall-panel']"));
+		btnAddVideoClipListBeingSearched2.click();
+		
+		type(FieldMainSearch, "90574042");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-mediawall-panel']"));
+		btnAddVideoClipListBeingSearched3.click();
+
+
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBetaWithoutDelete();
 		}
@@ -3953,6 +4008,12 @@ public class HB_HomePage extends AbstractPage {
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
+	}
+	
+	public void pressTabKey() throws AWTException	{
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_TAB);
 	}
 	
 	public void pressPeriod() throws AWTException	{
