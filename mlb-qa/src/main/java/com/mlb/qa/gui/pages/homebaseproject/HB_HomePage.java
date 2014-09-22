@@ -406,6 +406,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//div[@class='autocompleteResultsContainer'][@style='width:330px']")
 	public ExtendedWebElement FieldTagToolPlayerTag;
 
+	@FindBy(xpath="//div[@class='autocompleteResultsContainer'][@style='width:230px']")
+	public ExtendedWebElement FieldTagToolGameTagTeam;
+
 	@FindBy(xpath="(//button[@type='button'])[2]")
 	public ExtendedWebElement BtnApplyTagsAndClose;
 
@@ -1048,6 +1051,19 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
 
+	//************ PHOTO ASSET CREATION OBJECTS ************//	
+
+	@FindBy(xpath="//*[@data-field-key='photos']/div/button[contains(text(), 'Search for Photo Asset')]")
+    public ExtendedWebElement btnPhotosSearchForPhotoAsset;
+	
+	@FindBy(xpath="//*[@data-field-key='home-thumb']/div/button[contains(text(), 'Search for Photo Asset')]")
+    public ExtendedWebElement btnHomeThumbnailSearchForPhotoAsset;
+	
+	@FindBy(xpath="//*[@data-field-key='away-thumb']/div/button[contains(text(), 'Search for Photo Asset')]")
+    public ExtendedWebElement btnAwayThumbnailSearchForPhotoAsset;
+	
+	//************ PHOTO ASSET CREATION OBJECTS ************//	
+
 	//************ PRESS RELEASE CREATION OBJECTS ************//	
 
 	@FindBy(name="alt-headline")
@@ -1585,6 +1601,10 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnTagToolChangeDate);
 		click(BtnTagToolSelectCurrentDate);
 		pause(0.5);
+		WebElement DropDownListGameTag = FieldTagToolGameTagTeam.getElement().findElement(By.xpath("//li[@class='auto-focus']"));
+		driver.switchTo().frame(DropDownListGameTag);
+		DropDownListGameTag.click();
+		pause(300);
 		pressEnter();
 		pause(1);
 		pressTab();
@@ -2573,7 +2593,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewArticle(String mainURLCall, String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, articleReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, articleReqFieldHeadline);
 		type(FieldSubhead, articleReqFieldSubhead);
 		type(FieldAltHeadline, articleReqFieldAltHeadline);
@@ -3429,7 +3449,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPhotoGallery(String mainURLCall, String betaOrProd, String photoGalleryReqFieldInternalName, String photoGalleryReqFieldTitle, String photoGalleryReqFieldSpanishTitle, String photoGalleryReqFieldBlurb, String photoGalleryReqFieldSpanishBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, photoGalleryReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+//		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldTitle, photoGalleryReqFieldTitle);
 		type(FieldSpanishTitle, photoGalleryReqFieldSpanishTitle);
 		pause(1);
@@ -3441,6 +3461,56 @@ public class HB_HomePage extends AbstractPage {
 		pause(1);
 		pressTab();
 		pause(1);
+
+		click(btnPhotosSearchForPhotoAsset);
+		click(btnSearchHideOptions);
+		type(FieldMainSearch, "95436230");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched.click();
+		type(FieldMainSearch, "95436222");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched2.click();
+		type(FieldMainSearch, "95436010");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched3.click();
+
+		click(BtnSave);
+		
+	    click(btnHomeThumbnailSearchForPhotoAsset);
+	    click(btnSearchHideOptions);
+		type(FieldMainSearch, "95436230");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched4 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched4.click();
+		type(FieldMainSearch, "95436222");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched5 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched5.click();
+		type(FieldMainSearch, "95436010");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched6 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched6.click();
+	    
+		click(BtnSave);
+		
+	    click(btnAwayThumbnailSearchForPhotoAsset);
+		click(btnSearchHideOptions);
+		type(FieldMainSearch, "95436230");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched7 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched7.click();
+		type(FieldMainSearch, "95436222");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched8 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched8.click();
+		type(FieldMainSearch, "95436010");
+		click(btnSearch);
+		WebElement btnAddVideoClipListBeingSearched9 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
+		btnAddVideoClipListBeingSearched9.click();
+	    
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
