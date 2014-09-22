@@ -2593,7 +2593,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewArticle(String mainURLCall, String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, articleReqFieldInternalName);
-		useTagToolNew(mainURLCall, tagToolPlayerValue);
+		useTagTool(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, articleReqFieldHeadline);
 		type(FieldSubhead, articleReqFieldSubhead);
 		type(FieldAltHeadline, articleReqFieldAltHeadline);
