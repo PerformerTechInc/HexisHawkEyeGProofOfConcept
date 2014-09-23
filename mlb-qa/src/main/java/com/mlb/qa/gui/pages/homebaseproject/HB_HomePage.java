@@ -18,7 +18,7 @@ import com.qaprosoft.carina.core.foundation.http.*;
 import com.mlb.qa.atb.AtbParameter;
 import com.mlb.qa.common.http.*;
 import org.openqa.selenium.interactions.Actions;
-
+import org.openqa.selenium.interactions.Action;
 import java.util.Set;
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -406,8 +406,11 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//div[@class='autocompleteResultsContainer'][@style='width:330px']")
 	public ExtendedWebElement FieldTagToolPlayerTag;
 
-	@FindBy(xpath="//div[@class='autocompleteResultsContainer'][@style='width:230px']")
+	@FindBy(xpath="//div[@id='tagging-autocompleteGame'][@data-tag-type='tag.game_pk']/div[@class='autocompleteResultsContainer']/ul/li/input")
 	public ExtendedWebElement FieldTagToolGameTagTeam;
+
+	@FindBy(xpath="//div[@id='tagging-autocompleteGame'][@data-tag-type='tag.game_pk']/div[@class='autocompleteResultsContainer']/div[@class='ac--all-results']/ul/li[1]")
+	public ExtendedWebElement FieldTagToolGameTagTeamDropDownFirstItem;
 
 	@FindBy(xpath="(//button[@type='button'])[2]")
 	public ExtendedWebElement BtnApplyTagsAndClose;
@@ -1502,17 +1505,26 @@ public class HB_HomePage extends AbstractPage {
 
 	public void testPhotoFileDialogNoMouse(String mainURL) throws AWTException {
 		Selenium selenium = new WebDriverBackedSelenium(driver, mainURL);
+		Actions action = new Actions(driver);
 //		WebElement dragFilesHere001 = driver.findElement(By.xpath("//li[@class='dropHere']"));
-		Actions builder = new Actions(driver);
 //		builder.dragAndDropBy(dragFilesHere001, 0, -66).build().perform();
+		pause(15);
+		action.sendKeys(String.valueOf('\u0009')).perform();
+//		pressTab();
 		pause(3);
-		clickPosition(1100,200);
-		builder.sendKeys("ztestphoto").build().perform();
+		action.sendKeys("ztestphoto").perform();
 		pause(3);
-//		selenium.keyPressNative("9");
-//		selenium.keyUpNative("9");
+		action.keyDown(Keys.SHIFT).sendKeys(String.valueOf('\u0009')).perform();
+//		action.sendKeys(null);
+//		("ztestphoto");
+		pause(3);
+//		selenium.keyPressNative("15");
+//		pressTab();
+//		selenium.keyPressNative("14");
 //		pressTab();
 		pause(1);
+		sendKeys("\n");
+		pause(300);
 //		selenium.keyPressNative("122");
 /*
 		selenium.keyDownNative("116");
@@ -1595,17 +1607,11 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void useTagToolNew(String mainURL, String tagToolPlayer) throws InterruptedException, AWTException {
-//		Selenium seleniumTagTool = new WebDriverBackedSelenium(driver, mainURL);
 		click(BtnTagTool);
 		click(CheckboxTagToolAdvancedFields);
-		click(BtnTagToolChangeDate);
-		click(BtnTagToolSelectCurrentDate);
 		pause(0.5);
-		WebElement DropDownListGameTag = FieldTagToolGameTagTeam.getElement().findElement(By.xpath("//li[@class='auto-focus']"));
-		driver.switchTo().frame(DropDownListGameTag);
-		DropDownListGameTag.click();
-		pause(300);
-		pressEnter();
+		click(FieldTagToolGameTagTeam);
+		type(FieldTagToolGameTagTeam, "\n");
 		pause(1);
 		pressTab();
 		pause(1);
@@ -1614,13 +1620,13 @@ public class HB_HomePage extends AbstractPage {
 		pressTab();
 		pause(1);
 		pressTab();
-		pressA();
+		sendKeys("a");
 		pause(1);
-		pressEnter();
+		sendKeys("\n");
 		pause(1);
-		pressA();
+		sendKeys("a");
 		pause(1);
-		pressEnter();
+		sendKeys("\n");
 		click(BtnApplyTagsAndClose);	
 	}
 
@@ -1776,10 +1782,6 @@ public class HB_HomePage extends AbstractPage {
 		click(btnDashboardTeamContentArizonaDiamondbacks);
 		click(btnDashboardTeamContentDepthCharts);
 		pause(5);
-		pause(0.5);
-		clickPosition(750,250);
-		clickPosition(750,250);
-		pause(0.5);
 	}
 
 	public void depthChartsAddPlayers(String mainURLCall) throws InterruptedException, AWTException	{
@@ -1794,13 +1796,10 @@ public class HB_HomePage extends AbstractPage {
 			(FieldDataPosition.get(a)).sendKeys("6");
 			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-//			pause(0.5);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-//			pause(0.5);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-//			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
 			pause(0.5);
 			(FieldDataPosition.get(a)).click();
@@ -1808,13 +1807,10 @@ public class HB_HomePage extends AbstractPage {
 			(FieldDataPosition.get(a)).sendKeys("5");
 			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-//			pause(0.5);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-//			pause(0.5);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-//			pause(0.5);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
 			pause(0.5);
 		}
@@ -1862,10 +1858,6 @@ public class HB_HomePage extends AbstractPage {
 		click(btnDashboardTeamContentArizonaDiamondbacks);
 		click(btnDashboardTeamContentProbables);
 		pause(5);
-		pause(0.5);
-		clickPosition(750,250);
-		clickPosition(750,250);
-		pause(0.5);
 	}
 
 	public void probablesTeamContentAddPlayers(String mainURLCall) throws InterruptedException, AWTException	{
@@ -1930,9 +1922,6 @@ public class HB_HomePage extends AbstractPage {
 		(gameContentSelectGame.get(0)).click();
 		click(btnDashboardGameContentProbables);
 		pause(0.5);
-		clickPosition(750,250);
-		clickPosition(750,250);
-		pause(0.5);
 	}
 
 	public void probablesGameContentAddPlayers(String mainURLCall) throws InterruptedException, AWTException	{
@@ -1975,9 +1964,6 @@ public class HB_HomePage extends AbstractPage {
 		List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
 		(gameContentSelectGame.get(3)).click();
 		click(btnDashboardGameContentLineup);
-		pause(0.5);
-//		clickPosition(750,250);
-//		clickPosition(750,250);
 		pause(0.5);
 	}
 
@@ -2071,9 +2057,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(0).click();
 				pause(0.5);
-				pressP();
+				PlayerPositionDropDownList.get(0).sendKeys("P");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(0).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition2.getText().toString().equals("C")) {
@@ -2081,9 +2067,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(1).click();
 				pause(0.5);
-				pressC();
+				PlayerPositionDropDownList.get(1).sendKeys("C");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(1).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition3.getText().toString().equals("1B")) {
@@ -2091,10 +2077,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(2).click();
 				pause(0.5);
-				press1();
-				pressB();
+				PlayerPositionDropDownList.get(2).sendKeys("1B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(2).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition4.getText().toString().equals("2B")) {
@@ -2102,10 +2087,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(3).click();
 				pause(0.5);
-				press2();
-				pressB();
+				PlayerPositionDropDownList.get(3).sendKeys("2B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(3).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition5.getText().toString().equals("3B")) {
@@ -2113,10 +2097,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(4).click();
 				pause(0.5);
-				press3();
-				pressB();
+				PlayerPositionDropDownList.get(4).sendKeys("3B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(4).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition6.getText().toString().equals("SS")) {
@@ -2124,10 +2107,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(5).click();
 				pause(0.5);
-				pressS();
-				pressS();
+				PlayerPositionDropDownList.get(5).sendKeys("SS");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(5).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition7.getText().toString().equals("LF")) {
@@ -2135,10 +2117,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(6).click();
 				pause(0.5);
-				pressL();
-				pressF();
+				PlayerPositionDropDownList.get(6).sendKeys("LF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(6).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition8.getText().toString().equals("CF")) {
@@ -2146,10 +2127,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(7).click();
 				pause(0.5);
-				pressC();
-				pressF();
+				PlayerPositionDropDownList.get(7).sendKeys("CF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(7).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition9.getText().toString().equals("RF")) {
@@ -2157,10 +2137,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(8).click();
 				pause(0.5);
-				pressR();
-				pressF();
+				PlayerPositionDropDownList.get(8).sendKeys("RF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(8).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition10.getText().toString().equals("DH")) {
@@ -2168,10 +2147,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(9).click();
 				pause(0.5);
-				pressD();
-				pressH();
+				PlayerPositionDropDownList.get(9).sendKeys("DH");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(9).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition1.getText().toString().equals("P")) {
@@ -2179,9 +2157,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(10).click();
 				pause(0.5);
-				pressP();
+				PlayerPositionDropDownList.get(10).sendKeys("P");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(10).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition2.getText().toString().equals("C")) {
@@ -2189,9 +2167,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(11).click();
 				pause(0.5);
-				pressC();
+				PlayerPositionDropDownList.get(11).sendKeys("C");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(11).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition3.getText().toString().equals("1B")) {
@@ -2199,10 +2177,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(12).click();
 				pause(0.5);
-				press1();
-				pressB();
+				PlayerPositionDropDownList.get(12).sendKeys("1B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(12).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition4.getText().toString().equals("2B")) {
@@ -2210,10 +2187,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(13).click();
 				pause(0.5);
-				press2();
-				pressB();
+				PlayerPositionDropDownList.get(13).sendKeys("2B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(13).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition5.getText().toString().equals("3B")) {
@@ -2221,10 +2197,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(14).click();
 				pause(0.5);
-				press3();
-				pressB();
+				PlayerPositionDropDownList.get(14).sendKeys("3B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(14).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition6.getText().toString().equals("SS")) {
@@ -2232,10 +2207,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(15).click();
 				pause(0.5);
-				pressS();
-				pressS();
+				PlayerPositionDropDownList.get(15).sendKeys("SS");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(15).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition7.getText().toString().equals("LF")) {
@@ -2243,10 +2217,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(16).click();
 				pause(0.5);
-				pressL();
-				pressF();
+				PlayerPositionDropDownList.get(16).sendKeys("LF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(16).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition8.getText().toString().equals("CF")) {
@@ -2254,10 +2227,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(17).click();
 				pause(0.5);
-				pressC();
-				pressF();
+				PlayerPositionDropDownList.get(17).sendKeys("CF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(17).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition9.getText().toString().equals("RF")) {
@@ -2265,10 +2237,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(18).click();
 				pause(0.5);
-				pressR();
-				pressF();
+				PlayerPositionDropDownList.get(18).sendKeys("RF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(18).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition10.getText().toString().equals("DH")) {
@@ -2276,10 +2247,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(19).click();
 				pause(0.5);
-				pressD();
-				pressH();
+				PlayerPositionDropDownList.get(19).sendKeys("DH");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(19).sendKeys(Keys.ENTER);
 			}
 		}
 
@@ -2309,9 +2279,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(0).click();
 				pause(0.5);
-				pressP();
+				PlayerPositionDropDownList.get(0).sendKeys("P");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(0).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition2.getText().toString().equals("C")) {
@@ -2319,9 +2289,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(1).click();
 				pause(0.5);
-				pressC();
+				PlayerPositionDropDownList.get(1).sendKeys("C");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(1).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition3.getText().toString().equals("1B")) {
@@ -2329,10 +2299,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(2).click();
 				pause(0.5);
-				press1();
-				pressB();
+				PlayerPositionDropDownList.get(2).sendKeys("1B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(2).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition4.getText().toString().equals("2B")) {
@@ -2340,10 +2309,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(3).click();
 				pause(0.5);
-				press2();
-				pressB();
+				PlayerPositionDropDownList.get(3).sendKeys("2B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(3).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition5.getText().toString().equals("3B")) {
@@ -2351,10 +2319,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(4).click();
 				pause(0.5);
-				press3();
-				pressB();
+				PlayerPositionDropDownList.get(4).sendKeys("3B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(4).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition6.getText().toString().equals("SS")) {
@@ -2362,10 +2329,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(5).click();
 				pause(0.5);
-				pressS();
-				pressS();
+				PlayerPositionDropDownList.get(5).sendKeys("SS");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(5).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition7.getText().toString().equals("LF")) {
@@ -2373,10 +2339,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(6).click();
 				pause(0.5);
-				pressL();
-				pressF();
+				PlayerPositionDropDownList.get(6).sendKeys("LF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(6).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition8.getText().toString().equals("CF")) {
@@ -2384,10 +2349,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(7).click();
 				pause(0.5);
-				pressC();
-				pressF();
+				PlayerPositionDropDownList.get(7).sendKeys("CF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(7).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupAwayPlayerPosition9.getText().toString().equals("RF")) {
@@ -2395,10 +2359,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(8).click();
 				pause(0.5);
-				pressR();
-				pressF();
+				PlayerPositionDropDownList.get(8).sendKeys("RF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(8).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition1.getText().toString().equals("P")) {
@@ -2406,9 +2369,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(9).click();
 				pause(0.5);
-				pressP();
+				PlayerPositionDropDownList.get(9).sendKeys("P");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(9).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition2.getText().toString().equals("C")) {
@@ -2416,9 +2379,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(10).click();
 				pause(0.5);
-				pressC();
+				PlayerPositionDropDownList.get(10).sendKeys("C");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(10).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition3.getText().toString().equals("1B")) {
@@ -2426,10 +2389,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(11).click();
 				pause(0.5);
-				press1();
-				pressB();
+				PlayerPositionDropDownList.get(11).sendKeys("1B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(11).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition4.getText().toString().equals("2B")) {
@@ -2437,10 +2399,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(12).click();
 				pause(0.5);
-				press2();
-				pressB();
+				PlayerPositionDropDownList.get(12).sendKeys("2B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(12).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition5.getText().toString().equals("3B")) {
@@ -2448,10 +2409,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(13).click();
 				pause(0.5);
-				press3();
-				pressB();
+				PlayerPositionDropDownList.get(13).sendKeys("3B");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(13).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition6.getText().toString().equals("SS")) {
@@ -2459,10 +2419,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(14).click();
 				pause(0.5);
-				pressS();
-				pressS();
+				PlayerPositionDropDownList.get(14).sendKeys("SS");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(14).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition7.getText().toString().equals("LF")) {
@@ -2470,10 +2429,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(15).click();
 				pause(0.5);
-				pressL();
-				pressF();
+				PlayerPositionDropDownList.get(15).sendKeys("LF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(15).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition8.getText().toString().equals("CF")) {
@@ -2481,10 +2439,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(16).click();
 				pause(0.5);
-				pressC();
-				pressF();
+				PlayerPositionDropDownList.get(16).sendKeys("CF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(16).sendKeys(Keys.ENTER);
 			}
 
 			if (lineupHomePlayerPosition9.getText().toString().equals("RF")) {
@@ -2492,10 +2449,9 @@ public class HB_HomePage extends AbstractPage {
 			else {
 				PlayerPositionDropDownList.get(17).click();
 				pause(0.5);
-				pressR();
-				pressF();
+				PlayerPositionDropDownList.get(17).sendKeys("RF");
 				pause(0.5);
-				pressEnter();
+				PlayerPositionDropDownList.get(17).sendKeys(Keys.ENTER);
 			}
 		}
 
@@ -2593,7 +2549,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewArticle(String mainURLCall, String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, articleReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, articleReqFieldHeadline);
 		type(FieldSubhead, articleReqFieldSubhead);
 		type(FieldAltHeadline, articleReqFieldAltHeadline);
@@ -2619,7 +2575,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewArticleView(String mainURLCall, String betaOrProd, String articleViewReqFieldInternalName, String articleViewReqFieldName, String articleViewReqFieldViewKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException {
 		type(FieldInternalName, articleViewReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldName, articleViewReqFieldName);
 		type(FieldViewKey, articleViewReqFieldViewKey);
 		if (betaOrProd == "beta") {
@@ -2632,7 +2588,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewAudioSchedule(String mainURLCall, String betaOrProd, String audioScheduleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException {
 		type(FieldInternalName, audioScheduleReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -2643,7 +2599,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewBallpark(String mainURLCall, String betaOrProd, String ballparkReqFieldInternalName, String ballparkReqFieldID, String ballparkReqFieldName, String ballparkReqFieldAddress1, String ballparkReqFieldAddress2, String ballparkReqFieldLocation, String ballparkReqFieldMapType, String ballparkReqFieldMapVersion, String ballparkReqFieldFacebookID, String ballparkReqFieldFoursquareID, String ballparkReqFieldWebsiteURL, String ballparkReqFieldThumbnailURL, String ballparkReqFieldThumbnailCaption, String ballparkReqFieldTwitterHashTags, String ballparkReqFieldAboutURL, String ballparkReqFieldScheduleURL, String ballparkReqFieldSmallThumbnailURL, String ballparkReqFieldStartYear, String ballparkReqFieldEndYear, String ballparkReqFieldUpgradeURL, String ballparkReqFieldAbout, String ballparkReqFieldEventsText, String ballparkReqFieldSponsorImageText, String ballparkReqFieldSponsorImageURL, String ballparkReqFieldSponsorImage2Text, String ballparkReqFieldSponsorImage2URL, String ballparkReqFieldTicketsText, String ballparkReqFieldTicketsURL, String ballparkReqFieldTicketsErrorText, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, ballparkReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldID, ballparkReqFieldID);
 		type(FieldName, ballparkReqFieldName);
 		type(FieldAddress1, ballparkReqFieldAddress1);
@@ -2682,7 +2638,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewBallparkMenu(String mainURLCall, String betaOrProd, String ballparkMenuReqFieldInternalName, String ballparkMenuReqFieldDisplayName, String ballparkMenuReqFieldDisplayImageURL, String ballparkMenuReqFieldLinkURL, String ballparkMenuReqFieldLinkName, String ballparkMenuReqFieldBundleKey, String ballparkMenuReqFieldBundleName, String ballparkMenuReqFieldBundleURL, String ballparkMenuReqFieldSharingURL, String ballparkMenuReqFieldSharingText, String ballparkMenuReqFieldErrorText, String ballparkMenuReqFieldSourceURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, ballparkMenuReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldDisplayName, ballparkMenuReqFieldDisplayName);
 		type(FieldDisplayImageURL, ballparkMenuReqFieldDisplayImageURL);
 		type(FieldLinkURL2, ballparkMenuReqFieldLinkURL);
@@ -2704,7 +2660,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewBallparkMusic(String mainURLCall, String betaOrProd, String ballparkMusicReqFieldInternalName, String ballparkMusicReqFieldTitle, String ballparkMusicReqFieldArtist, String ballparkMusicReqFieldDescription, String ballparkMusicReqFieldThumbnail, String ballparkMusicReqFieldRank, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, ballparkMusicReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldTitle, ballparkMusicReqFieldTitle);
 		type(FieldArtist, ballparkMusicReqFieldArtist);
 		type(FieldDescription, ballparkMusicReqFieldDescription);
@@ -2720,7 +2676,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewBallparkSubmenu(String mainURLCall, String betaOrProd, String ballparkSubmenuReqFieldInternalName, String ballparkSubmenuReqFieldDisplayName, String ballparkSubmenuReqFieldDisplayImageURL, String ballparkSubmenuReqFieldLinkURL, String ballparkSubmenuReqFieldLinkName, String ballparkSubmenuReqFieldBundleKey, String ballparkSubmenuReqFieldBundleName, String ballparkSubmenuReqFieldBundleURL, String ballparkSubmenuReqFieldSharingURL, String ballparkSubmenuReqFieldSharingText, String ballparkSubmenuReqFieldErrorText, String ballparkSubmenuReqFieldSourceURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, ballparkSubmenuReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldDisplayName, ballparkSubmenuReqFieldDisplayName);
 		type(FieldDisplayImageURL, ballparkSubmenuReqFieldDisplayImageURL);
 		type(FieldLinkURL2, ballparkSubmenuReqFieldLinkURL);
@@ -2742,7 +2698,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewBlogContent(String mainURLCall, String betaOrProd, String blogContentReqFieldInternalName, String blogContentReqFieldURL, String blogContentReqFieldURLText, String blogContentReqFieldHeadline, String blogContentReqFieldAltHeadline, String blogContentReqFieldSEOHeadline, String blogContentReqFieldBlurb, String blogContentReqFieldByline, String blogContentReqFieldCaption, String blogContentReqFieldMediaCredit, String blogContentReqFieldBody, String blogContentReqFieldSummary, String tagToolPlayerValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, blogContentReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldURL, blogContentReqFieldURL);
 		type(FieldURLText, blogContentReqFieldURLText);
 		type(FieldHeadline, blogContentReqFieldHeadline);
@@ -2782,7 +2738,7 @@ public class HB_HomePage extends AbstractPage {
 	
 	public void fillAndSaveNewChron(String mainURLCall, String betaOrProd, String chronReqFieldInternalName, String chronReqFieldDateNotation, String chronReqFieldYear, String chronReqFieldDisplayYear, String chronReqFieldTitle, String chronReqFieldCMSDescription, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, chronReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldDateNotation, chronReqFieldDateNotation);
 		type(FieldYear, chronReqFieldYear);
 		type(FieldDisplayYear, chronReqFieldDisplayYear);
@@ -2798,7 +2754,7 @@ public class HB_HomePage extends AbstractPage {
 	
 	public void fillAndSaveNewClosedCaption(String mainURLCall, String betaOrProd, String closedCaptionReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, closedCaptionReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
@@ -2810,7 +2766,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewClubPromo(String mainURLCall, String betaOrProd, String clubPromoReqFieldInternalName, String clubPromoReqFieldURLExtension, String clubPromoReqFieldEventTitle, String clubPromoReqFieldEventSubtitle, String clubPromoReqFieldPromoText, String clubPromoReqFieldMobileTicketsText, String clubPromoReqFieldMobileTicketsURL, String clubPromoReqFieldTicketsURL, String clubPromoReqFieldTextCampaignPromo, String clubPromoReqFieldSocialKeyword, String clubPromoReqFieldHighlightsTitle, String clubPromoReqFieldLocationAddress, String clubPromoReqFieldEventMapTitle, String clubPromoReqFieldScheduleTitle, String clubPromoReqFieldFAQTitle, String tagToolPlayerValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, clubPromoReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldURLExtension, clubPromoReqFieldURLExtension);
 		type(FieldEventTitle, clubPromoReqFieldEventTitle);
 		type(FieldEventSubtitle, clubPromoReqFieldEventSubtitle);
@@ -2837,7 +2793,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewContributor(String mainURLCall, String betaOrProd, String contributorReqFieldInternalName, String contributorReqFieldFirstName, String contributorReqFieldLastName, String contributorReqFieldTitle, String contributorReqFieldEmail, String contributorReqFieldTwitterHandle, String contributorReqFieldBlog, String contributorReqFieldBlogTitle, String contributorReqFieldRSSFeed, String contributorReqFieldFacebookID, String contributorReqFieldActiveTab, String contributorReqFieldHideArticles, String contributorReqFieldVideoKeywordType, String contributorReqFieldVideoKeywordValue, String contributorReqFieldVideoLandingPage, String contributorReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, contributorReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldFirstName, contributorReqFieldFirstName);
 		type(FieldLastName, contributorReqFieldLastName);
 		type(FieldTitle, contributorReqFieldTitle);
@@ -2865,7 +2821,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewDailyEmail(String mainURLCall, String betaOrProd, String dailyEmailReqFieldInternalName, String dailyEmailReqFieldSubject, String dailyEmailReqFieldSubjectB, String dailyEmailReqFieldTriviaQuestion, String dailyEmailReqFieldTriviaAnswer, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, dailyEmailReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldSubject, dailyEmailReqFieldSubject);
 		type(FieldSubjectB, dailyEmailReqFieldSubjectB);
 		type(FieldTriviaQuestion, dailyEmailReqFieldTriviaQuestion);
@@ -2880,7 +2836,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewDeviceAnnouncement(String mainURLCall, String betaOrProd, String deviceAnnouncementReqFieldInternalName, String deviceAnnouncementReqFieldAppVersion, String deviceAnnouncementReqFieldOSVersion, String deviceAnnouncementReqFieldEntitlement, String deviceAnnouncementReqFieldScreen, String deviceAnnouncementReqFieldType, String deviceAnnouncementReqFieldDisplayType, String deviceAnnouncementReqFieldTitle, String deviceAnnouncementReqFieldMessage, String deviceAnnouncementReqFieldOpenLabel, String deviceAnnouncementReqFieldOpenLink, String deviceAnnouncementReqFieldCloseLabel, String deviceAnnouncementReqFieldCloseLink, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, deviceAnnouncementReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldAppVersion, deviceAnnouncementReqFieldAppVersion);
 		type(FieldOSVersion, deviceAnnouncementReqFieldOSVersion);
 		type(FieldEntitlement, deviceAnnouncementReqFieldEntitlement);
@@ -2903,7 +2859,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewDeviceBanner(String mainURLCall, String betaOrProd, String deviceBannerReqFieldInternalName, String deviceBannerReqFieldAppVersion, String deviceBannerReqFieldOSVersion, String deviceBannerReqFieldEntitlement, String deviceBannerReqFieldAccessFeature, String deviceBannerReqFieldScreen, String deviceBannerReqFieldViewID, String deviceBannerReqFieldType, String deviceBannerReqFieldWebViewType, String deviceBannerReqFieldTitle, String deviceBannerReqFieldLink, String deviceBannerReqFieldBackgroundColor, String deviceBannerReqFieldTrackingString, String deviceBannerReqFieldAdMarvelID, String deviceBannerReqFieldAdMarvelWidth, String deviceBannerReqFieldAdMarvelHeight, String deviceBannerReqFieldAdMarvelSectionID, String deviceBannerReqFieldAdMarvelMLBTarget, String deviceBannerReqFieldAdMarvelExpiryTime, String deviceBannerReqFieldMLBTVContentID, String deviceBannerReqFieldMLBTVCalendarEventID, String deviceBannerReqFieldSponsor, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, deviceBannerReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldAppVersion, deviceBannerReqFieldAppVersion);
 		type(FieldOSVersion, deviceBannerReqFieldOSVersion);
 		type(FieldEntitlement, deviceBannerReqFieldEntitlement);
@@ -2935,7 +2891,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewDevicePage(String mainURLCall, String betaOrProd, String devicePageReqFieldInternalName, String devicePageReqFieldHeadline, String devicePageReqFieldBlurb, String devicePageReqFieldYearlyPurchaseFlow, String devicePageReqFieldMonthlyPurchaseFlow, String devicePageReqFieldUpgradeLink, String devicePageReqFieldActivationLink, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, devicePageReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, devicePageReqFieldHeadline);
 		type(FieldBlurb, devicePageReqFieldBlurb);
 		type(FieldYearlyPurchaseFlow, devicePageReqFieldYearlyPurchaseFlow);
@@ -2952,7 +2908,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewDigitalAsset(String mainURLCall, String betaOrProd, String digitalAssetReqFieldInternalName, String digitalAssetReqFieldHeadline, String tagToolPlayerValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, digitalAssetReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, digitalAssetReqFieldHeadline);
 		testCMSToolNewFunctionHTML();
 		click(BtnChooseAFileToUpload);
@@ -2968,7 +2924,7 @@ public class HB_HomePage extends AbstractPage {
 	public void fillAndSaveNewDrawer(String mainURLCall, String betaOrProd, String drawerReqFieldInternalName, String drawerReqFieldKicker, String drawerReqFieldCustomContent, String drawerReqFieldBlurb, String drawerReqFieldURL, String drawerReqFieldURLText, String drawerReqFieldNumberOfItems, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		Selenium seleniumDrawer = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, drawerReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		click(FieldAppears);
 		pause(1);
 		seleniumDrawer.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
@@ -2994,7 +2950,7 @@ public class HB_HomePage extends AbstractPage {
 	public void fillAndSaveNewEvent(String mainURLCall, String betaOrProd, String eventReqFieldInternalName, String eventReqFieldProgramID, String eventReqFieldProgram, String eventReqFieldLocation, String eventReqFieldEventTitle, String eventReqFieldEventDescription, String eventReqFieldEventURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		Selenium seleniumEvent = new WebDriverBackedSelenium(driver, mainURLCall);
 		type(FieldInternalName, eventReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldProgramID, eventReqFieldProgramID);
 		type(FieldProgram, eventReqFieldProgram);
 		type(FieldLocation, eventReqFieldLocation);
@@ -3019,7 +2975,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewFeature(String mainURLCall, String betaOrProd, String featureReqFieldInternalName, String featureReqFieldHeadline, String featureReqFieldURL, String featureReqFieldURLText, String featureReqFieldMobileURL, String featureReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, featureReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, featureReqFieldHeadline);
 		type(FieldURL, featureReqFieldURL);
 		type(FieldURLText, featureReqFieldURLText);
@@ -3035,7 +2991,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewFeatures(String mainURLCall, String betaOrProd, String featuresReqFieldInternalName, String featuresReqFieldNumberOfItems, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, featuresReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldNumberOfItems, featuresReqFieldNumberOfItems);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
@@ -3047,7 +3003,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewFieldOption(String mainURLCall, String betaOrProd, String fieldOptionReqFieldInternalName, String fieldOptionReqFieldDisplayName, String fieldOptionReqFieldValue, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, fieldOptionReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldDisplayName, fieldOptionReqFieldDisplayName);
 		type(FieldValue, fieldOptionReqFieldValue);
 		if (betaOrProd == "beta") {
@@ -3060,7 +3016,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewGamePreview(String mainURLCall, String betaOrProd, String gamePreviewReqFieldInternalName, String gamePreviewReqFieldHeadline, String gamePreviewReqFieldHomeHeadline, String gamePreviewReqFieldAwayHeadline, String gamePreviewReqFieldSubhead, String gamePreviewReqFieldAltHeadline, String gamePreviewReqFieldByline, String gamePreviewReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, gamePreviewReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, gamePreviewReqFieldHeadline);
 		type(FieldHomeHeadline, gamePreviewReqFieldHomeHeadline);
 		type(FieldAwayHeadline, gamePreviewReqFieldAwayHeadline);
@@ -3079,7 +3035,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewGameWrap(String mainURLCall, String betaOrProd, String gameWrapReqFieldInternalName, String gameWrapReqFieldHeadline, String gameWrapReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, gameWrapReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, gameWrapReqFieldHeadline);
 		type(FieldBlurb, gameWrapReqFieldBlurb); 
 		if (betaOrProd == "beta") {
@@ -3092,7 +3048,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewHighlight(String mainURLCall, String betaOrProd, String highlightReqFieldInternalName, String highlightReqFieldYear, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, highlightReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldYear, highlightReqFieldYear);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
@@ -3104,7 +3060,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewHomepageTab(String mainURLCall, String betaOrProd, String homepageTabReqFieldInternalName, String homepageTabReqFieldDefaultAltText, String homepageTabReqFieldDefaultClickthroughURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, homepageTabReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldDefaultAltText, homepageTabReqFieldDefaultAltText);
 		type(FieldDefaultClickthroughURL, homepageTabReqFieldDefaultClickthroughURL);
 		if (betaOrProd == "beta") {
@@ -3117,7 +3073,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewHPConfig(String mainURLCall, String betaOrProd, String hPConfigReqFieldInternalName, String hPConfigReqFieldBreakingNews, String hPConfigReqFieldBreakingNewsURL, String hPConfigReqFieldABTests, String hPConfigReqFieldHeaderURL, String hPConfigReqFieldHeaderAlt, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, hPConfigReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldBreakingNews, hPConfigReqFieldBreakingNews);
 		type(FieldBreakingNewsURL, hPConfigReqFieldBreakingNewsURL);
 		type(FieldABTests, hPConfigReqFieldABTests);
@@ -3133,7 +3089,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewHTMLInclude(String mainURLCall, String betaOrProd, String hTMLIncludeReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, hTMLIncludeReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3144,7 +3100,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewHTMLPage(String mainURLCall, String betaOrProd, String hTMLPageReqFieldInternalName, String hTMLPageReqFieldHeadline, String hTMLPageBlurbValue, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, hTMLPageReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, hTMLPageReqFieldHeadline);
 		pause(1);
 		pressTab();
@@ -3160,7 +3116,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewInstagramPhoto(String mainURLCall, String betaOrProd, String instagramPhotoReqFieldInternalName, String instagramPhotoReqFieldApprover, String instagramPhotoReqFieldApprovedTime, String instagramPhotoReqFieldInstagramID, String instagramPhotoReqFieldImageURL, String instagramPhotoReqFieldLargeImageURL, String instagramPhotoReqFieldCaption, String instagramPhotoReqFieldCreatorID, String instagramPhotoReqFieldCreatorName, String instagramPhotoReqFieldCreatorProfilePicture, String instagramPhotoReqFieldCreatedTime, String instagramPhotoReqFieldLatitude, String instagramPhotoReqFieldLongitude, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, instagramPhotoReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldApprover, instagramPhotoReqFieldApprover);
 		type(FieldApprovedTime, instagramPhotoReqFieldApprovedTime);
 		type(FieldInstagramID, instagramPhotoReqFieldInstagramID);
@@ -3183,7 +3139,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewInstagramStream(String mainURLCall, String betaOrProd, String instagramStreamReqFieldInternalName, String instagramStreamReqFieldDisplayName, String instagramStreamReqFieldKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, instagramStreamReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldInstagramStreamDisplayName, instagramStreamReqFieldDisplayName);
 		type(FieldKey, instagramStreamReqFieldKey);
 		if (betaOrProd == "beta") {
@@ -3196,7 +3152,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewKiosk(String mainURLCall, String betaOrProd, String kioskReqFieldInternalName, String kioskReqFieldCalendarEventID, String kioskReqFieldContentID, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, kioskReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldCalendarEventID, kioskReqFieldCalendarEventID);
 		type(FieldContentID, kioskReqFieldContentID);
 		if (betaOrProd == "beta") {
@@ -3209,7 +3165,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewLineup(String mainURLCall, String betaOrProd, String lineupReqFieldInternalName, String lineupReqFieldUmpireHP, String lineupReqFieldUmpire1st, String lineupReqFieldUmpire2nd, String lineupReqFieldUmpire3rd, String lineupReqFieldUmpireLF, String lineupReqFieldUmpireRF, String lineupReqFieldUmpireOS, String lineupReqFieldNotes, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, lineupReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldUmpireHP, lineupReqFieldUmpireHP);
 		type(FieldUmpire1st, lineupReqFieldUmpire1st);
 		type(FieldUmpire2nd, lineupReqFieldUmpire2nd);
@@ -3228,7 +3184,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewLineupPlayer(String mainURLCall, String betaOrProd, String lineupPlayerReqFieldInternalName, String lineupPlayerReqFieldPosition, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, lineupPlayerReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldPosition, lineupPlayerReqFieldPosition);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
@@ -3244,7 +3200,7 @@ public class HB_HomePage extends AbstractPage {
 		pressTab();
 		pause(3);
 		type(FieldInternalName, linkReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldLinkURL, linkReqFieldLinkURL);
 		pause(1);
 		pressTab();
@@ -3267,7 +3223,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewList(String mainURLCall, String betaOrProd, String listReqFieldInternalName, String listReqFieldKey, String listReqFieldNumberOfItems, String listReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, listReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldKey, listReqFieldKey);
 		type(FieldNumberOfItems, listReqFieldNumberOfItems);
 		type(FieldBlurb, listReqFieldBlurb);
@@ -3301,7 +3257,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewMediawall(String mainURLCall, String betaOrProd, String mediawallReqFieldInternalName, String mediawallReqFieldNumberOfPanels, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, mediawallReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldNumberOfPanels, mediawallReqFieldNumberOfPanels);
 
 		click(btnSearchForMediawallPanel);
@@ -3333,7 +3289,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewMediawallOverlay(String mainURLCall, String betaOrProd, String mediawallOverlayReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, mediawallOverlayReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldInternalName, mediawallOverlayReqFieldInternalName);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
@@ -3345,7 +3301,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewMediaWallPanel(String mainURLCall, String betaOrProd, String mediawallPanelReqFieldInternalName, String mediawallReqFieldHeadline, String mediawallReqFieldURLText, String mediawallReqFieldURL, String mediawallReqFieldMobileURL, String mediawallReqFieldSponsorURL, String mediawallReqFieldBlurb, String mediawallReqFieldNotes, String mediawallReqFieldDisplayTimeInSeconds, String mediawallReqFieldVideoAlias, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, mediawallPanelReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, mediawallReqFieldHeadline);
 		type(FieldURLText, mediawallReqFieldURLText);
 		type(FieldURL, mediawallReqFieldURL);
@@ -3371,7 +3327,7 @@ public class HB_HomePage extends AbstractPage {
 	
 	public void fillAndSaveNewMLBTVAdModule(String mainURLCall, String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String mLBTVAdModuleReqFieldURL, String mLBTVAdModuleReqFieldMobileURL, String mLBTVAdModuleReqFieldTabletURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, mLBTVAdModuleReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldURL, mLBTVAdModuleReqFieldURL);
 		type(FieldMobileURL, mLBTVAdModuleReqFieldMobileURL);
 		type(FieldTabletURL, mLBTVAdModuleReqFieldTabletURL);
@@ -3385,7 +3341,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewMoundBall(String mainURLCall, String betaOrProd, String moundBallReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, moundBallReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3396,7 +3352,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewMusicLink(String mainURLCall, String betaOrProd, String musicLinkReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, musicLinkReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3407,7 +3363,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewNote(String mainURLCall, String betaOrProd, String noteReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, noteReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3418,7 +3374,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewNotebook(String mainURLCall, String betaOrProd, String notebookReqFieldInternalName, String notebookReqFieldHeadline, String notebookReqFieldByline, String notebookReqFieldSource, String notebookTaglineValue, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, notebookReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, notebookReqFieldHeadline);
 		type(FieldByline, notebookReqFieldByline);
 		type(FieldSource, notebookReqFieldSource);
@@ -3438,7 +3394,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPage(String mainURLCall, String betaOrProd, String pageReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, pageReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3449,7 +3405,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPhotoGallery(String mainURLCall, String betaOrProd, String photoGalleryReqFieldInternalName, String photoGalleryReqFieldTitle, String photoGalleryReqFieldSpanishTitle, String photoGalleryReqFieldBlurb, String photoGalleryReqFieldSpanishBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, photoGalleryReqFieldInternalName);
-//		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldTitle, photoGalleryReqFieldTitle);
 		type(FieldSpanishTitle, photoGalleryReqFieldSpanishTitle);
 		pause(1);
@@ -3531,7 +3487,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPhotoGalleryList(String mainURLCall, String betaOrProd, String photoGalleryListReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, photoGalleryListReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3542,7 +3498,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewProspect(String mainURLCall, String betaOrProd, String prospectReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, prospectReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3553,7 +3509,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPodcastDetail(String mainURLCall, String betaOrProd, String podcastDetailReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, podcastDetailReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3564,7 +3520,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPodcastEpisode(String mainURLCall, String betaOrProd, String podcastEpisodeReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, podcastEpisodeReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3575,7 +3531,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, pressReleaseReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldNotes, pressReleaseReqFieldNotes);
 		type(FieldDisplayHeadline, pressReleaseReqFieldDisplayHeadline);
 		type(FieldHeadline, pressReleaseReqFieldHeadline);
@@ -3592,7 +3548,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPressboxAsset(String mainURLCall, String betaOrProd, String pressboxAssetReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, pressboxAssetReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3603,7 +3559,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPressboxAssetList(String mainURLCall, String betaOrProd, String pressboxAssetListReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, pressboxAssetListReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3624,7 +3580,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewProgramShow(String mainURLCall, String betaOrProd, String programShowReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, programShowReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3635,7 +3591,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewPromoApplication(String mainURLCall, String betaOrProd, String promoApplicationReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, promoApplicationReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3646,7 +3602,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewQuoteSheet(String mainURLCall, String betaOrProd, String quoteSheetReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, quoteSheetReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3657,7 +3613,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewRaffle(String mainURLCall, String betaOrProd, String raffleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, raffleReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3668,7 +3624,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewSchedule(String mainURLCall, String betaOrProd, String scheduleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, scheduleReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3679,7 +3635,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewScrapbook(String mainURLCall, String betaOrProd, String scrapbookReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, scrapbookReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3690,7 +3646,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewScrapbookPage(String mainURLCall, String betaOrProd, String scrapbookPageReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, scrapbookPageReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3702,7 +3658,7 @@ public class HB_HomePage extends AbstractPage {
 	public void fillAndSaveNewSection(String mainURLCall, String betaOrProd, String sectionReqFieldInternalName, String sectionReqFieldSectionID, String sectionReqFieldShortTitle, String sectionReqFieldLongTitle, String sectionReqFieldWiredURL, String sectionReqFieldMobileURL, String sectionReqFieldTarget, String sectionReqFieldType, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		testCMSToolNewFunctionHTML();
 		type(FieldInternalName, sectionReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldSectionID, sectionReqFieldSectionID);
 		type(FieldShortTitle, sectionReqFieldShortTitle);
 		type(FieldLongTitle, sectionReqFieldLongTitle);
@@ -3720,7 +3676,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewSeriesConfiguration(String mainURLCall, String betaOrProd, String seriesConfigurationReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, seriesConfigurationReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3731,7 +3687,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewShortContent(String mainURLCall, String betaOrProd, String shortContentReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, shortContentReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3742,7 +3698,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewTicketPage(String mainURLCall, String betaOrProd, String ticketPageReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, ticketPageReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3753,7 +3709,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewTrendingModule(String mainURLCall, String betaOrProd, String trendingModuleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, trendingModuleReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3764,7 +3720,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewTweet(String mainURLCall, String betaOrProd, String tweetReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, tweetReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3775,7 +3731,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewVideoTopicPage(String mainURLCall, String betaOrProd, String videoTopicPageReqFieldInternalName, String videoTopicPageReqFieldHeadline, String videoTopicPageReqFieldFacebookDescription, String videoTopicPageReqFieldMaxItems, String videoTopicPageReqFieldItemsPerPage, String videoTopicPageReqFieldSearchCriteria, String videoTopicPageReqFieldRelatedLink, String videoTopicPageReqFieldCustomTemplatePath, String videoTopicPageReqFieldJavascriptPath, String videoTopicPageReqFieldStylesheetPath, String videoTopicPageReqFieldCustomPanel, String videoTopicPageReqFieldTwitterHandle, String videoTopicPageReqFieldPollKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, videoTopicPageReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, videoTopicPageReqFieldHeadline);
 		type(FieldFacebookDescription, videoTopicPageReqFieldFacebookDescription);
 		type(FieldMaxItems, videoTopicPageReqFieldMaxItems);
@@ -3817,7 +3773,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewTwitterHandle(String mainURLCall, String betaOrProd, String twitterHandleReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, twitterHandleReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3828,7 +3784,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void fillAndSaveNewVideoClipList(String mainURLCall, String betaOrProd, String videoClipListReqFieldInternalName, String videoClipListReqFieldHeadline, String videoClipListReqFieldListDefaultView, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, videoClipListReqFieldInternalName);
-		useTagTool(mainURLCall, tagToolPlayerValue);
+		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, videoClipListReqFieldHeadline);
 		type(FieldListDefaultView, videoClipListReqFieldListDefaultView);
 

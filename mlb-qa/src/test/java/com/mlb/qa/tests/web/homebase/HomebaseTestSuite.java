@@ -514,8 +514,9 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(driver);
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.selectNewItem("Photo Gallery");
-		homePage.fillAndSaveNewPhotoGallery(mainURL,valueBeta, valuePhotoGalleryInternalName,valuePhotoGalleryTitle,valuePhotoGallerySpanishTitle,valuePhotoGalleryBlurb,valuePhotoGallerySpanishBlurb, valueMajorTagToolPlayer);
+		homePage.lineupGameContentDeletePlayers(mainURL);
+		homePage.lineupGameContentAddPlayers(mainURL);
+		homePage.lineupGameContentDeletePlayers(mainURL);
 		return;
 	}	
 
