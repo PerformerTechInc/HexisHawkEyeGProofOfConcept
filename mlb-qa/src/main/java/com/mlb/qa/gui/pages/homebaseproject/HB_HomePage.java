@@ -237,6 +237,66 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//input[@type='text'][@style='width:320px']")
 	public ExtendedWebElement fieldTagToolPlayerTagByTeamPlayerName;
 	
+	@FindBy(id="compactLayout")
+	public ExtendedWebElement CheckboxTagToolAdvancedFields;
+
+	@FindBy(xpath="//input[@class='autocomplete-maininput processedYes']")
+	public ExtendedWebElement FieldTagToolPlayer;	
+
+	@FindBy(id="taggingGameDayBrowse")
+	public ExtendedWebElement BtnTagToolChangeDate;
+
+	@FindBy(xpath="//td[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']")
+	public ExtendedWebElement BtnTagToolSelectCurrentDate;
+
+	@FindBy(xpath="//div[@class='autocompleteResultsContainer'][@style='width:330px']")
+	public ExtendedWebElement FieldTagToolPlayerTag;
+
+	@FindBy(xpath="//div[@id='tagging-autocompleteGame'][@data-tag-type='tag.game_pk']/div[@class='autocompleteResultsContainer']/ul/li/input")
+	public ExtendedWebElement FieldTagToolGameTagTeam;
+
+	@FindBy(xpath="//div[@id='tagging-autocompletePlayer'][@data-tag-type='tag.player_id']/div[@class='autocompleteResultsContainer']/ul/li/input")
+	public ExtendedWebElement FieldTagToolPlayerTagName;
+
+	@FindBy(xpath="//div[@class='ac-all-results']")
+	public ExtendedWebElement DropDownTagToolPlayerTagNameSelection;
+	
+	@FindBy(xpath="//div[@id='tagging-autocompleteLeagueTeams'][@data-tag-type='tag.']/div[@class='autocompleteResultsContainer']/ul/li/input")
+	public ExtendedWebElement FieldTagToolPlayerTagTeam;
+
+	@FindBy(xpath="//div[@id='tagging-autocompletePlayerByTeam'][@data-tag-type='tag.player_id']/div[@class='autocompleteResultsContainer']/ul/li/input")
+	public ExtendedWebElement FieldTagToolPlayerTagTeamPlayer;
+
+	@FindBy(xpath="//div[@id='tagging-autocompleteUmpire'][@data-tag-type='tag.umpire_id']/div[@class='autocompleteResultsContainer']/ul/li/input")
+	public ExtendedWebElement FieldTagToolUmpireTag;
+
+	@FindBy(xpath="//div[@id='tagging-autocompleteTeam'][@data-tag-type='tag.team_id']/div[@class='autocompleteResultsContainer']/ul/li/input")
+	public ExtendedWebElement FieldTagToolTeamTag;
+
+	@FindBy(xpath="//div[@id='tagging-autocompleteTaxGroup'][@data-tag-type='tag.']/div[@class='autocompleteResultsContainer']/ul/li/input")
+	public ExtendedWebElement FieldTagToolKeywordTagGroup;
+
+	@FindBy(xpath="//div[@id='tagging-autocompleteKeyword'][@data-tag-type='tag.$']/div[@class='autocompleteResultsContainer']/ul/li/input")
+	public ExtendedWebElement FieldTagToolKeywordTagKeyword;
+
+	@FindBy(id="kwType")
+	public ExtendedWebElement FieldTagToolKeywordTagCustomTagType;
+
+	@FindBy(id="kwValue")
+	public ExtendedWebElement FieldTagToolKeywordTagCustomTagValue;
+
+	@FindBy(id="kwDisplayName")
+	public ExtendedWebElement FieldTagToolKeywordTagCustomTagDisplayName;
+
+	@FindBy(id="keywordCustom")
+	public ExtendedWebElement BtnTagToolKeywordTagCustomTagCreateCustomKeyword;
+
+	@FindBy(xpath="//div[@id='tagging-autocompleteGame'][@data-tag-type='tag.game_pk']/div[@class='autocompleteResultsContainer']/div[@class='ac--all-results']/ul/li[1]")
+	public ExtendedWebElement FieldTagToolGameTagTeamDropDownFirstItem;
+
+	@FindBy(xpath="(//button[@type='button'])[2]")
+	public ExtendedWebElement BtnApplyTagsAndClose;
+
 	//************ TAG TOOL OBJECTS ************//	
 
 	//************ ITEM CREATION OBJECTS ************//	
@@ -390,30 +450,6 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(id="singleUPstartBrowse")
 	public ExtendedWebElement BtnSingleCutUploadAddFiles;
-
-	@FindBy(id="compactLayout")
-	public ExtendedWebElement CheckboxTagToolAdvancedFields;
-
-	@FindBy(xpath="//input[@class='autocomplete-maininput processedYes']")
-	public ExtendedWebElement FieldTagToolPlayer;	
-
-	@FindBy(id="taggingGameDayBrowse")
-	public ExtendedWebElement BtnTagToolChangeDate;
-
-	@FindBy(xpath="//td[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']")
-	public ExtendedWebElement BtnTagToolSelectCurrentDate;
-
-	@FindBy(xpath="//div[@class='autocompleteResultsContainer'][@style='width:330px']")
-	public ExtendedWebElement FieldTagToolPlayerTag;
-
-	@FindBy(xpath="//div[@id='tagging-autocompleteGame'][@data-tag-type='tag.game_pk']/div[@class='autocompleteResultsContainer']/ul/li/input")
-	public ExtendedWebElement FieldTagToolGameTagTeam;
-
-	@FindBy(xpath="//div[@id='tagging-autocompleteGame'][@data-tag-type='tag.game_pk']/div[@class='autocompleteResultsContainer']/div[@class='ac--all-results']/ul/li[1]")
-	public ExtendedWebElement FieldTagToolGameTagTeamDropDownFirstItem;
-
-	@FindBy(xpath="(//button[@type='button'])[2]")
-	public ExtendedWebElement BtnApplyTagsAndClose;
 
 	@FindBy(name="caption")
 	public ExtendedWebElement FieldCaption;
@@ -1611,22 +1647,53 @@ public class HB_HomePage extends AbstractPage {
 		click(CheckboxTagToolAdvancedFields);
 		pause(0.5);
 		click(FieldTagToolGameTagTeam);
+		pause(0.5);
 		type(FieldTagToolGameTagTeam, "\n");
-		pause(1);
-		pressTab();
-		pause(1);
-		sendKeys(tagToolPlayer);
-		pause(1);
-		pressTab();
-		pause(1);
-		pressTab();
-		sendKeys("a");
-		pause(1);
+		pause(0.5);
+		click(FieldTagToolPlayerTagName);
+		pause(0.5);
+		type(FieldTagToolPlayerTagName, tagToolPlayer);
+		pause(0.5);
+		WebElement DropDownTagToolPlayerTagNameSelectionDynamic = DropDownTagToolPlayerTagNameSelection.getElement().findElement(By.xpath("//em[contains(text(), '" + tagToolPlayer + "')]"));
+		DropDownTagToolPlayerTagNameSelectionDynamic.click();
+		pause(0.5);
+		click(FieldTagToolPlayerTagTeam);
+		pause(0.5);
+		type(FieldTagToolPlayerTagTeam, "a");
 		sendKeys("\n");
-		pause(1);
-		sendKeys("a");
-		pause(1);
+		pause(0.5);
+		click(FieldTagToolPlayerTagTeamPlayer);
+		pause(0.5);
+		type(FieldTagToolPlayerTagTeamPlayer, "a");
+		pause(0.5);
 		sendKeys("\n");
+		pause(0.5);
+		click(FieldTagToolUmpireTag);
+		pause(0.5);
+		type(FieldTagToolUmpireTag, "a");
+		pause(3);
+		sendKeys("\n");
+		pause(0.5);
+		click(FieldTagToolTeamTag);
+		pause(0.5);
+		type(FieldTagToolTeamTag, "\n");
+		pause(0.5);
+		click(FieldTagToolKeywordTagGroup);
+		pause(0.5);
+		type(FieldTagToolKeywordTagGroup, "CMS");
+		pause(3);
+		sendKeys("\n");
+		pause(0.5);
+		type(FieldTagToolKeywordTagKeyword, "\n");
+		pause(0.5);
+		type(FieldTagToolKeywordTagCustomTagType, "Any");
+		pause(0.5);
+		type(FieldTagToolKeywordTagCustomTagValue, "Any");
+		pause(0.5);
+		type(FieldTagToolKeywordTagCustomTagDisplayName, "Any");
+		pause(0.5);
+		click(BtnTagToolKeywordTagCustomTagCreateCustomKeyword);
+		pause(0.5);
 		click(BtnApplyTagsAndClose);	
 	}
 

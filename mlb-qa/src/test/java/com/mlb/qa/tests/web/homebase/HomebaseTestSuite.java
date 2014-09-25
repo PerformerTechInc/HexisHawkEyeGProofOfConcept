@@ -31,7 +31,7 @@ public class HomebaseTestSuite extends UITest {
 
 	//************ MAJOR LEAGUE OBJECTS ************//	
 	public static String majorLeagueSiteSelection = "mlb";
-	public static String valueMajorTagToolPlayer = "smith";
+	public static String valueMajorTagToolPlayer = "Smith";
 	//************ MAJOR LEAGUE OBJECTS ************//	
 
 	//************ SEARCH OBJECTS ************//	
@@ -508,15 +508,14 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 
-//	@Test
+	@Test
 	public void homeBaseTestMLB000TestFunction() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.lineupGameContentDeletePlayers(mainURL);
-		homePage.lineupGameContentAddPlayers(mainURL);
-		homePage.lineupGameContentDeletePlayers(mainURL);
+		homePage.selectNewItem("Article");
+		homePage.fillAndSaveNewArticle(mainURL,valueBeta,valueArticleInternalName,valueArticleHeadline,valueArticleSubhead,valueArticleAltHeadline,valueArticleByline,valueArticleSeoHeadline,valueArticlePoll,valueMajorTagToolPlayer,valueArticleBlurb, valueArticleNotes,valueArticleTagline);
 		return;
 	}	
 
