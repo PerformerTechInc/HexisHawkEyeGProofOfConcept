@@ -33,6 +33,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
+import org.openqa.selenium.JavascriptExecutor;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -218,7 +219,7 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//div[contains(text(), 'Hide Options')]")
 	public ExtendedWebElement btnSearchHideOptions; 
 	
-    @FindBy(xpath="//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[@class='tileInfo ']/div")
+    @FindBy(xpath="//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[contains(@class, 'tileInfo ')]/div")
     public ExtendedWebElement panelSearchTileInfo;
 	
     @FindBy(xpath="//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[@class='tileControls']/div")
@@ -448,6 +449,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(id="multiUPstartBrowse")
 	public ExtendedWebElement BtnMultipleCutUploadAddFiles;
 
+	@FindBy(xpath="//div[@class='addFilesDropDown']")
+	public ExtendedWebElement BtnMultipleCutUploadAddFilesParent;
+	
 	@FindBy(id="singleUPstartBrowse")
 	public ExtendedWebElement BtnSingleCutUploadAddFiles;
 
@@ -1540,43 +1544,12 @@ public class HB_HomePage extends AbstractPage {
 	}
 
 	public void testPhotoFileDialogNoMouse(String mainURL) throws AWTException {
-		Selenium selenium = new WebDriverBackedSelenium(driver, mainURL);
-		Actions action = new Actions(driver);
-//		WebElement dragFilesHere001 = driver.findElement(By.xpath("//li[@class='dropHere']"));
-//		builder.dragAndDropBy(dragFilesHere001, 0, -66).build().perform();
-		pause(15);
-		action.sendKeys(String.valueOf('\u0009')).perform();
-//		pressTab();
-		pause(3);
-		action.sendKeys("ztestphoto").perform();
-		pause(3);
-		action.keyDown(Keys.SHIFT).sendKeys(String.valueOf('\u0009')).perform();
-//		action.sendKeys(null);
-//		("ztestphoto");
-		pause(3);
-//		selenium.keyPressNative("15");
-//		pressTab();
-//		selenium.keyPressNative("14");
-//		pressTab();
-		pause(1);
-		sendKeys("\n");
-		pause(300);
-//		selenium.keyPressNative("122");
-/*
-		selenium.keyDownNative("116");
-		selenium.keyDownNative("101");
-		selenium.keyDownNative("115");
-		selenium.keyPressNative("116");
-		selenium.keyPressNative("112");
-		selenium.keyPressNative("104");
-		selenium.keyPressNative("111");
-		selenium.keyPressNative("116");
-		selenium.keyPressNative("111");
-		pause(1);
-		selenium.keyPressNative("15");
-		selenium.keyPressNative("9");
-		selenium.keyPressNative("14");
-*/
+		 File file = null;
+         file = new File("/Users/snehalchudgar/Automation/mlb-qa/src/test/resources/ztestphoto.jpg");
+        ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').css('position', 'static').css('opacity', '1');"); 
+        ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').parent().css('overflow', 'visible').css('opacity', '1');"); 
+        WebElement BtnMultipleCutUploadAddFilesChild = BtnMultipleCutUploadAddFilesParent.getElement().findElement(By.xpath("//div[@style='position:absolute;display:inline-block;vertical-align:top;left:-62px']/div[@class='plupload html5']/input[@class='pluUploadInput skip']"));
+        BtnMultipleCutUploadAddFilesChild.sendKeys(file.getAbsolutePath());
 		}
 
 	public void testPhotoFileDialog001() throws AWTException {
@@ -1743,8 +1716,8 @@ public class HB_HomePage extends AbstractPage {
 		String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue+1);
 		click(FieldMainSearch);		
 		pause(1);
-		type(FieldMainSearch, valueItemNumberTrimmed);
-		click(btnSearch);
+		type(FieldMainSearch, valueItemNumberTrimmed + "\n");
+//		click(btnSearch);
 		pause(3);
 		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
 		btnItemSearchedForDeletion.click();
@@ -1787,17 +1760,18 @@ public class HB_HomePage extends AbstractPage {
 	
 	public void uploadPhotos(String mainURLCall, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 
-		click(BtnMultipleCutUploadAddFiles);
+//		click(BtnMultipleCutUploadAddFiles);
 		testPhotoFileDialogNoMouse(hostName);
 		click(BtnSaveAllAndPublishToProd);
 		click(BtnSendToProd);
 		click(BtnClose);
 		String valuePhotoAsset = StatusPublishComplete.getText();
 		String valuePhotoAssetTrimmed = valuePhotoAsset.substring(15);
-		type(FieldMainSearch, valuePhotoAssetTrimmed);
+		type(FieldMainSearch, valuePhotoAssetTrimmed + "\n");
 		click(btnSearch);
 		pause(3);
-		clickPosition(980, 255);
+		WebElement btnItemSearchedForValidation = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valuePhotoAssetTrimmed + "')]"));
+		btnItemSearchedForValidation.click();
 		Assert.assertTrue("Cut Width Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutWidth001, 5));
 		Assert.assertTrue("Cut Height Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutHeight001, 5));
 		pause(5);
