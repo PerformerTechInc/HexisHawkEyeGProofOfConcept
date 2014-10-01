@@ -444,6 +444,18 @@ public class HomebaseTestSuite extends UITest {
 	public static String valueMLBTVAdModuleMobileURL = "http://m.URL.com";
 	public static String valueMLBTVAdModuleTabletURL = "http://m.tabletURL.com";	
 	//************ MLBTV AD MODULE OBJECTS ************//	
+
+	//************ MOUNDBALL OBJECTS ************//	
+	public static String valueMoundBallInternalName = "Internal Name";
+	public static String valueMoundBallBlurb = "Blurb";
+	//************ MOUNDBALL OBJECTS ************//	
+
+	//************ MUSIC LINK OBJECTS ************//	
+	public static String valueMusicLinkInternalName = "Internal Name";
+	public static String valueMusicLinkUniqueID = "Unique ID";
+	public static String valueMusicLinkPreviewURL = "http://www.PreviewURL.com";
+	public static String valueMusicLinkMediaURL = "http://www.MediaURL.com";
+	//************ MUSIC LINK OBJECTS ************//	
 	
 	//************ NOTEBOOK OBJECTS ************//	
 	public static String valueNotebookInternalName = "Internal Name";
@@ -508,14 +520,14 @@ public class HomebaseTestSuite extends UITest {
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 
-	@Test
+//	@Test
 	public void homeBaseTestMLB000TestFunction() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(driver);
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.selectHomePageUploadPhotos();
-		homePage.uploadPhotos(mainURL, valueMajorTagToolPlayer);
+		homePage.selectNewItem("Mound Ball");
+		homePage.fillAndSaveNewMoundBall(mainURL,valueBeta, valueMoundBallInternalName, valueMoundBallBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -985,7 +997,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Mound Ball");
-		homePage.fillAndSaveNewMoundBall(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMoundBall(mainURL,valueBeta, valueMoundBallInternalName, valueMoundBallBlurb, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -996,7 +1008,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem("Music Link");
-		homePage.fillAndSaveNewMusicLink(mainURL,valueBeta, valueAudioScheduleInternalName, valueMajorTagToolPlayer);
+		homePage.fillAndSaveNewMusicLink(mainURL,valueBeta, valueMusicLinkInternalName, valueMusicLinkUniqueID, valueMusicLinkPreviewURL, valueMusicLinkMediaURL, valueMajorTagToolPlayer);
 		return;
 	}	
 
@@ -1339,6 +1351,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.depthChartsAddPlayers(mainURL);
 		homePage.depthChartsRepositionPlayers(mainURL);
 		homePage.depthChartsDeletePlayers(mainURL);
+		return;
 	}	
 
   	@Test
@@ -1350,6 +1363,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.probablesTeamContentAddPlayers(mainURL);
 		homePage.probablesTeamContentRepositionPlayers(mainURL);
 		homePage.probablesTeamContentDeletePlayers(mainURL);
+		return;
 	}	
 
   	@Test
@@ -1360,6 +1374,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.probablesGameContentAddPlayers(mainURL);
 		homePage.probablesGameContentDeletePlayers(mainURL);
+		return;
 	}	
 
   	@Test
@@ -1371,6 +1386,7 @@ public class HomebaseTestSuite extends UITest {
 		homePage.lineupGameContentDeletePlayers(mainURL);
 		homePage.lineupGameContentAddPlayers(mainURL);
 		homePage.lineupGameContentDeletePlayers(mainURL);
+		return;
 	}	
 
 	

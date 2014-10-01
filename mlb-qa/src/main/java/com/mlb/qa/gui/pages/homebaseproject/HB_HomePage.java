@@ -1094,6 +1094,19 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
 
+	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
+
+	@FindBy(name="unique-id")
+	public ExtendedWebElement FieldUniqueID;
+
+	@FindBy(name="preview-url")
+	public ExtendedWebElement FieldPreviewURL;
+
+	@FindBy(name="media-url")
+	public ExtendedWebElement FieldMediaURL;
+
+	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
+	
 	//************ PHOTO ASSET CREATION OBJECTS ************//	
 
 	@FindBy(xpath="//*[@data-field-key='photos']/div/button[contains(text(), 'Search for Photo Asset')]")
@@ -1676,7 +1689,7 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnToBeta);
 		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 600));
 		if (isElementPresent(statusPublishComplete) == true) {
-		deleteCreatedItem();
+		deleteCreatedItemNew();
 		}		
 	}
 	
@@ -1687,7 +1700,7 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnToProdConfirm);
 		Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 600));
 		if (isElementPresent(statusPublishComplete) == true) {
-		deleteCreatedItem();
+		deleteCreatedItemNew();
 		}		
 	}
 	
@@ -1721,6 +1734,22 @@ public class HB_HomePage extends AbstractPage {
 		pause(3);
 		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
 		btnItemSearchedForDeletion.click();
+		click(deleteItem);
+		click(deleteItemConfirm);
+	}	
+	
+	public void deleteCreatedItemNew() throws AWTException {
+		String valueItemNumber = StatusPublishComplete.getText();
+		int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
+		String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue+1);
+		driver.get(hostName + "prototype/homebase.jsp?#/itemeditor\\edit\\" + valueItemNumberTrimmed);
+//		click(FieldMainSearch);
+//		pause(1);
+//		type(FieldMainSearch, valueItemNumberTrimmed + "\n");
+//		click(btnSearch);
+//		pause(3);
+//		WebElement btnItemSearchedForDeletion = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valueItemNumberTrimmed + "')]"));
+//		btnItemSearchedForDeletion.click();
 		click(deleteItem);
 		click(deleteItemConfirm);
 	}	
@@ -2003,7 +2032,7 @@ public class HB_HomePage extends AbstractPage {
 	public void lineupGameContentBaseState(String mainURLCall) throws InterruptedException, AWTException	{
 		selectGameContent();
 		List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
-		(gameContentSelectGame.get(3)).click();
+		(gameContentSelectGame.get(0)).click();
 		click(btnDashboardGameContentLineup);
 		pause(0.5);
 	}
@@ -2015,6 +2044,7 @@ public class HB_HomePage extends AbstractPage {
 
 		int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
 		int NumberOfFieldDataPosition2PlayerTextInputBoxes = FieldDataPosition2.size();
+		List<WebElement> FieldDataPositionPlayerFieldsBeforeLineupPopulate = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
 
 /*
 		if (isElementPresent(btnUnlock) == true) {
@@ -2069,6 +2099,7 @@ public class HB_HomePage extends AbstractPage {
 		List<WebElement> FieldDataPositionPlayerType2Child = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='lineupColumn']"));
 		List<WebElement> fieldPlayerTypeDataDataSourceAL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsAL']")));
 		List<WebElement> fieldPlayerTypeDataDataSourceNL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsNL']")));
+	
 		
 		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
 			WebElement lineupAwayPlayerPosition1 = fieldPlayerTypeDataDataSourceAL.get(0);
@@ -2497,6 +2528,7 @@ public class HB_HomePage extends AbstractPage {
 		}
 
 		(FieldDataPosition2.get(0)).click();
+
 		for (int c = 0; c < NumberOfFieldDataPosition2PlayerTextInputBoxes; c++) {
 			(FieldDataPosition2.get(c)).sendKeys(Keys.ARROW_DOWN);
 			for (int d = (c+1); d > 0; d--) {
@@ -2513,10 +2545,16 @@ public class HB_HomePage extends AbstractPage {
 		List<WebElement> FieldDataPositionPlayerFieldsAfterLineupPopulate = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
 
 		if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
-		Assert.assertEquals(("Number of Bit-Box fields after Delete: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 46."), FieldDataPositionPlayerFieldsAfterLineupPopulate.size(), 46);		
+			logger.info(FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
+			logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size());
+			logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
+		Assert.assertEquals(("Number of Bit-Box fields delta after Populate: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 43."), (FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size()), 43);		
 		}
 		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {		
-		Assert.assertEquals(("Number of Bit-Box fields after Delete: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 50."), FieldDataPositionPlayerFieldsAfterLineupPopulate.size(), 50);		
+			logger.info(FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
+			logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size());
+			logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
+		Assert.assertEquals(("Number of Bit-Box fields delta after Populate: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 47."), (FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size()), 47);		
 		}
 	}
 
@@ -2584,8 +2622,8 @@ public class HB_HomePage extends AbstractPage {
 		click(btnLineupDeleteEntryOfficialRF);
 		click(btnLineupDeleteEntryOfficialOS);
 
-		List<WebElement> FieldDataPositionPlayerFieldsAfterDelete = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
-		Assert.assertEquals(("Number of Bit-Box fields after Delete: " + FieldDataPositionPlayerFieldsAfterDelete.size() + ". Expected number is 3."), FieldDataPositionPlayerFieldsAfterDelete.size(), 3);		
+//		List<WebElement> FieldDataPositionPlayerFieldsAfterDelete = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
+//		Assert.assertEquals(("Number of Bit-Box fields after Delete: " + FieldDataPositionPlayerFieldsAfterDelete.size() + ". Expected number is 3."), FieldDataPositionPlayerFieldsAfterDelete.size(), 3);		
 		}
 
 	public void fillAndSaveNewArticle(String mainURLCall, String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) throws InterruptedException, AWTException	{
@@ -3380,9 +3418,11 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewMoundBall(String mainURLCall, String betaOrProd, String moundBallReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewMoundBall(String mainURLCall, String betaOrProd, String moundBallReqFieldInternalName, String moundBallReqFieldBlurb, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, moundBallReqFieldInternalName);
 		useTagToolNew(mainURLCall, tagToolPlayerValue);
+		type(FieldBlurb, moundBallReqFieldBlurb);
+		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3391,9 +3431,12 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewMusicLink(String mainURLCall, String betaOrProd, String musicLinkReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewMusicLink(String mainURLCall, String betaOrProd, String musicLinkReqFieldInternalName, String musicLinkReqFieldUniqueID, String musicLinkReqFieldPreviewURL, String musicLinkReqFieldMediaURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, musicLinkReqFieldInternalName);
 		useTagToolNew(mainURLCall, tagToolPlayerValue);
+		type(FieldUniqueID, musicLinkReqFieldUniqueID);
+		type(FieldPreviewURL, musicLinkReqFieldPreviewURL);
+		type(FieldMediaURL, musicLinkReqFieldMediaURL);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
