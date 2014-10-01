@@ -3448,6 +3448,7 @@ public class HB_HomePage extends AbstractPage {
 	public void fillAndSaveNewNote(String mainURLCall, String betaOrProd, String noteReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, noteReqFieldInternalName);
 		useTagToolNew(mainURLCall, tagToolPlayerValue);
+		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
