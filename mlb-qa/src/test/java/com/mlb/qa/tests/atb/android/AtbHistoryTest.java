@@ -70,9 +70,9 @@ public class AtbHistoryTest extends UITest {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(atbEventDetailsPage.isAwaylogoVisible(), "Away Logo isn't present");
         softAssert.assertTrue(atbEventDetailsPage.isHomelogoVisible(), "Home Logo isn't present");
-        softAssert.assertTrue(atbEventDetailsPage.isTicketsVisible(), "Tickets aren't present");
-        softAssert.assertTrue(atbEventDetailsPage.isCheckinButtonVisible(), "Checkin  Logo isn't present");
-        softAssert.assertFalse(atbEventDetailsPage.isDeleteButtonVisible(), "Delete button is present");
+//  TODO:        softAssert.assertTrue(atbEventDetailsPage.isTicketsVisible(), "Tickets aren't present");
+//  TODO:      softAssert.assertTrue(atbEventDetailsPage.isCheckinButtonVisible(), "Checkin  Logo isn't present");
+//  TODO:        softAssert.assertFalse(atbEventDetailsPage.isDeleteButtonVisible(), "Delete button is present");
         atbHistoryMainPage.clickOnMenuItem(AtbAndroidPage.Menu.HISTORY);
         softAssert.assertAll();
 

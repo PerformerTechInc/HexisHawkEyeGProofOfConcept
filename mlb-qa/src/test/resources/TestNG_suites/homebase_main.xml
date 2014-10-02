@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite verbose="1" name="MLB - Homebase Basic test"
-	skipfailedinvocationcounts="false" junit="false" parallel="tests"
-	data-provider-thread-count="50" annotations="JDK"> 
+	skipfailedinvocationcounts="false" junit="false" parallel="methods"
+	thread-count="4" annotations="JDK"> 
 	
-	<test verbose="1" name="Verify Home Page">
+	<test verbose="1" name="Verify Home Page" thread-count="4">
 	    	    
 		<classes>
 			<class name="com.mlb.qa.tests.web.homebase.HomebaseTestSuite" />
