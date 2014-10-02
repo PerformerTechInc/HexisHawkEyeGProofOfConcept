@@ -2,9 +2,9 @@
 
 <suite verbose="1" name="MLB - Homebase Basic test"
 	skipfailedinvocationcounts="false" junit="false" parallel="methods"
-	thread-count="3" annotations="JDK"> 
+	thread-count="4" annotations="JDK"> 
 	
-	<test verbose="1" name="Verify Home Page" thread-count="3">
+	<test verbose="1" name="Verify Home Page" thread-count="4">
 	    	    
 		<classes>
 			<class name="com.mlb.qa.tests.web.homebase.HomebaseTestSuite" />
