@@ -1,25 +1,13 @@
 package com.mlb.qa.gui.pages.homebaseproject;
 
 import org.junit.Assert;
-import com.thoughtworks.selenium.DefaultSelenium;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.support.FindBy;
-import com.thoughtworks.selenium.*;
-import com.qaprosoft.carina.core.foundation.*;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.*;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import org.testng.annotations.*;
-import static org.testng.Assert.*;
-import com.qaprosoft.carina.core.foundation.http.*;
-import com.mlb.qa.atb.AtbParameter;
-import com.mlb.qa.common.http.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.Action;
-import java.util.Set;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
@@ -28,75 +16,13 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Pattern;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import org.openqa.selenium.JavascriptExecutor;
-
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationEventHandler;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.EventQueue;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.io.File;
-
-import org.apache.commons.httpclient.HttpStatus;
 import org.apache.log4j.Logger;
-import org.joda.time.DateTime;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
-import com.mlb.qa.atb.AtbParameter;
-import com.mlb.qa.atb.model.about.BallparkInformation;
-import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJsonItem;
-import com.mlb.qa.atb.model.checkin_history.CheckinHistoryJson;
-import com.mlb.qa.atb.model.game_promotion.GamePromotion;
-import com.mlb.qa.atb.model.game_promotion.QueryGamePromotionsRS;
-import com.mlb.qa.atb.model.game_ticket.GameTicket;
-import com.mlb.qa.atb.model.game_ticket.QueryGameTicketsRS;
-import com.mlb.qa.atb.model.identity_point.IdentityPoint;
-import com.mlb.qa.atb.model.identity_point.IdentityPointIdentifyRS;
-import com.mlb.qa.common.date.DateUtils;
-import com.mlb.qa.common.exception.TestRuntimeException;
-import com.mlb.qa.common.http.HttpHelper;
-import com.mlb.qa.common.http.HttpResult;
-//import com.mlb.qa.tests.web.homebase.ChromeDriver;
-
 
 public class HB_HomePage extends AbstractPage {
 	private static final Logger logger = Logger.getLogger(HB_HomePage.class);
@@ -1655,16 +1581,20 @@ public class HB_HomePage extends AbstractPage {
 		pause(0.5);
 		sendKeys("\n");
 		pause(0.5);
-		click(FieldTagToolUmpireTag);
-		pause(0.5);
-		type(FieldTagToolUmpireTag, "a");
-		pause(3);
-		sendKeys("\n");
-		pause(0.5);
-		click(FieldTagToolTeamTag);
-		pause(0.5);
-		type(FieldTagToolTeamTag, "\n");
-		pause(0.5);
+
+		if (tagToolPlayer == "Smith") {
+			click(FieldTagToolUmpireTag);
+			pause(0.5);
+			type(FieldTagToolUmpireTag, "a");
+			pause(3);
+			sendKeys("\n");
+			pause(0.5);
+			click(FieldTagToolTeamTag);
+			pause(0.5);
+			type(FieldTagToolTeamTag, "\n");
+			pause(0.5);
+		}
+
 		click(FieldTagToolKeywordTagGroup);
 		pause(0.5);
 		type(FieldTagToolKeywordTagGroup, "CMS");
@@ -2638,7 +2568,9 @@ public class HB_HomePage extends AbstractPage {
 			type(FieldNotes, articleNotesValue);
 		}
 		type(FieldTagline, articleTaglineValue);
-		click(BtnCmsToolWysiwyg);
+		if (tagToolPlayerValue == "Smith") {
+			click(BtnCmsToolWysiwyg);
+		}
 		testCMSToolNewFunctionHTML();
 		click(BtnCmsToolHtml);
 		type(FieldPoll, articleReqFieldPoll);
