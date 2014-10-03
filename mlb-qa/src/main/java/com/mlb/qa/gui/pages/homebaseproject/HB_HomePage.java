@@ -1640,8 +1640,9 @@ public class HB_HomePage extends AbstractPage {
 		pause(0.5);
 		type(FieldTagToolPlayerTagName, tagToolPlayer);
 		pause(0.5);
-		WebElement DropDownTagToolPlayerTagNameSelectionDynamic = DropDownTagToolPlayerTagNameSelection.getElement().findElement(By.xpath("//em[contains(text(), '" + tagToolPlayer + "')]"));
-		DropDownTagToolPlayerTagNameSelectionDynamic.click();
+		sendKeys("\n");
+//		WebElement DropDownTagToolPlayerTagNameSelectionDynamic = DropDownTagToolPlayerTagNameSelection.getElement().findElement(By.xpath("//em[contains(text(), '" + tagToolPlayer + "')]"));
+//		DropDownTagToolPlayerTagNameSelectionDynamic.click();
 		pause(0.5);
 		click(FieldTagToolPlayerTagTeam);
 		pause(0.5);
@@ -2622,8 +2623,6 @@ public class HB_HomePage extends AbstractPage {
 		click(btnLineupDeleteEntryOfficialRF);
 		click(btnLineupDeleteEntryOfficialOS);
 
-//		List<WebElement> FieldDataPositionPlayerFieldsAfterDelete = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
-//		Assert.assertEquals(("Number of Bit-Box fields after Delete: " + FieldDataPositionPlayerFieldsAfterDelete.size() + ". Expected number is 3."), FieldDataPositionPlayerFieldsAfterDelete.size(), 3);		
 		}
 
 	public void fillAndSaveNewArticle(String mainURLCall, String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) throws InterruptedException, AWTException	{
@@ -2649,7 +2648,6 @@ public class HB_HomePage extends AbstractPage {
 		if (betaOrProd == "prod") {
 			saveItemAndPublishToProd();
 		}
-//		click(linkViewBetaArticle);
 	}
 
 	public void fillAndSaveNewArticleView(String mainURLCall, String betaOrProd, String articleViewReqFieldInternalName, String articleViewReqFieldName, String articleViewReqFieldViewKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException {
@@ -3216,7 +3214,7 @@ public class HB_HomePage extends AbstractPage {
 		}
 	}
 
-	public void fillAndSaveNewInstagramStream(String mainURLCall, String betaOrProd, String instagramStreamReqFieldInternalName, String instagramStreamReqFieldDisplayName, String instagramStreamReqFieldKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
+	public void fillAndSaveNewSocialMediaStream(String mainURLCall, String betaOrProd, String instagramStreamReqFieldInternalName, String instagramStreamReqFieldDisplayName, String instagramStreamReqFieldKey, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, instagramStreamReqFieldInternalName);
 		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldInstagramStreamDisplayName, instagramStreamReqFieldDisplayName);
