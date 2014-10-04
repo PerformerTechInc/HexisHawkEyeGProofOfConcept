@@ -3,6 +3,7 @@ package com.mlb.qa.atb.service.http;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -269,6 +270,9 @@ public class AtbHttpService {
 		List<GamePromotion> gamePromotions = QueryGamePromotionsRS.unmarshal(result.getResponseBody())
 				.getGamePromotions();
 		logger.info("Found game promotions: " + gamePromotions);
+        if(gamePromotions == null){
+            gamePromotions = new ArrayList<GamePromotion>();
+        }
 		return gamePromotions;
 	}
 
