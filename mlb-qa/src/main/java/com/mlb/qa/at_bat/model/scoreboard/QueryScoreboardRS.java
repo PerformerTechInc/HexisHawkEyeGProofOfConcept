@@ -1,10 +1,7 @@
 package com.mlb.qa.at_bat.model.scoreboard;
 
 import java.io.StringReader;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

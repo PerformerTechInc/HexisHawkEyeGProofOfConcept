@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.mlb.qa.gui.pages.homebaseproject.HB_HomePage;

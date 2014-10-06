@@ -1,7 +1,5 @@
 package com.mlb.qa.atb.android.page;
 
-import com.qaprosoft.carina.core.foundation.log.TestLogCollector;
-import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import org.joda.time.DateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

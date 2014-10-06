@@ -10,7 +10,6 @@ import com.mlb.qa.at_bat.AtBatParameter;
 import com.mlb.qa.at_bat.model.roster.QueryPlayerRosterRS;
 import com.mlb.qa.at_bat.model.roster.Roster;
 import com.mlb.qa.at_bat.model.scoreboard.QueryScoreboardRS;
-import com.mlb.qa.at_bat.model.scoreboard.ScoreboardGame;
 import com.mlb.qa.common.exception.TestRuntimeException;
 import com.mlb.qa.common.http.HttpHelper;
 import com.mlb.qa.common.http.HttpResult;

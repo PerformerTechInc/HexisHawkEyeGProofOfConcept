@@ -1,6 +1,5 @@
 package com.mlb.qa.atb.web.page;
 
-import org.jfree.util.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

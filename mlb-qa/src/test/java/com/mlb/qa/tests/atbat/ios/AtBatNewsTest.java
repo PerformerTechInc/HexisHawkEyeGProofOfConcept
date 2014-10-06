@@ -3,7 +3,6 @@ package com.mlb.qa.tests.atbat.ios;
 import com.mlb.qa.at_bat.ios.page.authentication.AtBatLoginPage;
 import com.mlb.qa.at_bat.ios.page.common.AtBatStartPage;
 import com.mlb.qa.at_bat.ios.page.footer.AtBatBottomMenuPage;
-import com.mlb.qa.at_bat.ios.page.footer.AtBatNewsPage;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.qaprosoft.carina.core.foundation.UITest;
 import org.openqa.selenium.By;

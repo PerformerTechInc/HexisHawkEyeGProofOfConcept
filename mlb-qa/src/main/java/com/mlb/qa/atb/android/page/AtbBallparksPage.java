@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.log.TestLogCollector;
-import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**
