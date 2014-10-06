@@ -12,7 +12,7 @@ public class HomeBaseTest extends UITest {
 	@Parameters({"username", "password", "profile"})
 	public void checkHomebaseTest(String username, String password, String profile)
 	{
-		HomebaseHomePage homePage = new HomebaseHomePage(driver);
+		HomebaseHomePage homePage = new HomebaseHomePage(getDriver());
 		homePage.login(username, password, profile);
 		homePage.showHistory();
 		homePage.hideHistory();

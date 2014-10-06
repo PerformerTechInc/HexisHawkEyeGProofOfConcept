@@ -12,7 +12,7 @@ public class LoginWebTest extends UITest {
 	@Parameters({"email", "password", "profile"})
 	public void testLogin(String email, String password, String profile)
 	{
-		HomePage homePage = new HomePage(driver);
+		HomePage homePage = new HomePage(getDriver());
 		homePage.login(email, password, profile);
 		
 	}	

@@ -27,7 +27,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 		boolean result = true;
 
 		liteUserInitialPath();
-		AtBatNewsPage newsPage = new AtBatAndroidPage(driver)
+		AtBatNewsPage newsPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 					.waitForDateProgressBarLoad()
@@ -58,7 +58,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 		fullUserInitialPath();
 		checkInitialFavoriteTeamFlow();
 
-		AtBatNewsPage newsPage = new AtBatNewsPage(driver)
+		AtBatNewsPage newsPage = new AtBatNewsPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 					.waitForDateProgressBarLoad()
@@ -79,13 +79,13 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 		liteUserInitialPath();
 
 		//TODO:  This one is going to probably change...
-		new AtBatAndroidPage(driver)
+		new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 					.waitForDateProgressBarLoad()
 						.selectTeamVideo();
 
-		AtBatPaywallPage paywallPage = new AtBatPaywallPage(driver);
+		AtBatPaywallPage paywallPage = new AtBatPaywallPage(getDriver());
 
 		Assert.assertTrue(!paywallPage.paywallPageAvailable(), "That paywall was supposed to display, but didn't");
 	}
@@ -94,13 +94,13 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 	public void testTeamScheduleTabs(String teamName) {
 		liteUserInitialPath();
 
-		new AtBatAndroidPage(driver)
+		new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 					.waitForDateProgressBarLoad()
 					.swipeUp();
 
-		AtBatSchedulePage schedulePage = new AtBatTeamPage(driver)
+		AtBatSchedulePage schedulePage = new AtBatTeamPage(getDriver())
 					.selectTeamSchedule()
 						.selectList()
 						.selectMonth()
@@ -113,7 +113,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 	public void testTeamRosterTabs(String teamName) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();
@@ -133,7 +133,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 	public void testTeamStadium(String teamName, String stadiumName) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();
@@ -146,7 +146,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 	public void testTeamMore(String teamName) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();
@@ -162,14 +162,14 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 	public void testTeamMoreFacebook(String teamName, String teamAbbrev) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName);
 		teamPage.swipeUp();
 		teamPage.selectTeamMore();
 		teamPage.selectTeamMoreFacebook();
 
-		AtBatWebViewPage webViewPage = new AtBatWebViewPage(driver);
+		AtBatWebViewPage webViewPage = new AtBatWebViewPage(getDriver());
 
 		Assert.assertTrue(webViewPage.isTeamsWebView(teamAbbrev), String.format("The Web View displayed is not the correct one for the ", teamName));
 	}
@@ -178,7 +178,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 	public void testTeamEntryFavoriteTeam(String teamName, String teamAbbrev) {
 		liteUserInitialPathFavoriteTeam(teamName);
 
-		AtBatTeamPage teamPage = new AtBatMenu(driver)
+		AtBatTeamPage teamPage = new AtBatMenu(getDriver())
 				.openScoreboard()
 				.openFavoriteTeam(teamName);
 		
@@ -189,7 +189,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 	public void testTeamNotificationEntryPoint(String teamName) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();
@@ -205,7 +205,7 @@ public class AtBatTeamPageMenuTest extends AtBatTest {
 	public void testTeamNotificationTeamExpanded(String teamName) {		
 		liteUserInitialPath();
 		
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();

@@ -11,7 +11,7 @@ public class TigerWoodsTest extends UITest {
 	@Test
 	public void testNews()
 	{
-		TW_HomePage homePage = new TW_HomePage(driver);
+		TW_HomePage homePage = new TW_HomePage(getDriver());
 		homePage.openNews();
 		return;
 	}	
@@ -20,7 +20,7 @@ public class TigerWoodsTest extends UITest {
 	@Parameters({"tour"})
 	public void testTigerVSJackTour(String tour)
 	{
-		TW_HomePage homePage = new TW_HomePage(driver);
+		TW_HomePage homePage = new TW_HomePage(getDriver());
 		homePage.openTour(tour);
 	}	
 }

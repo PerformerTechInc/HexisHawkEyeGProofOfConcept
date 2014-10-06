@@ -23,11 +23,11 @@ public class AtBatNewsTeamTest extends UITest {
     @Parameters({"team_abbrev","TUID", "team_name"})
     @Test(dataProvider = "excel_ds")
     public void checkNewsGlobal(String team_abbrev, String TUID, String team_name) {
-        AtBatStartPage atBatStartPage = new AtBatStartPage(driver);
+        AtBatStartPage atBatStartPage = new AtBatStartPage(getDriver());
         AtBatLoginPage atBatLoginPage = atBatStartPage.getAtBatLoginPage();
         atBatLoginPage.login();
 
-        AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(driver);
+        AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(getDriver());
         AtBatMorePage atBatMorePage = atBatBottomMenuPage.getAtBatMorePage();
 
         AtBatTeamSelectionPage atBatTeamSelectionPage = atBatMorePage.getAtBatTeamSelectionPage();
@@ -43,7 +43,7 @@ public class AtBatNewsTeamTest extends UITest {
         for (String aNew : news) {
 
             if (aNew != null && !aNew.contains("'")) {
-                softAssert.assertTrue(driver.findElements(By.name(aNew)).size() > 0, "Post with title '" + aNew + "' not present");
+                softAssert.assertTrue(getDriver().findElements(By.name(aNew)).size() > 0, "Post with title '" + aNew + "' not present");
             }
             System.out.println("Iteration: " + i);
             i++;

@@ -35,15 +35,16 @@ public class AtbBallparkTicketsPage extends AbstractPage {
 	@FindBy(xpath = "//div[@class='game-container']")
 	private List<ExtendedWebElement> gameContainers;
 
-	public AtbBallparkTicketsPage(WebDriver driver) {
+	public AtbBallparkTicketsPage(WebDriver driver, String url) {
 		super(driver);
+		pageURL = url;
 	}
 
-	public static AtbBallparkTicketsPage open(WebDriver driver, String url) {
+/*	public static AtbBallparkTicketsPage open(WebDriver driver, String url) {
 		logger.info("Open " + url);
 		driver.get(url);
 		return new AtbBallparkTicketsPage(driver);
-	}
+	}*/
 
 	/**
 	 * Load list of tickets

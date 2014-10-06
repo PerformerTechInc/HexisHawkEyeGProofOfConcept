@@ -17,7 +17,7 @@ public class AtBatStandingsTest extends UITest {
 	@Test(dataProvider = "excel_ds", description = "Check correct Favorite Team Selected", enabled = true)
 	public void checkStandingsFavoriteTeamHighlighted(String teamName, String teamShortCode) {	
 		
-		AtBatStandingsPage standingsPage = AtBatStandingsPage.open(driver, 
+		AtBatStandingsPage standingsPage = AtBatStandingsPage.open(getDriver(), 
 				httpService.getFavoriteTeamStandingsURL(teamShortCode));
 		
 		Assert.assertTrue(
@@ -32,17 +32,17 @@ public class AtBatStandingsTest extends UITest {
 		String available = "available";
 		String notAvailable = "not available";		
 
-		AtBatStandingsPage standingsPage = AtBatStandingsPage.open(driver,
+		AtBatStandingsPage standingsPage = AtBatStandingsPage.open(getDriver(),
 				httpService.getSeasonStandingsURL(Season.REGULAR_SEASON.getSeasonText()));
 
 		checkAssert(isClinchVisible, standingsPage, Season.REGULAR_SEASON.getSeasonText(), notAvailable, available);
 
-		standingsPage = AtBatStandingsPage.open(driver,
+		standingsPage = AtBatStandingsPage.open(getDriver(),
 				httpService.getSeasonStandingsURL(Season.SPRING_TRAINING.getSeasonText()));
 
 		checkAssert(isClinchVisible, standingsPage, Season.SPRING_TRAINING.getSeasonText(), available, available);
 
-		standingsPage = AtBatStandingsPage.open(driver,
+		standingsPage = AtBatStandingsPage.open(getDriver(),
 				httpService.getSeasonStandingsURL(Season.WILD_CARD.getSeasonText()));
 
 		checkAssert(isClinchVisible, standingsPage, Season.WILD_CARD.getSeasonText(), notAvailable, available);

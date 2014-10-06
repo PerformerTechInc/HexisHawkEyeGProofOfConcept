@@ -13,7 +13,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserAudioFeaturesScoreboard() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openScoreboard();
         actionBarPage.getAudioPage();
 
@@ -24,7 +24,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserAudioFeaturesNews() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openNews();
         actionBarPage.getAudioPage();
 
@@ -35,7 +35,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserAudioFeaturesVideo() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openVideo();
 
         Assert.assertTrue(!actionBarPage.isAudioButtonAvailable(), "Video - Audio Button is currently visible and should not be");
@@ -45,7 +45,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserAudioFeaturesStandings() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openStandings();
         actionBarPage.getAudioPage();
 
@@ -56,7 +56,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserAudioFeaturesTeams() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openTeamsMenu();
         actionBarPage.getAudioPage();
 
@@ -67,7 +67,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserTvFeaturesTeams() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openTeamsMenu();
         actionBarPage.getVideoPage();
 
@@ -78,7 +78,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserTvFeaturesStandings() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openStandings();
         actionBarPage.getVideoPage();
 
@@ -89,7 +89,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserTvFeaturesVideo() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openVideo();
 
         Assert.assertTrue(!actionBarPage.isVideoButtonAvailable(), "Video - Tv Button is currently visible and should not be");
@@ -99,7 +99,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserTvFeaturesNews() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openNews();
         actionBarPage.getVideoPage();
 
@@ -110,7 +110,7 @@ public class AtBatFeaturesLiteTest extends AtBatTest {
     public void testLiteUserTvFeaturesScoreboard() {
         liteUserInitialPath();
 
-        AtBatActionBar actionBarPage = new AtBatActionBar(driver);
+        AtBatActionBar actionBarPage = new AtBatActionBar(getDriver());
         actionBarPage.openScoreboard();
         actionBarPage.getVideoPage();
 

@@ -599,7 +599,7 @@ public class HomebaseTestSuite extends UITest {
 //	@Test
 	public void homeBaseTestMLB000TestFunction() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemArticle);
@@ -611,7 +611,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		return;
@@ -620,7 +620,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB002BasicSearch() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.basicSearch(valueBasicSearch);
@@ -630,7 +630,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB003CreateSaveBetaNewArticle() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemArticle);
@@ -641,7 +641,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB004CreateSaveBetaNewArticleView() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemArticleView);
@@ -652,7 +652,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB005CreateSaveBetaNewAudioSchedule() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemAudioSchedule);
@@ -663,7 +663,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB006CreateSaveBetaNewBallpark() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemBallpark);
@@ -674,7 +674,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB007CreateSaveBetaNewBallparkMenu() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemBallparkMenu);
@@ -685,7 +685,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB008CreateSaveBetaNewBallparkMusic() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemBallparkMusic);
@@ -696,7 +696,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB009CreateSaveBetaNewBallparkSubmenu() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemBallparkSubmenu);
@@ -707,7 +707,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB010CreateSaveBetaNewBlogContent() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemBlogContent);
@@ -718,7 +718,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB011CreateSaveBetaNewBlogContentAlias() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemBlogContentAlias);
@@ -729,7 +729,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB012CreateSaveBetaNewChron() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemChron);
@@ -740,7 +740,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB013CreateSaveBetaNewClosedCaption() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemClosedCaption);
@@ -751,7 +751,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB014CreateSaveBetaNewClubPromo() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemClubPromo);
@@ -762,7 +762,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB015CreateSaveBetaNewContributor() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemContributor);
@@ -773,7 +773,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB016CreateSaveBetaNewDailyEmail() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemDailyEmail);
@@ -784,7 +784,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB017CreateSaveBetaNewDeviceAnnouncement() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemDeviceAnnouncement);
@@ -795,7 +795,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB018CreateSaveBetaNewDeviceBanner() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemDeviceBanner);
@@ -806,7 +806,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB019CreateSaveBetaNewDevicePage() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemDevicePage);
@@ -817,7 +817,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB020CreateSaveBetaNewDigitalAsset() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemDigitalAsset);
@@ -828,7 +828,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB021CreateSaveBetaNewDrawer() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemDrawer);
@@ -839,7 +839,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB022CreateSaveBetaNewEvent() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemEvent);
@@ -850,7 +850,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB023CreateSaveBetaNewFeature() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemFeature);
@@ -861,7 +861,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB024CreateSaveBetaNewFeatures() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemFeatures);
@@ -872,7 +872,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB025CreateSaveBetaNewFieldOption() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemFieldOption);
@@ -883,7 +883,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB026CreateSaveBetaNewGamePreview() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemGamePreview);
@@ -894,7 +894,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB027CreateSaveBetaNewGameWrap() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemGameWrap);
@@ -905,7 +905,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB028CreateSaveBetaNewHighlight() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemHighlight);
@@ -916,7 +916,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB029CreateSaveBetaNewHomepageTab() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemHomepageTab);
@@ -927,7 +927,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB030CreateSaveBetaNewHPConfig() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemHPConfig);
@@ -938,7 +938,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB031CreateSaveBetaNewHTMLInclude() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemIncludeHTML);
@@ -949,7 +949,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB032CreateSaveBetaNewInstagramPhoto() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemInstagramPhoto);
@@ -960,7 +960,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB033CreateSaveBetaNewSocialMediaStream() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemSocialMediaStream);
@@ -971,7 +971,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB034CreateSaveBetaNewKiosk() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemKiosk);
@@ -982,7 +982,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB035CreateSaveBetaNewLineup() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemLineup);
@@ -993,7 +993,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB036CreateSaveBetaNewLineupPlayer() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemLineupPlayer);
@@ -1004,7 +1004,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB037CreateSaveBetaNewLink() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemLink);
@@ -1015,7 +1015,7 @@ public class HomebaseTestSuite extends UITest {
 	@Test
 	public void homeBaseTestMLB038CreateSaveBetaNewList() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemList);
@@ -1026,7 +1026,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB039CreateSaveBetaNewMediawall() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemMediawall);
@@ -1037,7 +1037,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB040CreateSaveBetaNewMediawallOverlay() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemMediawallOverlay);
@@ -1048,7 +1048,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB041CreateSaveBetaNewMediaWallPanel() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemMediawallPanel);
@@ -1059,7 +1059,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB042CreateSaveBetaNewMLBTVAdModule() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemMLBTVAdModule);
@@ -1070,7 +1070,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB043CreateSaveBetaNewMoundBall() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemMoundBall);
@@ -1081,7 +1081,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB044CreateSaveBetaNewMusicLink() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemMusicLink);
@@ -1092,7 +1092,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB045CreateSaveBetaNewNote() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemNote);
@@ -1103,7 +1103,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB046CreateSaveBetaNewNotebook() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemNotebook);
@@ -1114,7 +1114,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB047CreateSaveBetaNewPage() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPage);
@@ -1125,7 +1125,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB048CreateSaveBetaNewPhotoGallery() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPhotoGallery);
@@ -1136,7 +1136,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB049CreateSaveBetaNewPhotoGalleryAlias() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPhotoGalleryAlias);
@@ -1147,7 +1147,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB050CreateSaveBetaNewPhotoGalleryList() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPhotoGalleryList);
@@ -1158,7 +1158,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB051CreateSaveBetaNewProspect() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPlayerProspect);
@@ -1169,7 +1169,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB052CreateSaveBetaNewPodcastDetail() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPodcastDetail);
@@ -1180,7 +1180,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB053CreateSaveBetaNewPodcastEpisode() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPodcastEpisode);
@@ -1191,7 +1191,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB054CreateSaveBetaNewPressRelease() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPressRelease);
@@ -1202,7 +1202,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB055CreateSaveBetaNewPressboxAsset() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPressboxAsset);
@@ -1213,7 +1213,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB056CreateSaveBetaNewPressboxAssetList() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPressboxAssetList);
@@ -1224,7 +1224,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB057CreateSaveBetaNewPreviewAlias() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPreviewAlias);
@@ -1235,7 +1235,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB058CreateSaveBetaNewProgramShow() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemProgramShow);
@@ -1246,7 +1246,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB059CreateSaveBetaNewPromoApplication() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPromoApplication);
@@ -1257,7 +1257,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB060CreateSaveBetaNewQuoteSheet() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemQuoteSheet);
@@ -1268,7 +1268,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB061CreateSaveBetaNewRaffle() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemRaffle);
@@ -1279,7 +1279,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB062CreateSaveBetaNewSchedule() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemSchedule);
@@ -1290,7 +1290,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB063CreateSaveBetaNewScrapbook() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemScrapbook);
@@ -1301,7 +1301,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB064CreateSaveBetaNewScrapbookPage() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemScrapbookPage);
@@ -1312,7 +1312,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB065CreateSaveBetaNewSection() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemSection);
@@ -1323,7 +1323,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB066CreateSaveBetaNewSeriesConfiguration() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemSeriesConfiguration);
@@ -1334,7 +1334,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB067CreateSaveBetaNewShortContent() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemShortContent);
@@ -1345,7 +1345,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB068CreateSaveBetaNewTicketPage() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemTicketPage);
@@ -1356,7 +1356,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB069CreateSaveBetaNewTrendingModule() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemTrendingModule);
@@ -1367,7 +1367,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB070CreateSaveBetaNewTweet() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemTweet);
@@ -1378,7 +1378,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB071CreateSaveBetaNewVideoTopicPage() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemVideoTopicPage);
@@ -1389,7 +1389,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB072CreateSaveBetaNewTwitterHandle() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemTwitterHandle);
@@ -1400,7 +1400,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB073CreateSaveBetaNewVideoClipList() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemVideoClipList);
@@ -1411,7 +1411,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB074UploadPhotos() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.selectHomePageUploadPhotos();
@@ -1422,7 +1422,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB075DepthChart() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.depthChartsAddPlayers(mainURL);
@@ -1434,7 +1434,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB076TeamContentProbables() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.probablesTeamContentAddPlayers(mainURL);
@@ -1446,7 +1446,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB077GameContentProbables() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.probablesGameContentAddPlayers(mainURL);
@@ -1457,7 +1457,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMLB078GameContentLineup() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
 		homePage.lineupGameContentDeletePlayers(mainURL);
@@ -1479,7 +1479,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		return;
@@ -1488,7 +1488,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB002BasicSearch() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.basicSearch(valueBasicSearch);
@@ -1498,7 +1498,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB003CreateSaveBetaNewArticle() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemArticle);
@@ -1509,7 +1509,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB004CreateSaveBetaNewDigitalAsset() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemDigitalAsset);
@@ -1520,7 +1520,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB005CreateSaveBetaNewFieldOption() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemFieldOption);
@@ -1531,7 +1531,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB006CreateSaveBetaNewHighlight() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemHighlight);
@@ -1542,7 +1542,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB007CreateSaveBetaNewHTMLPage() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemHTMLPage);
@@ -1553,7 +1553,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB008CreateSaveBetaNewLink() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemLink);
@@ -1564,7 +1564,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB009CreateSaveBetaNewMediaWallPanel() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemMediawallPanel);
@@ -1575,7 +1575,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB010CreateSaveBetaNewNotebook() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemNotebook);
@@ -1586,7 +1586,7 @@ public class HomebaseTestSuite extends UITest {
   	@Test
 	public void homeBaseTestMiLB011CreateSaveBetaNewPhotoGallery() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
-		HB_HomePage homePage = new HB_HomePage(driver);
+		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
 		homePage.oldUIToNewUI(minorLeagueSiteSelection);
 		homePage.selectNewItem(selectNewItemPhotoGallery);

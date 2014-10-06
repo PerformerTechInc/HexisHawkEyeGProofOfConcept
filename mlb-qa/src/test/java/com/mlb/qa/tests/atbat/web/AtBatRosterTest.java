@@ -41,7 +41,7 @@ public class AtBatRosterTest extends UITest {
 		for (Iterator<Roster> iter = rosterBackEnd.iterator(); iter.hasNext(); ) {
 			Roster backendPlayer = iter.next();
 			
-			Roster webPlayer = AtBatPlayerCardPage.open(driver, 
+			Roster webPlayer = AtBatPlayerCardPage.open(getDriver(), 
 					httpService.getPlayerCardURL(backendPlayer.getPlayerId(), backendPlayer.getPlayerName())).loadPlayer();
 			
 			String[] backendPlayerArray = backendPlayer.getPlayerName().split(",");

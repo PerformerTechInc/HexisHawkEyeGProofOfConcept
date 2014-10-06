@@ -30,11 +30,11 @@ public class AtBatAcceptanceTest extends UITest {
     @Test(dataProvider = "excel_ds")
     public void login(String TUID, String team_name) {
 
-        AtBatStartPage atBatStartPage = new AtBatStartPage(driver);
+        AtBatStartPage atBatStartPage = new AtBatStartPage(getDriver());
         AtBatLoginPage atBatLoginPage = atBatStartPage.getAtBatLoginPage();
         atBatLoginPage.login();
 
-        AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(driver);
+        AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(getDriver());
         AtBatMorePage atBatMorePage = atBatBottomMenuPage.getAtBatMorePage();
 
         AtBatTeamSelectionPage atBatTeamSelectionPage = atBatMorePage.getAtBatTeamSelectionPage();

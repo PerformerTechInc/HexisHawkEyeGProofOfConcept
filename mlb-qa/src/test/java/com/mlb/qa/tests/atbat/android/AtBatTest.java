@@ -25,7 +25,7 @@ public class AtBatTest extends UITest {
 	private static final Logger logger = Logger.getLogger(AtBatTest.class);
 	
 	public void liteUserInitialPath() {
-		AtBatWelcomePage welcomePage = new AtBatWelcomePage(driver);
+		AtBatWelcomePage welcomePage = new AtBatWelcomePage(getDriver());
 		if (welcomePage.isOpened()) {
 			logger.info("Welcome Page is Open");
 			welcomePage.passToPaywallPage()
@@ -35,7 +35,7 @@ public class AtBatTest extends UITest {
 				.skipSettingNotifications();
 		} else {
 			logger.info("Welcome Page is NOT Open");
-			AtBatSettingsPage settingsPage = new AtBatSettingsPage(driver);
+			AtBatSettingsPage settingsPage = new AtBatSettingsPage(getDriver());
 			settingsPage.openMenu()
 				.clickOnMenuItem(MenuItem.SETTINGS);
 
@@ -51,7 +51,7 @@ public class AtBatTest extends UITest {
 	}
 
 	public void liteUserInitialPathFavoriteTeam(String teamName) {
-		AtBatWelcomePage welcomePage = new AtBatWelcomePage(driver);
+		AtBatWelcomePage welcomePage = new AtBatWelcomePage(getDriver());
 		if (welcomePage.isOpened()) {
 			welcomePage.passToPaywallPage()
 				.continueWithLiteVersion()
@@ -60,12 +60,12 @@ public class AtBatTest extends UITest {
 				.skipPlayServiceAlertInitial()
 				.skipSettingNotifications();
 		} else {
-			AtBatSettingsPage settingsPage = new AtBatSettingsPage(driver);
+			AtBatSettingsPage settingsPage = new AtBatSettingsPage(getDriver());
 			settingsPage.openMenu()
 				.clickOnMenuItem(MenuItem.SETTINGS);
 			settingsPage.tapMenuOption("Favorite Teams");
 			
-			AtBatFavoriteTeamSelectionPage favoriteTeam = new AtBatFavoriteTeamSelectionPage(driver);
+			AtBatFavoriteTeamSelectionPage favoriteTeam = new AtBatFavoriteTeamSelectionPage(getDriver());
 			favoriteTeam.selectFavoriteTeam(teamName)
 				.clickHome()
 				.clickHome();
@@ -73,13 +73,13 @@ public class AtBatTest extends UITest {
 	}
 
 	public void fullUserInitialPath() {
-		AtBatWelcomePage welcomePage = new AtBatWelcomePage(driver);
+		AtBatWelcomePage welcomePage = new AtBatWelcomePage(getDriver());
 		if (welcomePage.isOpened()) {
 			welcomePage.passToPaywallPage()
 				.loginAsExistingUser()
 				.login(AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue(), AtbParameter.MLB_ATBAT_DEFAULT_PASSWORD.getValue());
 		} else {
-			AtBatSettingsPage settingsPage = new AtBatSettingsPage(driver);
+			AtBatSettingsPage settingsPage = new AtBatSettingsPage(getDriver());
 			settingsPage.openMenu()
 				.clickOnMenuItem(MenuItem.SETTINGS);
 			settingsPage.tapMenuOption("MLB.com Account")
@@ -90,7 +90,7 @@ public class AtBatTest extends UITest {
 	}
 
 	public void checkInitialFavoriteTeamFlow() {
-		AtBatFavoriteTeamSelectionPage favoritePage = new AtBatFavoriteTeamSelectionPage(driver);
+		AtBatFavoriteTeamSelectionPage favoritePage = new AtBatFavoriteTeamSelectionPage(getDriver());
 		if (favoritePage.isOpened()) {
 			favoritePage.skipFavoriteTeamSelectionStep()
 			.skipPlayServiceAlertInitial()
@@ -99,7 +99,7 @@ public class AtBatTest extends UITest {
 	}
 
     public void assertLiteTVResults(String pageType) {
-        AtBatTvPage tvPage = new AtBatTvPage(driver);
+        AtBatTvPage tvPage = new AtBatTvPage(getDriver());
 
         //Loop through days from present backwards looking for a day with games.
         while (!tvPage.doGamesExist() && tvPage.isPreviousDayAvailable()) {
@@ -108,21 +108,21 @@ public class AtBatTest extends UITest {
 
         tvPage.selectStream(1);
 
-        AtBatVideoStreamPage mediaPlayer = new AtBatVideoStreamPage(driver);
+        AtBatVideoStreamPage mediaPlayer = new AtBatVideoStreamPage(getDriver());
 
         Assert.assertFalse(mediaPlayer.isOpen(), String.format("%s (Assert True) - Paywall not visible, TV visible", pageType));
 
-        AtBatPaywallTVPage paywallPage = new AtBatPaywallTVPage(driver);
+        AtBatPaywallTVPage paywallPage = new AtBatPaywallTVPage(getDriver());
 
         Assert.assertTrue(paywallPage.paywallPageAvailable(), String.format("%s (Assert True) - Paywall not visible, TV visible", pageType));
     }
 
     public void assertLiteAudioResults(String pageType) {
-        AtBatAudioPage audioPage = new AtBatAudioPage(driver);
+        AtBatAudioPage audioPage = new AtBatAudioPage(getDriver());
 
         Assert.assertFalse(audioPage.isOpen(), String.format("%s (Assert False) - Paywall not visible, Audio page visible", pageType));
 
-        AtBatPaywallPage paywallPage = new AtBatPaywallPage(driver);
+        AtBatPaywallPage paywallPage = new AtBatPaywallPage(getDriver());
 
         Assert.assertTrue(paywallPage.paywallPageAvailable(), String.format("%s (Assert True) - Paywall not visible, Audio page visible", pageType));
     }
