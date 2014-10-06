@@ -3,7 +3,6 @@ package com.mlb.qa.tests.atbat.web;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,7 +16,6 @@ import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.qaprosoft.carina.core.foundation.UITest;
 
 public class AtBatRosterTest extends UITest {	
-	private static final Logger logger = Logger.getLogger(AtBatRosterTest.class);
 	
 	private AtBatHttpService httpService = new AtBatHttpService();
 	private AtbLookupService lookupService = new AtbLookupService();

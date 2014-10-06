@@ -6,8 +6,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.*;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
@@ -16,14 +18,19 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.UnsupportedEncodingException;
+
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
+
 import org.openqa.selenium.JavascriptExecutor;
+
 import java.io.IOException;
 import java.util.List;
 import java.io.File;
+
 import org.apache.log4j.Logger;
 
+@SuppressWarnings("deprecation")
 public class HB_HomePage extends AbstractPage {
 	private static final Logger logger = Logger.getLogger(HB_HomePage.class);
 

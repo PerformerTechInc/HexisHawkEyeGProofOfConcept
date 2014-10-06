@@ -1,25 +1,22 @@
 package com.mlb.qa.gui.pages.wweproject;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.*;
+
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
-import org.apache.log4j.Logger;
 
 
 public class WWE_HomePage extends AbstractPage {
-	private static final Logger logger = Logger.getLogger(WWE_HomePage.class);
 
 	public WWE_HomePage(WebDriver driver) {
 		super(driver);

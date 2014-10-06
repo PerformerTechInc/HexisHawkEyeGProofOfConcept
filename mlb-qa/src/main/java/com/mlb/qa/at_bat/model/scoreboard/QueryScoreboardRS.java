@@ -10,14 +10,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.log4j.Logger;
-
 import com.mlb.qa.common.exception.TestRuntimeException;
 
 @XmlRootElement(name = "games")
 public class QueryScoreboardRS {
-	private static final Logger logger = Logger.getLogger(QueryScoreboardRS.class);
-	
 	@XmlElement(name = "game")
 	List<ScoreboardGame> gameList;
 
