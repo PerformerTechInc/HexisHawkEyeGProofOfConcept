@@ -27,7 +27,7 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 	public void testTeamDateBar3GamesExist(String teamName) {
 		liteUserInitialPath();
 		
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 						.waitForDateProgressBarLoad();
@@ -38,7 +38,7 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 	public void testTeamDatebarSwitchDays(String teamName, String teamShortCode) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 						.waitForDateProgressBarLoad();
@@ -87,7 +87,7 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 	public void testTeamDatebarValidDatesLoaded(String teamName, String teamShortCode) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 						.waitForDateProgressBarLoad();
@@ -108,7 +108,7 @@ public class AtBatTeamPageGamePagerTest extends AtBatTest {
 	public void testTeamCorrectGameButtons(String teamName, String teamShortCode) {
 		liteUserInitialPath();
 		
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 		.openTeamsMenu()
 			.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();

@@ -8,14 +8,14 @@ public class AppiumAndroidAtBatTest extends UITest {
 
 	/*@Test(priority = 0, description = "Pass welcome and team selection steps if displayed")
 	public void testPaywallLiteUser() {
-		new AtBatWelcomePage(driver).continueWithLiteVersion()
+		new AtBatWelcomePage(getDriver()).continueWithLiteVersion()
 				.skipFavoriteTeamSelectionStep();
 
 	}
 
 	@Test(priority = 1, description = "Swiping on news page")
 	public void testSwipingOnNewsPage() {
-		NewsPage newsPage = new AtBatAndroidPage(driver).openMenu()
+		NewsPage newsPage = new AtBatAndroidPage(getDriver()).openMenu()
 				.openNewsPageIfNotOpened();
 		newsPage.swipeRight();
 		newsPage.swipeRight();
@@ -31,7 +31,7 @@ public class AppiumAndroidAtBatTest extends UITest {
 	public void testNewsAdsAppears() {
 		boolean result = true;
 		// 1st 'Sponsor slide'
-		NewsPage newsPage = new AtBatAndroidPage(driver).openMenu()
+		NewsPage newsPage = new AtBatAndroidPage(getDriver()).openMenu()
 				.openNewsPageIfNotOpened().switchToDetailedView();
 		newsPage.swipeRight();
 		newsPage.swipeRight();
@@ -54,7 +54,7 @@ public class AppiumAndroidAtBatTest extends UITest {
 
 	@Test(priority = 3, description = "Check available Share options")
 	public void testNewsShare() {
-		NewsPage newsPage = new AtBatAndroidPage(driver).openMenu()
+		NewsPage newsPage = new AtBatAndroidPage(getDriver()).openMenu()
 				.openNewsPageIfNotOpened().switchToDetailedView();
 		List<String> shareOptions = newsPage.loadShareWithOptions();
 		List<String> expectedShareOptions = new LinkedList<String>();

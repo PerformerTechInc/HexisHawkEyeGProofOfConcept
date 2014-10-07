@@ -10,15 +10,15 @@ public class GamedayTest extends UITest {
 
 	@Test
 	public void gamedayQuickTest() {
-		GameDayUIFinalizedPage gameday = new GameDayUIFinalizedPage(driver);
-		gameday.open(driver, "http://mqa.mlb.com/game/2014/07/09/381904/dodgers-vs-tigers");
+		GameDayUIFinalizedPage gameday = new GameDayUIFinalizedPage(getDriver());
+		gameday.open(getDriver(), "http://mqa.mlb.com/game/2014/07/09/381904/dodgers-vs-tigers");
 		
 		Assert.assertTrue(gameday.isBoxTabVisible(), "The Box Tab is currently not visible");
 	}
 	
 	@Test
 	public void gamedayTabSwitching() {
-		GameDayUIFinalizedPage gameday = new GameDayUIFinalizedPage(driver).open(driver, "http://mqa.mlb.com/game/2014/07/09/381904/dodgers-vs-tigers");
+		GameDayUIFinalizedPage gameday = new GameDayUIFinalizedPage(getDriver()).open(getDriver(), "http://mqa.mlb.com/game/2014/07/09/381904/dodgers-vs-tigers");
 		gameday.selectPlaysTab();
 		gameday.selectBoxTab();
 		gameday.selectPlaysTab();

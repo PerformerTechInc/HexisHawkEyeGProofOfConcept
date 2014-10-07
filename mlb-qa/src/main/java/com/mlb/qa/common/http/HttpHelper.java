@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import com.mlb.qa.common.exception.TestRuntimeException;
 import com.qaprosoft.carina.core.foundation.utils.R;
 
+@SuppressWarnings("deprecation")
 public class HttpHelper {
 	private static final Logger logger = Logger.getLogger(HttpHelper.class);
 
@@ -43,8 +44,10 @@ public class HttpHelper {
 	 * @param headers
 	 * @return
 	 */
+	@SuppressWarnings("resource")
 	public static HttpResult executeHttpRequest(HttpUriRequest request, Map<String, String> headers) {
 		logger.info("Execute HTTP request: " + request);
+		
 		DefaultHttpClient client = new DefaultHttpClient();
 		// http proxy
 		String hostname = R.CONFIG.get(HTTP_PROXY_HOSTNAME);

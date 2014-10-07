@@ -6,13 +6,9 @@ import com.mlb.qa.at_bat.ios.page.footer.AtBatBottomMenuPage;
 import com.mlb.qa.at_bat.ios.page.footer.AtBatMorePage;
 import com.mlb.qa.at_bat.ios.page.team.AtBatTeamPage;
 import com.mlb.qa.at_bat.ios.page.team.AtBatTeamSelectionPage;
-import com.mlb.qa.at_bat.ios.page.team.news.AtBatNewsPage;
 import com.mlb.qa.at_bat.ios.page.team.videos.AtBatVideosPage;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.qaprosoft.carina.core.foundation.UITest;
-import com.qaprosoft.carina.core.foundation.webdriver.appium.AppiumNativeDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.browserlaunchers.Sleeper;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,11 +23,11 @@ public class AtBatVideoTeamTest extends UITest {
     @Test(dataProvider = "excel_ds")
     public void checkNewsGlobal(String team_abbrev, String TUID, String team_name) {
 
-        AtBatStartPage atBatStartPage = new AtBatStartPage(driver);
+        AtBatStartPage atBatStartPage = new AtBatStartPage(getDriver());
         AtBatLoginPage atBatLoginPage = atBatStartPage.getAtBatLoginPage();
         atBatLoginPage.login();
 
-        AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(driver);
+        AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(getDriver());
         AtBatMorePage atBatMorePage = atBatBottomMenuPage.getAtBatMorePage();
 
         AtBatTeamSelectionPage atBatTeamSelectionPage = atBatMorePage.getAtBatTeamSelectionPage();

@@ -4,7 +4,6 @@ import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.mlb.qa.atb.android.page.AtbStartPage;
 import com.mlb.qa.atb.android.page.settings.AtbSettingsPage;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 /**

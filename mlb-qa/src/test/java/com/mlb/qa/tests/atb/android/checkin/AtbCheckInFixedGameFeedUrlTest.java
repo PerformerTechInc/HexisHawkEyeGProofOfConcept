@@ -37,7 +37,7 @@ public class AtbCheckInFixedGameFeedUrlTest extends BaseCheckinTest {
 	public void checkin(String teamAbbrev, Game game, Team team) {
 //		loginIfNotLogged();
 		//openCheckinWindow();
-		AtbCheckedInPage checkedInPage = new AtbAndroidPage(driver)
+		AtbCheckedInPage checkedInPage = new AtbAndroidPage(getDriver())
 				.openBallparksFromMenu()
 				.openBallparkByTeamName(team.getNameFull()).openCheckInPage()
 				.processLocationDetermining().confirmCheckIn();

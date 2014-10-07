@@ -28,7 +28,7 @@ public abstract class BaseCheckinTest extends UITest {
 	}
 
 	protected void loginIfNotLogged() {
-		AtbStartPage sp = new AtbStartPage(driver);
+		AtbStartPage sp = new AtbStartPage(getDriver());
 		if (sp.isOpened()) {
 			sp.passToLoginPage()
 					.login(AtbParameter.MLB_ATB_DEFAULT_USER.getValue(),
@@ -47,7 +47,7 @@ public abstract class BaseCheckinTest extends UITest {
 	}
 
 	protected void openCheckinWindow() {
-		new AtbAndroidPage(driver).openCheckinWindow();
+		new AtbAndroidPage(getDriver()).openCheckinWindow();
 	}
 
 	protected boolean isCheckinInHistoryCorrect(Game game, DateTime checkinDate, IdentityPoint identityPoint) {

@@ -9,8 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import com.mlb.qa.common.android.page.AndroidPage;
-import com.qaprosoft.carina.core.foundation.log.TestLogCollector;
-import com.qaprosoft.carina.core.foundation.webdriver.Screenshot;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
 /**

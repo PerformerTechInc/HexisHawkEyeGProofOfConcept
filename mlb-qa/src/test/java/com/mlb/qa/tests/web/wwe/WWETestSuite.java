@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.mlb.qa.gui.pages.wweproject.WWE_HomePage;
@@ -75,7 +74,7 @@ public class WWETestSuite extends UITest {
 //	@Test
 	public void wweTest000TestFunction() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
-		WWE_HomePage homePage = new WWE_HomePage(driver);
+		WWE_HomePage homePage = new WWE_HomePage(getDriver());
 //		homePage.signIn(signInEmailAddress,signInPassword);
 		homePage.getTimestamp();
 //		homePage.logout();
@@ -85,7 +84,7 @@ public class WWETestSuite extends UITest {
 //	@Test
 	public void wweTest001MyAccountSignIn() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
-		WWE_HomePage homePage = new WWE_HomePage(driver);
+		WWE_HomePage homePage = new WWE_HomePage(getDriver());
 		homePage.signIn(signInEmailAddress,signInPassword);
 		homePage.homePageBaseState();
 		homePage.logout();
@@ -95,7 +94,7 @@ public class WWETestSuite extends UITest {
 //	@Test
 	public void wweTest002MyAccountSignUp() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
-		WWE_HomePage homePage = new WWE_HomePage(driver);
+		WWE_HomePage homePage = new WWE_HomePage(getDriver());
 		homePage.createNewAccount(valueCreateNewAccountReqFieldProfileFirstName, valueCreateNewAccountReqFieldProfileLastName, valueCreateNewAccountReqFieldProfileEmailAddress, valueCreateNewAccountReqFieldProfilePassword, valueCreateNewAccountReqFieldProfileConfirmPassword, valueCreateNewAccountReqDropDownListProfileAddressCountry, valueCreateNewAccountReqFieldProfileAddressZipCode, valueCreateNewAccountReqDropDownListProfileBirthDateMonth, valueCreateNewAccountReqDropDownListProfileBirthDateDay, valueCreateNewAccountReqDropDownListProfileBirthDateYear);
 		homePage.updateContactInformation(valueUpdateContactInformationReqFieldProfileFirstName, valueUpdateContactInformationReqFieldProfileLastName, valueUpdateContactInformationReqDropDownListProfileBirthDateMonth, valueUpdateContactInformationReqDropDownListProfileBirthDateDay, valueUpdateContactInformationReqDropDownListProfileBirthDateYear, valueUpdateContactInformationOptDropDownListProfileGender, valueUpdateContactInformationOptFieldProfileAddressStreet1, valueUpdateContactInformationOptFieldProfileAddressStreet2, valueUpdateContactInformationOptFieldProfileAddressCity, valueUpdateContactInformationOptDropDownListProfileAddressState, valueUpdateContactInformationOptDropDownListProfileAddressCountry, valueUpdateContactInformationReqFieldProfileAddressZipCode, valueUpdateContactInformationOptDropDownListProfileIncome, valueUpdateContactInformationOptDropDownListProfileEducation, valueUpdateContactInformationOptDropDownListProfileEthnicity, valueUpdateContactInformationOptDropDownListProfileChildrensAgeRange, valueUpdateContactInformationOptDropDownListProfileChildrensGender);
 		homePage.homePageBaseState();
@@ -106,7 +105,7 @@ public class WWETestSuite extends UITest {
 	@Test
 	public void wweTest003MyAccountSignUpAndSubscribe() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
 	{
-		WWE_HomePage homePage = new WWE_HomePage(driver);
+		WWE_HomePage homePage = new WWE_HomePage(getDriver());
 		homePage.createNewAccount(valueCreateNewAccountReqFieldProfileFirstName, valueCreateNewAccountReqFieldProfileLastName, valueCreateNewAccountReqFieldProfileEmailAddress, valueCreateNewAccountReqFieldProfilePassword, valueCreateNewAccountReqFieldProfileConfirmPassword, valueCreateNewAccountReqDropDownListProfileAddressCountry, valueCreateNewAccountReqFieldProfileAddressZipCode, valueCreateNewAccountReqDropDownListProfileBirthDateMonth, valueCreateNewAccountReqDropDownListProfileBirthDateDay, valueCreateNewAccountReqDropDownListProfileBirthDateYear);
 		homePage.updateContactInformation(valueUpdateContactInformationReqFieldProfileFirstName, valueUpdateContactInformationReqFieldProfileLastName, valueUpdateContactInformationReqDropDownListProfileBirthDateMonth, valueUpdateContactInformationReqDropDownListProfileBirthDateDay, valueUpdateContactInformationReqDropDownListProfileBirthDateYear, valueUpdateContactInformationOptDropDownListProfileGender, valueUpdateContactInformationOptFieldProfileAddressStreet1, valueUpdateContactInformationOptFieldProfileAddressStreet2, valueUpdateContactInformationOptFieldProfileAddressCity, valueUpdateContactInformationOptDropDownListProfileAddressState, valueUpdateContactInformationOptDropDownListProfileAddressCountry, valueUpdateContactInformationReqFieldProfileAddressZipCode, valueUpdateContactInformationOptDropDownListProfileIncome, valueUpdateContactInformationOptDropDownListProfileEducation, valueUpdateContactInformationOptDropDownListProfileEthnicity, valueUpdateContactInformationOptDropDownListProfileChildrensAgeRange, valueUpdateContactInformationOptDropDownListProfileChildrensGender);
 		homePage.subscribeToWWENetwork();

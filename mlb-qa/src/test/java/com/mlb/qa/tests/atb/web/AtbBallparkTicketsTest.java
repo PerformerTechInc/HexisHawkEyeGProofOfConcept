@@ -26,7 +26,10 @@ public class AtbBallparkTicketsTest extends AtbBaseWebTest {
 	@Test(dataProvider = "excel_ds", description = "Check list of tickets correct")
 	@Parameters({ "team_abbrev", "team_tickets_web" })
 	public void checkTicketsList(String teamAbbrev, String ticketsUrl) {
-		List<GameTicket> ticketsUi = AtbBallparkTicketsPage.open(driver, ticketsUrl).loadListOfGameTickets();
+		AtbBallparkTicketsPage ticketsPage = new AtbBallparkTicketsPage(getDriver(), ticketsUrl);
+		ticketsPage.open();
+		
+		List<GameTicket> ticketsUi = ticketsPage.loadListOfGameTickets();
 		String season = AtbParameter.MLB_ATB_SEASON.getValue();
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, season);
 		List<GameTicket> ticketsBackend = httpService.loadListOfTicketsFromGameTicketService(team.getTeamId(),

@@ -3,7 +3,6 @@ package com.mlb.qa.tests.atbat.ios;
 import com.mlb.qa.at_bat.ios.page.authentication.AtBatLoginPage;
 import com.mlb.qa.at_bat.ios.page.common.AtBatStartPage;
 import com.mlb.qa.at_bat.ios.page.footer.AtBatBottomMenuPage;
-import com.mlb.qa.at_bat.ios.page.footer.AtBatNewsPage;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.qaprosoft.carina.core.foundation.UITest;
 import org.openqa.selenium.By;
@@ -26,16 +25,16 @@ public class AtBatNewsTest extends UITest {
                 i++;
             }
         }
-        AtBatStartPage atBatStartPage = new AtBatStartPage(driver);
+        AtBatStartPage atBatStartPage = new AtBatStartPage(getDriver());
         AtBatLoginPage atBatLoginPage = atBatStartPage.getAtBatLoginPage();
         atBatLoginPage.login();
-        AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(driver);
+        AtBatBottomMenuPage atBatBottomMenuPage = new AtBatBottomMenuPage(getDriver());
         atBatBottomMenuPage.getAtBatNewsPage();
         i = 1;
         SoftAssert softAssert = new SoftAssert();
         for (String aNew : news) {
             if (aNew != null && !aNew.contains("'")) {
-                softAssert.assertTrue(driver.findElements(By.name(aNew)).size() > 0, "Post with title '" + aNew + "' not present");
+                softAssert.assertTrue(getDriver().findElements(By.name(aNew)).size() > 0, "Post with title '" + aNew + "' not present");
             }
             i++;
             if (i == 30) {

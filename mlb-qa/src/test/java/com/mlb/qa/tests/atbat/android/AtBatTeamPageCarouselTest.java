@@ -12,7 +12,7 @@ public class AtBatTeamPageCarouselTest extends AtBatTest {
 	public void testTeamCarousel(String teamName) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 					.waitForCarouselLoad()
@@ -32,7 +32,7 @@ public class AtBatTeamPageCarouselTest extends AtBatTest {
 	public void testTeamCarouselLiteAd(String teamName) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 					.waitForCarouselLoad()
@@ -48,7 +48,7 @@ public class AtBatTeamPageCarouselTest extends AtBatTest {
 		fullUserInitialPath();
 		checkInitialFavoriteTeamFlow();
 
-		AtBatTeamPage teamPage = new AtBatTeamPage(driver)
+		AtBatTeamPage teamPage = new AtBatTeamPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 						.waitForCarouselLoad();
@@ -68,7 +68,7 @@ public class AtBatTeamPageCarouselTest extends AtBatTest {
 	public void testTeamCarouselLite5ItemsExist(String teamName) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 						.waitForCarouselLoad();
@@ -80,7 +80,7 @@ public class AtBatTeamPageCarouselTest extends AtBatTest {
 		fullUserInitialPath();
 		checkInitialFavoriteTeamFlow();
 
-		AtBatTeamPage teamPage = new AtBatTeamPage(driver)
+		AtBatTeamPage teamPage = new AtBatTeamPage(getDriver())
 				.openTeamsMenu()
 					.openTeamByName(teamName)
 						.waitForCarouselLoad();

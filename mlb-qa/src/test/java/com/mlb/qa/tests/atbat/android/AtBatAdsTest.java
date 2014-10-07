@@ -17,7 +17,7 @@ public class AtBatAdsTest extends AtBatTest {
 	public void testTeamAdVisible(String teamName) {
 		liteUserInitialPath();
 
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();
@@ -29,7 +29,7 @@ public class AtBatAdsTest extends AtBatTest {
 	public void testTeamAdNotVisible(String teamName) {
 		fullUserInitialPath();
 		
-		AtBatTeamPage teamPage = new AtBatAndroidPage(driver)
+		AtBatTeamPage teamPage = new AtBatAndroidPage(getDriver())
 				.openTeamsMenu()
 				.openTeamByName(teamName)
 				.waitForDateProgressBarLoad();

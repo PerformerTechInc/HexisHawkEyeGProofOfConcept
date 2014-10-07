@@ -58,7 +58,7 @@ public class AtbCheckInTest extends BaseCheckinTest {
 	}
 
 	private void checkin() {
-		AtbCheckedInPage checkedInPage = new AtbAndroidPage(driver)
+		AtbCheckedInPage checkedInPage = new AtbAndroidPage(getDriver())
 				.openBallparksFromMenu()
 				.openBallparkByTeamName(team.getNameFull()).openCheckInPage()
 				.processLocationDetermining().confirmCheckIn();

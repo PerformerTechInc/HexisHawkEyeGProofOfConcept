@@ -238,6 +238,10 @@ public class AtbHttpService {
 		HttpResult result = HttpHelper.executeGet(getQueryRequest, new HashMap<String, String>());
 		HttpHelper.checkResultOk(result);
 		List<GameTicket> gameTickets = QueryGameTicketsRS.unmarshal(result.getResponseBody()).getGameTickets();
+
+        if(gameTickets == null){
+            gameTickets = new ArrayList<GameTicket>();
+        }
 		logger.info("Found game tickets: " + gameTickets);
 		return gameTickets;
 	}

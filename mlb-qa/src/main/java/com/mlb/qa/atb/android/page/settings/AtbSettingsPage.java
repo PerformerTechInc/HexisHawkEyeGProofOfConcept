@@ -3,7 +3,6 @@ package com.mlb.qa.atb.android.page.settings;
 import com.mlb.qa.atb.android.page.AtbAndroidPage;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 

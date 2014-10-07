@@ -27,7 +27,7 @@ public class BasicMobileWebTest extends UITest {
 	
 	private void playerInfo(String team, String role, String sorter, String person){
 
-		HomePageMobile homePage = new HomePageMobile(driver);
+		HomePageMobile homePage = new HomePageMobile(getDriver());
 		TeamPageMobile teamPage = homePage.openTeam(team);
 		
 		StatsPageMobile statsPage = teamPage.showStats();
