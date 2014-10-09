@@ -1,24 +1,31 @@
 package com.mlb.qa.atb.model.music.json;
 
-import java.io.FileNotFoundException;
-import java.util.LinkedList;
-import java.util.List;
+    import java.io.ByteArrayInputStream;
+    import java.io.FileNotFoundException;
+    import java.io.InputStream;
+    import java.nio.charset.StandardCharsets;
+    import java.util.HashMap;
+    import java.util.LinkedList;
+    import java.util.List;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.stream.StreamSource;
+    import javax.xml.bind.JAXBContext;
+    import javax.xml.bind.JAXBException;
+    import javax.xml.bind.Unmarshaller;
+    import javax.xml.transform.stream.StreamSource;
 
-import org.eclipse.persistence.jaxb.UnmarshallerProperties;
-import org.eclipse.persistence.oxm.MediaType;
-import org.eclipse.persistence.oxm.annotations.XmlPath;
+    import com.mlb.qa.common.http.HttpHelper;
+    import com.mlb.qa.common.http.HttpResult;
+    import com.qaprosoft.carina.core.foundation.http.HttpClient;
+    import org.eclipse.persistence.jaxb.UnmarshallerProperties;
+    import org.eclipse.persistence.oxm.MediaType;
+    import org.eclipse.persistence.oxm.annotations.XmlPath;
 
-import com.mlb.qa.atb.model.Item;
-import com.mlb.qa.atb.model.music.Music;
-import com.mlb.qa.atb.model.music.MusicCategory;
-import com.mlb.qa.common.exception.TestRuntimeException;
+    import com.mlb.qa.atb.model.Item;
+    import com.mlb.qa.atb.model.music.Music;
+    import com.mlb.qa.atb.model.music.MusicCategory;
+    import com.mlb.qa.common.exception.TestRuntimeException;
 
-public class BallparkMusicJson implements Item {
+    public class BallparkMusicJson implements Item {
 
 	public static final String BALLPARK_MUSIC_KEY = "ballpark-music";
 	public static final String TITLE_KEY = "title";
@@ -106,9 +113,13 @@ public class BallparkMusicJson implements Item {
 			unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_ATTRIBUTE_PREFIX, "@");
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_VALUE_WRAPPER, "$");
+            HttpResult result = HttpHelper.executeGet(jsonSourceUrl, new HashMap<String, String>());
+
+            InputStream stream = new ByteArrayInputStream(result.getResponseBody().getBytes(StandardCharsets.UTF_8));
 			StreamSource ss = new StreamSource(jsonSourceUrl);
-			return (BallparkMusicJson) unmarshaller.unmarshal(ss,
-					BallparkMusicJson.class).getValue();
+
+
+			return (BallparkMusicJson) unmarshaller.unmarshal(ss);
 		} catch (JAXBException e) {
 			throw new TestRuntimeException(
 					String.format("Error while unmarshaling json response. Source: %s", jsonSourceUrl), e);
