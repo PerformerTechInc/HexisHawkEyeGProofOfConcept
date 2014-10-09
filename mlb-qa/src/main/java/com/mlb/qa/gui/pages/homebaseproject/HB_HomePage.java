@@ -3457,7 +3457,8 @@ public class HB_HomePage extends AbstractPage {
 
 		click(BtnSave);
 		
-	    click(btnHomeThumbnailSearchForPhotoAsset);
+/*
+ 	    click(btnHomeThumbnailSearchForPhotoAsset);
 	    click(btnSearchHideOptions);
 		type(FieldMainSearch, "95436230");
 		click(btnSearch);
@@ -3488,7 +3489,9 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched9 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
 		btnAddVideoClipListBeingSearched9.click();
-	    
+
+*/
+		
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}

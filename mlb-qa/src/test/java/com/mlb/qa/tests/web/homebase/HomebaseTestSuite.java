@@ -813,7 +813,7 @@ public class HomebaseTestSuite extends UITest {
 		return;
 	}	
 
-  	@Test
+//	@Test
 	public void homeBaseTestMLB020CreateSaveBetaNewDigitalAsset() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(getDriver());
