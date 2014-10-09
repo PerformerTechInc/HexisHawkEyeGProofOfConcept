@@ -3,7 +3,7 @@ package com.mlb.qa.atb.model.music.json;
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+//import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -112,13 +112,13 @@ import com.mlb.qa.common.http.HttpResult;
 			unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_ATTRIBUTE_PREFIX, "@");
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_VALUE_WRAPPER, "$");
-            HttpResult result = HttpHelper.executeGet(jsonSourceUrl, new HashMap<String, String>());
-
-            InputStream stream = new ByteArrayInputStream(result.getResponseBody().getBytes(StandardCharsets.UTF_8));
+            //HttpResult result = HttpHelper.executeGet(jsonSourceUrl, new HashMap<String, String>());
+            //InputStream stream = new ByteArrayInputStream(result.getResponseBody().getBytes(StandardCharsets.UTF_8));
 			StreamSource ss = new StreamSource(jsonSourceUrl);
 
 
-			return (BallparkMusicJson) unmarshaller.unmarshal(ss);
+			return (BallparkMusicJson) unmarshaller.unmarshal(ss,
+					BallparkMusicJson.class).getValue();
 		} catch (JAXBException e) {
 			throw new TestRuntimeException(
 					String.format("Error while unmarshaling json response. Source: %s", jsonSourceUrl), e);
