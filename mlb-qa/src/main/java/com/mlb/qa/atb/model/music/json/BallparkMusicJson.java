@@ -1,6 +1,10 @@
 package com.mlb.qa.atb.model.music.json;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+//import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,8 +21,10 @@ import com.mlb.qa.atb.model.Item;
 import com.mlb.qa.atb.model.music.Music;
 import com.mlb.qa.atb.model.music.MusicCategory;
 import com.mlb.qa.common.exception.TestRuntimeException;
+import com.mlb.qa.common.http.HttpHelper;
+import com.mlb.qa.common.http.HttpResult;
 
-public class BallparkMusicJson implements Item {
+    public class BallparkMusicJson implements Item {
 
 	public static final String BALLPARK_MUSIC_KEY = "ballpark-music";
 	public static final String TITLE_KEY = "title";
@@ -106,7 +112,11 @@ public class BallparkMusicJson implements Item {
 			unmarshaller.setProperty(UnmarshallerProperties.MEDIA_TYPE, MediaType.APPLICATION_JSON);
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_ATTRIBUTE_PREFIX, "@");
 			unmarshaller.setProperty(UnmarshallerProperties.JSON_VALUE_WRAPPER, "$");
+            //HttpResult result = HttpHelper.executeGet(jsonSourceUrl, new HashMap<String, String>());
+            //InputStream stream = new ByteArrayInputStream(result.getResponseBody().getBytes(StandardCharsets.UTF_8));
 			StreamSource ss = new StreamSource(jsonSourceUrl);
+
+
 			return (BallparkMusicJson) unmarshaller.unmarshal(ss,
 					BallparkMusicJson.class).getValue();
 		} catch (JAXBException e) {

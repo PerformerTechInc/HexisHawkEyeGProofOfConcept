@@ -27,8 +27,10 @@ public class AtbBallparkAboutTest extends AtbBaseWebTest {
 		String xmlUrl = Configuration.getEnvArg("mobile_url") + "/gen/section_mobile/" + team_abbrev.toLowerCase()
 				+ "/ballpark.xml";
 
-		String webBallparkTextDescription = AtbBallparkAboutPage.open(getDriver(), team_about_web)
-				.getBallparkTextDescription();		
+		AtbBallparkAboutPage aboutPage = new AtbBallparkAboutPage(getDriver(), team_about_web);
+		
+		aboutPage.open();
+		String webBallparkTextDescription = aboutPage.getBallparkTextDescription();		
 				
 		String backEndBallparkTextDescription = new AtbHttpService().getBallparkInformation(xmlUrl)
 				.getBallparkTextDescription();
@@ -37,7 +39,7 @@ public class AtbBallparkAboutTest extends AtbBaseWebTest {
 		backEndBallparkTextDescription = backEndBallparkTextDescription.replace("&amp;", "&").replace("&nbsp;", " ").replace("\n\t", "");
 		System.out.println(backEndBallparkTextDescription);
 
-		Assert.assertEquals(webBallparkTextDescription, backEndBallparkTextDescription);
+		Assert.assertEquals(webBallparkTextDescription.trim(), backEndBallparkTextDescription.trim());
 	}
 
 }
