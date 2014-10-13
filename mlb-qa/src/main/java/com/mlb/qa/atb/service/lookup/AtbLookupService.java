@@ -193,4 +193,16 @@ public class AtbLookupService {
         return videosList;
 
     }
+
+    public List<String> getClassicGameList(){
+        HttpResult result = HttpHelper.executeGet("http://mlb.mlb.com/gen/multimedia/videolist/at_bat_classic.xml", new HashMap<String, String>());
+        List<String> videosList =new ArrayList<String>();
+        NodeList nodeList = XPathUtils.getNodeList(result.getResponseBody(),"//blurb/text()");
+        for (int i = 0; i<nodeList.getLength(); i++){
+            videosList.add(nodeList.item(i).getTextContent());
+        }
+
+        return videosList;
+
+    }
 }

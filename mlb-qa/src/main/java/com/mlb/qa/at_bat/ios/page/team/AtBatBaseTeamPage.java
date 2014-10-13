@@ -1,6 +1,7 @@
 package com.mlb.qa.at_bat.ios.page.team;
 
 import com.mlb.qa.at_bat.ios.page.common.AtBatIOSPage;
+import com.qaprosoft.carina.core.foundation.webdriver.appium.AppiumNativeDriver;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,7 @@ public class AtBatBaseTeamPage extends AtBatIOSPage {
     }
 
     public void backToPrevious(){
-        click(backButton);
+        ExtendedWebElement donePredicate = ((AppiumNativeDriver) driver).findElementByIosUIAutomation(".navigationBars()[0].buttons()['Done']");
+        click(donePredicate);
     }
 }

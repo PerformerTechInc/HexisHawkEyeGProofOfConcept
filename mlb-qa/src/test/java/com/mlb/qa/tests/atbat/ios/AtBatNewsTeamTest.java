@@ -51,11 +51,7 @@ public class AtBatNewsTeamTest extends UITest {
                 break;
             }
         }
-        atBatNewsPage.backToPrevious();
         softAssert.assertAll();
-
-
-
     }
 
 

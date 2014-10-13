@@ -47,10 +47,7 @@ public class AtBatVideoTeamTest extends UITest {
             softAssert.assertTrue(uiVideosList.get(i).contains(videos.get(i)), "Video with title '" + videos.get(i) + "' not present");
         }
 
-        atBatVideosPage.backToPrevious();
         softAssert.assertAll();
-
-
     }
 
 
