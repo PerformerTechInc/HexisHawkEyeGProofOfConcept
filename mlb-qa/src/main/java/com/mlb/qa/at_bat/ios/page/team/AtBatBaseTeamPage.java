@@ -22,7 +22,7 @@ public class AtBatBaseTeamPage extends AtBatIOSPage {
     }
 
     public void backToPrevious(){
-        ExtendedWebElement donePredicate = ((AppiumNativeDriver) driver).findElementByIosUIAutomation(".navigationBars()[0].buttons()['Done']");
+        ExtendedWebElement donePredicate = ((AppiumNativeDriver) driver).findElementByIosUIAutomation(".navigationBars()[0].buttons()[1]");
         click(donePredicate);
     }
 }
