@@ -20,9 +20,9 @@ import java.util.List;
 public class AtBatNewsTeamTest extends UITest {
 
 
-    @Parameters({"team_abbrev","TUID", "team_name"})
+    @Parameters({"team_abbrev", "TUID"})
     @Test(dataProvider = "excel_ds")
-    public void checkNewsGlobal(String team_abbrev, String TUID, String team_name) {
+    public void checkNewsGlobal(String team_abbrev, String TUID) {
         AtBatStartPage atBatStartPage = new AtBatStartPage(getDriver());
         AtBatLoginPage atBatLoginPage = atBatStartPage.getAtBatLoginPage();
         atBatLoginPage.login();
@@ -32,7 +32,7 @@ public class AtBatNewsTeamTest extends UITest {
 
         AtBatTeamSelectionPage atBatTeamSelectionPage = atBatMorePage.getAtBatTeamSelectionPage();
         AtBatTeamPage atBatTeamPage = atBatTeamSelectionPage.selectTeam(TUID);
-        AtBatNewsPage atBatNewsPage = atBatTeamPage.getAtBatNewsPage();
+        atBatTeamPage.getAtBatNewsPage();
 
         AtbLookupService lookupService = new AtbLookupService();
         List<String> news = lookupService.getNewsTitles(team_abbrev.toLowerCase());
@@ -51,11 +51,7 @@ public class AtBatNewsTeamTest extends UITest {
                 break;
             }
         }
-        atBatNewsPage.backToPrevious();
         softAssert.assertAll();
-
-
-
     }
 
 

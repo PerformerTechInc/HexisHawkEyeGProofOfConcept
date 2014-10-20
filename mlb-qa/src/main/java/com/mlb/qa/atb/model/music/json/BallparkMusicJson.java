@@ -1,28 +1,21 @@
 package com.mlb.qa.atb.model.music.json;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-//import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import com.mlb.qa.atb.model.Item;
+import com.mlb.qa.atb.model.music.Music;
+import com.mlb.qa.atb.model.music.MusicCategory;
+import com.mlb.qa.common.exception.TestRuntimeException;
+import org.eclipse.persistence.jaxb.UnmarshallerProperties;
+import org.eclipse.persistence.oxm.MediaType;
+import org.eclipse.persistence.oxm.annotations.XmlPath;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
+import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.eclipse.persistence.jaxb.UnmarshallerProperties;
-import org.eclipse.persistence.oxm.MediaType;
-import org.eclipse.persistence.oxm.annotations.XmlPath;
-
-import com.mlb.qa.atb.model.Item;
-import com.mlb.qa.atb.model.music.Music;
-import com.mlb.qa.atb.model.music.MusicCategory;
-import com.mlb.qa.common.exception.TestRuntimeException;
-import com.mlb.qa.common.http.HttpHelper;
-import com.mlb.qa.common.http.HttpResult;
 
     public class BallparkMusicJson implements Item {
 

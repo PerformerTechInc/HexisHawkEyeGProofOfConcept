@@ -27,7 +27,7 @@ public class AtBatLoginPage extends AtBatIOSPage {
     private ExtendedWebElement doneButton;
 
 
-    @FindBy(xpath = "//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIATableView[2]")
+    @FindBy(name = "OK")
     private ExtendedWebElement okButton;
 
 
@@ -36,25 +36,25 @@ public class AtBatLoginPage extends AtBatIOSPage {
     }
 
     public void login(){
-    	String username = AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue();
-    	type(emailInput, username);
-    	int i = 1;
+        String username = AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue();
+        type(emailInput, username);
+        int i = 1;
         while (!emailInput.getText().equals(username) && ++i < 10) {
-        	LOGGER.info("Typing user email. Attempt #" + i + "; email input value: " + emailInput.getText());
-        	type(emailInput, username);
+            LOGGER.info("Typing user email. Attempt #" + i + "; email input value: " + emailInput.getText());
+            type(emailInput, username);
         }
-        
+
         type(passwordInput, AtbParameter.MLB_ATBAT_DEFAULT_PASSWORD.getValue());
         click(loginButton);
 
-      //  if (!isElementPresent(doneButton, EXPLICIT_TIMEOUT * 3))
+        //  if (!isElementPresent(doneButton, EXPLICIT_TIMEOUT * 3))
         //	Assert.fail("'Done' button is not recognized!");
         pause(5);
         ExtendedWebElement donePredicate = ((AppiumNativeDriver) driver).findElementByIosUIAutomation(".navigationBars()[0].buttons()['Done']");
         click(donePredicate);
-        
+
         if (!isElementPresent(okButton, EXPLICIT_TIMEOUT * 3))
-        	Assert.fail("'ok' button is not recognized!");        
+            Assert.fail("'ok' button is not recognized!");
         click(okButton);
 
     }

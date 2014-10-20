@@ -19,9 +19,9 @@ import java.util.List;
 public class AtBatVideoTeamTest extends UITest {
 
 
-    @Parameters({"team_abbrev", "TUID", "team_name"})
+    @Parameters({"team_abbrev", "TUID"})
     @Test(dataProvider = "excel_ds")
-    public void checkNewsGlobal(String team_abbrev, String TUID, String team_name) {
+    public void checkNewsGlobal(String team_abbrev, String TUID) {
 
         AtBatStartPage atBatStartPage = new AtBatStartPage(getDriver());
         AtBatLoginPage atBatLoginPage = atBatStartPage.getAtBatLoginPage();
@@ -47,10 +47,7 @@ public class AtBatVideoTeamTest extends UITest {
             softAssert.assertTrue(uiVideosList.get(i).contains(videos.get(i)), "Video with title '" + videos.get(i) + "' not present");
         }
 
-        atBatVideosPage.backToPrevious();
         softAssert.assertAll();
-
-
     }
 
 
