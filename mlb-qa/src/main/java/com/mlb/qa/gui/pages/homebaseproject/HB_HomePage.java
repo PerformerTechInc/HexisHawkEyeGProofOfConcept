@@ -56,6 +56,10 @@ public class HB_HomePage extends AbstractPage {
 	private static final String multipleCutUploadURLPhotoTemplateID = "43123107";
 	private static final String multipleCutUploadURLResizeQuality = "100";
 	
+	//************ IDENTIFIER OBJECTS ************//	
+	//************ IDENTIFIER OBJECTS ************//	
+	//************ IDENTIFIER OBJECTS ************//	
+
 	//************ LOGIN OBJECTS ************//	
 
 	@FindBy(xpath="//div[@id='cke_16_contents']")
@@ -1413,7 +1417,10 @@ public class HB_HomePage extends AbstractPage {
 	public ExtendedWebElement btnLineupDeleteEntryOfficialOS;
 	
 	//************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//	
-	
+
+	//************ IDENTIFIER OBJECTS ************//	
+	//************ IDENTIFIER OBJECTS ************//	
+	//************ IDENTIFIER OBJECTS ************//	
 	
 	//************ BEGIN FUNCTIONS ************//	
 	//************ BEGIN FUNCTIONS ************//	
@@ -1491,7 +1498,7 @@ public class HB_HomePage extends AbstractPage {
 
 	public void testPhotoFileDialogNoMouse(String mainURL) throws AWTException {
 		 File file = null;
-         file = new File("/Users/snehalchudgar/Automation/mlb-qa/src/test/resources/ztestphoto.jpg");
+         file = new File("/Library/ztestphoto.jpg");
         ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').css('position', 'static').css('opacity', '1');"); 
         ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').parent().css('overflow', 'visible').css('opacity', '1');"); 
         WebElement BtnMultipleCutUploadAddFilesChild = BtnMultipleCutUploadAddFilesParent.getElement().findElement(By.xpath("//div[@style='position:absolute;display:inline-block;vertical-align:top;left:-62px']/div[@class='plupload html5']/input[@class='pluUploadInput skip']"));
@@ -3277,7 +3284,9 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldNumberOfPanels, mediawallReqFieldNumberOfPanels);
 
 		click(btnSearchForMediawallPanel);
+		pause(1);
 		click(btnSearchHideOptions);
+		pause(1);
 
 		type(FieldMainSearch, "91532570");
 		click(btnSearch);
@@ -3442,15 +3451,30 @@ public class HB_HomePage extends AbstractPage {
 
 		click(btnPhotosSearchForPhotoAsset);
 		click(btnSearchHideOptions);
-		type(FieldMainSearch, "95436230");
+		if (tagToolPlayerValue == "Smith") {
+			type(FieldMainSearch, "95436230");
+		}
+		if (tagToolPlayerValue == "Jones") {
+			type(FieldMainSearch, "69623638");
+		}
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
 		btnAddVideoClipListBeingSearched.click();
-		type(FieldMainSearch, "95436222");
+		if (tagToolPlayerValue == "Smith") {
+			type(FieldMainSearch, "95436222");
+		}
+		if (tagToolPlayerValue == "Jones") {
+			type(FieldMainSearch, "63673952");
+		}
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
 		btnAddVideoClipListBeingSearched2.click();
-		type(FieldMainSearch, "95436010");
+		if (tagToolPlayerValue == "Smith") {
+			type(FieldMainSearch, "95436010");
+		}
+		if (tagToolPlayerValue == "Jones") {
+			type(FieldMainSearch, "63671994");
+		}
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
 		btnAddVideoClipListBeingSearched3.click();

@@ -11,6 +11,11 @@ import com.qaprosoft.carina.core.foundation.UITest;
 
 public class HomebaseTestSuite extends UITest {
 
+	//************ TEXT FIELD VALUES ************//	
+	//************ TEXT FIELD VALUES ************//	
+	//************ TEXT FIELD VALUES ************//	
+
+	
 	//************ ITEM OBJECTS ************//	
 	public String selectNewItemArticle = "Article";
 	public String selectNewItemArticleView = "Article View";
@@ -61,7 +66,7 @@ public class HomebaseTestSuite extends UITest {
 	public String selectNewItemPhotoGalleryAlias = "Photo Gallery Alias";
 	public String selectNewItemPhotoGalleryList = "Photo Gallery List";
 	public String selectNewItemPlayerProspect = "Player Prospect";
-	public String selectNewItemPodcastDetail = "Podcast Detail";
+	public String selectNewItemPodcastDetail = "Podcast Detail Page";
 	public String selectNewItemPodcastEpisode = "Podcast Episode";
 	public String selectNewItemPressRelease = "Press Release";
 	public String selectNewItemPressboxAsset = "Pressbox Asset";
@@ -589,7 +594,11 @@ public class HomebaseTestSuite extends UITest {
 	public static String valueVideoClipListHeadline = "Headline";
 	public static String valueVideoClipListListDefaultView = "123";	
 	//************ VIDEO TOPIC PAGE OBJECTS ************//	
-	
+
+	//************ TEXT FIELD VALUES ************//	
+	//************ TEXT FIELD VALUES ************//	
+	//************ TEXT FIELD VALUES ************//	
+
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
 	//************ MAJOR LEAGUE TESTS ************//
