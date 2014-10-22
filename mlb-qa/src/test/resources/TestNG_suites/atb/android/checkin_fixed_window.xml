@@ -1,5 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark" annotations="JDK">
+    <listeners>
+        <listener
+                class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer" />
+    </listeners>
 
     <test verbose="1" name="Login to Ballpark Application">
         <classes>

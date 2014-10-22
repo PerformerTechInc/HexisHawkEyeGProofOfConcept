@@ -1,6 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite verbose="1" name="MLB - At the Ballpark" annotations="JDK">
-	<test verbose="1" name="Temp jenkins test - check proxy">
+
+    <listeners>
+        <listener
+                class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer" />
+    </listeners>
+
+
+    <test verbose="1" name="Temp jenkins test - check proxy">
 		<classes>
 			<class name="com.mlb.qa.tests.atb.android.CheckProxyTest" />
 		</classes>
