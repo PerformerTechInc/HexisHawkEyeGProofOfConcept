@@ -25,6 +25,7 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.List;
 import java.io.File;
 
@@ -39,19 +40,19 @@ public class HB_HomePage extends AbstractPage {
 		setPageAbsoluteURL("https://qahomebase.mlbcontrol.net/");
 		open();
 	}
-	
+
 
 	private static final String hostName = "https://qahomebase.mlbcontrol.net/";
-	
-	//************ IDENTIFIER OBJECTS ************//	
-	//************ IDENTIFIER OBJECTS ************//	
-	//************ IDENTIFIER OBJECTS ************//	
 
-	//************ LOGIN OBJECTS ************//	
+	//************ IDENTIFIER OBJECTS ************//
+	//************ IDENTIFIER OBJECTS ************//
+	//************ IDENTIFIER OBJECTS ************//
+
+	//************ LOGIN OBJECTS ************//
 
 	@FindBy(xpath="//div[@id='cke_16_contents']")
 	public ExtendedWebElement FieldWYSIWYGParent;
-	
+
 	@FindBy(xpath="//iframe[@class='cke_wysiwyg_frame cke_reset']")
 	public ExtendedWebElement FieldWYSIWYG;
 
@@ -63,7 +64,7 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(id="userPassword")
 	public ExtendedWebElement txtUserPassword;
-	
+
 	@FindBy(id="submit")
 	public ExtendedWebElement btnSubmit;
 
@@ -76,9 +77,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//*[@id='header-info-top']/div")
 	public ExtendedWebElement headerLabel;
 
-	//************ LOGIN OBJECTS ************//	
+	//************ LOGIN OBJECTS ************//
 
-	//************ MENU BAR OBJECTS ************//	
+	//************ MENU BAR OBJECTS ************//
 
 	@FindBy(xpath="//span[contains(text(), 'Dashboard')]")
 	public ExtendedWebElement btnMenuBarDashboard;
@@ -95,9 +96,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//span[contains(text(), 'Settings')]")
 	public ExtendedWebElement btnMenuBarSettings;
 
-	//************ MENU BAR OBJECTS ************//	
+	//************ MENU BAR OBJECTS ************//
 
-	//************ SETTINGS OBJECTS ************//	
+	//************ SETTINGS OBJECTS ************//
 
 	@FindBy(xpath="//option[contains(text(), '120SPORTS')]")
 	public ExtendedWebElement dropDownCurrentDomain120SPORTS;
@@ -108,9 +109,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//option[contains(text(), 'MLB')]")
 	public ExtendedWebElement dropDownCurrentDomainMLB;
 
-	//************ SETTINGS OBJECTS ************//	
+	//************ SETTINGS OBJECTS ************//
 
-	//************ HISTORY PANEL OBJECTS ************//	
+	//************ HISTORY PANEL OBJECTS ************//
 
 	@FindBy(id="history-panel-icon-search")
 	public ExtendedWebElement btnShowHideHistory;
@@ -121,10 +122,10 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//span[contains(text(), 'Activity Monitor')]")
 	public ExtendedWebElement btnActivityMonitor;
 
-	//************ HISTORY PANEL OBJECTS ************//	
+	//************ HISTORY PANEL OBJECTS ************//
 
-	//************ SEARCH OBJECTS ************//	
-	
+	//************ SEARCH OBJECTS ************//
+
 	@FindBy(id="searchHeaderText")
 	public ExtendedWebElement txtSearch;
 
@@ -141,32 +142,32 @@ public class HB_HomePage extends AbstractPage {
 	public ExtendedWebElement panelSearchUISortable;
 
 	@FindBy(xpath="//div[contains(text(), 'Hide Options')]")
-	public ExtendedWebElement btnSearchHideOptions; 
-	
+	public ExtendedWebElement btnSearchHideOptions;
+
     @FindBy(xpath="//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[contains(@class, 'tileInfo ')]/div")
     public ExtendedWebElement panelSearchTileInfo;
-	
+
     @FindBy(xpath="//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[@class='tileControls']/div")
     public ExtendedWebElement panelSearchTileControls;
-	
-	//************ SEARCH OBJECTS ************//	
-	
-	//************ TAG TOOL OBJECTS ************//	
+
+	//************ SEARCH OBJECTS ************//
+
+	//************ TAG TOOL OBJECTS ************//
 
 	@FindBy(xpath="//input[@type='text'][@style='width:330px']")
 	public ExtendedWebElement fieldTagToolPlayerTagByName;
-	
+
 	@FindBy(xpath="//input[@type='text'][@style='width:245px']")
 	public ExtendedWebElement fieldTagToolPlayerTagByTeam;
-	
+
 	@FindBy(xpath="//input[@type='text'][@style='width:320px']")
 	public ExtendedWebElement fieldTagToolPlayerTagByTeamPlayerName;
-	
+
 	@FindBy(id="compactLayout")
 	public ExtendedWebElement CheckboxTagToolAdvancedFields;
 
 	@FindBy(xpath="//input[@class='autocomplete-maininput processedYes']")
-	public ExtendedWebElement FieldTagToolPlayer;	
+	public ExtendedWebElement FieldTagToolPlayer;
 
 	@FindBy(id="taggingGameDayBrowse")
 	public ExtendedWebElement BtnTagToolChangeDate;
@@ -185,7 +186,7 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//div[@class='ac-all-results']")
 	public ExtendedWebElement DropDownTagToolPlayerTagNameSelection;
-	
+
 	@FindBy(xpath="//div[@id='tagging-autocompleteLeagueTeams'][@data-tag-type='tag.']/div[@class='autocompleteResultsContainer']/ul/li/input")
 	public ExtendedWebElement FieldTagToolPlayerTagTeam;
 
@@ -222,19 +223,19 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="(//button[@type='button'])[2]")
 	public ExtendedWebElement BtnApplyTagsAndClose;
 
-	//************ TAG TOOL OBJECTS ************//	
+	//************ TAG TOOL OBJECTS ************//
 
-	//************ ITEM CREATION OBJECTS ************//	
+	//************ ITEM CREATION OBJECTS ************//
 
 	@FindBy(xpath="//div[contains(text(), 'Publish Complete')]")
-	public ExtendedWebElement statusPublishComplete; 
-	
+	public ExtendedWebElement statusPublishComplete;
+
 	@FindBy(id="item-panel-delete")
 	public ExtendedWebElement deleteItem;
 
 	@FindBy(xpath="//span[contains(text(), 'Delete item')]")
-	public ExtendedWebElement deleteItemConfirm; 
-	
+	public ExtendedWebElement deleteItemConfirm;
+
 	@FindBy(id="new-types-list")
 	public ExtendedWebElement dropDownListNewItem;
 
@@ -261,13 +262,13 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//span[contains(text(), 'Select Site')]")
 	public ExtendedWebElement dropDownSelectSite;
-	
+
 	@FindBy(xpath="//a[contains(text(), 'mlb')]")
 	public ExtendedWebElement dropDownSelectMLB;
-	
+
 	@FindBy(xpath="//a[contains(text(), 'milb')]")
 	public ExtendedWebElement dropDownSelectMiLB;
-	
+
 	@FindBy(name="@name")
 	public ExtendedWebElement FieldInternalName;
 
@@ -344,14 +345,14 @@ public class HB_HomePage extends AbstractPage {
 	public ExtendedWebElement BtnTagTool;
 
 	@FindBy(xpath="//span[contains(text(), 'Save All and Publish to Prod')]")
-	public ExtendedWebElement BtnSaveAllAndPublishToProd;	
+	public ExtendedWebElement BtnSaveAllAndPublishToProd;
 
 	@FindBy(xpath="//span[contains(text(), 'Send To Prod')]")
-	public ExtendedWebElement BtnSendToProd;	
+	public ExtendedWebElement BtnSendToProd;
 
 	@FindBy(xpath="//span[contains(text(), 'Close')]")
-	public ExtendedWebElement BtnClose;	
-	
+	public ExtendedWebElement BtnClose;
+
 	@FindBy(xpath="//div[contains(text(), 'Choose a File to Upload')]")
 	public ExtendedWebElement BtnChooseAFileToUpload;
 
@@ -363,7 +364,7 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//div[@style='font-size: 13px;min-height:16px;']")
 	public ExtendedWebElement valuePhotoAsset;
-	
+
 	@FindBy(xpath="//*[@value='265']")
 	public ExtendedWebElement FieldPhotoAssetCutWidth001;
 
@@ -375,7 +376,7 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//div[@class='addFilesDropDown']")
 	public ExtendedWebElement BtnMultipleCutUploadAddFilesParent;
-	
+
 	@FindBy(id="singleUPstartBrowse")
 	public ExtendedWebElement BtnSingleCutUploadAddFiles;
 
@@ -406,9 +407,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//span[2][contains(text(), 'HTML')]")
 	public ExtendedWebElement BtnCmsToolHtml2;
 
-	//************ ITEM CREATION OBJECTS ************//	
-	
-	//************ ARTICLE CREATION OBJECTS ************//	
+	//************ ITEM CREATION OBJECTS ************//
+
+	//************ ARTICLE CREATION OBJECTS ************//
 
 	@FindBy(id="tagging-autocompletePlayer")
 	public ExtendedWebElement articleRequiredClickC;
@@ -416,20 +417,20 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(linkText="View Beta Article")
 	public ExtendedWebElement linkViewBetaArticle;
 
-	//************ ARTICLE CREATION OBJECTS ************//	
+	//************ ARTICLE CREATION OBJECTS ************//
 
-	//************ ARTICLE VIEW CREATION OBJECTS ************//	
-	
-	//************ ARTICLE VIEW CREATION OBJECTS ************//	
+	//************ ARTICLE VIEW CREATION OBJECTS ************//
 
-	//************ AUDIO SCHEDULE CREATION OBJECTS ************//	
+	//************ ARTICLE VIEW CREATION OBJECTS ************//
+
+	//************ AUDIO SCHEDULE CREATION OBJECTS ************//
 
 	@FindBy(xpath="//button[contains(text(), 'New Audio Show')]")
 	public ExtendedWebElement BtnNewAudioShow;
 
-	//************ AUDIO SCHEDULE CREATION OBJECTS ************//	
+	//************ AUDIO SCHEDULE CREATION OBJECTS ************//
 
-	//************ BALLPARK CREATION OBJECTS ************//	
+	//************ BALLPARK CREATION OBJECTS ************//
 
 	@FindBy(name="address1")
 	public ExtendedWebElement FieldAddress1;
@@ -512,9 +513,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="ticketsErrorText")
 	public ExtendedWebElement FieldTicketsErrorText;
 
-	//************ BALLPARK CREATION OBJECTS ************//	
+	//************ BALLPARK CREATION OBJECTS ************//
 
-	//************ BALLPARK MENU CREATION OBJECTS ************//	
+	//************ BALLPARK MENU CREATION OBJECTS ************//
 
 	@FindBy(name="displayImageURL")
 	public ExtendedWebElement FieldDisplayImageURL;
@@ -546,9 +547,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="sourceURL")
 	public ExtendedWebElement FieldSourceURL;
 
-	//************ BALLPARK MENU CREATION OBJECTS ************//	
+	//************ BALLPARK MENU CREATION OBJECTS ************//
 
-	//************ BALLPARK MUSIC CREATION OBJECTS ************//	
+	//************ BALLPARK MUSIC CREATION OBJECTS ************//
 
 	@FindBy(name="artist")
 	public ExtendedWebElement FieldArtist;
@@ -557,23 +558,23 @@ public class HB_HomePage extends AbstractPage {
 	public ExtendedWebElement FieldDescription;
 
 	// *** ALSO FOUND IN BALLPARK CREATION AND ITEM CREATION SECTIONS *** //
-	
-	//************ BALLPARK MUSIC CREATION OBJECTS ************//	
 
-	//************ BALLPARK SUBMENU CREATION OBJECTS ************//	
+	//************ BALLPARK MUSIC CREATION OBJECTS ************//
+
+	//************ BALLPARK SUBMENU CREATION OBJECTS ************//
 
 	// *** ALSO FOUND IN BALLPARK CREATION AND ITEM CREATION SECTIONS *** //
-	
-	//************ BALLPARK SUBMENU CREATION OBJECTS ************//	
 
-	//************ BLOG CONTENT CREATION OBJECTS ************//	
+	//************ BALLPARK SUBMENU CREATION OBJECTS ************//
+
+	//************ BLOG CONTENT CREATION OBJECTS ************//
 
 	@FindBy(xpath="//textarea[@data-field-key='blurb']")
 	public ExtendedWebElement FieldBody;
 
-	//************ BLOG CONTENT CREATION OBJECTS ************//	
+	//************ BLOG CONTENT CREATION OBJECTS ************//
 
-	//************ CHRON CREATION OBJECTS ************//	
+	//************ CHRON CREATION OBJECTS ************//
 
 	@FindBy(name="notation")
 	public ExtendedWebElement FieldDateNotation;
@@ -584,22 +585,22 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//textarea[@data-field-key='blurb']")
 	public ExtendedWebElement FieldCMSDescription;
 
-	//************ CHRON CREATION OBJECTS ************//	
+	//************ CHRON CREATION OBJECTS ************//
 
-	//************ CLUB PROMO CREATION OBJECTS ************//	
+	//************ CLUB PROMO CREATION OBJECTS ************//
 
 	@FindBy(name="urlExtension")
 	public ExtendedWebElement FieldURLExtension;
-	
+
 	@FindBy(name="eventTitle")
 	public ExtendedWebElement FieldEventTitle;
-	
+
 	@FindBy(name="event-subtitle")
 	public ExtendedWebElement FieldEventSubtitle;
-	
+
 	@FindBy(name="promo")
 	public ExtendedWebElement FieldPromoText;
-	
+
 	@FindBy(name="ticketsText")
 	public ExtendedWebElement FieldMobileTicketsText;
 
@@ -608,73 +609,73 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(name="textCampaignPromo")
 	public ExtendedWebElement FieldTextCampaignPromo;
-	
+
 	@FindBy(name="social-keyword")
 	public ExtendedWebElement FieldSocialKeyword;
-	
+
 	@FindBy(name="highlights-title")
 	public ExtendedWebElement FieldHighlightsTitle;
-	
+
 	@FindBy(xpath="//textarea[@data-field-key='locationAddress']")
 	public ExtendedWebElement FieldLocationAddress;
 
 	@FindBy(name="eventMapTitle")
 	public ExtendedWebElement FieldEventMapTitle;
-	
+
 	@FindBy(name="schedule-title")
 	public ExtendedWebElement FieldScheduleTitle;
-	
+
 	@FindBy(name="faq-title")
 	public ExtendedWebElement FieldFAQTitle;
 
 	@FindBy(xpath="//label[contains(text(), 'Sponsors')]")
 	public ExtendedWebElement labelSponsors;
 
-	//************ CLUB PROMO CREATION OBJECTS ************//		
-	
-	//************ CONTRIBUTOR CREATION OBJECTS ************//		
+	//************ CLUB PROMO CREATION OBJECTS ************//
+
+	//************ CONTRIBUTOR CREATION OBJECTS ************//
 	@FindBy(name="first-name")
 	public ExtendedWebElement FieldFirstName;
-	
+
 	@FindBy(name="last-name")
 	public ExtendedWebElement FieldLastName;
-	
+
 	@FindBy(name="email")
 	public ExtendedWebElement FieldEmail;
-	
+
 	@FindBy(name="twitter")
 	public ExtendedWebElement FieldTwitterHandle;
-	
+
 	@FindBy(name="blog")
 	public ExtendedWebElement FieldBlog;
-	
+
 	@FindBy(name="blog-title")
 	public ExtendedWebElement FieldBlogTitle;
-	
+
 	@FindBy(name="atom-rss")
 	public ExtendedWebElement FieldRSSFeed;
-	
+
 	@FindBy(name="active-tab")
 	public ExtendedWebElement FieldActiveTab;
-	
+
 	@FindBy(name="hide-articles")
 	public ExtendedWebElement FieldHideArticles;
-	
+
 	@FindBy(name="video-keyword-type")
 	public ExtendedWebElement FieldVideoKeywordType;
-	
+
 	@FindBy(name="video-keyword-value")
 	public ExtendedWebElement FieldVideoKeywordValue;
-	
+
 	@FindBy(name="video-landing-page")
 	public ExtendedWebElement FieldVideoLandingPage;
-	
+
 	@FindBy(xpath="//label[contains(text(), 'Big Blurb')]")
 	public ExtendedWebElement labelBigBlurb;
 
-	//************ CONTRIBUTOR CREATION OBJECTS ************//		
+	//************ CONTRIBUTOR CREATION OBJECTS ************//
 
-	//************ DAILY EMAIL CREATION OBJECTS ************//	
+	//************ DAILY EMAIL CREATION OBJECTS ************//
 
 	@FindBy(name="subject")
 	public ExtendedWebElement FieldSubject;
@@ -688,9 +689,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="triviaAnswer")
 	public ExtendedWebElement FieldTriviaAnswer;
 
-	//************ DAILY EMAIL CREATION OBJECTS ************//	
+	//************ DAILY EMAIL CREATION OBJECTS ************//
 
-	//************ DEVICE ANNOUNCEMENT CREATION OBJECTS ************//	
+	//************ DEVICE ANNOUNCEMENT CREATION OBJECTS ************//
 
 	@FindBy(name="appVersion")
 	public ExtendedWebElement FieldAppVersion;
@@ -725,9 +726,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="closeLink")
 	public ExtendedWebElement FieldCloseLink;
 
-	//************ DEVICE ANNOUNCEMENT CREATION OBJECTS ************//	
+	//************ DEVICE ANNOUNCEMENT CREATION OBJECTS ************//
 
-	//************ DEVICE BANNER CREATION OBJECTS ************//	
+	//************ DEVICE BANNER CREATION OBJECTS ************//
 
 	@FindBy(name="accessFeature")
 	public ExtendedWebElement FieldAccessFeature;
@@ -774,9 +775,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="sponsor")
 	public ExtendedWebElement FieldSponsor;
 
-	//************ DEVICE BANNER CREATION OBJECTS ************//	
+	//************ DEVICE BANNER CREATION OBJECTS ************//
 
-	//************ DEVICE PAGE CREATION OBJECTS ************//	
+	//************ DEVICE PAGE CREATION OBJECTS ************//
 
 	@FindBy(name="yearly-purchase-flow")
 	public ExtendedWebElement FieldYearlyPurchaseFlow;
@@ -790,9 +791,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="activation-link")
 	public ExtendedWebElement FieldActivationLink;
 
-	//************ DEVICE PAGE CREATION OBJECTS ************//	
+	//************ DEVICE PAGE CREATION OBJECTS ************//
 
-	//************ DRAWER CREATION OBJECTS ************//	
+	//************ DRAWER CREATION OBJECTS ************//
 
 	@FindBy(xpath="//input[@data-field-key='appears']")
 	public ExtendedWebElement FieldAppears;
@@ -809,9 +810,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="numitems")
 	public ExtendedWebElement FieldNumberOfItems;
 
-	//************ DRAWER CREATION OBJECTS ************//	
+	//************ DRAWER CREATION OBJECTS ************//
 
-	//************ EVENT CREATION OBJECTS ************//	
+	//************ EVENT CREATION OBJECTS ************//
 
 	@FindBy(name="program-id")
 	public ExtendedWebElement FieldProgramID;
@@ -821,7 +822,7 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(name="event-title")
 	public ExtendedWebElement FieldEventTitle2;
-	
+
 	@FindBy(xpath="//textarea[@data-field-key='event-description']")
 	public ExtendedWebElement FieldEventDescription;
 
@@ -834,17 +835,17 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//input[@data-field-key='start-datetime']")
 	public ExtendedWebElement FieldStartDateAndTime;
 
-	//************ EVENT CREATION OBJECTS ************//	
+	//************ EVENT CREATION OBJECTS ************//
 
-	//************ DIGITAL ASSET CREATION OBJECTS ************//	
+	//************ DIGITAL ASSET CREATION OBJECTS ************//
 
-	//************ DIGITAL ASSET CREATION OBJECTS ************//	
+	//************ DIGITAL ASSET CREATION OBJECTS ************//
 
-	//************ FIELD OPTION CREATION OBJECTS ************//	
+	//************ FIELD OPTION CREATION OBJECTS ************//
 
-	//************ FIELD OPTION CREATION OBJECTS ************//	
+	//************ FIELD OPTION CREATION OBJECTS ************//
 
-	//************ GAME PREVIEW CREATION OBJECTS ************//	
+	//************ GAME PREVIEW CREATION OBJECTS ************//
 
 	@FindBy(name="home-headline")
 	public ExtendedWebElement FieldHomeHeadline;
@@ -852,9 +853,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="away-headline")
 	public ExtendedWebElement FieldAwayHeadline;
 
-	//************ GAME PREVIEW CREATION OBJECTS ************//	
+	//************ GAME PREVIEW CREATION OBJECTS ************//
 
-	//************ HIGHLIGHT CREATION OBJECTS ************//	
+	//************ HIGHLIGHT CREATION OBJECTS ************//
 
 	@FindBy(xpath="//input[@data-field-key='default-alt-text']")
 	public ExtendedWebElement FieldDefaultAltText;
@@ -862,9 +863,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//input[@data-field-key='default-clickthrough-url']")
 	public ExtendedWebElement FieldDefaultClickthroughURL;
 
-	//************ HIGHLIGHT CREATION OBJECTS ************//	
+	//************ HIGHLIGHT CREATION OBJECTS ************//
 
-	//************ HP CONFIG CREATION OBJECTS ************//	
+	//************ HP CONFIG CREATION OBJECTS ************//
 	@FindBy(xpath="//input[@data-field-key='breaking-news']")
 	public ExtendedWebElement FieldBreakingNews;
 
@@ -880,13 +881,13 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//input[@data-field-key='header-alt']")
 	public ExtendedWebElement FieldHeaderAlt;
 
-	//************ HP CONFIG CREATION OBJECTS ************//	
+	//************ HP CONFIG CREATION OBJECTS ************//
 
-	//************ HTML PAGE CREATION OBJECTS ************//	
+	//************ HTML PAGE CREATION OBJECTS ************//
 
-	//************ HTML PAGE CREATION OBJECTS ************//	
+	//************ HTML PAGE CREATION OBJECTS ************//
 
-	//************ INSTAGRAM PHOTO CREATION OBJECTS ************//	
+	//************ INSTAGRAM PHOTO CREATION OBJECTS ************//
 
 	@FindBy(name="approver")
 	public ExtendedWebElement FieldApprover;
@@ -921,10 +922,10 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="latitude")
 	public ExtendedWebElement FieldLongitude;
 
-	//************ INSTAGRAM PHOTO CREATION OBJECTS ************//	
+	//************ INSTAGRAM PHOTO CREATION OBJECTS ************//
 
 	//************ INSTAGRAM STREAM CREATION OBJECTS ************//
-	
+
 	@FindBy(name="name")
 	public ExtendedWebElement FieldInstagramStreamDisplayName;
 
@@ -933,7 +934,7 @@ public class HB_HomePage extends AbstractPage {
 
 	//************ INSTAGRAM STREAM CREATION OBJECTS ************//
 
-	//************ KIOSK CREATION OBJECTS ************//	
+	//************ KIOSK CREATION OBJECTS ************//
 
 	@FindBy(name="calendar-event-id")
 	public ExtendedWebElement FieldCalendarEventID;
@@ -941,9 +942,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="content-id")
 	public ExtendedWebElement FieldContentID;
 
-	//************ KIOSK CREATION OBJECTS ************//	
-	
-	//************ LINEUP CREATION OBJECTS ************//	
+	//************ KIOSK CREATION OBJECTS ************//
+
+	//************ LINEUP CREATION OBJECTS ************//
 
 	@FindBy(xpath="//input[@data-field-key='umpire_id_hp']")
 	public ExtendedWebElement FieldUmpireHP;
@@ -972,16 +973,16 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//button[@data-sub-item-type='lineup-player']")
 	public ExtendedWebElement btnSearchForLineupPlayer;
 
-	//************ LINEUP CREATION OBJECTS ************//	
+	//************ LINEUP CREATION OBJECTS ************//
 
-	//************ LINEUP PLAYER CREATION OBJECTS ************//	
+	//************ LINEUP PLAYER CREATION OBJECTS ************//
 
-	//************ LINEUP PLAYER CREATION OBJECTS ************//	
+	//************ LINEUP PLAYER CREATION OBJECTS ************//
 
 	@FindBy(name="position")
 	public ExtendedWebElement FieldPosition;
 
-	//************ LINK CREATION OBJECTS ************//	
+	//************ LINK CREATION OBJECTS ************//
 
 	@FindBy(name="link-url")
 	public ExtendedWebElement FieldLinkURL;
@@ -992,33 +993,33 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="rank")
 	public ExtendedWebElement FieldRank;
 
-	//************ LINK CREATION OBJECTS ************//	
+	//************ LINK CREATION OBJECTS ************//
 
-	//************ LIST CREATION OBJECTS ************//	
+	//************ LIST CREATION OBJECTS ************//
 
 	@FindBy(xpath="//button[contains(text(), 'Search for Items')]")
 	public ExtendedWebElement btnSearchForItems;
-	
-	//************ LIST CREATION OBJECTS ************//	
 
-	//************ MEDIAWALL CREATION OBJECTS ************//	
+	//************ LIST CREATION OBJECTS ************//
+
+	//************ MEDIAWALL CREATION OBJECTS ************//
 
 	@FindBy(name="numpanels")
 	public ExtendedWebElement FieldNumberOfPanels;
 
 	@FindBy(xpath="//button[contains(text(), 'Search for Mediawall Panel')]")
 	public ExtendedWebElement btnSearchForMediawallPanel;
-	
-	//************ MEDIAWALL CREATION OBJECTS ************//	
 
-	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
+	//************ MEDIAWALL CREATION OBJECTS ************//
+
+	//************ MLBTV AD MODULE CREATION OBJECTS ************//
 
 	@FindBy(name="tablet-url")
 	public ExtendedWebElement FieldTabletURL;
 
-	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
+	//************ MLBTV AD MODULE CREATION OBJECTS ************//
 
-	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
+	//************ MLBTV AD MODULE CREATION OBJECTS ************//
 
 	@FindBy(name="unique-id")
 	public ExtendedWebElement FieldUniqueID;
@@ -1029,22 +1030,22 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="media-url")
 	public ExtendedWebElement FieldMediaURL;
 
-	//************ MLBTV AD MODULE CREATION OBJECTS ************//	
-	
-	//************ PHOTO ASSET CREATION OBJECTS ************//	
+	//************ MLBTV AD MODULE CREATION OBJECTS ************//
+
+	//************ PHOTO ASSET CREATION OBJECTS ************//
 
 	@FindBy(xpath="//*[@data-field-key='photos']/div/button[contains(text(), 'Search for Photo Asset')]")
     public ExtendedWebElement btnPhotosSearchForPhotoAsset;
-	
+
 	@FindBy(xpath="//*[@data-field-key='home-thumb']/div/button[contains(text(), 'Search for Photo Asset')]")
     public ExtendedWebElement btnHomeThumbnailSearchForPhotoAsset;
-	
+
 	@FindBy(xpath="//*[@data-field-key='away-thumb']/div/button[contains(text(), 'Search for Photo Asset')]")
     public ExtendedWebElement btnAwayThumbnailSearchForPhotoAsset;
-	
-	//************ PHOTO ASSET CREATION OBJECTS ************//	
 
-	//************ PRESS RELEASE CREATION OBJECTS ************//	
+	//************ PHOTO ASSET CREATION OBJECTS ************//
+
+	//************ PRESS RELEASE CREATION OBJECTS ************//
 
 	@FindBy(name="alt-headline")
 	public ExtendedWebElement FieldDisplayHeadline;
@@ -1055,9 +1056,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//label[@title='* Body']")
 	public ExtendedWebElement HeaderBody;
 
-	//************ PRESS RELEASE CREATION OBJECTS ************//	
+	//************ PRESS RELEASE CREATION OBJECTS ************//
 
-	//************ SECTION CREATION OBJECTS ************//	
+	//************ SECTION CREATION OBJECTS ************//
 
 	@FindBy(name="id")
 	public ExtendedWebElement FieldSectionID;
@@ -1074,9 +1075,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(name="target")
 	public ExtendedWebElement FieldTarget;
 
-	//************ SECTION CREATION OBJECTS ************//	
+	//************ SECTION CREATION OBJECTS ************//
 
-	//************ VIDEO TOPIC PAGE CREATION OBJECTS ************//	
+	//************ VIDEO TOPIC PAGE CREATION OBJECTS ************//
 
 	@FindBy(xpath="//textarea[@data-field-key='description']")
 	public ExtendedWebElement FieldFacebookDescription;
@@ -1120,19 +1121,19 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(id="refreshSearchBot")
 	public ExtendedWebElement btnSearchForVideoClipListSearchButton;
 
-	//************ VIDEO TOPIC PAGE CREATION OBJECTS ************//	
-	
-	//************ VIDEO CLIP LIST CREATION OBJECTS ************//	
+	//************ VIDEO TOPIC PAGE CREATION OBJECTS ************//
+
+	//************ VIDEO CLIP LIST CREATION OBJECTS ************//
 
 	@FindBy(xpath="//input[@data-field-key='listDefaultView']")
 	public ExtendedWebElement FieldListDefaultView;
-	
+
 	@FindBy(xpath="//button[@data-sub-item-type='video']")
 	public ExtendedWebElement btnSearchForVideo;
 
-	//************ VIDEO CLIP LIST CREATION OBJECTS ************//	
+	//************ VIDEO CLIP LIST CREATION OBJECTS ************//
 
-	//************ CHANGE DATE OBJECTS ************//	
+	//************ CHANGE DATE OBJECTS ************//
 
 	@FindBy(xpath="//button[contains(text(), 'Change Date')]")
 	public ExtendedWebElement btnChangeDate;
@@ -1245,9 +1246,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//a[contains(text(), '31')]")
 	public ExtendedWebElement btnChangeDate31;
 
-	//************ CHANGE DATE OBJECTS ************//	
+	//************ CHANGE DATE OBJECTS ************//
 
-	//************ DASHBOARD TEAM CONTENT OBJECTS ************//	
+	//************ DASHBOARD TEAM CONTENT OBJECTS ************//
 
 	@FindBy(id="tabBtn-team")
 	public ExtendedWebElement btnDashboardTeamContent;
@@ -1354,9 +1355,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(id="tabBtn-team-_-was")
 	public ExtendedWebElement btnDashboardTeamContentWashingtonNationals;
 
-	//************ DASHBOARD TEAM CONTENT OBJECTS ************//	
+	//************ DASHBOARD TEAM CONTENT OBJECTS ************//
 
-	//************ DASHBOARD GAME CONTENT OBJECTS ************//	
+	//************ DASHBOARD GAME CONTENT OBJECTS ************//
 
 	@FindBy(id="tabBtn-game")
 	public ExtendedWebElement btnDashboardGameContent;
@@ -1373,9 +1374,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//ul[@id='gameUl'][@class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'][@role='tablist']")
 	public ExtendedWebElement gameContentGamesFieldDataPosition;
 
-	//************ DASHBOARD GAME CONTENT OBJECTS ************//	
+	//************ DASHBOARD GAME CONTENT OBJECTS ************//
 
-	//************ DASHBOARD TEAM CONTENT DEPTH CHART OBJECTS ************//	
+	//************ DASHBOARD TEAM CONTENT DEPTH CHART OBJECTS ************//
 
 	@FindBy(xpath="//div[@class='reloadIcon rosterControlIcons triggerAble']")
 	public ExtendedWebElement iconDepthChartRosterControlsReSync;
@@ -1389,9 +1390,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//div[@class='depthChartSlots']")
 	public ExtendedWebElement depthChartsFieldDataPositionDescription;
 
-	//************ DASHBOARD TEAM CONTENT DEPTH CHART OBJECTS ************//	
+	//************ DASHBOARD TEAM CONTENT DEPTH CHART OBJECTS ************//
 
-	//************ DASHBOARD TEAM CONTENT PROBABLES OBJECTS ************//	
+	//************ DASHBOARD TEAM CONTENT PROBABLES OBJECTS ************//
 
 	@FindBy(xpath="//a[contains(text(), 'Probables')]")
 	public ExtendedWebElement btnDashboardTeamContentProbables;
@@ -1402,16 +1403,16 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//div[@class='probableEntries']")
 	public ExtendedWebElement probablesFieldDataPositionDescription;
 
-	//************ DASHBOARD TEAM CONTENT PROBABLES OBJECTS ************//	
-	
-	//************ DASHBOARD GAME CONTENT PROBABLES OBJECTS ************//	
+	//************ DASHBOARD TEAM CONTENT PROBABLES OBJECTS ************//
+
+	//************ DASHBOARD GAME CONTENT PROBABLES OBJECTS ************//
 
 	@FindBy(xpath="//div[@class='probableVsEntry ']")
 	public ExtendedWebElement probablesGameContentFieldDataPositionDescription;
 
-	//************ DASHBOARD GAME CONTENT PROBABLES OBJECTS ************//	
-	
-	//************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//	
+	//************ DASHBOARD GAME CONTENT PROBABLES OBJECTS ************//
+
+	//************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//
 
 	@FindBy(xpath="//button[contains(text(), 'Unlock')]")
 	public ExtendedWebElement btnUnlock;
@@ -1517,23 +1518,48 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//div[@class='osRemove removeLineupEntry triggerAble']")
 	public ExtendedWebElement btnLineupDeleteEntryOfficialOS;
-	
-	//************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//	
 
-	//************ IDENTIFIER OBJECTS ************//	
-	//************ IDENTIFIER OBJECTS ************//	
-	//************ IDENTIFIER OBJECTS ************//	
-	
-	//************ BEGIN FUNCTIONS ************//	
-	//************ BEGIN FUNCTIONS ************//	
-	//************ BEGIN FUNCTIONS ************//	
-	//************ BEGIN FUNCTIONS ************//	
-	//************ BEGIN FUNCTIONS ************//	
-	//************ BEGIN FUNCTIONS ************//	
-	//************ BEGIN FUNCTIONS ************//	
-	//************ BEGIN FUNCTIONS ************//	
-	//************ BEGIN FUNCTIONS ************//	
-	
+
+    private  static Hashtable mTable;
+
+   private static Hashtable getMTable(){
+       if (mTable==null){
+           mTable = new Hashtable();
+
+       mTable.put("January", 0);
+       mTable.put("February", 1);
+       mTable.put("March", 2);
+       mTable.put("April", 3);
+       mTable.put("May", 4);
+       mTable.put("June", 5);
+       mTable.put("July", 6);
+       mTable.put("August", 7);
+       mTable.put("September", 8);
+       mTable.put("October", 9);
+       mTable.put("November", 10);
+       mTable.put("December", 11);
+       }
+       return mTable;
+   }
+
+
+
+	//************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//
+
+	//************ IDENTIFIER OBJECTS ************//
+	//************ IDENTIFIER OBJECTS ************//
+	//************ IDENTIFIER OBJECTS ************//
+
+	//************ BEGIN FUNCTIONS ************//
+	//************ BEGIN FUNCTIONS ************//
+	//************ BEGIN FUNCTIONS ************//
+	//************ BEGIN FUNCTIONS ************//
+	//************ BEGIN FUNCTIONS ************//
+	//************ BEGIN FUNCTIONS ************//
+	//************ BEGIN FUNCTIONS ************//
+	//************ BEGIN FUNCTIONS ************//
+	//************ BEGIN FUNCTIONS ************//
+
 	public void testGoogleSearch() {
 		  driver.get("http://www.google.com/xhtml");
 		  pause(10);  // Let the user actually see something!
@@ -1543,7 +1569,7 @@ public class HB_HomePage extends AbstractPage {
 		  pause(10);  // Let the user actually see something!
 		  driver.quit();
 		}
-	
+
 	public void login(String username, String password, String profile) throws AWTException {
 		if (isElementPresent(txtUsername) == true) {
 		type(txtUsername, username);
@@ -1569,7 +1595,7 @@ public class HB_HomePage extends AbstractPage {
 	}
 	}
 	}
-	
+
 	public void testPhotoFileDialog() throws AWTException {
 		pause(1);
 		clickPosition(760,130);
@@ -1601,8 +1627,8 @@ public class HB_HomePage extends AbstractPage {
 	public void testPhotoFileDialogNoMouse(String mainURL) throws AWTException {
 		 File file = null;
          file = new File("/Library/ztestphoto.jpg");
-        ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').css('position', 'static').css('opacity', '1');"); 
-        ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').parent().css('overflow', 'visible').css('opacity', '1');"); 
+        ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').css('position', 'static').css('opacity', '1');");
+        ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').parent().css('overflow', 'visible').css('opacity', '1');");
         WebElement BtnMultipleCutUploadAddFilesChild = BtnMultipleCutUploadAddFilesParent.getElement().findElement(By.xpath("//div[@style='position:absolute;display:inline-block;vertical-align:top;left:-62px']/div[@class='plupload html5']/input[@class='pluUploadInput skip']"));
         BtnMultipleCutUploadAddFilesChild.sendKeys(file.getAbsolutePath());
 		}
@@ -1667,7 +1693,7 @@ public class HB_HomePage extends AbstractPage {
 		pressA();
 		pause(1);
 		pressEnter();
-		click(BtnApplyTagsAndClose);	
+		click(BtnApplyTagsAndClose);
 	}
 
 	public void useTagToolNew(String mainURL, String tagToolPlayer) throws InterruptedException, AWTException {
@@ -1727,7 +1753,7 @@ public class HB_HomePage extends AbstractPage {
 		pause(0.5);
 		click(BtnTagToolKeywordTagCustomTagCreateCustomKeyword);
 		pause(0.5);
-		click(BtnApplyTagsAndClose);	
+		click(BtnApplyTagsAndClose);
 	}
 
 	public void saveItemAndPublishToBeta() throws AWTException {
@@ -1737,9 +1763,9 @@ public class HB_HomePage extends AbstractPage {
 		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 600));
 		if (isElementPresent(statusPublishComplete) == true) {
 		deleteCreatedItemNew();
-		}		
+		}
 	}
-	
+
 	public void saveItemAndPublishToProd() throws AWTException{
 		click(BtnSave);
 		pause(1);
@@ -1748,18 +1774,18 @@ public class HB_HomePage extends AbstractPage {
 		Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 600));
 		if (isElementPresent(statusPublishComplete) == true) {
 		deleteCreatedItemNew();
-		}		
+		}
 	}
-	
+
 	public void saveItemAndPublishToBetaWithoutDelete() throws AWTException {
 		click(BtnSave);
 		pause(1);
 		click(BtnToBeta);
 		Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 600));
 		if (isElementPresent(statusPublishComplete) == true) {
-		}		
+		}
 	}
-	
+
 	public void saveItemAndPublishToProdWithoutDelete() throws AWTException{
 		click(BtnSave);
 		pause(1);
@@ -1767,14 +1793,14 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnToProdConfirm);
 		Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 600));
 		if (isElementPresent(statusPublishComplete) == true) {
-		}		
+		}
 	}
-	
+
 	public void deleteCreatedItem() throws AWTException {
 		String valueItemNumber = StatusPublishComplete.getText();
 		int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
 		String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue+1);
-		click(FieldMainSearch);		
+		click(FieldMainSearch);
 		pause(1);
 		type(FieldMainSearch, valueItemNumberTrimmed + "\n");
 //		click(btnSearch);
@@ -1783,8 +1809,8 @@ public class HB_HomePage extends AbstractPage {
 		btnItemSearchedForDeletion.click();
 		click(deleteItem);
 		click(deleteItemConfirm);
-	}	
-	
+	}
+
 	public void deleteCreatedItemNew() throws AWTException {
 		String valueItemNumber = StatusPublishComplete.getText();
 		int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
@@ -1799,8 +1825,8 @@ public class HB_HomePage extends AbstractPage {
 //		btnItemSearchedForDeletion.click();
 		click(deleteItem);
 		click(deleteItemConfirm);
-	}	
-	
+	}
+
 	public void basicSearch(String searchCriteria) {
 		type(txtSearch, searchCriteria);
 		click(btnSearch);
@@ -1813,7 +1839,7 @@ public class HB_HomePage extends AbstractPage {
 		select(dropDownListItemSelection, itemSelection);
 		click(btnNewItem);
 	}
-	
+
 	public void selectDashboard()	{
 		click(btnMenuBarDashboard);
 	}
@@ -1822,18 +1848,18 @@ public class HB_HomePage extends AbstractPage {
 		selectDashboard();
 		click(btnDashboardTeamContent);
 	}
-	
+
 	public void selectGameContent()	{
 		selectDashboard();
 		click(btnDashboardGameContent);
 	}
-	
+
 	public void selectHomePageUploadPhotos()	{
 //		click(dropDownListNewItem);
 		click(BtnHomePageUploadPhotos);
 //		pause(60);
 	}
-	
+
 	public void uploadPhotos(String mainURLCall, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 
 //		click(BtnMultipleCutUploadAddFiles);
@@ -1866,21 +1892,21 @@ public class HB_HomePage extends AbstractPage {
 		pressT();
 		pause(1);
 	}
-	
+
 	public void testCMSToolNewFunctionHTML () {
 		WebElement testBeforeElement = driver.findElement(By.xpath("//div[contains(@class, 'cke_reset') and not(contains(@class, 'cke_editor_htmlScrubber'))]/div[@class='cke_inner cke_reset']/div/iframe"));
 		testBeforeElement.sendKeys(Keys.TAB);
 		testBeforeElement.sendKeys("Hi Snehal!  Hi Chris!  Let's see if this works!");
 
 	}
-	
+
 	public void testCMSToolNewFunctionWYSIWYG () {
 		WebElement testBeforeElement = driver.findElement(By.xpath("//textarea[@class='cke_source cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr']"));
 		testBeforeElement.sendKeys(Keys.TAB);
 		testBeforeElement.sendKeys("Hi Snehal!  Hi Chris!  Let's see if this works!");
 
 	}
-	
+
 	public void testCMSToolWithClipBoard (String testCMSToolWithClipBoardContents, int coordinateX, int coordinateY) throws AWTException {
 		pause(1);
 		clickPosition(coordinateX, coordinateY);
@@ -1892,7 +1918,7 @@ public class HB_HomePage extends AbstractPage {
 		pause(1);
 
 	}
-	
+
 	public void depthChartsBaseState(String mainURLCall) throws InterruptedException, AWTException	{
 		selectTeamContent();
 		click(btnDashboardTeamContentWashingtonNationals);
@@ -1931,10 +1957,10 @@ public class HB_HomePage extends AbstractPage {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
 			pause(0.5);
 		}
-		click(btnSaveDepthChart);		
+		click(btnSaveDepthChart);
 		List<WebElement> FieldDataPositionDeleteButtons = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
 		int depthChartPlayerValueExpectedAfterAdd = 22;
-		int depthChartsPlayerNumberOfAddButtonsAfter = FieldDataPositionDeleteButtons.size();	
+		int depthChartsPlayerNumberOfAddButtonsAfter = FieldDataPositionDeleteButtons.size();
 		Assert.assertEquals((depthChartsPlayerNumberOfAddButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterAdd +" Depth Chart Player Adds were performed."), depthChartPlayerValueExpectedAfterAdd, depthChartsPlayerNumberOfAddButtonsAfter);
 	}
 
@@ -1975,8 +2001,9 @@ public class HB_HomePage extends AbstractPage {
 		click(btnDashboardTeamContentArizonaDiamondbacks);
 		click(btnDashboardTeamContentProbables);
 		pause(5);
-		dateChanger("July", "1", "2013");
-		pause(300);
+        changeCalendar("July", 1, 2013);
+//		dateChanger("July", "1", "2013");
+		pause(10);
 	}
 
 	public void probablesTeamContentAddPlayers(String mainURLCall) throws InterruptedException, AWTException	{
@@ -1999,7 +2026,7 @@ public class HB_HomePage extends AbstractPage {
 			(FieldDataPosition.get(a)).sendKeys(Keys.TAB);
 			pause(0.5);
 		}
-		click(btnSaveProbables);		
+		click(btnSaveProbables);
 	}
 
 	public void probablesTeamContentRepositionPlayers(String mainURLCall) throws InterruptedException, AWTException	{
@@ -2037,8 +2064,10 @@ public class HB_HomePage extends AbstractPage {
 
 	public void probablesGameContentBaseState(String mainURLCall) throws InterruptedException, AWTException	{
 		selectGameContent();
-		dateChanger("July", "1", "2013");
-		pause(300);
+        click(btnChangeDateList.get(1));
+        changeCalendar("July", 1, 2013);
+//		dateChanger("July", "1", "2013");
+		pause(10);
 		List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
 		(gameContentSelectGame.get(0)).click();
 		click(btnDashboardGameContentProbables);
@@ -2066,7 +2095,7 @@ public class HB_HomePage extends AbstractPage {
 			(FieldDataPosition.get(a)).sendKeys(Keys.TAB);
 			pause(0.5);
 		}
-		click(btnSaveProbables);		
+		click(btnSaveProbables);
 	}
 
 	public void probablesGameContentDeletePlayers(String mainURLCall) throws InterruptedException, AWTException	{
@@ -2104,19 +2133,19 @@ public class HB_HomePage extends AbstractPage {
 			click(btnUnlock);
 		}
 		}
-*/		
+*/
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
 
 			if (NumberOfFieldDataPositionPlayerTextInputBoxes == 20) {
-				
+
 			if (a == 0) {
-				(FieldDataPosition.get(a)).click();				
+				(FieldDataPosition.get(a)).click();
 			}
-			
+
 			if (a == 10) {
-				(FieldDataPosition.get(a)).click();				
+				(FieldDataPosition.get(a)).click();
 			}
-			
+
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			for (int b = (a+1); b > 0; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
@@ -2127,15 +2156,15 @@ public class HB_HomePage extends AbstractPage {
 			}
 
 			if (NumberOfFieldDataPositionPlayerTextInputBoxes == 18) {
-				
+
 			if (a == 0) {
-				(FieldDataPosition.get(a)).click();				
+				(FieldDataPosition.get(a)).click();
 			}
-			
+
 			if (a == 9) {
-				(FieldDataPosition.get(a)).click();				
+				(FieldDataPosition.get(a)).click();
 			}
-			
+
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			for (int b = (a+1); b > 0; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
@@ -2150,8 +2179,8 @@ public class HB_HomePage extends AbstractPage {
 		List<WebElement> FieldDataPositionPlayerType2Child = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='lineupColumn']"));
 		List<WebElement> fieldPlayerTypeDataDataSourceAL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsAL']")));
 		List<WebElement> fieldPlayerTypeDataDataSourceNL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsNL']")));
-	
-		
+
+
 		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
 			WebElement lineupAwayPlayerPosition1 = fieldPlayerTypeDataDataSourceAL.get(0);
 			WebElement lineupAwayPlayerPosition2 = fieldPlayerTypeDataDataSourceAL.get(1);
@@ -2174,7 +2203,7 @@ public class HB_HomePage extends AbstractPage {
 			WebElement lineupHomePlayerPosition9 = fieldPlayerTypeDataDataSourceAL.get(18);
 			WebElement lineupHomePlayerPosition10 = fieldPlayerTypeDataDataSourceAL.get(19);
 			List<WebElement> PlayerPositionDropDownList = lineupAwayPlayerPosition1.findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@style='width:30px']"));
-			
+
 			if (lineupAwayPlayerPosition1.getText().toString().equals("P")) {
 			}
 			else {
@@ -2396,7 +2425,7 @@ public class HB_HomePage extends AbstractPage {
 			WebElement lineupHomePlayerPosition8 = fieldPlayerTypeDataDataSourceNL.get(16);
 			WebElement lineupHomePlayerPosition9 = fieldPlayerTypeDataDataSourceNL.get(17);
 			List<WebElement> PlayerPositionDropDownList = lineupAwayPlayerPosition1.findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@style='width:30px']"));
-			
+
 			if (lineupAwayPlayerPosition1.getText().toString().equals("P")) {
 			}
 			else {
@@ -2599,13 +2628,13 @@ public class HB_HomePage extends AbstractPage {
 			logger.info(FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
 			logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size());
 			logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
-		Assert.assertEquals(("Number of Bit-Box fields delta after Populate: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 43."), (FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size()), 43);		
+		Assert.assertEquals(("Number of Bit-Box fields delta after Populate: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 43."), (FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size()), 43);
 		}
-		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {		
+		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
 			logger.info(FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
 			logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size());
 			logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
-		Assert.assertEquals(("Number of Bit-Box fields delta after Populate: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 47."), (FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size()), 47);		
+		Assert.assertEquals(("Number of Bit-Box fields delta after Populate: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 47."), (FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size()), 47);
 		}
 	}
 
@@ -2620,7 +2649,7 @@ public class HB_HomePage extends AbstractPage {
 			click(btnUnlock);
 		}
 		}
-		
+
 		if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
 			click(btnLineupDeleteEntryAway1);
 			click(btnLineupDeleteEntryAway2);
@@ -2641,7 +2670,7 @@ public class HB_HomePage extends AbstractPage {
 			click(btnLineupDeleteEntryHome8);
 			click(btnLineupDeleteEntryHome9);
 		}
-						
+
 		if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
 			click(btnLineupDeleteEntryAway1);
 			click(btnLineupDeleteEntryAway2);
@@ -2664,7 +2693,7 @@ public class HB_HomePage extends AbstractPage {
 			click(btnLineupDeleteEntryHome9);
 			click(btnLineupDeleteEntryHome10);
 		}
-						
+
 		click(btnLineupDeleteEntryOfficialHP);
 		click(btnLineupDeleteEntryOfficial1B);
 		click(btnLineupDeleteEntryOfficial2B);
@@ -2851,7 +2880,7 @@ public class HB_HomePage extends AbstractPage {
 			saveItemAndPublishToProd();
 		}
 	}
-	
+
 	public void fillAndSaveNewBlogContentAlias(String mainURLCall, String betaOrProd, String blogContentAliasReqFieldInternalName, String blogContentAliasReqFieldHeadline, String blogContentAliasReqFieldBlurb, String blogContentAliasReqFieldSummary, String tagToolPlayerValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, blogContentAliasReqFieldInternalName);
 		type(FieldHeadline, blogContentAliasReqFieldHeadline);
@@ -2864,7 +2893,7 @@ public class HB_HomePage extends AbstractPage {
 			saveItemAndPublishToProd();
 		}
 	}
-	
+
 	public void fillAndSaveNewChron(String mainURLCall, String betaOrProd, String chronReqFieldInternalName, String chronReqFieldDateNotation, String chronReqFieldYear, String chronReqFieldDisplayYear, String chronReqFieldTitle, String chronReqFieldCMSDescription, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, chronReqFieldInternalName);
 		useTagToolNew(mainURLCall, tagToolPlayerValue);
@@ -2880,7 +2909,7 @@ public class HB_HomePage extends AbstractPage {
 			saveItemAndPublishToProd();
 		}
 	}
-	
+
 	public void fillAndSaveNewClosedCaption(String mainURLCall, String betaOrProd, String closedCaptionReqFieldInternalName, String tagToolPlayerValue) throws InterruptedException, AWTException	{
 		type(FieldInternalName, closedCaptionReqFieldInternalName);
 		useTagToolNew(mainURLCall, tagToolPlayerValue);
@@ -3152,7 +3181,7 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldSubhead, gamePreviewReqFieldSubhead);
 		type(FieldAltHeadline, gamePreviewReqFieldAltHeadline);
 		type(FieldByline, gamePreviewReqFieldByline);
-		type(FieldBlurb, gamePreviewReqFieldBlurb); 
+		type(FieldBlurb, gamePreviewReqFieldBlurb);
 		testCMSToolNewFunctionHTML();
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
@@ -3166,7 +3195,7 @@ public class HB_HomePage extends AbstractPage {
 		type(FieldInternalName, gameWrapReqFieldInternalName);
 		useTagToolNew(mainURLCall, tagToolPlayerValue);
 		type(FieldHeadline, gameWrapReqFieldHeadline);
-		type(FieldBlurb, gameWrapReqFieldBlurb); 
+		type(FieldBlurb, gameWrapReqFieldBlurb);
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3369,7 +3398,7 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-digital-asset']"));
 		btnAddVideoClipListBeingSearched2.click();
-		
+
 		type(FieldMainSearch, "92932056");
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-tweet']"));
@@ -3403,7 +3432,7 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-mediawall-panel']"));
 		btnAddVideoClipListBeingSearched2.click();
-		
+
 		type(FieldMainSearch, "90574042");
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-mediawall-panel']"));
@@ -3455,7 +3484,7 @@ public class HB_HomePage extends AbstractPage {
 			saveItemAndPublishToProd();
 		}
 	}
-	
+
 	public void fillAndSaveNewMLBTVAdModule(String mainURLCall, String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String mLBTVAdModuleReqFieldURL, String mLBTVAdModuleReqFieldMobileURL, String mLBTVAdModuleReqFieldTabletURL, String tagToolPlayerValue) throws InterruptedException, UnsupportedEncodingException, AWTException, IOException	{
 		type(FieldInternalName, mLBTVAdModuleReqFieldInternalName);
 		useTagToolNew(mainURLCall, tagToolPlayerValue);
@@ -3586,7 +3615,7 @@ public class HB_HomePage extends AbstractPage {
 		btnAddVideoClipListBeingSearched3.click();
 
 		click(BtnSave);
-		
+
 /*
  	    click(btnHomeThumbnailSearchForPhotoAsset);
 	    click(btnSearchHideOptions);
@@ -3602,9 +3631,9 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched6 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
 		btnAddVideoClipListBeingSearched6.click();
-	    
+
 		click(BtnSave);
-		
+
 	    click(btnAwayThumbnailSearchForPhotoAsset);
 		click(btnSearchHideOptions);
 		type(FieldMainSearch, "95436230");
@@ -3621,7 +3650,7 @@ public class HB_HomePage extends AbstractPage {
 		btnAddVideoClipListBeingSearched9.click();
 
 */
-		
+
 		if (betaOrProd == "beta") {
 			saveItemAndPublishToBeta();
 		}
@@ -3912,7 +3941,7 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video_clip_list']"));
 		btnAddVideoClipListBeingSearched2.click();
-		
+
 		type(FieldMainSearch, "81881448");
 		click(btnSearch);
 		WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video_clip_list']"));
@@ -3955,7 +3984,7 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSearch);
 		WebElement btnAddVideoBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video']"));
 		btnAddVideoBeingSearched2.click();
-		
+
 		type(FieldMainSearch, "100000121581");
 		click(btnSearch);
 		WebElement btnAddVideoBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video']"));
@@ -3974,259 +4003,259 @@ public class HB_HomePage extends AbstractPage {
 		robot.keyPress(KeyEvent.VK_A);
 		robot.keyRelease(KeyEvent.VK_A);
 	}
-	
+
 	public void pressB() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_B);
 		robot.keyRelease(KeyEvent.VK_B);
 	}
-	
+
 	public void pressC() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_C);
 		robot.keyRelease(KeyEvent.VK_C);
 	}
-	
+
 	public void pressD() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_D);
 		robot.keyRelease(KeyEvent.VK_D);
 	}
-	
+
 	public void pressE() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_E);
 		robot.keyRelease(KeyEvent.VK_E);
 	}
-	
+
 	public void pressF() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_F);
 		robot.keyRelease(KeyEvent.VK_F);
 	}
-	
+
 	public void pressG() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_G);
 		robot.keyRelease(KeyEvent.VK_G);
 	}
-	
+
 	public void pressH() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_H);
 		robot.keyRelease(KeyEvent.VK_H);
 	}
-	
+
 	public void pressI() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_I);
 		robot.keyRelease(KeyEvent.VK_I);
 	}
-	
+
 	public void pressJ() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_J);
 		robot.keyRelease(KeyEvent.VK_J);
 	}
-	
+
 	public void pressK() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_K);
 		robot.keyRelease(KeyEvent.VK_K);
 	}
-	
+
 	public void pressL() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_L);
 		robot.keyRelease(KeyEvent.VK_L);
 	}
-	
+
 	public void pressM() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_M);
 		robot.keyRelease(KeyEvent.VK_M);
 	}
-	
+
 	public void pressN() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_N);
 		robot.keyRelease(KeyEvent.VK_N);
 	}
-	
+
 	public void pressO() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_O);
 		robot.keyRelease(KeyEvent.VK_O);
 	}
-	
+
 	public void pressP() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_P);
 		robot.keyRelease(KeyEvent.VK_P);
 	}
-	
+
 	public void pressQ() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_Q);
 		robot.keyRelease(KeyEvent.VK_Q);
 	}
-	
+
 	public void pressR() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_R);
 		robot.keyRelease(KeyEvent.VK_R);
 	}
-	
+
 	public void pressS() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_S);
 		robot.keyRelease(KeyEvent.VK_S);
 	}
-	
+
 	public void pressT() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_T);
 		robot.keyRelease(KeyEvent.VK_T);
 	}
-	
+
 	public void pressU() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_U);
 		robot.keyRelease(KeyEvent.VK_U);
 	}
-	
+
 	public void pressV() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyRelease(KeyEvent.VK_V);
 	}
-	
+
 	public void pressW() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_W);
 		robot.keyRelease(KeyEvent.VK_W);
 	}
-	
+
 	public void pressX() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_X);
 		robot.keyRelease(KeyEvent.VK_X);
 	}
-	
+
 	public void pressY() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_Y);
 		robot.keyRelease(KeyEvent.VK_Y);
 	}
-	
+
 	public void pressZ() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_Z);
 		robot.keyRelease(KeyEvent.VK_Z);
 	}
-	
+
 	public void press0() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_0);
 		robot.keyRelease(KeyEvent.VK_0);
 	}
-	
+
 	public void press1() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_1);
 		robot.keyRelease(KeyEvent.VK_1);
 	}
-	
+
 	public void press2() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_2);
 		robot.keyRelease(KeyEvent.VK_2);
 	}
-	
+
 	public void press3() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_3);
 		robot.keyRelease(KeyEvent.VK_3);
 	}
-	
+
 	public void press4() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_4);
 		robot.keyRelease(KeyEvent.VK_4);
 	}
-	
+
 	public void press5() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_5);
 		robot.keyRelease(KeyEvent.VK_5);
 	}
-	
+
 	public void press6() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_6);
 		robot.keyRelease(KeyEvent.VK_6);
 	}
-	
+
 	public void press7() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_7);
 		robot.keyRelease(KeyEvent.VK_7);
 	}
-	
+
 	public void press8() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_8);
 		robot.keyRelease(KeyEvent.VK_8);
 	}
-	
+
 	public void press9() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_9);
 		robot.keyRelease(KeyEvent.VK_9);
 	}
-	
+
 	public void pressEnter() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 	}
-	
+
 	public void pressTabKey() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_TAB);
 		robot.keyRelease(KeyEvent.VK_TAB);
 	}
-	
+
 	public void pressPeriod() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_PERIOD);
 		robot.keyRelease(KeyEvent.VK_PERIOD);
 	}
-	
+
 	public void pressUp() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_UP);
 		robot.keyRelease(KeyEvent.VK_UP);
 	}
-	
+
 	public void pressDown() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_DOWN);
 		robot.keyRelease(KeyEvent.VK_DOWN);
 	}
-	
+
 	public void pressLeft() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_LEFT);
 		robot.keyRelease(KeyEvent.VK_LEFT);
 	}
-	
+
 	public void pressRight() throws AWTException	{
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_RIGHT);
 		robot.keyRelease(KeyEvent.VK_RIGHT);
 	}
-	
+
 	public void clickPosition(int coordinateX, int coordinateY) throws AWTException	{
 		Robot robot = new Robot();
 		robot.mouseMove(coordinateX, coordinateY);
@@ -4241,362 +4270,404 @@ public class HB_HomePage extends AbstractPage {
 		StringSelection strSel = new StringSelection(str);
 		clipboard.setContents(strSel, null);
 	}
-	
+
 	public void clipBoardPaste() throws AWTException {
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_PASTE);
 		robot.keyRelease(KeyEvent.VK_PASTE);
 	}
-	
-	public void dateChanger(String dateChangerExpectedMonth, String dateChangerExpectedDate, String dateChangerExpectedYear) {
-		click(btnChangeDateList.get(1));
-		String dateChangerCurrentMonth = btnChangeDateCurrentMonth.getText();
-		String dateChangerCurrentYear = btnChangeDateCurrentYear.getText();
-		int dateChangerYearDelta = (Integer.valueOf(dateChangerCurrentYear) - Integer.valueOf(dateChangerExpectedYear)); 
-		for (int a = 0; a < dateChangerYearDelta; dateChangerYearDelta--) {
-			if (dateChangerCurrentMonth == ("January")) {
-				click(btnChangeDatePreviousMonth);
-			}
 
-			if (dateChangerCurrentMonth == ("February")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
 
-			if (dateChangerCurrentMonth == ("March")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
+    public void changeCalendar(String dateChangerExpectedMonth, int dateChangerExpectedDate, int dateChangerExpectedYear) {
+        boolean isDateCorrect = false;
+        String calMonth;
+        String calYear;
+        while (!isDateCorrect) {
 
-			if (dateChangerCurrentMonth == ("April")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
+            calMonth = driver.findElement(By.className("ui-datepicker-month")).getText();
+            calYear = driver.findElement(By.className("ui-datepicker-year")).getText();
 
-			if (dateChangerCurrentMonth == ("May")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
+            if ((Integer) getMTable().get(calMonth) == (Integer) getMTable().get(dateChangerExpectedMonth) &&
+                    (dateChangerExpectedYear == Integer.parseInt(calYear))) {
+                if(selectDay(dateChangerExpectedDate)){
+                    return;
+                }else {
+                    isDateCorrect = false;
+                }
 
-			if (dateChangerCurrentMonth == ("June")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
+            } else if ((Integer) getMTable().get(calMonth)  < (Integer) getMTable().get(dateChangerExpectedMonth) &&
+                    (dateChangerExpectedYear == Integer.parseInt(calYear)) || dateChangerExpectedYear > Integer.parseInt(calYear)) {
+                driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div/a[2]/span")).click();
+            } else if ((Integer) getMTable().get(calMonth)  > (Integer) getMTable().get(dateChangerExpectedMonth) &&
+                    (dateChangerExpectedYear == Integer.parseInt(calYear)) || dateChangerExpectedYear < Integer.parseInt(calYear)) {
+                driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div/a[1]/span")).click();
+            }
+        }
+    }
 
-			if (dateChangerCurrentMonth == ("July")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
 
-			if (dateChangerCurrentMonth == ("August")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
+    public boolean selectDay(Integer date){
+        WebElement dateWidget = driver.findElement(By.id("ui-datepicker-div"));
+        List<WebElement> days=dateWidget.findElements(By.className("ui-state-default"));
+        for (WebElement day: days){
+            if (day.getText().equals(date.toString())){
+                day.click();
+                return true;
+            }
+        }
 
-			if (dateChangerCurrentMonth == ("September")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
+    return false;
+    }
+//	public void dateChanger(String dateChangerExpectedMonth, String dateChangerExpectedDate, String dateChangerExpectedYear) {
+//        click(btnChangeDateList.get(1));
+//
+//		String dateChangerCurrentMonth = btnChangeDateCurrentMonth.getText();
+//		String dateChangerCurrentYear = btnChangeDateCurrentYear.getText();
+//		int dateChangerYearDelta = (Integer.valueOf(dateChangerCurrentYear) - Integer.valueOf(dateChangerExpectedYear));
+//		for (int a = 0; a < dateChangerYearDelta; dateChangerYearDelta--) {
+//			if (dateChangerCurrentMonth == ("January")) {
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("February")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("March")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("April")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("May")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("June")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("July")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("August")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("September")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("October")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("November")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//
+//			if (dateChangerCurrentMonth == ("December")) {
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//				click(btnChangeDatePreviousMonth);
+//			}
+//		}
+//
+//		if (dateChangerExpectedMonth == ("January")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("February")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("March")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("April")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("May")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("June")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("July")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("August")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("September")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("October")) {
+//			click(btnChangeDatePreviousMonth);
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("November")) {
+//			click(btnChangeDatePreviousMonth);
+//		}
+//
+//		if (dateChangerExpectedMonth == ("December")) {
+//		}
+//
+//		if (dateChangerExpectedDate == ("1")) {
+//			click(btnChangeDate1);
+//		}
+//
+//		if (dateChangerExpectedDate == ("2")) {
+//			click(btnChangeDate2);
+//		}
+//
+//		if (dateChangerExpectedDate == ("3")) {
+//			click(btnChangeDate3);
+//		}
+//
+//		if (dateChangerExpectedDate == ("4")) {
+//			click(btnChangeDate4);
+//		}
+//
+//		if (dateChangerExpectedDate == ("5")) {
+//			click(btnChangeDate5);
+//		}
+//
+//		if (dateChangerExpectedDate == ("6")) {
+//			click(btnChangeDate6);
+//		}
+//
+//		if (dateChangerExpectedDate == ("7")) {
+//			click(btnChangeDate7);
+//		}
+//
+//		if (dateChangerExpectedDate == ("8")) {
+//			click(btnChangeDate8);
+//		}
+//
+//		if (dateChangerExpectedDate == ("9")) {
+//			click(btnChangeDate9);
+//		}
+//
+//		if (dateChangerExpectedDate == ("10")) {
+//			click(btnChangeDate10);
+//		}
+//
+//		if (dateChangerExpectedDate == ("11")) {
+//			click(btnChangeDate11);
+//		}
+//
+//		if (dateChangerExpectedDate == ("12")) {
+//			click(btnChangeDate12);
+//		}
+//
+//		if (dateChangerExpectedDate == ("13")) {
+//			click(btnChangeDate13);
+//		}
+//
+//		if (dateChangerExpectedDate == ("14")) {
+//			click(btnChangeDate14);
+//		}
+//
+//		if (dateChangerExpectedDate == ("15")) {
+//			click(btnChangeDate15);
+//		}
+//
+//		if (dateChangerExpectedDate == ("16")) {
+//			click(btnChangeDate16);
+//		}
+//
+//		if (dateChangerExpectedDate == ("17")) {
+//			click(btnChangeDate17);
+//		}
+//
+//		if (dateChangerExpectedDate == ("18")) {
+//			click(btnChangeDate18);
+//		}
+//
+//		if (dateChangerExpectedDate == ("19")) {
+//			click(btnChangeDate19);
+//		}
+//
+//		if (dateChangerExpectedDate == ("20")) {
+//			click(btnChangeDate20);
+//		}
+//
+//		if (dateChangerExpectedDate == ("21")) {
+//			click(btnChangeDate21);
+//		}
+//
+//		if (dateChangerExpectedDate == ("22")) {
+//			click(btnChangeDate22);
+//		}
+//
+//		if (dateChangerExpectedDate == ("23")) {
+//			click(btnChangeDate23);
+//		}
+//
+//		if (dateChangerExpectedDate == ("24")) {
+//			click(btnChangeDate24);
+//		}
+//
+//		if (dateChangerExpectedDate == ("25")) {
+//			click(btnChangeDate25);
+//		}
+//
+//		if (dateChangerExpectedDate == ("26")) {
+//			click(btnChangeDate26);
+//		}
+//
+//		if (dateChangerExpectedDate == ("27")) {
+//			click(btnChangeDate27);
+//		}
+//
+//		if (dateChangerExpectedDate == ("28")) {
+//			click(btnChangeDate28);
+//		}
+//
+//		if (dateChangerExpectedDate == ("29")) {
+//			click(btnChangeDate29);
+//		}
+//
+//		if (dateChangerExpectedDate == ("30")) {
+//			click(btnChangeDate30);
+//		}
+//
+//		if (dateChangerExpectedDate == ("31")) {
+//			click(btnChangeDate31);
+//		}
+//
+//	}
 
-			if (dateChangerCurrentMonth == ("October")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
-
-			if (dateChangerCurrentMonth == ("November")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
-
-			if (dateChangerCurrentMonth == ("December")) {
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-				click(btnChangeDatePreviousMonth);
-			}
-		}
-
-		if (dateChangerExpectedMonth == ("January")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("February")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("March")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("April")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("May")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("June")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("July")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("August")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("September")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("October")) {
-			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("November")) {
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("December")) {
-		}
-
-		if (dateChangerExpectedDate == ("1")) {
-			click(btnChangeDate1);
-		}
-
-		if (dateChangerExpectedDate == ("2")) {
-			click(btnChangeDate2);
-		}
-
-		if (dateChangerExpectedDate == ("3")) {
-			click(btnChangeDate3);
-		}
-
-		if (dateChangerExpectedDate == ("4")) {
-			click(btnChangeDate4);
-		}
-
-		if (dateChangerExpectedDate == ("5")) {
-			click(btnChangeDate5);
-		}
-
-		if (dateChangerExpectedDate == ("6")) {
-			click(btnChangeDate6);
-		}
-
-		if (dateChangerExpectedDate == ("7")) {
-			click(btnChangeDate7);
-		}
-
-		if (dateChangerExpectedDate == ("8")) {
-			click(btnChangeDate8);
-		}
-
-		if (dateChangerExpectedDate == ("9")) {
-			click(btnChangeDate9);
-		}
-
-		if (dateChangerExpectedDate == ("10")) {
-			click(btnChangeDate10);
-		}
-
-		if (dateChangerExpectedDate == ("11")) {
-			click(btnChangeDate11);
-		}
-
-		if (dateChangerExpectedDate == ("12")) {
-			click(btnChangeDate12);
-		}
-
-		if (dateChangerExpectedDate == ("13")) {
-			click(btnChangeDate13);
-		}
-
-		if (dateChangerExpectedDate == ("14")) {
-			click(btnChangeDate14);
-		}
-
-		if (dateChangerExpectedDate == ("15")) {
-			click(btnChangeDate15);
-		}
-
-		if (dateChangerExpectedDate == ("16")) {
-			click(btnChangeDate16);
-		}
-
-		if (dateChangerExpectedDate == ("17")) {
-			click(btnChangeDate17);
-		}
-
-		if (dateChangerExpectedDate == ("18")) {
-			click(btnChangeDate18);
-		}
-
-		if (dateChangerExpectedDate == ("19")) {
-			click(btnChangeDate19);
-		}
-
-		if (dateChangerExpectedDate == ("20")) {
-			click(btnChangeDate20);
-		}
-
-		if (dateChangerExpectedDate == ("21")) {
-			click(btnChangeDate21);
-		}
-
-		if (dateChangerExpectedDate == ("22")) {
-			click(btnChangeDate22);
-		}
-
-		if (dateChangerExpectedDate == ("23")) {
-			click(btnChangeDate23);
-		}
-
-		if (dateChangerExpectedDate == ("24")) {
-			click(btnChangeDate24);
-		}
-
-		if (dateChangerExpectedDate == ("25")) {
-			click(btnChangeDate25);
-		}
-
-		if (dateChangerExpectedDate == ("26")) {
-			click(btnChangeDate26);
-		}
-
-		if (dateChangerExpectedDate == ("27")) {
-			click(btnChangeDate27);
-		}
-
-		if (dateChangerExpectedDate == ("28")) {
-			click(btnChangeDate28);
-		}
-
-		if (dateChangerExpectedDate == ("29")) {
-			click(btnChangeDate29);
-		}
-
-		if (dateChangerExpectedDate == ("30")) {
-			click(btnChangeDate30);
-		}
-
-		if (dateChangerExpectedDate == ("31")) {
-			click(btnChangeDate31);
-		}
-
-	}
-	
 	public void testFunction(String mainURLCall) throws InterruptedException, AWTException	{
 		depthChartsBaseState(hostName);
 		List<WebElement> FieldDataPosition = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
@@ -4608,8 +4679,8 @@ public class HB_HomePage extends AbstractPage {
 		}
 		click(btnSaveDepthChart);
 		int depthChartPlayerValueExpectedAfterDelete = 0;
-		int depthChartsPlayerNumberOfDeleteButtonsAfter = FieldDataPosition.size();	
-//		Assert.assertTrue((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartsPlayerNumberOfDeleteButtonsAfter == 0);		
+		int depthChartsPlayerNumberOfDeleteButtonsAfter = FieldDataPosition.size();
+//		Assert.assertTrue((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartsPlayerNumberOfDeleteButtonsAfter == 0);
 		Assert.assertEquals((depthChartsPlayerNumberOfDeleteButtonsAfter + " out of "+ depthChartPlayerValueExpectedAfterDelete +" Depth Chart Player Deletes were performed."), depthChartPlayerValueExpectedAfterDelete, depthChartsPlayerNumberOfDeleteButtonsAfter);
 	}
 }
