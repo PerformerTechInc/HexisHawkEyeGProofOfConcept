@@ -608,13 +608,13 @@ public class HomebaseTestSuite extends UITest {
 	public void homeBaseTestMLB000TestFunction() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException
 	{
 		HB_HomePage homePage = new HB_HomePage(getDriver());
-		homePage.login(loginUser,loginPassword,minorLeagueSiteSelection);
-		homePage.oldUIToNewUI(minorLeagueSiteSelection);
-		homePage.selectNewItem(selectNewItemArticle);
-		homePage.fillAndSaveNewArticle(mainURL,valueBeta,valueArticleInternalName,valueArticleHeadline,valueArticleSubhead,valueArticleAltHeadline,valueArticleByline,valueArticleSeoHeadline,valueArticlePoll,valueMinorTagToolPlayer,valueArticleBlurb, valueArticleNotes,valueArticleTagline);
+		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
+		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.probablesTeamContentAddPlayers(mainURL);
+		homePage.probablesTeamContentRepositionPlayers(mainURL);
+		homePage.probablesTeamContentDeletePlayers(mainURL);
 		return;
 	}	
-
 	
 	@Test
 	public void homeBaseTestMLB001Login() throws InterruptedException, UnsupportedEncodingException, AWTException, IOException 
