@@ -595,6 +595,18 @@ public class HomebaseTestSuite extends UITest {
 	public static String valueVideoClipListListDefaultView = "123";	
 	//************ VIDEO TOPIC PAGE OBJECTS ************//	
 
+	//************ TEAM CONTENT PROBABLES OBJECTS ************//	
+	public static String valueProbablesTeamContentDateChangerMonth = "July";
+	public static String valueProbablesTeamContentDateChangerDate = "1";
+	public static String valueProbablesTeamContentDateChangerYear = "2014";	
+	//************ TEAM CONTENT PROBABLES OBJECTS ************//	
+	
+	//************ GAME CONTENT PROBABLES OBJECTS ************//	
+	public static String valueProbablesGameContentDateChangerMonth = "July";
+	public static String valueProbablesGameContentDateChangerDate = "1";
+	public static String valueProbablesGameContentDateChangerYear = "2014";	
+	//************ GAME CONTENT PROBABLES OBJECTS ************//	
+	
 	//************ TEXT FIELD VALUES ************//	
 	//************ TEXT FIELD VALUES ************//	
 	//************ TEXT FIELD VALUES ************//	
@@ -610,9 +622,9 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.probablesTeamContentAddPlayers(mainURL);
-		homePage.probablesTeamContentRepositionPlayers(mainURL);
-		homePage.probablesTeamContentDeletePlayers(mainURL);
+		homePage.probablesTeamContentAddPlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
+		homePage.probablesTeamContentRepositionPlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
+		homePage.probablesTeamContentDeletePlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
 		return;
 	}	
 	
@@ -1445,9 +1457,9 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.probablesTeamContentAddPlayers(mainURL);
-		homePage.probablesTeamContentRepositionPlayers(mainURL);
-		homePage.probablesTeamContentDeletePlayers(mainURL);
+		homePage.probablesTeamContentAddPlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
+		homePage.probablesTeamContentRepositionPlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
+		homePage.probablesTeamContentDeletePlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
 		return;
 	}	
 
@@ -1457,8 +1469,8 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.probablesGameContentAddPlayers(mainURL);
-		homePage.probablesGameContentDeletePlayers(mainURL);
+		homePage.probablesGameContentAddPlayers(mainURL, valueProbablesGameContentDateChangerMonth, valueProbablesGameContentDateChangerDate, valueProbablesGameContentDateChangerYear);
+		homePage.probablesGameContentDeletePlayers(mainURL, valueProbablesGameContentDateChangerMonth, valueProbablesGameContentDateChangerDate, valueProbablesGameContentDateChangerYear);
 		return;
 	}	
 

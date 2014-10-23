@@ -1143,6 +1143,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//span[contains(text(), 'Prev')]")
 	public ExtendedWebElement btnChangeDatePreviousMonth;
 
+	@FindBy(xpath="//span[contains(text(), 'Prev')]")
+	public List<ExtendedWebElement> btnChangeDatePreviousMonthList;
+
 	@FindBy(xpath="//span[contains(text(), 'Next')]")
 	public ExtendedWebElement btnChangeDateNextMonth;
 
@@ -1244,6 +1247,99 @@ public class HB_HomePage extends AbstractPage {
 
 	@FindBy(xpath="//a[contains(text(), '31')]")
 	public ExtendedWebElement btnChangeDate31;
+
+	@FindBy(xpath="//a[contains(text(), '1')]")
+	public List<ExtendedWebElement> btnChangeDate1List;
+
+	@FindBy(xpath="//a[contains(text(), '2')]")
+	public List<ExtendedWebElement> btnChangeDate2List;
+
+	@FindBy(xpath="//a[contains(text(), '3')]")
+	public List<ExtendedWebElement> btnChangeDate3List;
+
+	@FindBy(xpath="//a[contains(text(), '4')]")
+	public List<ExtendedWebElement> btnChangeDate4List;
+
+	@FindBy(xpath="//a[contains(text(), '5')]")
+	public List<ExtendedWebElement> btnChangeDate5List;
+
+	@FindBy(xpath="//a[contains(text(), '6')]")
+	public List<ExtendedWebElement> btnChangeDate6List;
+
+	@FindBy(xpath="//a[contains(text(), '7')]")
+	public List<ExtendedWebElement> btnChangeDate7List;
+
+	@FindBy(xpath="//a[contains(text(), '8')]")
+	public List<ExtendedWebElement> btnChangeDate8List;
+
+	@FindBy(xpath="//a[contains(text(), '9')]")
+	public List<ExtendedWebElement> btnChangeDate9List;
+
+	@FindBy(xpath="//a[contains(text(), '10')]")
+	public List<ExtendedWebElement> btnChangeDate10List;
+
+	@FindBy(xpath="//a[contains(text(), '11')]")
+	public List<ExtendedWebElement> btnChangeDate11List;
+
+	@FindBy(xpath="//a[contains(text(), '12')]")
+	public List<ExtendedWebElement> btnChangeDate12List;
+
+	@FindBy(xpath="//a[contains(text(), '13')]")
+	public List<ExtendedWebElement> btnChangeDate13List;
+
+	@FindBy(xpath="//a[contains(text(), '14')]")
+	public List<ExtendedWebElement> btnChangeDate14List;
+
+	@FindBy(xpath="//a[contains(text(), '15')]")
+	public List<ExtendedWebElement> btnChangeDate15List;
+
+	@FindBy(xpath="//a[contains(text(), '16')]")
+	public List<ExtendedWebElement> btnChangeDate16List;
+
+	@FindBy(xpath="//a[contains(text(), '17')]")
+	public List<ExtendedWebElement> btnChangeDate17List;
+
+	@FindBy(xpath="//a[contains(text(), '18')]")
+	public List<ExtendedWebElement> btnChangeDate18List;
+
+	@FindBy(xpath="//a[contains(text(), '19')]")
+	public List<ExtendedWebElement> btnChangeDate19List;
+
+	@FindBy(xpath="//a[contains(text(), '20')]")
+	public List<ExtendedWebElement> btnChangeDate20List;
+
+	@FindBy(xpath="//a[contains(text(), '21')]")
+	public List<ExtendedWebElement> btnChangeDate21List;
+
+	@FindBy(xpath="//a[contains(text(), '22')]")
+	public List<ExtendedWebElement> btnChangeDate22List;
+
+	@FindBy(xpath="//a[contains(text(), '23')]")
+	public List<ExtendedWebElement> btnChangeDate23List;
+
+	@FindBy(xpath="//a[contains(text(), '24')]")
+	public List<ExtendedWebElement> btnChangeDate24List;
+
+	@FindBy(xpath="//a[contains(text(), '25')]")
+	public List<ExtendedWebElement> btnChangeDate25List;
+
+	@FindBy(xpath="//a[contains(text(), '26')]")
+	public List<ExtendedWebElement> btnChangeDate26List;
+
+	@FindBy(xpath="//a[contains(text(), '27')]")
+	public List<ExtendedWebElement> btnChangeDate27List;
+
+	@FindBy(xpath="//a[contains(text(), '28')]")
+	public List<ExtendedWebElement> btnChangeDate28List;
+
+	@FindBy(xpath="//a[contains(text(), '29')]")
+	public List<ExtendedWebElement> btnChangeDate29List;
+
+	@FindBy(xpath="//a[contains(text(), '30')]")
+	public List<ExtendedWebElement> btnChangeDate30List;
+
+	@FindBy(xpath="//a[contains(text(), '31')]")
+	public List<ExtendedWebElement> btnChangeDate31List;
 
 	//************ CHANGE DATE OBJECTS ************//	
 
@@ -1969,18 +2065,17 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSaveDepthChart);
 		}
 
-	public void probablesTeamContentBaseState(String mainURLCall) throws InterruptedException, AWTException	{
+	public void probablesTeamContentBaseState(String mainURLCall, String dateChangerMonth, String dateChangerDate, String dateChangerYear) throws InterruptedException, AWTException	{
 		selectTeamContent();
 		click(btnDashboardTeamContentWashingtonNationals);
 		click(btnDashboardTeamContentArizonaDiamondbacks);
 		click(btnDashboardTeamContentProbables);
 		pause(5);
-		dateChanger("July", "1", "2013");
-		pause(300);
+		dateChanger(dateChangerMonth, dateChangerDate, dateChangerYear);
 	}
 
-	public void probablesTeamContentAddPlayers(String mainURLCall) throws InterruptedException, AWTException	{
-		probablesTeamContentBaseState(hostName);
+	public void probablesTeamContentAddPlayers(String mainURLCall, String probablesTeamContentDateChangerMonth, String probablesTeamContentDateChangerDate, String probablesTeamContentDateChangerYear) throws InterruptedException, AWTException	{
+		probablesTeamContentBaseState(hostName, probablesTeamContentDateChangerMonth, probablesTeamContentDateChangerDate, probablesTeamContentDateChangerYear);
 		List<WebElement> FieldDataPosition = probablesFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:220px']"));
 		logger.info(FieldDataPosition.size());
 		int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
@@ -2002,8 +2097,8 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSaveProbables);		
 	}
 
-	public void probablesTeamContentRepositionPlayers(String mainURLCall) throws InterruptedException, AWTException	{
-		probablesTeamContentBaseState(hostName);
+	public void probablesTeamContentRepositionPlayers(String mainURLCall, String probablesTeamContentDateChangerMonth, String probablesTeamContentDateChangerDate, String probablesTeamContentDateChangerYear) throws InterruptedException, AWTException	{
+		probablesTeamContentBaseState(hostName, probablesTeamContentDateChangerMonth, probablesTeamContentDateChangerDate, probablesTeamContentDateChangerYear);
 		List<WebElement> FieldDataPositionProbablesUp = probablesFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class=' triggerAble probablesUp probablesUpShow']"));
 		List<WebElement> FieldDataPositionProbablesDown = probablesFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class=' triggerAble probablesDown probablesDownShow']"));
 
@@ -2024,8 +2119,8 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSaveProbables);
 		}
 
-	public void probablesTeamContentDeletePlayers(String mainURLCall) throws InterruptedException, AWTException	{
-		probablesTeamContentBaseState(hostName);
+	public void probablesTeamContentDeletePlayers(String mainURLCall, String probablesTeamContentDateChangerMonth, String probablesTeamContentDateChangerDate, String probablesTeamContentDateChangerYear) throws InterruptedException, AWTException	{
+		probablesTeamContentBaseState(hostName, probablesTeamContentDateChangerMonth, probablesTeamContentDateChangerDate, probablesTeamContentDateChangerYear);
 		List<WebElement> FieldDataPosition = probablesFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removeProbableEntry triggerAble']"));
 		int depthChartsPlayerNumberOfDeleteButtons = FieldDataPosition.size();
 		for (int a = 0; a < depthChartsPlayerNumberOfDeleteButtons; a++) {
@@ -2035,18 +2130,17 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSaveProbables);
 		}
 
-	public void probablesGameContentBaseState(String mainURLCall) throws InterruptedException, AWTException	{
+	public void probablesGameContentBaseState(String mainURLCall, String dateChangerMonth, String dateChangerDate, String dateChangerYear) throws InterruptedException, AWTException	{
 		selectGameContent();
-		dateChanger("July", "1", "2013");
-		pause(300);
+		dateChanger(dateChangerMonth, dateChangerDate, dateChangerYear);
 		List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
 		(gameContentSelectGame.get(0)).click();
 		click(btnDashboardGameContentProbables);
 		pause(0.5);
 	}
 
-	public void probablesGameContentAddPlayers(String mainURLCall) throws InterruptedException, AWTException	{
-		probablesGameContentBaseState(hostName);
+	public void probablesGameContentAddPlayers(String mainURLCall, String probablesGameContentDateChangerMonth, String probablesGameContentDateChangerDate, String probablesGameContentDateChangerYear) throws InterruptedException, AWTException	{
+		probablesGameContentBaseState(hostName, probablesGameContentDateChangerMonth, probablesGameContentDateChangerDate, probablesGameContentDateChangerYear);
 		List<WebElement> FieldDataPosition = probablesGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:280px']"));
 		logger.info(FieldDataPosition.size());
 
@@ -2069,8 +2163,8 @@ public class HB_HomePage extends AbstractPage {
 		click(btnSaveProbables);		
 	}
 
-	public void probablesGameContentDeletePlayers(String mainURLCall) throws InterruptedException, AWTException	{
-		probablesGameContentBaseState(hostName);
+	public void probablesGameContentDeletePlayers(String mainURLCall, String probablesGameContentDateChangerMonth, String probablesGameContentDateChangerDate, String probablesGameContentDateChangerYear) throws InterruptedException, AWTException	{
+		probablesGameContentBaseState(hostName, probablesGameContentDateChangerMonth, probablesGameContentDateChangerDate, probablesGameContentDateChangerYear);
 		List<WebElement> FieldDataPosition = probablesGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removeProbableEntry triggerAble']"));
 		int depthChartsPlayerNumberOfDeleteButtons = FieldDataPosition.size();
 		for (int a = 0; a < depthChartsPlayerNumberOfDeleteButtons; a++) {
@@ -4250,349 +4344,674 @@ public class HB_HomePage extends AbstractPage {
 	
 	public void dateChanger(String dateChangerExpectedMonth, String dateChangerExpectedDate, String dateChangerExpectedYear) {
 		click(btnChangeDateList.get(1));
-		String dateChangerCurrentMonth = btnChangeDateCurrentMonth.getText();
+//		String dateChangerCurrentMonth = btnChangeDateCurrentMonth.getText();
+//		logger.info("The current month is -" + dateChangerCurrentMonth + "-");
 		String dateChangerCurrentYear = btnChangeDateCurrentYear.getText();
+		logger.info(dateChangerCurrentYear);
+		int pauseTimeInSeconds = 0;
 		int dateChangerYearDelta = (Integer.valueOf(dateChangerCurrentYear) - Integer.valueOf(dateChangerExpectedYear)); 
+		logger.info(dateChangerYearDelta);
+		String dateChangerCurrentMonth = btnChangeDateCurrentMonth.getText();
+		if (dateChangerYearDelta == 0) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("January")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("February")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("March")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("April")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("May")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("June")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("July")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("August")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("September")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("October")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("November")) {
+				click(btnChangeDateNextMonth);
+				pause(pauseTimeInSeconds);
+			}
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("December")) {
+
+			}
+			
+		}
+
 		for (int a = 0; a < dateChangerYearDelta; dateChangerYearDelta--) {
-			if (dateChangerCurrentMonth == ("January")) {
+			
+			dateChangerCurrentMonth = btnChangeDateCurrentMonth.getText();
+
+			if (dateChangerCurrentMonth.equalsIgnoreCase("January")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("February")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("February")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("March")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("March")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("April")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("April")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("May")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("May")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("June")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("June")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("July")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("July")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("August")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("August")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("September")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("September")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("October")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("October")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("November")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("November")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 
-			if (dateChangerCurrentMonth == ("December")) {
+			if (dateChangerCurrentMonth.equalsIgnoreCase("December")) {
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 				click(btnChangeDatePreviousMonth);
+				pause(pauseTimeInSeconds);
 			}
 		}
 
-		if (dateChangerExpectedMonth == ("January")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("January")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("February")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("February")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("March")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("March")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("April")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("April")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
+		}
+		pause(pauseTimeInSeconds);
+
+		if (dateChangerExpectedMonth.equalsIgnoreCase("May")) {
+			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
+			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
+			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
+			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
+			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
+			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
+			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("May")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("June")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("June")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("July")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("July")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("August")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("August")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("September")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("September")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("October")) {
 			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("October")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("November")) {
 			click(btnChangeDatePreviousMonth);
-			click(btnChangeDatePreviousMonth);
+			pause(pauseTimeInSeconds);
 		}
 
-		if (dateChangerExpectedMonth == ("November")) {
-			click(btnChangeDatePreviousMonth);
-		}
-
-		if (dateChangerExpectedMonth == ("December")) {
+		if (dateChangerExpectedMonth.equalsIgnoreCase("December")) {
 		}
 
 		if (dateChangerExpectedDate == ("1")) {
-			click(btnChangeDate1);
+			click(btnChangeDate1List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("2")) {
-			click(btnChangeDate2);
+			click(btnChangeDate2List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("3")) {
-			click(btnChangeDate3);
+			click(btnChangeDate3List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("4")) {
-			click(btnChangeDate4);
+			click(btnChangeDate4List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("5")) {
-			click(btnChangeDate5);
+			click(btnChangeDate5List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("6")) {
-			click(btnChangeDate6);
+			click(btnChangeDate6List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("7")) {
-			click(btnChangeDate7);
+			click(btnChangeDate7List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("8")) {
-			click(btnChangeDate8);
+			click(btnChangeDate8List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("9")) {
-			click(btnChangeDate9);
+			click(btnChangeDate9List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("10")) {
-			click(btnChangeDate10);
+			click(btnChangeDate10List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("11")) {
-			click(btnChangeDate11);
+			click(btnChangeDate11List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("12")) {
-			click(btnChangeDate12);
+			click(btnChangeDate12List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("13")) {
-			click(btnChangeDate13);
+			click(btnChangeDate13List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("14")) {
-			click(btnChangeDate14);
+			click(btnChangeDate14List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("15")) {
-			click(btnChangeDate15);
+			click(btnChangeDate15List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("16")) {
-			click(btnChangeDate16);
+			click(btnChangeDate16List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("17")) {
-			click(btnChangeDate17);
+			click(btnChangeDate17List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("18")) {
-			click(btnChangeDate18);
+			click(btnChangeDate18List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("19")) {
-			click(btnChangeDate19);
+			click(btnChangeDate19List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("20")) {
-			click(btnChangeDate20);
+			click(btnChangeDate20List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("21")) {
-			click(btnChangeDate21);
+			click(btnChangeDate21List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("22")) {
-			click(btnChangeDate22);
+			click(btnChangeDate22List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("23")) {
-			click(btnChangeDate23);
+			click(btnChangeDate23List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("24")) {
-			click(btnChangeDate24);
+			click(btnChangeDate24List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("25")) {
-			click(btnChangeDate25);
+			click(btnChangeDate25List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("26")) {
-			click(btnChangeDate26);
+			click(btnChangeDate26List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("27")) {
-			click(btnChangeDate27);
+			click(btnChangeDate27List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("28")) {
-			click(btnChangeDate28);
+			click(btnChangeDate28List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("29")) {
-			click(btnChangeDate29);
+			click(btnChangeDate29List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("30")) {
-			click(btnChangeDate30);
+			click(btnChangeDate30List.get(1));
 		}
 
 		if (dateChangerExpectedDate == ("31")) {
-			click(btnChangeDate31);
+			click(btnChangeDate31List.get(1));
 		}
 
 	}
