@@ -1149,6 +1149,9 @@ public class HB_HomePage extends AbstractPage {
 	@FindBy(xpath="//span[contains(text(), 'Next')]")
 	public ExtendedWebElement btnChangeDateNextMonth;
 
+	@FindBy(xpath="//span[contains(text(), 'Next')]")
+	public List<ExtendedWebElement> btnChangeDateNextMonthList;
+
 	@FindBy(xpath="//span[@class='ui-datepicker-month']")
 	public ExtendedWebElement btnChangeDateCurrentMonth;
 

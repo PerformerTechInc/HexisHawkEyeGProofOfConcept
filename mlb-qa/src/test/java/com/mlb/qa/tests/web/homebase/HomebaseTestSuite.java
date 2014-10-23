@@ -622,9 +622,10 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.probablesTeamContentAddPlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
-		homePage.probablesTeamContentRepositionPlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
-		homePage.probablesTeamContentDeletePlayers(mainURL, valueProbablesTeamContentDateChangerMonth, valueProbablesTeamContentDateChangerDate, valueProbablesTeamContentDateChangerYear);
+		homePage.depthChartsDeletePlayers(mainURL);
+		homePage.depthChartsAddPlayers(mainURL);
+		homePage.depthChartsRepositionPlayers(mainURL);
+		homePage.depthChartsDeletePlayers(mainURL);
 		return;
 	}	
 	
@@ -1445,6 +1446,7 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
+		homePage.depthChartsDeletePlayers(mainURL);
 		homePage.depthChartsAddPlayers(mainURL);
 		homePage.depthChartsRepositionPlayers(mainURL);
 		homePage.depthChartsDeletePlayers(mainURL);
