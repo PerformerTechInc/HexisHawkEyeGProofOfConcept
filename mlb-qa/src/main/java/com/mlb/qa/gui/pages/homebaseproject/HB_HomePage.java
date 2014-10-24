@@ -2004,31 +2004,32 @@ public class HB_HomePage extends AbstractPage {
 		depthChartsBaseState(hostName);
 		List<WebElement> FieldDataPosition = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:240px']"));
 		logger.info(FieldDataPosition.size());
+		int depthChartsPauseTime = 1;
 		int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
-			pause(1);
+			pause(depthChartsPauseTime);
 			(FieldDataPosition.get(a)).click();
-			pause(0.5);
+			pause(depthChartsPauseTime);
 			(FieldDataPosition.get(a)).sendKeys("6");
-			pause(0.5);
+			pause(depthChartsPauseTime);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
-			pause(0.5);
+			pause(depthChartsPauseTime);
 			(FieldDataPosition.get(a)).click();
-			pause(0.5);
+			pause(depthChartsPauseTime);
 			(FieldDataPosition.get(a)).sendKeys("5");
-			pause(0.5);
+			pause(depthChartsPauseTime);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
-			pause(0.5);
+			pause(depthChartsPauseTime);
 		}
 		click(btnSaveDepthChart);		
 		List<WebElement> FieldDataPositionDeleteButtons = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
@@ -2041,18 +2042,20 @@ public class HB_HomePage extends AbstractPage {
 		depthChartsBaseState(hostName);
 		List<WebElement> FieldDataPositionDepthUp = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='depthUp triggerAble ']"));
 		List<WebElement> FieldDataPositionDepthDown = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='depthDown triggerAble ']"));
-
+		int depthChartsPauseTime = 1;
 		int depthChartsPlayerNumberOfDepthUpButtons = FieldDataPositionDepthUp.size();
 		int depthChartsPlayerNumberOfDepthDownButtons = FieldDataPositionDepthDown.size();
 
 		for (int a = 0; a < depthChartsPlayerNumberOfDepthDownButtons; a++) {
 			WebElement depthChartsPlayerDepthDownButton = FieldDataPositionDepthDown.get(a);
 			depthChartsPlayerDepthDownButton.click();
+			pause(depthChartsPauseTime);
 		}
 
 		for (int a = 0; a < depthChartsPlayerNumberOfDepthUpButtons; a++) {
 			WebElement depthChartsPlayerDepthUpButton = FieldDataPositionDepthUp.get(a);
 			depthChartsPlayerDepthUpButton.click();
+			pause(depthChartsPauseTime);
 		}
 		click(btnSaveDepthChart);
 		}
@@ -2061,9 +2064,11 @@ public class HB_HomePage extends AbstractPage {
 		depthChartsBaseState(hostName);
 		List<WebElement> FieldDataPosition = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
 		int depthChartsPlayerNumberOfDeleteButtons = FieldDataPosition.size();
+		int depthChartsPauseTime = 1;
 		for (int a = 0; a < depthChartsPlayerNumberOfDeleteButtons; a++) {
 			WebElement depthChartsPlayerDeleteButton = FieldDataPosition.get(a);
 			depthChartsPlayerDeleteButton.click();
+			pause(depthChartsPauseTime);
 		}
 		click(btnSaveDepthChart);
 		}
