@@ -2007,29 +2007,31 @@ public class HB_HomePage extends AbstractPage {
 		int depthChartsPauseTime = 1;
 		int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
 		for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
-			pause(depthChartsPauseTime);
-			(FieldDataPosition.get(a)).click();
-			pause(depthChartsPauseTime);
+			pause(Integer.valueOf(depthChartsPauseTime));
+			click("DepthChartPlayerInputField", FieldDataPosition.get(a));
+//			(FieldDataPosition.get(a)).click();
+			pause(Integer.valueOf(depthChartsPauseTime));
 			(FieldDataPosition.get(a)).sendKeys("6");
-			pause(depthChartsPauseTime);
+			pause(Integer.valueOf(depthChartsPauseTime));
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
-			pause(depthChartsPauseTime);
-			(FieldDataPosition.get(a)).click();
-			pause(depthChartsPauseTime);
+			pause(Integer.valueOf(depthChartsPauseTime));
+			click("DepthChartPlayerInputField", FieldDataPosition.get(a));
+//			(FieldDataPosition.get(a)).click();
+			pause(Integer.valueOf(depthChartsPauseTime));
 			(FieldDataPosition.get(a)).sendKeys("5");
-			pause(depthChartsPauseTime);
+			pause(Integer.valueOf(depthChartsPauseTime));
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			for (int b = (a+a); b > a; b--) {
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
 			}
 			(FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
 			(FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
-			pause(depthChartsPauseTime);
+			pause(Integer.valueOf(depthChartsPauseTime));
 		}
 		click(btnSaveDepthChart);		
 		List<WebElement> FieldDataPositionDeleteButtons = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
@@ -2049,13 +2051,13 @@ public class HB_HomePage extends AbstractPage {
 		for (int a = 0; a < depthChartsPlayerNumberOfDepthDownButtons; a++) {
 			WebElement depthChartsPlayerDepthDownButton = FieldDataPositionDepthDown.get(a);
 			depthChartsPlayerDepthDownButton.click();
-			pause(depthChartsPauseTime);
+			pause(Integer.valueOf(depthChartsPauseTime));
 		}
 
 		for (int a = 0; a < depthChartsPlayerNumberOfDepthUpButtons; a++) {
 			WebElement depthChartsPlayerDepthUpButton = FieldDataPositionDepthUp.get(a);
 			depthChartsPlayerDepthUpButton.click();
-			pause(depthChartsPauseTime);
+			pause(Integer.valueOf(depthChartsPauseTime));
 		}
 		click(btnSaveDepthChart);
 		}
@@ -2068,7 +2070,7 @@ public class HB_HomePage extends AbstractPage {
 		for (int a = 0; a < depthChartsPlayerNumberOfDeleteButtons; a++) {
 			WebElement depthChartsPlayerDeleteButton = FieldDataPosition.get(a);
 			depthChartsPlayerDeleteButton.click();
-			pause(depthChartsPauseTime);
+			pause(Integer.valueOf(depthChartsPauseTime));
 		}
 		click(btnSaveDepthChart);
 		}
