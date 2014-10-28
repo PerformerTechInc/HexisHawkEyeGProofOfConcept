@@ -2,8 +2,12 @@
 
 <suite verbose="1" name="MLB - Homebase Basic test"
 	skipfailedinvocationcounts="false" junit="false" parallel="methods"
-	thread-count="1" annotations="JDK"> 
-	
+	thread-count="4" annotations="JDK">
+
+    <listeners>
+        <listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
+    </listeners>
+
 	<test verbose="1" name="Verify Home Page" thread-count="1">
 		<classes>
 			<class name="com.mlb.qa.tests.web.homebase.HomebaseTestSuite" />
