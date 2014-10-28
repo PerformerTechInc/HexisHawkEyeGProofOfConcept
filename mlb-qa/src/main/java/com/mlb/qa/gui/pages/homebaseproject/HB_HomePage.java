@@ -2143,6 +2143,7 @@ public class HB_HomePage extends AbstractPage {
 	public void probablesGameContentBaseState(String mainURLCall, String dateChangerMonth, String dateChangerDate, String dateChangerYear) throws InterruptedException, AWTException	{
 		selectGameContent();
 		dateChanger(dateChangerMonth, dateChangerDate, dateChangerYear);
+		pause(3);
 		List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
 		(gameContentSelectGame.get(0)).click();
 		click(btnDashboardGameContentProbables);
