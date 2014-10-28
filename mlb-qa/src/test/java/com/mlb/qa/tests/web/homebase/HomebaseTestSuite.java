@@ -622,8 +622,8 @@ public class HomebaseTestSuite extends UITest {
 		HB_HomePage homePage = new HB_HomePage(getDriver());
 		homePage.login(loginUser,loginPassword,majorLeagueSiteSelection);
 		homePage.oldUIToNewUI(majorLeagueSiteSelection);
-		homePage.probablesGameContentAddPlayers(mainURL, valueProbablesGameContentDateChangerMonth, valueProbablesGameContentDateChangerDate, valueProbablesGameContentDateChangerYear);
-		homePage.probablesGameContentDeletePlayers(mainURL, valueProbablesGameContentDateChangerMonth, valueProbablesGameContentDateChangerDate, valueProbablesGameContentDateChangerYear);
+		homePage.selectHomePageUploadPhotos();
+		homePage.uploadPhotos(mainURL, valueMajorTagToolPlayer);
 		return;
 	}	
 	

@@ -1942,15 +1942,17 @@ public class HB_HomePage extends AbstractPage {
 		click(BtnClose);
 		String valuePhotoAsset = StatusPublishComplete.getText();
 		String valuePhotoAssetTrimmed = valuePhotoAsset.substring(15);
-		type(FieldMainSearch, valuePhotoAssetTrimmed + "\n");
-		click(btnSearch);
+		driver.get(hostName + "prototype/homebase.jsp?#/itemeditor\\edit\\" + valuePhotoAssetTrimmed);
+//		type(FieldMainSearch, valuePhotoAssetTrimmed + "\n");
+//		click(btnSearch);
 		pause(3);
-		WebElement btnItemSearchedForValidation = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valuePhotoAssetTrimmed + "')]"));
-		btnItemSearchedForValidation.click();
+//		WebElement btnItemSearchedForValidation = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valuePhotoAssetTrimmed + "')]"));
+//		btnItemSearchedForValidation.click();
 		Assert.assertTrue("Cut Width Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutWidth001, 5));
 		Assert.assertTrue("Cut Height Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutHeight001, 5));
 		pause(5);
-
+		click(deleteItem);
+		click(deleteItemConfirm);
 	}
 
 	public void testCMSTool (int coordinateX, int coordinateY) throws AWTException {
