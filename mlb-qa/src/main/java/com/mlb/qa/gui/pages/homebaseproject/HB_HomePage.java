@@ -360,8 +360,8 @@ public class HB_HomePage extends AbstractPage {
     @FindBy(id = "multiUPstartBrowse")
     public ExtendedWebElement BtnMultipleCutUploadAddFiles;
 
-    @FindBy(xpath = "//div[@class='addFilesDropDown']")
-    public ExtendedWebElement BtnMultipleCutUploadAddFilesParent;
+    @FindBy(xpath = ".//div[@class='addFilesDropDown']//input[@class='pluUploadInput skip']")
+    public ExtendedWebElement btnMultipleCutUploadAddFilesParent;
 
     @FindBy(id = "singleUPstartBrowse")
     public ExtendedWebElement BtnSingleCutUploadAddFiles;
@@ -1507,12 +1507,12 @@ public class HB_HomePage extends AbstractPage {
     }
 
     public void testPhotoFileDialogNoMouse() {
-        File file = null;
-        file = new File("/Library/ztestphoto.jpg");
+        File file = new File("/Library/ztestphoto.jpg");
         ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').css('position', 'static').css('opacity', '1');");
         ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').parent().css('overflow', 'visible').css('opacity', '1');");
-        WebElement BtnMultipleCutUploadAddFilesChild = BtnMultipleCutUploadAddFilesParent.getElement().findElement(By.xpath("//div[@style='position:absolute;display:inline-block;vertical-align:top;left:-62px']/div[@class='plupload html5']/input[@class='pluUploadInput skip']"));
-        BtnMultipleCutUploadAddFilesChild.sendKeys(file.getAbsolutePath());
+        WebElement upload = getDriver().findElement(btnMultipleCutUploadAddFilesParent.getBy());
+        upload.sendKeys(file.getAbsolutePath());
+
     }
 
     public void testPhotoFileDialog001() {
@@ -1728,21 +1728,24 @@ public class HB_HomePage extends AbstractPage {
     }
 
     public void uploadPhotos() {
+        click(BtnMultipleCutUploadAddFiles);
         testPhotoFileDialogNoMouse();
         click(BtnSaveAllAndPublishToProd);
         click(BtnSendToProd);
         click(BtnClose);
         String valuePhotoAsset = StatusPublishComplete.getText();
         String valuePhotoAssetTrimmed = valuePhotoAsset.substring(15);
-        type(FieldMainSearch, valuePhotoAssetTrimmed + "\n");
-        click(btnSearch);
+        driver.get(hostName + "prototype/homebase.jsp?#/itemeditor\\edit\\" + valuePhotoAssetTrimmed);
+//		type(FieldMainSearch, valuePhotoAssetTrimmed + "\n");
+//		click(btnSearch);
         pause(3);
-        WebElement btnItemSearchedForValidation = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valuePhotoAssetTrimmed + "')]"));
-        btnItemSearchedForValidation.click();
+//		WebElement btnItemSearchedForValidation = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valuePhotoAssetTrimmed + "')]"));
+//		btnItemSearchedForValidation.click();
         Assert.assertTrue("Cut Width Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutWidth001, 5));
         Assert.assertTrue("Cut Height Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutHeight001, 5));
         pause(5);
-
+        click(deleteItem);
+        click(deleteItemConfirm);
     }
 
     public void testCMSToolNewFunctionHTML() {
@@ -1772,31 +1775,34 @@ public class HB_HomePage extends AbstractPage {
         depthChartsBaseState();
         List<WebElement> FieldDataPosition = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:240px']"));
         logger.info(FieldDataPosition.size());
+        int depthChartsPauseTime = 1;
         int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
         for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
-            pause(1);
-            (FieldDataPosition.get(a)).click();
-            pause(0.5);
+            pause(Integer.valueOf(depthChartsPauseTime));
+            click("DepthChartPlayerInputField", FieldDataPosition.get(a));
+//			(FieldDataPosition.get(a)).click();
+            pause(Integer.valueOf(depthChartsPauseTime));
             (FieldDataPosition.get(a)).sendKeys("6");
-            pause(0.5);
+            pause(Integer.valueOf(depthChartsPauseTime));
             (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
             for (int b = (a + a); b > a; b--) {
                 (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
             }
             (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
             (FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
-            pause(0.5);
-            (FieldDataPosition.get(a)).click();
-            pause(0.5);
+            pause(Integer.valueOf(depthChartsPauseTime));
+            click("DepthChartPlayerInputField", FieldDataPosition.get(a));
+//			(FieldDataPosition.get(a)).click();
+            pause(Integer.valueOf(depthChartsPauseTime));
             (FieldDataPosition.get(a)).sendKeys("5");
-            pause(0.5);
+            pause(Integer.valueOf(depthChartsPauseTime));
             (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
             for (int b = (a + a); b > a; b--) {
                 (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
             }
             (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
             (FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
-            pause(0.5);
+            pause(Integer.valueOf(depthChartsPauseTime));
         }
         click(btnSaveDepthChart);
         List<WebElement> FieldDataPositionDeleteButtons = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
@@ -1836,78 +1842,73 @@ public class HB_HomePage extends AbstractPage {
         click(btnSaveDepthChart);
     }
 
-    public void probablesTeamContentBaseState(String mainURLCall) {
+    public void probablesTeamContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
         selectTeamContent();
         click(btnDashboardTeamContentWashingtonNationals);
         click(btnDashboardTeamContentArizonaDiamondbacks);
         click(btnDashboardTeamContentProbables);
-        pause(5);
         click(btnChangeDateList.get(1));
-        changeCalendar("July", 1, 2013);
-//		dateChanger("July", "1", "2013");
-        pause(10);
+        changeCalendar(dateChangerMonth, dateChangerDate, dateChangerYear);
     }
 
-    public void probablesTeamContentAddPlayers(String mainURLCall) {
-        probablesTeamContentBaseState(hostName);
+    public void probablesTeamContentAddPlayers(String probablesTeamContentDateChangerMonth, int probablesTeamContentDateChangerDate, int probablesTeamContentDateChangerYear) {
+        probablesTeamContentBaseState(probablesTeamContentDateChangerMonth, probablesTeamContentDateChangerDate, probablesTeamContentDateChangerYear);
         List<WebElement> FieldDataPosition = probablesFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:220px']"));
         logger.info(FieldDataPosition.size());
         int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
 
         for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
             (FieldDataPosition.get(a)).click();
-//			pause(0.5);
             (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-//			pause(0.5);
             for (int b = (a + a); b > a; b--) {
                 (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-//			pause(0.5);
             }
             (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-//			pause(0.5);
             (FieldDataPosition.get(a)).sendKeys(Keys.TAB);
             pause(0.5);
         }
         click(btnSaveProbables);
     }
 
-    public void probablesTeamContentRepositionPlayers(String mainURLCall) {
-        probablesTeamContentBaseState(hostName);
-        List<WebElement> FieldDataPositionProbablesUp = probablesFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class=' triggerAble probablesUp probablesUpShow']"));
-        List<WebElement> FieldDataPositionProbablesDown = probablesFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class=' triggerAble probablesDown probablesDownShow']"));
+    public void probablesTeamContentRepositionPlayers(String probablesTeamContentDateChangerMonth, int probablesTeamContentDateChangerDate, int probablesTeamContentDateChangerYear) {
+        probablesTeamContentBaseState(probablesTeamContentDateChangerMonth, probablesTeamContentDateChangerDate, probablesTeamContentDateChangerYear);
 
-        int probablesPlayerNumberOfDepthUpButtons = FieldDataPositionProbablesUp.size();
-        int probablesPlayerNumberOfDepthDownButtons = FieldDataPositionProbablesDown.size();
+        By down = By.xpath("//div[@class=' triggerAble probablesDown probablesDownShow']");
+
+        By up = By.xpath("//div[@class=' triggerAble probablesUp probablesUpShow']");
+
+        int probablesPlayerNumberOfDepthDownButtons = probablesFieldDataPositionDescription.getElement().findElements(down).size();
+        int probablesPlayerNumberOfDepthUpButtons = probablesFieldDataPositionDescription.getElement().findElements(up).size();
 
         for (int a = 0; a < probablesPlayerNumberOfDepthDownButtons; a++) {
-            WebElement probablesPlayerDepthDownButton = FieldDataPositionProbablesDown.get(a);
+            WebElement probablesPlayerDepthDownButton = getDriver().findElements(down).get(a);
             probablesPlayerDepthDownButton.click();
-            pause(0.5);
+            pause(1);
         }
 
         for (int a = 0; a < probablesPlayerNumberOfDepthUpButtons; a++) {
-            WebElement probablesPlayerDepthUpButton = FieldDataPositionProbablesUp.get(a);
+            WebElement probablesPlayerDepthUpButton = getDriver().findElements(up).get(a);
             probablesPlayerDepthUpButton.click();
-            pause(0.5);
+            pause(1);
         }
         click(btnSaveProbables);
     }
 
-    public void probablesTeamContentDeletePlayers(String mainURLCall) {
-        probablesTeamContentBaseState(hostName);
-        List<WebElement> FieldDataPosition = probablesFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removeProbableEntry triggerAble']"));
-        int depthChartsPlayerNumberOfDeleteButtons = FieldDataPosition.size();
+    public void probablesTeamContentDeletePlayers(String probablesTeamContentDateChangerMonth, int probablesTeamContentDateChangerDate, int probablesTeamContentDateChangerYear) {
+        probablesTeamContentBaseState(probablesTeamContentDateChangerMonth, probablesTeamContentDateChangerDate, probablesTeamContentDateChangerYear);
+        By deleteBtn = By.xpath("//div[@class='removeProbableEntry triggerAble']");
+        int depthChartsPlayerNumberOfDeleteButtons = probablesFieldDataPositionDescription.getElement().findElements(deleteBtn).size();
         for (int a = 0; a < depthChartsPlayerNumberOfDeleteButtons; a++) {
-            WebElement depthChartsPlayerDeleteButton = FieldDataPosition.get(a);
+            WebElement depthChartsPlayerDeleteButton = getDriver().findElements(deleteBtn).get(a);
             depthChartsPlayerDeleteButton.click();
         }
         click(btnSaveProbables);
     }
 
-    public void probablesGameContentBaseState(String mainURLCall) {
+    public void probablesGameContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
         selectGameContent();
         click(btnChangeDateList.get(1));
-        changeCalendar("July", 1, 2013);
+        changeCalendar(dateChangerMonth, dateChangerDate, dateChangerYear);
         pause(10);
         List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
         (gameContentSelectGame.get(0)).click();
@@ -1915,8 +1916,8 @@ public class HB_HomePage extends AbstractPage {
         pause(0.5);
     }
 
-    public void probablesGameContentAddPlayers(String mainURLCall) {
-        probablesGameContentBaseState(hostName);
+    public void probablesGameContentAddPlayers(String probablesGameContentDateChangerMonth, int probablesGameContentDateChangerDate, int probablesGameContentDateChangerYear) {
+        probablesGameContentBaseState(probablesGameContentDateChangerMonth, probablesGameContentDateChangerDate, probablesGameContentDateChangerYear);
         List<WebElement> FieldDataPosition = probablesGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:280px']"));
         logger.info(FieldDataPosition.size());
 
@@ -1935,8 +1936,8 @@ public class HB_HomePage extends AbstractPage {
         click(btnSaveProbables);
     }
 
-    public void probablesGameContentDeletePlayers() {
-        probablesGameContentBaseState(hostName);
+    public void probablesGameContentDeletePlayers(String probablesGameContentDateChangerMonth, int probablesGameContentDateChangerDate, int probablesGameContentDateChangerYear) {
+        probablesGameContentBaseState(probablesGameContentDateChangerMonth, probablesGameContentDateChangerDate, probablesGameContentDateChangerYear);
         List<WebElement> FieldDataPosition = probablesGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removeProbableEntry triggerAble']"));
         int depthChartsPlayerNumberOfDeleteButtons = FieldDataPosition.size();
         for (int a = 0; a < depthChartsPlayerNumberOfDeleteButtons; a++) {
@@ -2776,7 +2777,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewDailyEmail(String mainURLCall, String betaOrProd, String dailyEmailReqFieldInternalName, String dailyEmailReqFieldSubject, String dailyEmailReqFieldSubjectB, String dailyEmailReqFieldTriviaQuestion, String dailyEmailReqFieldTriviaAnswer, String tagToolPlayerValue)   {
+    public void fillAndSaveNewDailyEmail(String mainURLCall, String betaOrProd, String dailyEmailReqFieldInternalName, String dailyEmailReqFieldSubject, String dailyEmailReqFieldSubjectB, String dailyEmailReqFieldTriviaQuestion, String dailyEmailReqFieldTriviaAnswer, String tagToolPlayerValue) {
         type(FieldInternalName, dailyEmailReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldSubject, dailyEmailReqFieldSubject);
@@ -2846,7 +2847,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewDevicePage(String mainURLCall, String betaOrProd, String devicePageReqFieldInternalName, String devicePageReqFieldHeadline, String devicePageReqFieldBlurb, String devicePageReqFieldYearlyPurchaseFlow, String devicePageReqFieldMonthlyPurchaseFlow, String devicePageReqFieldUpgradeLink, String devicePageReqFieldActivationLink, String tagToolPlayerValue)   {
+    public void fillAndSaveNewDevicePage(String mainURLCall, String betaOrProd, String devicePageReqFieldInternalName, String devicePageReqFieldHeadline, String devicePageReqFieldBlurb, String devicePageReqFieldYearlyPurchaseFlow, String devicePageReqFieldMonthlyPurchaseFlow, String devicePageReqFieldUpgradeLink, String devicePageReqFieldActivationLink, String tagToolPlayerValue) {
         type(FieldInternalName, devicePageReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldHeadline, devicePageReqFieldHeadline);
@@ -2880,7 +2881,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewDrawer(String mainURLCall, String betaOrProd, String drawerReqFieldInternalName, String drawerReqFieldKicker, String drawerReqFieldCustomContent, String drawerReqFieldBlurb, String drawerReqFieldURL, String drawerReqFieldURLText, String drawerReqFieldNumberOfItems, String tagToolPlayerValue)   {
+    public void fillAndSaveNewDrawer(String mainURLCall, String betaOrProd, String drawerReqFieldInternalName, String drawerReqFieldKicker, String drawerReqFieldCustomContent, String drawerReqFieldBlurb, String drawerReqFieldURL, String drawerReqFieldURLText, String drawerReqFieldNumberOfItems, String tagToolPlayerValue) {
         Selenium seleniumDrawer = new WebDriverBackedSelenium(driver, mainURLCall);
         type(FieldInternalName, drawerReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
@@ -2906,7 +2907,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewEvent(String mainURLCall, String betaOrProd, String eventReqFieldInternalName, String eventReqFieldProgramID, String eventReqFieldProgram, String eventReqFieldLocation, String eventReqFieldEventTitle, String eventReqFieldEventDescription, String eventReqFieldEventURL, String tagToolPlayerValue)   {
+    public void fillAndSaveNewEvent(String mainURLCall, String betaOrProd, String eventReqFieldInternalName, String eventReqFieldProgramID, String eventReqFieldProgram, String eventReqFieldLocation, String eventReqFieldEventTitle, String eventReqFieldEventDescription, String eventReqFieldEventURL, String tagToolPlayerValue) {
         Selenium seleniumEvent = new WebDriverBackedSelenium(driver, mainURLCall);
         type(FieldInternalName, eventReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
@@ -2932,7 +2933,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewFeature(String mainURLCall, String betaOrProd, String featureReqFieldInternalName, String featureReqFieldHeadline, String featureReqFieldURL, String featureReqFieldURLText, String featureReqFieldMobileURL, String featureReqFieldBlurb, String tagToolPlayerValue)   {
+    public void fillAndSaveNewFeature(String mainURLCall, String betaOrProd, String featureReqFieldInternalName, String featureReqFieldHeadline, String featureReqFieldURL, String featureReqFieldURLText, String featureReqFieldMobileURL, String featureReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, featureReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldHeadline, featureReqFieldHeadline);
@@ -2948,7 +2949,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewFeatures(String mainURLCall, String betaOrProd, String featuresReqFieldInternalName, String featuresReqFieldNumberOfItems, String tagToolPlayerValue)   {
+    public void fillAndSaveNewFeatures(String mainURLCall, String betaOrProd, String featuresReqFieldInternalName, String featuresReqFieldNumberOfItems, String tagToolPlayerValue) {
         type(FieldInternalName, featuresReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldNumberOfItems, featuresReqFieldNumberOfItems);
@@ -2973,7 +2974,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewGamePreview(String mainURLCall, String betaOrProd, String gamePreviewReqFieldInternalName, String gamePreviewReqFieldHeadline, String gamePreviewReqFieldHomeHeadline, String gamePreviewReqFieldAwayHeadline, String gamePreviewReqFieldSubhead, String gamePreviewReqFieldAltHeadline, String gamePreviewReqFieldByline, String gamePreviewReqFieldBlurb, String tagToolPlayerValue)   {
+    public void fillAndSaveNewGamePreview(String mainURLCall, String betaOrProd, String gamePreviewReqFieldInternalName, String gamePreviewReqFieldHeadline, String gamePreviewReqFieldHomeHeadline, String gamePreviewReqFieldAwayHeadline, String gamePreviewReqFieldSubhead, String gamePreviewReqFieldAltHeadline, String gamePreviewReqFieldByline, String gamePreviewReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, gamePreviewReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldHeadline, gamePreviewReqFieldHeadline);
@@ -3180,7 +3181,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewList(String mainURLCall, String betaOrProd, String listReqFieldInternalName, String listReqFieldKey, String listReqFieldNumberOfItems, String listReqFieldBlurb, String tagToolPlayerValue)   {
+    public void fillAndSaveNewList(String mainURLCall, String betaOrProd, String listReqFieldInternalName, String listReqFieldKey, String listReqFieldNumberOfItems, String listReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, listReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldKey, listReqFieldKey);
@@ -3214,7 +3215,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMediawall(String mainURLCall, String betaOrProd, String mediawallReqFieldInternalName, String mediawallReqFieldNumberOfPanels, String tagToolPlayerValue)   {
+    public void fillAndSaveNewMediawall(String mainURLCall, String betaOrProd, String mediawallReqFieldInternalName, String mediawallReqFieldNumberOfPanels, String tagToolPlayerValue) {
         type(FieldInternalName, mediawallReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldNumberOfPanels, mediawallReqFieldNumberOfPanels);
@@ -3248,7 +3249,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMediawallOverlay(String mainURLCall, String betaOrProd, String mediawallOverlayReqFieldInternalName, String tagToolPlayerValue)   {
+    public void fillAndSaveNewMediawallOverlay(String mainURLCall, String betaOrProd, String mediawallOverlayReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, mediawallOverlayReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldInternalName, mediawallOverlayReqFieldInternalName);
@@ -3286,7 +3287,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMLBTVAdModule(String mainURLCall, String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String mLBTVAdModuleReqFieldURL, String mLBTVAdModuleReqFieldMobileURL, String mLBTVAdModuleReqFieldTabletURL, String tagToolPlayerValue)   {
+    public void fillAndSaveNewMLBTVAdModule(String mainURLCall, String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String mLBTVAdModuleReqFieldURL, String mLBTVAdModuleReqFieldMobileURL, String mLBTVAdModuleReqFieldTabletURL, String tagToolPlayerValue) {
         type(FieldInternalName, mLBTVAdModuleReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldURL, mLBTVAdModuleReqFieldURL);
@@ -3300,7 +3301,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMoundBall(String mainURLCall, String betaOrProd, String moundBallReqFieldInternalName, String moundBallReqFieldBlurb, String tagToolPlayerValue)   {
+    public void fillAndSaveNewMoundBall(String mainURLCall, String betaOrProd, String moundBallReqFieldInternalName, String moundBallReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, moundBallReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldBlurb, moundBallReqFieldBlurb);
@@ -3313,7 +3314,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMusicLink(String mainURLCall, String betaOrProd, String musicLinkReqFieldInternalName, String musicLinkReqFieldUniqueID, String musicLinkReqFieldPreviewURL, String musicLinkReqFieldMediaURL, String tagToolPlayerValue)   {
+    public void fillAndSaveNewMusicLink(String mainURLCall, String betaOrProd, String musicLinkReqFieldInternalName, String musicLinkReqFieldUniqueID, String musicLinkReqFieldPreviewURL, String musicLinkReqFieldMediaURL, String tagToolPlayerValue) {
         type(FieldInternalName, musicLinkReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldUniqueID, musicLinkReqFieldUniqueID);
@@ -3327,7 +3328,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewNote(String mainURLCall, String betaOrProd, String noteReqFieldInternalName, String tagToolPlayerValue)   {
+    public void fillAndSaveNewNote(String mainURLCall, String betaOrProd, String noteReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, noteReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         testCMSToolNewFunctionHTML();
@@ -3359,7 +3360,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPage(String mainURLCall, String betaOrProd, String pageReqFieldInternalName, String tagToolPlayerValue)   {
+    public void fillAndSaveNewPage(String mainURLCall, String betaOrProd, String pageReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, pageReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         if (betaOrProd == "beta") {
@@ -3460,7 +3461,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPhotoGalleryAlias(String mainURLCall, String betaOrProd, String photoGalleryAliasReqFieldInternalName, String tagToolPlayerValue)   {
+    public void fillAndSaveNewPhotoGalleryAlias(String mainURLCall, String betaOrProd, String photoGalleryAliasReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, photoGalleryAliasReqFieldInternalName);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -3470,7 +3471,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPhotoGalleryList(String mainURLCall, String betaOrProd, String photoGalleryListReqFieldInternalName, String tagToolPlayerValue)   {
+    public void fillAndSaveNewPhotoGalleryList(String mainURLCall, String betaOrProd, String photoGalleryListReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, photoGalleryListReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         if (betaOrProd == "beta") {
@@ -3481,7 +3482,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewProspect(String mainURLCall, String betaOrProd, String prospectReqFieldInternalName, String tagToolPlayerValue)   {
+    public void fillAndSaveNewProspect(String mainURLCall, String betaOrProd, String prospectReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, prospectReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         if (betaOrProd == "beta") {
@@ -3492,7 +3493,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPodcastDetail(String mainURLCall, String betaOrProd, String podcastDetailReqFieldInternalName, String tagToolPlayerValue)   {
+    public void fillAndSaveNewPodcastDetail(String mainURLCall, String betaOrProd, String podcastDetailReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, podcastDetailReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         if (betaOrProd == "beta") {
@@ -3503,7 +3504,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPodcastEpisode(String mainURLCall, String betaOrProd, String podcastEpisodeReqFieldInternalName, String tagToolPlayerValue)   {
+    public void fillAndSaveNewPodcastEpisode(String mainURLCall, String betaOrProd, String podcastEpisodeReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, podcastEpisodeReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         if (betaOrProd == "beta") {
@@ -3514,7 +3515,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue)   {
+    public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, pressReleaseReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         type(FieldNotes, pressReleaseReqFieldNotes);
@@ -3542,7 +3543,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPressboxAssetList(String mainURLCall, String betaOrProd, String pressboxAssetListReqFieldInternalName, String tagToolPlayerValue){
+    public void fillAndSaveNewPressboxAssetList(String mainURLCall, String betaOrProd, String pressboxAssetListReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, pressboxAssetListReqFieldInternalName);
         useTagToolNew(mainURLCall, tagToolPlayerValue);
         if (betaOrProd == "beta") {
@@ -3853,7 +3854,7 @@ public class HB_HomePage extends AbstractPage {
 
             } else if ((Integer) getMTable().get(calMonth) < (Integer) getMTable().get(dateChangerExpectedMonth) &&
                     (dateChangerExpectedYear == Integer.parseInt(calYear)) || dateChangerExpectedYear > Integer.parseInt(calYear)) {
-               // TODO: Think about move to Page Object
+                // TODO: Think about move to Page Object
                 driver.findElement(By.xpath(".//*[@id='ui-datepicker-div']/div/a[2]/span")).click();
             } else if ((Integer) getMTable().get(calMonth) > (Integer) getMTable().get(dateChangerExpectedMonth) &&
                     (dateChangerExpectedYear == Integer.parseInt(calYear)) || dateChangerExpectedYear < Integer.parseInt(calYear)) {
