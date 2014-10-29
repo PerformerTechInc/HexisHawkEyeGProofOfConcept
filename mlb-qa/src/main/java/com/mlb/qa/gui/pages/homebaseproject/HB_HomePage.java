@@ -46,29 +46,29 @@ public class HB_HomePage extends AbstractPage {
     public ExtendedWebElement FieldWYSIWYGBody;
 
     @FindBy(id = "userName")
-    public ExtendedWebElement txtUsername;
+    private ExtendedWebElement txtUsername;
 
     @FindBy(id = "userPassword")
-    public ExtendedWebElement txtUserPassword;
+    private ExtendedWebElement txtUserPassword;
 
     @FindBy(id = "submit")
-    public ExtendedWebElement btnSubmit;
+    private ExtendedWebElement btnSubmit;
 
     @FindBy(id = "userAppId")
-    public ExtendedWebElement selProfile;
+    private ExtendedWebElement selProfile;
 
     @FindBy(id = "submit")
-    public ExtendedWebElement btnSubmitProfile;
+    private ExtendedWebElement btnSubmitProfile;
 
     @FindBy(xpath = "//*[@id='header-info-top']/div")
-    public ExtendedWebElement headerLabel;
+    private ExtendedWebElement headerLabel;
 
     //************ LOGIN OBJECTS ************//
 
     //************ MENU BAR OBJECTS ************//
 
     @FindBy(xpath = "//span[contains(text(), 'Dashboard')]")
-    public ExtendedWebElement btnMenuBarDashboard;
+    private ExtendedWebElement btnMenuBarDashboard;
 
     @FindBy(xpath = "//span[contains(text(), 'Upload Photos')]")
     public ExtendedWebElement btnMenuBarUploadPhotos;
@@ -113,28 +113,28 @@ public class HB_HomePage extends AbstractPage {
     //************ SEARCH OBJECTS ************//
 
     @FindBy(id = "searchHeaderText")
-    public ExtendedWebElement txtSearch;
+    private ExtendedWebElement txtSearch;
 
     @FindBy(id = "searchBtn")
-    public ExtendedWebElement btnSearch;
+    private ExtendedWebElement btnSearch;
 
     @FindBy(id = "search-result-content-panel")
     public ExtendedWebElement panelSearch;
 
     @FindBy(id = "searchHeaderText")
-    public ExtendedWebElement FieldMainSearch;
+    private ExtendedWebElement FieldMainSearch;
 
     @FindBy(xpath = "//ul[@class='ui-sortable']")
     public ExtendedWebElement panelSearchUISortable;
 
     @FindBy(xpath = "//div[contains(text(), 'Hide Options')]")
-    public ExtendedWebElement btnSearchHideOptions;
+    private ExtendedWebElement btnSearchHideOptions;
 
     @FindBy(xpath = "//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[contains(@class, 'tileInfo ')]/div")
-    public ExtendedWebElement panelSearchTileInfo;
+    private ExtendedWebElement panelSearchTileInfo;
 
     @FindBy(xpath = "//*[@id='search-result-content-panel']/ul/li[2]/div/div[@class='tiletextblock']/div[@class='tileControls']/div")
-    public ExtendedWebElement panelSearchTileControls;
+    private ExtendedWebElement panelSearchTileControls;
 
     //************ SEARCH OBJECTS ************//
 
@@ -150,242 +150,242 @@ public class HB_HomePage extends AbstractPage {
     public ExtendedWebElement fieldTagToolPlayerTagByTeamPlayerName;
 
     @FindBy(id = "compactLayout")
-    public ExtendedWebElement CheckboxTagToolAdvancedFields;
+    private ExtendedWebElement CheckboxTagToolAdvancedFields;
 
     @FindBy(xpath = "//input[@class='autocomplete-maininput processedYes']")
     public ExtendedWebElement FieldTagToolPlayer;
 
     @FindBy(id = "taggingGameDayBrowse")
-    public ExtendedWebElement BtnTagToolChangeDate;
+    private ExtendedWebElement BtnTagToolChangeDate;
 
     @FindBy(xpath = "//td[@class=' ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today']")
-    public ExtendedWebElement BtnTagToolSelectCurrentDate;
+    private ExtendedWebElement BtnTagToolSelectCurrentDate;
 
     @FindBy(xpath = "//div[@class='autocompleteResultsContainer'][@style='width:330px']")
     public ExtendedWebElement FieldTagToolPlayerTag;
 
     @FindBy(xpath = "//div[@id='tagging-autocompleteGame'][@data-tag-type='tag.game_pk']/div[@class='autocompleteResultsContainer']/ul/li/input")
-    public ExtendedWebElement FieldTagToolGameTagTeam;
+    private ExtendedWebElement FieldTagToolGameTagTeam;
 
     @FindBy(xpath = "//div[@id='tagging-autocompletePlayer'][@data-tag-type='tag.player_id']/div[@class='autocompleteResultsContainer']/ul/li/input")
-    public ExtendedWebElement FieldTagToolPlayerTagName;
+    private ExtendedWebElement FieldTagToolPlayerTagName;
 
     @FindBy(xpath = "//div[@class='ac-all-results']")
     public ExtendedWebElement DropDownTagToolPlayerTagNameSelection;
 
     @FindBy(xpath = "//div[@id='tagging-autocompleteLeagueTeams'][@data-tag-type='tag.']/div[@class='autocompleteResultsContainer']/ul/li/input")
-    public ExtendedWebElement FieldTagToolPlayerTagTeam;
+    private ExtendedWebElement FieldTagToolPlayerTagTeam;
 
     @FindBy(xpath = "//div[@id='tagging-autocompletePlayerByTeam'][@data-tag-type='tag.player_id']/div[@class='autocompleteResultsContainer']/ul/li/input")
-    public ExtendedWebElement FieldTagToolPlayerTagTeamPlayer;
+    private ExtendedWebElement FieldTagToolPlayerTagTeamPlayer;
 
     @FindBy(xpath = "//div[@id='tagging-autocompleteUmpire'][@data-tag-type='tag.umpire_id']/div[@class='autocompleteResultsContainer']/ul/li/input")
-    public ExtendedWebElement FieldTagToolUmpireTag;
+    private ExtendedWebElement FieldTagToolUmpireTag;
 
     @FindBy(xpath = "//div[@id='tagging-autocompleteTeam'][@data-tag-type='tag.team_id']/div[@class='autocompleteResultsContainer']/ul/li/input")
-    public ExtendedWebElement FieldTagToolTeamTag;
+    private ExtendedWebElement FieldTagToolTeamTag;
 
     @FindBy(xpath = "//div[@id='tagging-autocompleteTaxGroup'][@data-tag-type='tag.']/div[@class='autocompleteResultsContainer']/ul/li/input")
-    public ExtendedWebElement FieldTagToolKeywordTagGroup;
+    private ExtendedWebElement FieldTagToolKeywordTagGroup;
 
     @FindBy(xpath = "//div[@id='tagging-autocompleteKeyword'][@data-tag-type='tag.$']/div[@class='autocompleteResultsContainer']/ul/li/input")
-    public ExtendedWebElement FieldTagToolKeywordTagKeyword;
+    private ExtendedWebElement FieldTagToolKeywordTagKeyword;
 
     @FindBy(id = "kwType")
-    public ExtendedWebElement FieldTagToolKeywordTagCustomTagType;
+    private ExtendedWebElement FieldTagToolKeywordTagCustomTagType;
 
     @FindBy(id = "kwValue")
-    public ExtendedWebElement FieldTagToolKeywordTagCustomTagValue;
+    private ExtendedWebElement FieldTagToolKeywordTagCustomTagValue;
 
     @FindBy(id = "kwDisplayName")
-    public ExtendedWebElement FieldTagToolKeywordTagCustomTagDisplayName;
+    private ExtendedWebElement FieldTagToolKeywordTagCustomTagDisplayName;
 
     @FindBy(id = "keywordCustom")
-    public ExtendedWebElement BtnTagToolKeywordTagCustomTagCreateCustomKeyword;
+    private ExtendedWebElement BtnTagToolKeywordTagCustomTagCreateCustomKeyword;
 
     @FindBy(xpath = "//div[@id='tagging-autocompleteGame'][@data-tag-type='tag.game_pk']/div[@class='autocompleteResultsContainer']/div[@class='ac--all-results']/ul/li[1]")
     public ExtendedWebElement FieldTagToolGameTagTeamDropDownFirstItem;
 
     @FindBy(xpath = "(//button[@type='button'])[2]")
-    public ExtendedWebElement BtnApplyTagsAndClose;
+    private ExtendedWebElement BtnApplyTagsAndClose;
 
     //************ TAG TOOL OBJECTS ************//
 
     //************ ITEM CREATION OBJECTS ************//
 
     @FindBy(xpath = "//div[contains(text(), 'Publish Complete')]")
-    public ExtendedWebElement statusPublishComplete;
+    private ExtendedWebElement statusPublishComplete;
 
     @FindBy(id = "item-panel-delete")
-    public ExtendedWebElement deleteItem;
+    private ExtendedWebElement deleteItem;
 
     @FindBy(xpath = "//span[contains(text(), 'Delete item')]")
-    public ExtendedWebElement deleteItemConfirm;
+    private ExtendedWebElement deleteItemConfirm;
 
     @FindBy(id = "new-types-list")
     public ExtendedWebElement dropDownListNewItem;
 
     @FindBy(id = "new-types-list")
-    public ExtendedWebElement dropDownListItemSelection;
+    private ExtendedWebElement dropDownListItemSelection;
 
     @FindBy(id = "newTypesButton")
-    public ExtendedWebElement btnNewItem;
+    private ExtendedWebElement btnNewItem;
 
     @FindBy(id = "item-panel-save")
-    public ExtendedWebElement BtnSave;
+    private ExtendedWebElement BtnSave;
 
     @FindBy(id = "item-panel-publish-beta")
-    public ExtendedWebElement BtnToBeta;
+    private ExtendedWebElement BtnToBeta;
 
     @FindBy(id = "item-panel-publish-prod")
-    public ExtendedWebElement BtnToProd;
+    private ExtendedWebElement BtnToProd;
 
     @FindBy(xpath = "//span[contains(text(), 'Send To Prod')]")
-    public ExtendedWebElement BtnToProdConfirm;
+    private ExtendedWebElement BtnToProdConfirm;
 
     @FindBy(xpath = "//div[contains(text(), 'New Audio Show')]")
     public ExtendedWebElement btnNewAudioShow;
 
     @FindBy(xpath = "//span[contains(text(), 'Select Site')]")
-    public ExtendedWebElement dropDownSelectSite;
+    private ExtendedWebElement dropDownSelectSite;
 
     @FindBy(xpath = "//a[contains(text(), 'mlb')]")
-    public ExtendedWebElement dropDownSelectMLB;
+    private ExtendedWebElement dropDownSelectMLB;
 
     @FindBy(xpath = "//a[contains(text(), 'milb')]")
-    public ExtendedWebElement dropDownSelectMiLB;
+    private ExtendedWebElement dropDownSelectMiLB;
 
     @FindBy(name = "@name")
-    public ExtendedWebElement FieldInternalName;
+    private ExtendedWebElement FieldInternalName;
 
     @FindBy(name = "name")
-    public ExtendedWebElement FieldName;
+    private ExtendedWebElement FieldName;
 
     @FindBy(name = "vkey")
-    public ExtendedWebElement FieldViewKey;
+    private ExtendedWebElement FieldViewKey;
 
     @FindBy(name = "headline")
-    public ExtendedWebElement FieldHeadline;
+    private ExtendedWebElement FieldHeadline;
 
     @FindBy(name = "subhead")
-    public ExtendedWebElement FieldSubhead;
+    private ExtendedWebElement FieldSubhead;
 
     @FindBy(name = "alt-headline")
-    public ExtendedWebElement FieldAltHeadline;
+    private ExtendedWebElement FieldAltHeadline;
 
     @FindBy(name = "byline")
-    public ExtendedWebElement FieldByline;
+    private ExtendedWebElement FieldByline;
 
     @FindBy(name = "summary")
-    public ExtendedWebElement FieldSeoHeadline;
+    private ExtendedWebElement FieldSeoHeadline;
 
     @FindBy(name = "seo-headline")
-    public ExtendedWebElement FieldSeoHeadline2;
+    private ExtendedWebElement FieldSeoHeadline2;
 
     @FindBy(name = "summary")
-    public ExtendedWebElement FieldSummary;
+    private ExtendedWebElement FieldSummary;
 
     @FindBy(name = "source")
-    public ExtendedWebElement FieldSource;
+    private ExtendedWebElement FieldSource;
 
     @FindBy(name = "poll")
-    public ExtendedWebElement FieldPoll;
+    private ExtendedWebElement FieldPoll;
 
     @FindBy(name = "displayName")
-    public ExtendedWebElement FieldDisplayName;
+    private ExtendedWebElement FieldDisplayName;
 
     @FindBy(name = "value")
-    public ExtendedWebElement FieldValue;
+    private ExtendedWebElement FieldValue;
 
     @FindBy(name = "year")
-    public ExtendedWebElement FieldYear;
+    private ExtendedWebElement FieldYear;
 
     @FindBy(name = "title")
-    public ExtendedWebElement FieldTitle;
+    private ExtendedWebElement FieldTitle;
 
     @FindBy(name = "spanish-title")
-    public ExtendedWebElement FieldSpanishTitle;
+    private ExtendedWebElement FieldSpanishTitle;
 
     @FindBy(name = "url-text")
-    public ExtendedWebElement FieldURLText;
+    private ExtendedWebElement FieldURLText;
 
     @FindBy(name = "url")
-    public ExtendedWebElement FieldURL;
+    private ExtendedWebElement FieldURL;
 
     @FindBy(name = "mobile-url")
-    public ExtendedWebElement FieldMobileURL;
+    private ExtendedWebElement FieldMobileURL;
 
     @FindBy(name = "sponsor-url")
-    public ExtendedWebElement FieldSponsorURL;
+    private ExtendedWebElement FieldSponsorURL;
 
     @FindBy(name = "display-time")
-    public ExtendedWebElement FieldDisplayTimeInSeconds;
+    private ExtendedWebElement FieldDisplayTimeInSeconds;
 
     @FindBy(name = "video-alias")
-    public ExtendedWebElement FieldVideoAlias;
+    private ExtendedWebElement FieldVideoAlias;
 
     @FindBy(name = "id")
-    public ExtendedWebElement FieldID;
+    private ExtendedWebElement FieldID;
 
     @FindBy(xpath = "//button[contains(text(), 'Tag Tool')]")
-    public ExtendedWebElement BtnTagTool;
+    private ExtendedWebElement BtnTagTool;
 
     @FindBy(xpath = "//span[contains(text(), 'Save All and Publish to Prod')]")
-    public ExtendedWebElement BtnSaveAllAndPublishToProd;
+    private ExtendedWebElement BtnSaveAllAndPublishToProd;
 
     @FindBy(xpath = "//span[contains(text(), 'Send To Prod')]")
-    public ExtendedWebElement BtnSendToProd;
+    private ExtendedWebElement BtnSendToProd;
 
     @FindBy(xpath = "//span[contains(text(), 'Close')]")
-    public ExtendedWebElement BtnClose;
+    private ExtendedWebElement BtnClose;
 
     @FindBy(xpath = "//div[contains(text(), 'Choose a File to Upload')]")
-    public ExtendedWebElement BtnChooseAFileToUpload;
+    private ExtendedWebElement BtnChooseAFileToUpload;
 
     @FindBy(xpath = "//span[contains(text(), 'Upload Photos')]")
-    public ExtendedWebElement BtnHomePageUploadPhotos;
+    private ExtendedWebElement BtnHomePageUploadPhotos;
 
     @FindBy(xpath = "//div[@class='monitorForItem']")
-    public ExtendedWebElement StatusPublishComplete;
+    private ExtendedWebElement StatusPublishComplete;
 
     @FindBy(xpath = "//div[@style='font-size: 13px;min-height:16px;']")
     public ExtendedWebElement valuePhotoAsset;
 
     @FindBy(xpath = "//*[@value='265']")
-    public ExtendedWebElement FieldPhotoAssetCutWidth001;
+    private ExtendedWebElement FieldPhotoAssetCutWidth001;
 
     @FindBy(xpath = "//*[@value='150']")
-    public ExtendedWebElement FieldPhotoAssetCutHeight001;
+    private ExtendedWebElement FieldPhotoAssetCutHeight001;
 
     @FindBy(id = "multiUPstartBrowse")
-    public ExtendedWebElement BtnMultipleCutUploadAddFiles;
+    private ExtendedWebElement BtnMultipleCutUploadAddFiles;
 
     @FindBy(xpath = ".//div[@class='addFilesDropDown']//input[@class='pluUploadInput skip']")
-    public ExtendedWebElement btnMultipleCutUploadAddFilesParent;
+    private ExtendedWebElement btnMultipleCutUploadAddFilesParent;
 
     @FindBy(id = "singleUPstartBrowse")
     public ExtendedWebElement BtnSingleCutUploadAddFiles;
 
     @FindBy(name = "caption")
-    public ExtendedWebElement FieldCaption;
+    private ExtendedWebElement FieldCaption;
 
     @FindBy(name = "media-credit")
-    public ExtendedWebElement FieldMediaCredit;
+    private ExtendedWebElement FieldMediaCredit;
 
     @FindBy(xpath = "//textarea[@data-field-key='blurb']")
-    public ExtendedWebElement FieldBlurb;
+    private ExtendedWebElement FieldBlurb;
 
     @FindBy(xpath = "//textarea[@data-field-key='notes']")
-    public ExtendedWebElement FieldNotes;
+    private ExtendedWebElement FieldNotes;
 
     @FindBy(xpath = "//textarea[@data-field-key='tagline']")
-    public ExtendedWebElement FieldTagline;
+    private ExtendedWebElement FieldTagline;
 
     @FindBy(xpath = "//span[contains(text(), 'WYSIWYG')]")
-    public ExtendedWebElement BtnCmsToolWysiwyg;
+    private ExtendedWebElement BtnCmsToolWysiwyg;
 
     @FindBy(xpath = "//span[contains(text(), 'HTML')]")
-    public ExtendedWebElement BtnCmsToolHtml;
+    private ExtendedWebElement BtnCmsToolHtml;
 
     @FindBy(xpath = "//span[2][contains(text(), 'WYSIWYG')]")
     public ExtendedWebElement BtnCmsToolWysiwyg2;
@@ -419,129 +419,129 @@ public class HB_HomePage extends AbstractPage {
     //************ BALLPARK CREATION OBJECTS ************//
 
     @FindBy(name = "address1")
-    public ExtendedWebElement FieldAddress1;
+    private ExtendedWebElement FieldAddress1;
 
     @FindBy(name = "address2")
-    public ExtendedWebElement FieldAddress2;
+    private ExtendedWebElement FieldAddress2;
 
     @FindBy(name = "location")
-    public ExtendedWebElement FieldLocation;
+    private ExtendedWebElement FieldLocation;
 
     @FindBy(name = "mapVersion")
-    public ExtendedWebElement FieldMapVersion;
+    private ExtendedWebElement FieldMapVersion;
 
     @FindBy(name = "mapType")
-    public ExtendedWebElement FieldMapType;
+    private ExtendedWebElement FieldMapType;
 
     @FindBy(name = "facebookId")
-    public ExtendedWebElement FieldFacebookID;
+    private ExtendedWebElement FieldFacebookID;
 
     @FindBy(name = "facebook-id")
-    public ExtendedWebElement FieldFacebookID2;
+    private ExtendedWebElement FieldFacebookID2;
 
     @FindBy(name = "foursquareId")
-    public ExtendedWebElement FieldFoursquareID;
+    private ExtendedWebElement FieldFoursquareID;
 
     @FindBy(name = "websiteURL")
-    public ExtendedWebElement FieldWebsiteURL;
+    private ExtendedWebElement FieldWebsiteURL;
 
     @FindBy(name = "thumbnailCaption")
-    public ExtendedWebElement FieldThumbnailCaption;
+    private ExtendedWebElement FieldThumbnailCaption;
 
     @FindBy(name = "thumbnailURL")
-    public ExtendedWebElement FieldThumbnailURL;
+    private ExtendedWebElement FieldThumbnailURL;
 
     @FindBy(name = "twitterHashTags")
-    public ExtendedWebElement FieldTwitterHashTags;
+    private ExtendedWebElement FieldTwitterHashTags;
 
     @FindBy(name = "aboutURL")
-    public ExtendedWebElement FieldAboutURL;
+    private ExtendedWebElement FieldAboutURL;
 
     @FindBy(name = "scheduleURL")
-    public ExtendedWebElement FieldScheduleURL;
+    private ExtendedWebElement FieldScheduleURL;
 
     @FindBy(name = "smallThumbnailURL")
-    public ExtendedWebElement FieldSmallThumbnailURL;
+    private ExtendedWebElement FieldSmallThumbnailURL;
 
     @FindBy(name = "startYear")
-    public ExtendedWebElement FieldStartYear;
+    private ExtendedWebElement FieldStartYear;
 
     @FindBy(name = "endYear")
-    public ExtendedWebElement FieldEndYear;
+    private ExtendedWebElement FieldEndYear;
 
     @FindBy(name = "upgradeURL")
-    public ExtendedWebElement FieldUpgradeURL;
+    private ExtendedWebElement FieldUpgradeURL;
 
     @FindBy(xpath = "//textarea[@data-field-key='about']")
-    public ExtendedWebElement FieldAbout;
+    private ExtendedWebElement FieldAbout;
 
     @FindBy(name = "eventsText")
-    public ExtendedWebElement FieldEventsText;
+    private ExtendedWebElement FieldEventsText;
 
     @FindBy(name = "sponsorshipImageText")
-    public ExtendedWebElement FieldSponsorImageText;
+    private ExtendedWebElement FieldSponsorImageText;
 
     @FindBy(name = "sponsorshipImageURL")
-    public ExtendedWebElement FieldSponsorImageURL;
+    private ExtendedWebElement FieldSponsorImageURL;
 
     @FindBy(name = "sponsorshipImage2Text")
-    public ExtendedWebElement FieldSponsorImage2Text;
+    private ExtendedWebElement FieldSponsorImage2Text;
 
     @FindBy(name = "sponsorshipImage2URL")
-    public ExtendedWebElement FieldSponsorImage2URL;
+    private ExtendedWebElement FieldSponsorImage2URL;
 
     @FindBy(name = "ticketsText")
-    public ExtendedWebElement FieldTicketsText;
+    private ExtendedWebElement FieldTicketsText;
 
     @FindBy(name = "ticketsURL")
-    public ExtendedWebElement FieldTicketsURL;
+    private ExtendedWebElement FieldTicketsURL;
 
     @FindBy(name = "ticketsErrorText")
-    public ExtendedWebElement FieldTicketsErrorText;
+    private ExtendedWebElement FieldTicketsErrorText;
 
     //************ BALLPARK CREATION OBJECTS ************//
 
     //************ BALLPARK MENU CREATION OBJECTS ************//
 
     @FindBy(name = "displayImageURL")
-    public ExtendedWebElement FieldDisplayImageURL;
+    private ExtendedWebElement FieldDisplayImageURL;
 
     @FindBy(name = "linkName")
-    public ExtendedWebElement FieldLinkName;
+    private ExtendedWebElement FieldLinkName;
 
     @FindBy(name = "linkURL")
-    public ExtendedWebElement FieldLinkURL2;
+    private ExtendedWebElement FieldLinkURL2;
 
     @FindBy(name = "bundleKey")
-    public ExtendedWebElement FieldBundleKey;
+    private ExtendedWebElement FieldBundleKey;
 
     @FindBy(name = "bundleName")
-    public ExtendedWebElement FieldBundleName;
+    private ExtendedWebElement FieldBundleName;
 
     @FindBy(name = "bundleURL")
-    public ExtendedWebElement FieldBundleURL;
+    private ExtendedWebElement FieldBundleURL;
 
     @FindBy(name = "sharingURL")
-    public ExtendedWebElement FieldSharingURL;
+    private ExtendedWebElement FieldSharingURL;
 
     @FindBy(name = "sharingText")
-    public ExtendedWebElement FieldSharingText;
+    private ExtendedWebElement FieldSharingText;
 
     @FindBy(name = "errorText")
-    public ExtendedWebElement FieldErrorText;
+    private ExtendedWebElement FieldErrorText;
 
     @FindBy(name = "sourceURL")
-    public ExtendedWebElement FieldSourceURL;
+    private ExtendedWebElement FieldSourceURL;
 
     //************ BALLPARK MENU CREATION OBJECTS ************//
 
     //************ BALLPARK MUSIC CREATION OBJECTS ************//
 
     @FindBy(name = "artist")
-    public ExtendedWebElement FieldArtist;
+    private ExtendedWebElement FieldArtist;
 
     @FindBy(xpath = "//textarea[@data-field-key='description']")
-    public ExtendedWebElement FieldDescription;
+    private ExtendedWebElement FieldDescription;
 
     // *** ALSO FOUND IN BALLPARK CREATION AND ITEM CREATION SECTIONS *** //
 
@@ -563,10 +563,10 @@ public class HB_HomePage extends AbstractPage {
     //************ CHRON CREATION OBJECTS ************//
 
     @FindBy(name = "notation")
-    public ExtendedWebElement FieldDateNotation;
+    private ExtendedWebElement FieldDateNotation;
 
     @FindBy(name = "displayYear")
-    public ExtendedWebElement FieldDisplayYear;
+    private ExtendedWebElement FieldDisplayYear;
 
     @FindBy(xpath = "//textarea[@data-field-key='blurb']")
     public ExtendedWebElement FieldCMSDescription;
@@ -576,250 +576,250 @@ public class HB_HomePage extends AbstractPage {
     //************ CLUB PROMO CREATION OBJECTS ************//
 
     @FindBy(name = "urlExtension")
-    public ExtendedWebElement FieldURLExtension;
+    private ExtendedWebElement FieldURLExtension;
 
     @FindBy(name = "eventTitle")
-    public ExtendedWebElement FieldEventTitle;
+    private ExtendedWebElement FieldEventTitle;
 
     @FindBy(name = "event-subtitle")
-    public ExtendedWebElement FieldEventSubtitle;
+    private ExtendedWebElement FieldEventSubtitle;
 
     @FindBy(name = "promo")
-    public ExtendedWebElement FieldPromoText;
+    private ExtendedWebElement FieldPromoText;
 
     @FindBy(name = "ticketsText")
-    public ExtendedWebElement FieldMobileTicketsText;
+    private ExtendedWebElement FieldMobileTicketsText;
 
     @FindBy(name = "mobileTicketsURL")
-    public ExtendedWebElement FieldMobileTicketsURL;
+    private ExtendedWebElement FieldMobileTicketsURL;
 
     @FindBy(name = "textCampaignPromo")
-    public ExtendedWebElement FieldTextCampaignPromo;
+    private ExtendedWebElement FieldTextCampaignPromo;
 
     @FindBy(name = "social-keyword")
-    public ExtendedWebElement FieldSocialKeyword;
+    private ExtendedWebElement FieldSocialKeyword;
 
     @FindBy(name = "highlights-title")
-    public ExtendedWebElement FieldHighlightsTitle;
+    private ExtendedWebElement FieldHighlightsTitle;
 
     @FindBy(xpath = "//textarea[@data-field-key='locationAddress']")
-    public ExtendedWebElement FieldLocationAddress;
+    private ExtendedWebElement FieldLocationAddress;
 
     @FindBy(name = "eventMapTitle")
-    public ExtendedWebElement FieldEventMapTitle;
+    private ExtendedWebElement FieldEventMapTitle;
 
     @FindBy(name = "schedule-title")
-    public ExtendedWebElement FieldScheduleTitle;
+    private ExtendedWebElement FieldScheduleTitle;
 
     @FindBy(name = "faq-title")
-    public ExtendedWebElement FieldFAQTitle;
+    private ExtendedWebElement FieldFAQTitle;
 
     @FindBy(xpath = "//label[contains(text(), 'Sponsors')]")
-    public ExtendedWebElement labelSponsors;
+    private ExtendedWebElement labelSponsors;
 
     //************ CLUB PROMO CREATION OBJECTS ************//
 
     //************ CONTRIBUTOR CREATION OBJECTS ************//
     @FindBy(name = "first-name")
-    public ExtendedWebElement FieldFirstName;
+    private ExtendedWebElement FieldFirstName;
 
     @FindBy(name = "last-name")
-    public ExtendedWebElement FieldLastName;
+    private ExtendedWebElement FieldLastName;
 
     @FindBy(name = "email")
-    public ExtendedWebElement FieldEmail;
+    private ExtendedWebElement FieldEmail;
 
     @FindBy(name = "twitter")
-    public ExtendedWebElement FieldTwitterHandle;
+    private ExtendedWebElement FieldTwitterHandle;
 
     @FindBy(name = "blog")
-    public ExtendedWebElement FieldBlog;
+    private ExtendedWebElement FieldBlog;
 
     @FindBy(name = "blog-title")
-    public ExtendedWebElement FieldBlogTitle;
+    private ExtendedWebElement FieldBlogTitle;
 
     @FindBy(name = "atom-rss")
-    public ExtendedWebElement FieldRSSFeed;
+    private ExtendedWebElement FieldRSSFeed;
 
     @FindBy(name = "active-tab")
-    public ExtendedWebElement FieldActiveTab;
+    private ExtendedWebElement FieldActiveTab;
 
     @FindBy(name = "hide-articles")
-    public ExtendedWebElement FieldHideArticles;
+    private ExtendedWebElement FieldHideArticles;
 
     @FindBy(name = "video-keyword-type")
-    public ExtendedWebElement FieldVideoKeywordType;
+    private ExtendedWebElement FieldVideoKeywordType;
 
     @FindBy(name = "video-keyword-value")
-    public ExtendedWebElement FieldVideoKeywordValue;
+    private ExtendedWebElement FieldVideoKeywordValue;
 
     @FindBy(name = "video-landing-page")
-    public ExtendedWebElement FieldVideoLandingPage;
+    private ExtendedWebElement FieldVideoLandingPage;
 
     @FindBy(xpath = "//label[contains(text(), 'Big Blurb')]")
-    public ExtendedWebElement labelBigBlurb;
+    private ExtendedWebElement labelBigBlurb;
 
     //************ CONTRIBUTOR CREATION OBJECTS ************//
 
     //************ DAILY EMAIL CREATION OBJECTS ************//
 
     @FindBy(name = "subject")
-    public ExtendedWebElement FieldSubject;
+    private ExtendedWebElement FieldSubject;
 
     @FindBy(name = "subjectb")
-    public ExtendedWebElement FieldSubjectB;
+    private ExtendedWebElement FieldSubjectB;
 
     @FindBy(name = "triviaQuestion")
-    public ExtendedWebElement FieldTriviaQuestion;
+    private ExtendedWebElement FieldTriviaQuestion;
 
     @FindBy(name = "triviaAnswer")
-    public ExtendedWebElement FieldTriviaAnswer;
+    private ExtendedWebElement FieldTriviaAnswer;
 
     //************ DAILY EMAIL CREATION OBJECTS ************//
 
     //************ DEVICE ANNOUNCEMENT CREATION OBJECTS ************//
 
     @FindBy(name = "appVersion")
-    public ExtendedWebElement FieldAppVersion;
+    private ExtendedWebElement FieldAppVersion;
 
     @FindBy(name = "osVersion")
-    public ExtendedWebElement FieldOSVersion;
+    private ExtendedWebElement FieldOSVersion;
 
     @FindBy(name = "entitlement")
-    public ExtendedWebElement FieldEntitlement;
+    private ExtendedWebElement FieldEntitlement;
 
     @FindBy(name = "screen")
-    public ExtendedWebElement FieldScreen;
+    private ExtendedWebElement FieldScreen;
 
     @FindBy(name = "type")
-    public ExtendedWebElement FieldType;
+    private ExtendedWebElement FieldType;
 
     @FindBy(name = "displayType")
-    public ExtendedWebElement FieldDisplayType;
+    private ExtendedWebElement FieldDisplayType;
 
     @FindBy(name = "text")
-    public ExtendedWebElement FieldMessage;
+    private ExtendedWebElement FieldMessage;
 
     @FindBy(name = "open-title")
-    public ExtendedWebElement FieldOpenLabel;
+    private ExtendedWebElement FieldOpenLabel;
 
     @FindBy(name = "openLink")
-    public ExtendedWebElement FieldOpenLink;
+    private ExtendedWebElement FieldOpenLink;
 
     @FindBy(name = "close-title")
-    public ExtendedWebElement FieldCloseLabel;
+    private ExtendedWebElement FieldCloseLabel;
 
     @FindBy(name = "closeLink")
-    public ExtendedWebElement FieldCloseLink;
+    private ExtendedWebElement FieldCloseLink;
 
     //************ DEVICE ANNOUNCEMENT CREATION OBJECTS ************//
 
     //************ DEVICE BANNER CREATION OBJECTS ************//
 
     @FindBy(name = "accessFeature")
-    public ExtendedWebElement FieldAccessFeature;
+    private ExtendedWebElement FieldAccessFeature;
 
     @FindBy(name = "viewid")
-    public ExtendedWebElement FieldViewID;
+    private ExtendedWebElement FieldViewID;
 
     @FindBy(name = "webviewtype")
-    public ExtendedWebElement FieldWebViewType;
+    private ExtendedWebElement FieldWebViewType;
 
     @FindBy(name = "link")
-    public ExtendedWebElement FieldLink;
+    private ExtendedWebElement FieldLink;
 
     @FindBy(name = "bgcolor")
-    public ExtendedWebElement FieldBackgroundColor;
+    private ExtendedWebElement FieldBackgroundColor;
 
     @FindBy(name = "trackingString")
-    public ExtendedWebElement FieldTrackingString;
+    private ExtendedWebElement FieldTrackingString;
 
     @FindBy(name = "adMarvelId")
-    public ExtendedWebElement FieldAdMarvelID;
+    private ExtendedWebElement FieldAdMarvelID;
 
     @FindBy(name = "sizeWidth")
-    public ExtendedWebElement FieldAdMarvelWidth;
+    private ExtendedWebElement FieldAdMarvelWidth;
 
     @FindBy(name = "sizeHeight")
-    public ExtendedWebElement FieldAdMarvelHeight;
+    private ExtendedWebElement FieldAdMarvelHeight;
 
     @FindBy(name = "sectionId")
-    public ExtendedWebElement FieldAdMarvelSectionID;
+    private ExtendedWebElement FieldAdMarvelSectionID;
 
     @FindBy(name = "mlbtarget")
-    public ExtendedWebElement FieldAdMarvelMLBTarget;
+    private ExtendedWebElement FieldAdMarvelMLBTarget;
 
     @FindBy(name = "admarvelExpiryTime")
-    public ExtendedWebElement FieldAdMarvelExpiryTime;
+    private ExtendedWebElement FieldAdMarvelExpiryTime;
 
     @FindBy(name = "contentID")
-    public ExtendedWebElement FieldMLBTVContentID;
+    private ExtendedWebElement FieldMLBTVContentID;
 
     @FindBy(name = "calendarEventID")
-    public ExtendedWebElement FieldMLBTVCalendarEventID;
+    private ExtendedWebElement FieldMLBTVCalendarEventID;
 
     @FindBy(name = "sponsor")
-    public ExtendedWebElement FieldSponsor;
+    private ExtendedWebElement FieldSponsor;
 
     //************ DEVICE BANNER CREATION OBJECTS ************//
 
     //************ DEVICE PAGE CREATION OBJECTS ************//
 
     @FindBy(name = "yearly-purchase-flow")
-    public ExtendedWebElement FieldYearlyPurchaseFlow;
+    private ExtendedWebElement FieldYearlyPurchaseFlow;
 
     @FindBy(name = "monthly-purchase-flow")
-    public ExtendedWebElement FieldMonthlyPurchaseFlow;
+    private ExtendedWebElement FieldMonthlyPurchaseFlow;
 
     @FindBy(name = "upgrade-link")
-    public ExtendedWebElement FieldUpgradeLink;
+    private ExtendedWebElement FieldUpgradeLink;
 
     @FindBy(name = "activation-link")
-    public ExtendedWebElement FieldActivationLink;
+    private ExtendedWebElement FieldActivationLink;
 
     //************ DEVICE PAGE CREATION OBJECTS ************//
 
     //************ DRAWER CREATION OBJECTS ************//
 
     @FindBy(xpath = "//input[@data-field-key='appears']")
-    public ExtendedWebElement FieldAppears;
+    private ExtendedWebElement FieldAppears;
 
     @FindBy(xpath = "//input[@data-field-key='expires']")
-    public ExtendedWebElement FieldExpires;
+    private ExtendedWebElement FieldExpires;
 
     @FindBy(name = "kicker")
-    public ExtendedWebElement FieldKicker;
+    private ExtendedWebElement FieldKicker;
 
     @FindBy(name = "custom-content")
-    public ExtendedWebElement FieldCustomContent;
+    private ExtendedWebElement FieldCustomContent;
 
     @FindBy(name = "numitems")
-    public ExtendedWebElement FieldNumberOfItems;
+    private ExtendedWebElement FieldNumberOfItems;
 
     //************ DRAWER CREATION OBJECTS ************//
 
     //************ EVENT CREATION OBJECTS ************//
 
     @FindBy(name = "program-id")
-    public ExtendedWebElement FieldProgramID;
+    private ExtendedWebElement FieldProgramID;
 
     @FindBy(name = "program")
-    public ExtendedWebElement FieldProgram;
+    private ExtendedWebElement FieldProgram;
 
     @FindBy(name = "event-title")
-    public ExtendedWebElement FieldEventTitle2;
+    private ExtendedWebElement FieldEventTitle2;
 
     @FindBy(xpath = "//textarea[@data-field-key='event-description']")
-    public ExtendedWebElement FieldEventDescription;
+    private ExtendedWebElement FieldEventDescription;
 
     @FindBy(name = "event-url")
-    public ExtendedWebElement FieldEventURL;
+    private ExtendedWebElement FieldEventURL;
 
     @FindBy(xpath = "//input[@data-field-key='end-datetime']")
-    public ExtendedWebElement FieldEndDateAndTime;
+    private ExtendedWebElement FieldEndDateAndTime;
 
     @FindBy(xpath = "//input[@data-field-key='start-datetime']")
-    public ExtendedWebElement FieldStartDateAndTime;
+    private ExtendedWebElement FieldStartDateAndTime;
 
     //************ EVENT CREATION OBJECTS ************//
 
@@ -834,38 +834,38 @@ public class HB_HomePage extends AbstractPage {
     //************ GAME PREVIEW CREATION OBJECTS ************//
 
     @FindBy(name = "home-headline")
-    public ExtendedWebElement FieldHomeHeadline;
+    private ExtendedWebElement FieldHomeHeadline;
 
     @FindBy(name = "away-headline")
-    public ExtendedWebElement FieldAwayHeadline;
+    private ExtendedWebElement FieldAwayHeadline;
 
     //************ GAME PREVIEW CREATION OBJECTS ************//
 
     //************ HIGHLIGHT CREATION OBJECTS ************//
 
     @FindBy(xpath = "//input[@data-field-key='default-alt-text']")
-    public ExtendedWebElement FieldDefaultAltText;
+    private ExtendedWebElement FieldDefaultAltText;
 
     @FindBy(xpath = "//input[@data-field-key='default-clickthrough-url']")
-    public ExtendedWebElement FieldDefaultClickthroughURL;
+    private ExtendedWebElement FieldDefaultClickthroughURL;
 
     //************ HIGHLIGHT CREATION OBJECTS ************//
 
     //************ HP CONFIG CREATION OBJECTS ************//
     @FindBy(xpath = "//input[@data-field-key='breaking-news']")
-    public ExtendedWebElement FieldBreakingNews;
+    private ExtendedWebElement FieldBreakingNews;
 
     @FindBy(xpath = "//input[@data-field-key='breaking-news-url']")
-    public ExtendedWebElement FieldBreakingNewsURL;
+    private ExtendedWebElement FieldBreakingNewsURL;
 
     @FindBy(xpath = "//input[@data-field-key='abTests']")
-    public ExtendedWebElement FieldABTests;
+    private ExtendedWebElement FieldABTests;
 
     @FindBy(xpath = "//input[@data-field-key='header-url']")
-    public ExtendedWebElement FieldHeaderURL;
+    private ExtendedWebElement FieldHeaderURL;
 
     @FindBy(xpath = "//input[@data-field-key='header-alt']")
-    public ExtendedWebElement FieldHeaderAlt;
+    private ExtendedWebElement FieldHeaderAlt;
 
     //************ HP CONFIG CREATION OBJECTS ************//
 
@@ -876,85 +876,85 @@ public class HB_HomePage extends AbstractPage {
     //************ INSTAGRAM PHOTO CREATION OBJECTS ************//
 
     @FindBy(name = "approver")
-    public ExtendedWebElement FieldApprover;
+    private ExtendedWebElement FieldApprover;
 
     @FindBy(xpath = "//input[@data-field-key='approvedTime']")
-    public ExtendedWebElement FieldApprovedTime;
+    private ExtendedWebElement FieldApprovedTime;
 
     @FindBy(name = "id")
-    public ExtendedWebElement FieldInstagramID;
+    private ExtendedWebElement FieldInstagramID;
 
     @FindBy(name = "image")
-    public ExtendedWebElement FieldImageURL;
+    private ExtendedWebElement FieldImageURL;
 
     @FindBy(name = "bigImage")
-    public ExtendedWebElement FieldLargeImageURL;
+    private ExtendedWebElement FieldLargeImageURL;
 
     @FindBy(name = "userID")
-    public ExtendedWebElement FieldCreatorID;
+    private ExtendedWebElement FieldCreatorID;
 
     @FindBy(name = "userName")
-    public ExtendedWebElement FieldCreatorName;
+    private ExtendedWebElement FieldCreatorName;
 
     @FindBy(name = "userImage")
-    public ExtendedWebElement FieldCreatorProfilePicture;
+    private ExtendedWebElement FieldCreatorProfilePicture;
 
     @FindBy(xpath = "//input[@data-field-key='createdTime']")
-    public ExtendedWebElement FieldCreatedTime;
+    private ExtendedWebElement FieldCreatedTime;
 
     @FindBy(name = "latitude")
-    public ExtendedWebElement FieldLatitude;
+    private ExtendedWebElement FieldLatitude;
 
     @FindBy(name = "latitude")
-    public ExtendedWebElement FieldLongitude;
+    private ExtendedWebElement FieldLongitude;
 
     //************ INSTAGRAM PHOTO CREATION OBJECTS ************//
 
     //************ INSTAGRAM STREAM CREATION OBJECTS ************//
 
     @FindBy(name = "name")
-    public ExtendedWebElement FieldInstagramStreamDisplayName;
+    private ExtendedWebElement FieldInstagramStreamDisplayName;
 
     @FindBy(name = "key")
-    public ExtendedWebElement FieldKey;
+    private ExtendedWebElement FieldKey;
 
     //************ INSTAGRAM STREAM CREATION OBJECTS ************//
 
     //************ KIOSK CREATION OBJECTS ************//
 
     @FindBy(name = "calendar-event-id")
-    public ExtendedWebElement FieldCalendarEventID;
+    private ExtendedWebElement FieldCalendarEventID;
 
     @FindBy(name = "content-id")
-    public ExtendedWebElement FieldContentID;
+    private ExtendedWebElement FieldContentID;
 
     //************ KIOSK CREATION OBJECTS ************//
 
     //************ LINEUP CREATION OBJECTS ************//
 
     @FindBy(xpath = "//input[@data-field-key='umpire_id_hp']")
-    public ExtendedWebElement FieldUmpireHP;
+    private ExtendedWebElement FieldUmpireHP;
 
     @FindBy(xpath = "//input[@data-field-key='umpire_id_1b']")
-    public ExtendedWebElement FieldUmpire1st;
+    private ExtendedWebElement FieldUmpire1st;
 
     @FindBy(xpath = "//input[@data-field-key='umpire_id_2b']")
-    public ExtendedWebElement FieldUmpire2nd;
+    private ExtendedWebElement FieldUmpire2nd;
 
     @FindBy(xpath = "//input[@data-field-key='umpire_id_3b']")
-    public ExtendedWebElement FieldUmpire3rd;
+    private ExtendedWebElement FieldUmpire3rd;
 
     @FindBy(xpath = "//input[@data-field-key='umpire_id_lf']")
-    public ExtendedWebElement FieldUmpireLF;
+    private ExtendedWebElement FieldUmpireLF;
 
     @FindBy(xpath = "//input[@data-field-key='umpire_id_rf']")
-    public ExtendedWebElement FieldUmpireRF;
+    private ExtendedWebElement FieldUmpireRF;
 
     @FindBy(xpath = "//input[@data-field-key='official_scorer_id']")
-    public ExtendedWebElement FieldUmpireOS;
+    private ExtendedWebElement FieldUmpireOS;
 
     @FindBy(name = "notes")
-    public ExtendedWebElement FieldLineupNotes;
+    private ExtendedWebElement FieldLineupNotes;
 
     @FindBy(xpath = "//button[@data-sub-item-type='lineup-player']")
     public ExtendedWebElement btnSearchForLineupPlayer;
@@ -966,62 +966,62 @@ public class HB_HomePage extends AbstractPage {
     //************ LINEUP PLAYER CREATION OBJECTS ************//
 
     @FindBy(name = "position")
-    public ExtendedWebElement FieldPosition;
+    private ExtendedWebElement FieldPosition;
 
     //************ LINK CREATION OBJECTS ************//
 
     @FindBy(name = "link-url")
-    public ExtendedWebElement FieldLinkURL;
+    private ExtendedWebElement FieldLinkURL;
 
     @FindBy(name = "thumbnail")
-    public ExtendedWebElement FieldThumbnail;
+    private ExtendedWebElement FieldThumbnail;
 
     @FindBy(name = "rank")
-    public ExtendedWebElement FieldRank;
+    private ExtendedWebElement FieldRank;
 
     //************ LINK CREATION OBJECTS ************//
 
     //************ LIST CREATION OBJECTS ************//
 
     @FindBy(xpath = "//button[contains(text(), 'Search for Items')]")
-    public ExtendedWebElement btnSearchForItems;
+    private ExtendedWebElement btnSearchForItems;
 
     //************ LIST CREATION OBJECTS ************//
 
     //************ MEDIAWALL CREATION OBJECTS ************//
 
     @FindBy(name = "numpanels")
-    public ExtendedWebElement FieldNumberOfPanels;
+    private ExtendedWebElement FieldNumberOfPanels;
 
     @FindBy(xpath = "//button[contains(text(), 'Search for Mediawall Panel')]")
-    public ExtendedWebElement btnSearchForMediawallPanel;
+    private ExtendedWebElement btnSearchForMediawallPanel;
 
     //************ MEDIAWALL CREATION OBJECTS ************//
 
     //************ MLBTV AD MODULE CREATION OBJECTS ************//
 
     @FindBy(name = "tablet-url")
-    public ExtendedWebElement FieldTabletURL;
+    private ExtendedWebElement FieldTabletURL;
 
     //************ MLBTV AD MODULE CREATION OBJECTS ************//
 
     //************ MLBTV AD MODULE CREATION OBJECTS ************//
 
     @FindBy(name = "unique-id")
-    public ExtendedWebElement FieldUniqueID;
+    private ExtendedWebElement FieldUniqueID;
 
     @FindBy(name = "preview-url")
-    public ExtendedWebElement FieldPreviewURL;
+    private ExtendedWebElement FieldPreviewURL;
 
     @FindBy(name = "media-url")
-    public ExtendedWebElement FieldMediaURL;
+    private ExtendedWebElement FieldMediaURL;
 
     //************ MLBTV AD MODULE CREATION OBJECTS ************//
 
     //************ PHOTO ASSET CREATION OBJECTS ************//
 
     @FindBy(xpath = "//*[@data-field-key='photos']/div/button[contains(text(), 'Search for Photo Asset')]")
-    public ExtendedWebElement btnPhotosSearchForPhotoAsset;
+    private ExtendedWebElement btnPhotosSearchForPhotoAsset;
 
     @FindBy(xpath = "//*[@data-field-key='home-thumb']/div/button[contains(text(), 'Search for Photo Asset')]")
     public ExtendedWebElement btnHomeThumbnailSearchForPhotoAsset;
@@ -1034,10 +1034,10 @@ public class HB_HomePage extends AbstractPage {
     //************ PRESS RELEASE CREATION OBJECTS ************//
 
     @FindBy(name = "alt-headline")
-    public ExtendedWebElement FieldDisplayHeadline;
+    private ExtendedWebElement FieldDisplayHeadline;
 
     @FindBy(name = "subheadline")
-    public ExtendedWebElement FieldSubHeadline;
+    private ExtendedWebElement FieldSubHeadline;
 
     @FindBy(xpath = "//label[@title='* Body']")
     public ExtendedWebElement HeaderBody;
@@ -1047,59 +1047,59 @@ public class HB_HomePage extends AbstractPage {
     //************ SECTION CREATION OBJECTS ************//
 
     @FindBy(name = "id")
-    public ExtendedWebElement FieldSectionID;
+    private ExtendedWebElement FieldSectionID;
 
     @FindBy(name = "short_title")
-    public ExtendedWebElement FieldShortTitle;
+    private ExtendedWebElement FieldShortTitle;
 
     @FindBy(name = "long_title")
-    public ExtendedWebElement FieldLongTitle;
+    private ExtendedWebElement FieldLongTitle;
 
     @FindBy(xpath = "//textarea[@data-field-key='url']")
-    public ExtendedWebElement FieldWiredURL;
+    private ExtendedWebElement FieldWiredURL;
 
     @FindBy(name = "target")
-    public ExtendedWebElement FieldTarget;
+    private ExtendedWebElement FieldTarget;
 
     //************ SECTION CREATION OBJECTS ************//
 
     //************ VIDEO TOPIC PAGE CREATION OBJECTS ************//
 
     @FindBy(xpath = "//textarea[@data-field-key='description']")
-    public ExtendedWebElement FieldFacebookDescription;
+    private ExtendedWebElement FieldFacebookDescription;
 
     @FindBy(xpath = "//input[@data-field-key='max-items']")
-    public ExtendedWebElement FieldMaxItems;
+    private ExtendedWebElement FieldMaxItems;
 
     @FindBy(xpath = "//input[@data-field-key='items-per-page']")
-    public ExtendedWebElement FieldItemsPerPage;
+    private ExtendedWebElement FieldItemsPerPage;
 
     @FindBy(xpath = "//input[@data-field-key='search_criteria']")
-    public ExtendedWebElement FieldSearchCriteria;
+    private ExtendedWebElement FieldSearchCriteria;
 
     @FindBy(xpath = "//input[@data-field-key='related_link']")
-    public ExtendedWebElement FieldRelatedLink;
+    private ExtendedWebElement FieldRelatedLink;
 
     @FindBy(xpath = "//input[@data-field-key='jsp_path']")
-    public ExtendedWebElement FieldCustomTemplatePath;
+    private ExtendedWebElement FieldCustomTemplatePath;
 
     @FindBy(xpath = "//input[@data-field-key='js_path']")
-    public ExtendedWebElement FieldJavascriptPath;
+    private ExtendedWebElement FieldJavascriptPath;
 
     @FindBy(xpath = "//input[@data-field-key='css_path']")
-    public ExtendedWebElement FieldStylesheetPath;
+    private ExtendedWebElement FieldStylesheetPath;
 
     @FindBy(xpath = "//input[@data-field-key='customPanel']")
-    public ExtendedWebElement FieldCustomPanel;
+    private ExtendedWebElement FieldCustomPanel;
 
     @FindBy(xpath = "//input[@data-field-key='twitter-handle']")
-    public ExtendedWebElement FieldTwitterHandleVTP;
+    private ExtendedWebElement FieldTwitterHandleVTP;
 
     @FindBy(xpath = "//input[@data-field-key='poll_key']")
-    public ExtendedWebElement FieldPollKey;
+    private ExtendedWebElement FieldPollKey;
 
     @FindBy(xpath = "//button[@data-sub-item-type='video_clip_list']")
-    public ExtendedWebElement btnSearchForVideoClipList;
+    private ExtendedWebElement btnSearchForVideoClipList;
 
     @FindBy(xpath = "//*[@id='search-autocompleteQuery']/div[@class='autocompleteResultsContainer']/ul[@class='ac-holder']/li/input[@class='autocomplete-maininput processedYes']")
     public ExtendedWebElement FieldSearchWordOrPhraseOrContentID;
@@ -1112,10 +1112,10 @@ public class HB_HomePage extends AbstractPage {
     //************ VIDEO CLIP LIST CREATION OBJECTS ************//
 
     @FindBy(xpath = "//input[@data-field-key='listDefaultView']")
-    public ExtendedWebElement FieldListDefaultView;
+    private ExtendedWebElement FieldListDefaultView;
 
     @FindBy(xpath = "//button[@data-sub-item-type='video']")
-    public ExtendedWebElement btnSearchForVideo;
+    private ExtendedWebElement btnSearchForVideo;
 
     //************ VIDEO CLIP LIST CREATION OBJECTS ************//
 
@@ -1125,17 +1125,17 @@ public class HB_HomePage extends AbstractPage {
     public ExtendedWebElement btnChangeDate;
 
     @FindBy(xpath = "//button[contains(text(), 'Change Date')]")
-    public List<ExtendedWebElement> btnChangeDateList;
+    private List<ExtendedWebElement> btnChangeDateList;
 
     //************ CHANGE DATE OBJECTS ************//
 
     //************ DASHBOARD TEAM CONTENT OBJECTS ************//
 
     @FindBy(id = "tabBtn-team")
-    public ExtendedWebElement btnDashboardTeamContent;
+    private ExtendedWebElement btnDashboardTeamContent;
 
     @FindBy(xpath = "//a[contains(text(), 'Depth Charts')]")
-    public ExtendedWebElement btnDashboardTeamContentDepthCharts;
+    private ExtendedWebElement btnDashboardTeamContentDepthCharts;
 
     @FindBy(id = "tabBtn-team-_-mlb")
     public ExtendedWebElement btnDashboardTeamContentMLB;
@@ -1147,7 +1147,7 @@ public class HB_HomePage extends AbstractPage {
     public ExtendedWebElement btnDashboardTeamContentMLBNetwork;
 
     @FindBy(id = "tabBtn-team-_-ari")
-    public ExtendedWebElement btnDashboardTeamContentArizonaDiamondbacks;
+    private ExtendedWebElement btnDashboardTeamContentArizonaDiamondbacks;
 
     @FindBy(id = "tabBtn-team-_-atl")
     public ExtendedWebElement btnDashboardTeamContentAtlantaBraves;
@@ -1234,26 +1234,26 @@ public class HB_HomePage extends AbstractPage {
     public ExtendedWebElement btnDashboardTeamContentTorontoBlueJays;
 
     @FindBy(id = "tabBtn-team-_-was")
-    public ExtendedWebElement btnDashboardTeamContentWashingtonNationals;
+    private ExtendedWebElement btnDashboardTeamContentWashingtonNationals;
 
     //************ DASHBOARD TEAM CONTENT OBJECTS ************//
 
     //************ DASHBOARD GAME CONTENT OBJECTS ************//
 
     @FindBy(id = "tabBtn-game")
-    public ExtendedWebElement btnDashboardGameContent;
+    private ExtendedWebElement btnDashboardGameContent;
 
     @FindBy(id = "dashDayBrowse")
     public ExtendedWebElement btnDashboardGameContentChangeDate;
 
     @FindBy(xpath = "//a[contains(text(), 'Probables')]")
-    public ExtendedWebElement btnDashboardGameContentProbables;
+    private ExtendedWebElement btnDashboardGameContentProbables;
 
     @FindBy(xpath = "//a[contains(text(), 'Lineup')]")
-    public ExtendedWebElement btnDashboardGameContentLineup;
+    private ExtendedWebElement btnDashboardGameContentLineup;
 
     @FindBy(xpath = "//ul[@id='gameUl'][@class='ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all'][@role='tablist']")
-    public ExtendedWebElement gameContentGamesFieldDataPosition;
+    private ExtendedWebElement gameContentGamesFieldDataPosition;
 
     //************ DASHBOARD GAME CONTENT OBJECTS ************//
 
@@ -1266,40 +1266,40 @@ public class HB_HomePage extends AbstractPage {
     public ExtendedWebElement iconDepthChartRosterControlsAddPlayer;
 
     @FindBy(xpath = "//button[contains(text(), 'Save Depth Chart')]")
-    public ExtendedWebElement btnSaveDepthChart;
+    private ExtendedWebElement btnSaveDepthChart;
 
     @FindBy(xpath = "//div[@class='depthChartSlots']")
-    public ExtendedWebElement depthChartsFieldDataPositionDescription;
+    private ExtendedWebElement depthChartsFieldDataPositionDescription;
 
     //************ DASHBOARD TEAM CONTENT DEPTH CHART OBJECTS ************//
 
     //************ DASHBOARD TEAM CONTENT PROBABLES OBJECTS ************//
 
     @FindBy(xpath = "//a[contains(text(), 'Probables')]")
-    public ExtendedWebElement btnDashboardTeamContentProbables;
+    private ExtendedWebElement btnDashboardTeamContentProbables;
 
     @FindBy(xpath = "//button[contains(text(), 'Save Probables')]")
-    public ExtendedWebElement btnSaveProbables;
+    private ExtendedWebElement btnSaveProbables;
 
     @FindBy(xpath = "//div[@class='probableEntries']")
-    public ExtendedWebElement probablesFieldDataPositionDescription;
+    private ExtendedWebElement probablesFieldDataPositionDescription;
 
     //************ DASHBOARD TEAM CONTENT PROBABLES OBJECTS ************//
 
     //************ DASHBOARD GAME CONTENT PROBABLES OBJECTS ************//
 
     @FindBy(xpath = "//div[@class='probableVsEntry ']")
-    public ExtendedWebElement probablesGameContentFieldDataPositionDescription;
+    private ExtendedWebElement probablesGameContentFieldDataPositionDescription;
 
     //************ DASHBOARD GAME CONTENT PROBABLES OBJECTS ************//
 
     //************ DASHBOARD GAME CONTENT LINEUP OBJECTS ************//
 
     @FindBy(xpath = "//button[contains(text(), 'Unlock')]")
-    public ExtendedWebElement btnUnlock;
+    private ExtendedWebElement btnUnlock;
 
     @FindBy(xpath = "//div[@class='collectionPanel positionRelative ui-tabs-panel ui-widget-content ui-corner-bottom lineupParent']")
-    public ExtendedWebElement lineupGameContentFieldDataPositionDescription;
+    private ExtendedWebElement lineupGameContentFieldDataPositionDescription;
 
     @FindBy(xpath = "//div[@class='lineupColumn']")
     public ExtendedWebElement lineupGameContentFieldDataPositionDescription2;
@@ -1311,94 +1311,94 @@ public class HB_HomePage extends AbstractPage {
     public ExtendedWebElement lineupGameContentFieldDataPositionPlayerTypeExistingIndicator;
 
     @FindBy(xpath = "//button[contains(text(), 'Save')]")
-    public ExtendedWebElement btnLineupSave;
+    private ExtendedWebElement btnLineupSave;
 
     @FindBy(xpath = "//button[contains(text(), 'To Beta')]")
-    public ExtendedWebElement btnLineupToBeta;
+    private ExtendedWebElement btnLineupToBeta;
 
     @FindBy(xpath = "//button[contains(text(), 'To Prod')]")
     public ExtendedWebElement btnLineupToProd;
 
     @FindBy(xpath = "//div[@class='awayRemove1 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway1;
+    private ExtendedWebElement btnLineupDeleteEntryAway1;
 
     @FindBy(xpath = "//div[@class='awayRemove2 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway2;
+    private ExtendedWebElement btnLineupDeleteEntryAway2;
 
     @FindBy(xpath = "//div[@class='awayRemove3 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway3;
+    private ExtendedWebElement btnLineupDeleteEntryAway3;
 
     @FindBy(xpath = "//div[@class='awayRemove4 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway4;
+    private ExtendedWebElement btnLineupDeleteEntryAway4;
 
     @FindBy(xpath = "//div[@class='awayRemove5 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway5;
+    private ExtendedWebElement btnLineupDeleteEntryAway5;
 
     @FindBy(xpath = "//div[@class='awayRemove6 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway6;
+    private ExtendedWebElement btnLineupDeleteEntryAway6;
 
     @FindBy(xpath = "//div[@class='awayRemove7 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway7;
+    private ExtendedWebElement btnLineupDeleteEntryAway7;
 
     @FindBy(xpath = "//div[@class='awayRemove8 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway8;
+    private ExtendedWebElement btnLineupDeleteEntryAway8;
 
     @FindBy(xpath = "//div[@class='awayRemove9 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway9;
+    private ExtendedWebElement btnLineupDeleteEntryAway9;
 
     @FindBy(xpath = "//div[@class='awayRemoveSP removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryAway10;
+    private ExtendedWebElement btnLineupDeleteEntryAway10;
 
     @FindBy(xpath = "//div[@class='homeRemove1 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome1;
+    private ExtendedWebElement btnLineupDeleteEntryHome1;
 
     @FindBy(xpath = "//div[@class='homeRemove2 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome2;
+    private ExtendedWebElement btnLineupDeleteEntryHome2;
 
     @FindBy(xpath = "//div[@class='homeRemove3 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome3;
+    private ExtendedWebElement btnLineupDeleteEntryHome3;
 
     @FindBy(xpath = "//div[@class='homeRemove4 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome4;
+    private ExtendedWebElement btnLineupDeleteEntryHome4;
 
     @FindBy(xpath = "//div[@class='homeRemove5 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome5;
+    private ExtendedWebElement btnLineupDeleteEntryHome5;
 
     @FindBy(xpath = "//div[@class='homeRemove6 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome6;
+    private ExtendedWebElement btnLineupDeleteEntryHome6;
 
     @FindBy(xpath = "//div[@class='homeRemove7 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome7;
+    private ExtendedWebElement btnLineupDeleteEntryHome7;
 
     @FindBy(xpath = "//div[@class='homeRemove8 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome8;
+    private ExtendedWebElement btnLineupDeleteEntryHome8;
 
     @FindBy(xpath = "//div[@class='homeRemove9 removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome9;
+    private ExtendedWebElement btnLineupDeleteEntryHome9;
 
     @FindBy(xpath = "//div[@class='homeRemoveSP removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryHome10;
+    private ExtendedWebElement btnLineupDeleteEntryHome10;
 
     @FindBy(xpath = "//div[@class='hpRemove removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryOfficialHP;
+    private ExtendedWebElement btnLineupDeleteEntryOfficialHP;
 
     @FindBy(xpath = "//div[@class='1bRemove removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryOfficial1B;
+    private ExtendedWebElement btnLineupDeleteEntryOfficial1B;
 
     @FindBy(xpath = "//div[@class='2bRemove removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryOfficial2B;
+    private ExtendedWebElement btnLineupDeleteEntryOfficial2B;
 
     @FindBy(xpath = "//div[@class='3bRemove removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryOfficial3B;
+    private ExtendedWebElement btnLineupDeleteEntryOfficial3B;
 
     @FindBy(xpath = "//div[@class='lfRemove removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryOfficialLF;
+    private ExtendedWebElement btnLineupDeleteEntryOfficialLF;
 
     @FindBy(xpath = "//div[@class='rfRemove removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryOfficialRF;
+    private ExtendedWebElement btnLineupDeleteEntryOfficialRF;
 
     @FindBy(xpath = "//div[@class='osRemove removeLineupEntry triggerAble']")
-    public ExtendedWebElement btnLineupDeleteEntryOfficialOS;
+    private ExtendedWebElement btnLineupDeleteEntryOfficialOS;
 
 
     private static Robot instance;
@@ -1478,7 +1478,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void testPhotoFileDialog() {
+    void testPhotoFileDialog() {
         pause(1);
         clickPosition(760, 130);
         pause(1);
@@ -1506,7 +1506,7 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
     }
 
-    public void testPhotoFileDialogNoMouse() {
+    void testPhotoFileDialogNoMouse() {
         File file = new File("/Library/ztestphoto.jpg");
         ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').css('position', 'static').css('opacity', '1');");
         ((JavascriptExecutor) driver).executeScript("$('#multiCutBucket .pluUploadInput').parent().css('overflow', 'visible').css('opacity', '1');");
@@ -1515,70 +1515,7 @@ public class HB_HomePage extends AbstractPage {
 
     }
 
-    public void testPhotoFileDialog001() {
-
-        Robot robot = getRobotInstance();
-        pause(1);
-        clickPosition(1215, 10);
-        pause(1);
-        clickPosition(950, 35);
-        pause(1);
-
-        press(KeyEvent.VK_T);
-        press(KeyEvent.VK_E);
-        press(KeyEvent.VK_S);
-        press(KeyEvent.VK_T);
-        press(KeyEvent.VK_P);
-        press(KeyEvent.VK_H);
-        press(KeyEvent.VK_O);
-        press(KeyEvent.VK_T);
-        press(KeyEvent.VK_O);
-        press(KeyEvent.VK_O);
-        press(KeyEvent.VK_O);
-        press(KeyEvent.VK_2);
-        press(KeyEvent.VK_PERIOD);
-
-        pause(3);
-        clickPosition(940, 95);
-        pause(1);
-        clickPosition(300, 400);
-        pause(3);
-        clickPosition(1215, 10);
-        pause(1);
-        clickPosition(1215, 40);
-        pause(1);
-        robot.mouseMove(1215, 10);
-        pause(1);
-    }
-
-    public void useTagTool(String mainURL, String tagToolPlayer) {
-//		Selenium seleniumTagTool = new WebDriverBackedSelenium(driver, mainURL);
-        click(BtnTagTool);
-        click(CheckboxTagToolAdvancedFields);
-        click(BtnTagToolChangeDate);
-        pause(1);
-        click(BtnTagToolSelectCurrentDate);
-        pause(1);
-        press(KeyEvent.VK_ENTER);
-        pause(1);
-        pressTab();
-        pause(1);
-        sendKeys(tagToolPlayer);
-        pause(1);
-        pressTab();
-        pause(1);
-        pressTab();
-        press(KeyEvent.VK_A);
-        pause(1);
-        press(KeyEvent.VK_ENTER);
-        pause(1);
-        press(KeyEvent.VK_A);
-        pause(1);
-        press(KeyEvent.VK_ENTER);
-        click(BtnApplyTagsAndClose);
-    }
-
-    public void useTagToolNew(String mainURL, String tagToolPlayer) {
+    void useTagToolNew(String tagToolPlayer) {
         click(BtnTagTool);
         click(CheckboxTagToolAdvancedFields);
         pause(0.5);
@@ -1636,7 +1573,7 @@ public class HB_HomePage extends AbstractPage {
         click(BtnApplyTagsAndClose);
     }
 
-    public void saveItemAndPublishToBeta() {
+    void saveItemAndPublishToBeta() {
         click(BtnSave);
         pause(1);
         click(BtnToBeta);
@@ -1646,7 +1583,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void saveItemAndPublishToProd() {
+    void saveItemAndPublishToProd() {
         click(BtnSave);
         pause(1);
         click(BtnToProd);
@@ -1657,7 +1594,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void saveItemAndPublishToBetaWithoutDelete() {
+    void saveItemAndPublishToBetaWithoutDelete() {
         click(BtnSave);
         pause(1);
         click(BtnToBeta);
@@ -1666,7 +1603,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void saveItemAndPublishToProdWithoutDelete() {
+    void saveItemAndPublishToProdWithoutDelete() {
         click(BtnSave);
         pause(1);
         click(BtnToProd);
@@ -1690,7 +1627,7 @@ public class HB_HomePage extends AbstractPage {
         click(deleteItemConfirm);
     }
 
-    public void deleteCreatedItemNew() {
+    void deleteCreatedItemNew() {
         String valueItemNumber = StatusPublishComplete.getText();
         int valueItemNumberTrimmedHashTagValue = valueItemNumber.indexOf("#");
         String valueItemNumberTrimmed = valueItemNumber.substring(valueItemNumberTrimmedHashTagValue + 1);
@@ -1709,16 +1646,16 @@ public class HB_HomePage extends AbstractPage {
         click(btnNewItem);
     }
 
-    public void selectDashboard() {
+    void selectDashboard() {
         click(btnMenuBarDashboard);
     }
 
-    public void selectTeamContent() {
+    void selectTeamContent() {
         selectDashboard();
         click(btnDashboardTeamContent);
     }
 
-    public void selectGameContent() {
+    void selectGameContent() {
         selectDashboard();
         click(btnDashboardGameContent);
     }
@@ -1748,14 +1685,14 @@ public class HB_HomePage extends AbstractPage {
         click(deleteItemConfirm);
     }
 
-    public void testCMSToolNewFunctionHTML() {
+    void testCMSToolNewFunctionHTML() {
         WebElement testBeforeElement = driver.findElement(By.xpath("//div[contains(@class, 'cke_reset') and not(contains(@class, 'cke_editor_htmlScrubber'))]/div[@class='cke_inner cke_reset']/div/iframe"));
         testBeforeElement.sendKeys(Keys.TAB);
         testBeforeElement.sendKeys("Hi Snehal!  Hi Chris!  Let's see if this works!");
 
     }
 
-    public void testCMSToolNewFunctionWYSIWYG() {
+    void testCMSToolNewFunctionWYSIWYG() {
         WebElement testBeforeElement = driver.findElement(By.xpath("//textarea[@class='cke_source cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr']"));
         testBeforeElement.sendKeys(Keys.TAB);
         testBeforeElement.sendKeys("Hi Snehal!  Hi Chris!  Let's see if this works!");
@@ -1763,7 +1700,7 @@ public class HB_HomePage extends AbstractPage {
     }
 
 
-    public void depthChartsBaseState() {
+    void depthChartsBaseState() {
         selectTeamContent();
         click(btnDashboardTeamContentWashingtonNationals);
         click(btnDashboardTeamContentArizonaDiamondbacks);
@@ -1842,7 +1779,7 @@ public class HB_HomePage extends AbstractPage {
         click(btnSaveDepthChart);
     }
 
-    public void probablesTeamContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
+    void probablesTeamContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
         selectTeamContent();
         click(btnDashboardTeamContentWashingtonNationals);
         click(btnDashboardTeamContentArizonaDiamondbacks);
@@ -1905,7 +1842,7 @@ public class HB_HomePage extends AbstractPage {
         click(btnSaveProbables);
     }
 
-    public void probablesGameContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
+    void probablesGameContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
         selectGameContent();
         click(btnChangeDateList.get(1));
         changeCalendar(dateChangerMonth, dateChangerDate, dateChangerYear);
@@ -1947,7 +1884,7 @@ public class HB_HomePage extends AbstractPage {
         click(btnSaveProbables);
     }
 
-    public void lineupGameContentBaseState() {
+    void lineupGameContentBaseState() {
         selectGameContent();
         List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
         (gameContentSelectGame.get(0)).click();
@@ -2504,9 +2441,9 @@ public class HB_HomePage extends AbstractPage {
 
     }
 
-    public void fillAndSaveNewArticle(String mainURLCall, String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) {
+    public void fillAndSaveNewArticle(String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) {
         type(FieldInternalName, articleReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, articleReqFieldHeadline);
         type(FieldSubhead, articleReqFieldSubhead);
         type(FieldAltHeadline, articleReqFieldAltHeadline);
@@ -2531,9 +2468,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewArticleView(String mainURLCall, String betaOrProd, String articleViewReqFieldInternalName, String articleViewReqFieldName, String articleViewReqFieldViewKey, String tagToolPlayerValue) {
+    public void fillAndSaveNewArticleView(String betaOrProd, String articleViewReqFieldInternalName, String articleViewReqFieldName, String articleViewReqFieldViewKey, String tagToolPlayerValue) {
         type(FieldInternalName, articleViewReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldName, articleViewReqFieldName);
         type(FieldViewKey, articleViewReqFieldViewKey);
         if (betaOrProd == "beta") {
@@ -2544,9 +2481,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewAudioSchedule(String mainURLCall, String betaOrProd, String audioScheduleReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewAudioSchedule(String betaOrProd, String audioScheduleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, audioScheduleReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -2555,9 +2492,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewBallpark(String mainURLCall, String betaOrProd, String ballparkReqFieldInternalName, String ballparkReqFieldID, String ballparkReqFieldName, String ballparkReqFieldAddress1, String ballparkReqFieldAddress2, String ballparkReqFieldLocation, String ballparkReqFieldMapType, String ballparkReqFieldMapVersion, String ballparkReqFieldFacebookID, String ballparkReqFieldFoursquareID, String ballparkReqFieldWebsiteURL, String ballparkReqFieldThumbnailURL, String ballparkReqFieldThumbnailCaption, String ballparkReqFieldTwitterHashTags, String ballparkReqFieldAboutURL, String ballparkReqFieldScheduleURL, String ballparkReqFieldSmallThumbnailURL, String ballparkReqFieldStartYear, String ballparkReqFieldEndYear, String ballparkReqFieldUpgradeURL, String ballparkReqFieldAbout, String ballparkReqFieldEventsText, String ballparkReqFieldSponsorImageText, String ballparkReqFieldSponsorImageURL, String ballparkReqFieldSponsorImage2Text, String ballparkReqFieldSponsorImage2URL, String ballparkReqFieldTicketsText, String ballparkReqFieldTicketsURL, String ballparkReqFieldTicketsErrorText, String tagToolPlayerValue) {
+    public void fillAndSaveNewBallpark(String betaOrProd, String ballparkReqFieldInternalName, String ballparkReqFieldID, String ballparkReqFieldName, String ballparkReqFieldAddress1, String ballparkReqFieldAddress2, String ballparkReqFieldLocation, String ballparkReqFieldMapType, String ballparkReqFieldMapVersion, String ballparkReqFieldFacebookID, String ballparkReqFieldFoursquareID, String ballparkReqFieldWebsiteURL, String ballparkReqFieldThumbnailURL, String ballparkReqFieldThumbnailCaption, String ballparkReqFieldTwitterHashTags, String ballparkReqFieldAboutURL, String ballparkReqFieldScheduleURL, String ballparkReqFieldSmallThumbnailURL, String ballparkReqFieldStartYear, String ballparkReqFieldEndYear, String ballparkReqFieldUpgradeURL, String ballparkReqFieldAbout, String ballparkReqFieldEventsText, String ballparkReqFieldSponsorImageText, String ballparkReqFieldSponsorImageURL, String ballparkReqFieldSponsorImage2Text, String ballparkReqFieldSponsorImage2URL, String ballparkReqFieldTicketsText, String ballparkReqFieldTicketsURL, String ballparkReqFieldTicketsErrorText, String tagToolPlayerValue) {
         type(FieldInternalName, ballparkReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldID, ballparkReqFieldID);
         type(FieldName, ballparkReqFieldName);
         type(FieldAddress1, ballparkReqFieldAddress1);
@@ -2594,9 +2531,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewBallparkMenu(String mainURLCall, String betaOrProd, String ballparkMenuReqFieldInternalName, String ballparkMenuReqFieldDisplayName, String ballparkMenuReqFieldDisplayImageURL, String ballparkMenuReqFieldLinkURL, String ballparkMenuReqFieldLinkName, String ballparkMenuReqFieldBundleKey, String ballparkMenuReqFieldBundleName, String ballparkMenuReqFieldBundleURL, String ballparkMenuReqFieldSharingURL, String ballparkMenuReqFieldSharingText, String ballparkMenuReqFieldErrorText, String ballparkMenuReqFieldSourceURL, String tagToolPlayerValue) {
+    public void fillAndSaveNewBallparkMenu(String betaOrProd, String ballparkMenuReqFieldInternalName, String ballparkMenuReqFieldDisplayName, String ballparkMenuReqFieldDisplayImageURL, String ballparkMenuReqFieldLinkURL, String ballparkMenuReqFieldLinkName, String ballparkMenuReqFieldBundleKey, String ballparkMenuReqFieldBundleName, String ballparkMenuReqFieldBundleURL, String ballparkMenuReqFieldSharingURL, String ballparkMenuReqFieldSharingText, String ballparkMenuReqFieldErrorText, String ballparkMenuReqFieldSourceURL, String tagToolPlayerValue) {
         type(FieldInternalName, ballparkMenuReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldDisplayName, ballparkMenuReqFieldDisplayName);
         type(FieldDisplayImageURL, ballparkMenuReqFieldDisplayImageURL);
         type(FieldLinkURL2, ballparkMenuReqFieldLinkURL);
@@ -2616,9 +2553,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewBallparkMusic(String mainURLCall, String betaOrProd, String ballparkMusicReqFieldInternalName, String ballparkMusicReqFieldTitle, String ballparkMusicReqFieldArtist, String ballparkMusicReqFieldDescription, String ballparkMusicReqFieldThumbnail, String ballparkMusicReqFieldRank, String tagToolPlayerValue) {
+    public void fillAndSaveNewBallparkMusic(String betaOrProd, String ballparkMusicReqFieldInternalName, String ballparkMusicReqFieldTitle, String ballparkMusicReqFieldArtist, String ballparkMusicReqFieldDescription, String ballparkMusicReqFieldThumbnail, String ballparkMusicReqFieldRank, String tagToolPlayerValue) {
         type(FieldInternalName, ballparkMusicReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldTitle, ballparkMusicReqFieldTitle);
         type(FieldArtist, ballparkMusicReqFieldArtist);
         type(FieldDescription, ballparkMusicReqFieldDescription);
@@ -2632,9 +2569,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewBallparkSubmenu(String mainURLCall, String betaOrProd, String ballparkSubmenuReqFieldInternalName, String ballparkSubmenuReqFieldDisplayName, String ballparkSubmenuReqFieldDisplayImageURL, String ballparkSubmenuReqFieldLinkURL, String ballparkSubmenuReqFieldLinkName, String ballparkSubmenuReqFieldBundleKey, String ballparkSubmenuReqFieldBundleName, String ballparkSubmenuReqFieldBundleURL, String ballparkSubmenuReqFieldSharingURL, String ballparkSubmenuReqFieldSharingText, String ballparkSubmenuReqFieldErrorText, String ballparkSubmenuReqFieldSourceURL, String tagToolPlayerValue) {
+    public void fillAndSaveNewBallparkSubmenu(String betaOrProd, String ballparkSubmenuReqFieldInternalName, String ballparkSubmenuReqFieldDisplayName, String ballparkSubmenuReqFieldDisplayImageURL, String ballparkSubmenuReqFieldLinkURL, String ballparkSubmenuReqFieldLinkName, String ballparkSubmenuReqFieldBundleKey, String ballparkSubmenuReqFieldBundleName, String ballparkSubmenuReqFieldBundleURL, String ballparkSubmenuReqFieldSharingURL, String ballparkSubmenuReqFieldSharingText, String ballparkSubmenuReqFieldErrorText, String ballparkSubmenuReqFieldSourceURL, String tagToolPlayerValue) {
         type(FieldInternalName, ballparkSubmenuReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldDisplayName, ballparkSubmenuReqFieldDisplayName);
         type(FieldDisplayImageURL, ballparkSubmenuReqFieldDisplayImageURL);
         type(FieldLinkURL2, ballparkSubmenuReqFieldLinkURL);
@@ -2654,9 +2591,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewBlogContent(String mainURLCall, String betaOrProd, String blogContentReqFieldInternalName, String blogContentReqFieldURL, String blogContentReqFieldURLText, String blogContentReqFieldHeadline, String blogContentReqFieldAltHeadline, String blogContentReqFieldSEOHeadline, String blogContentReqFieldBlurb, String blogContentReqFieldByline, String blogContentReqFieldCaption, String blogContentReqFieldMediaCredit, String blogContentReqFieldBody, String blogContentReqFieldSummary, String tagToolPlayerValue) {
+    public void fillAndSaveNewBlogContent(String betaOrProd, String blogContentReqFieldInternalName, String blogContentReqFieldURL, String blogContentReqFieldURLText, String blogContentReqFieldHeadline, String blogContentReqFieldAltHeadline, String blogContentReqFieldSEOHeadline, String blogContentReqFieldBlurb, String blogContentReqFieldByline, String blogContentReqFieldCaption, String blogContentReqFieldMediaCredit, String tagToolPlayerValue) {
         type(FieldInternalName, blogContentReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldURL, blogContentReqFieldURL);
         type(FieldURLText, blogContentReqFieldURLText);
         type(FieldHeadline, blogContentReqFieldHeadline);
@@ -2681,7 +2618,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewBlogContentAlias(String mainURLCall, String betaOrProd, String blogContentAliasReqFieldInternalName, String blogContentAliasReqFieldHeadline, String blogContentAliasReqFieldBlurb, String blogContentAliasReqFieldSummary, String tagToolPlayerValue) {
+    public void fillAndSaveNewBlogContentAlias(String betaOrProd, String blogContentAliasReqFieldInternalName, String blogContentAliasReqFieldHeadline, String blogContentAliasReqFieldBlurb, String blogContentAliasReqFieldSummary) {
         type(FieldInternalName, blogContentAliasReqFieldInternalName);
         type(FieldHeadline, blogContentAliasReqFieldHeadline);
         type(FieldBlurb, blogContentAliasReqFieldBlurb);
@@ -2694,9 +2631,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewChron(String mainURLCall, String betaOrProd, String chronReqFieldInternalName, String chronReqFieldDateNotation, String chronReqFieldYear, String chronReqFieldDisplayYear, String chronReqFieldTitle, String chronReqFieldCMSDescription, String tagToolPlayerValue) {
+    public void fillAndSaveNewChron(String betaOrProd, String chronReqFieldInternalName, String chronReqFieldDateNotation, String chronReqFieldYear, String chronReqFieldDisplayYear, String chronReqFieldTitle, String tagToolPlayerValue) {
         type(FieldInternalName, chronReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldDateNotation, chronReqFieldDateNotation);
         type(FieldYear, chronReqFieldYear);
         type(FieldDisplayYear, chronReqFieldDisplayYear);
@@ -2710,9 +2647,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewClosedCaption(String mainURLCall, String betaOrProd, String closedCaptionReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewClosedCaption(String betaOrProd, String closedCaptionReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, closedCaptionReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         testCMSToolNewFunctionHTML();
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -2722,9 +2659,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewClubPromo(String mainURLCall, String betaOrProd, String clubPromoReqFieldInternalName, String clubPromoReqFieldURLExtension, String clubPromoReqFieldEventTitle, String clubPromoReqFieldEventSubtitle, String clubPromoReqFieldPromoText, String clubPromoReqFieldMobileTicketsText, String clubPromoReqFieldMobileTicketsURL, String clubPromoReqFieldTicketsURL, String clubPromoReqFieldTextCampaignPromo, String clubPromoReqFieldSocialKeyword, String clubPromoReqFieldHighlightsTitle, String clubPromoReqFieldLocationAddress, String clubPromoReqFieldEventMapTitle, String clubPromoReqFieldScheduleTitle, String clubPromoReqFieldFAQTitle, String tagToolPlayerValue) {
+    public void fillAndSaveNewClubPromo(String betaOrProd, String clubPromoReqFieldInternalName, String clubPromoReqFieldURLExtension, String clubPromoReqFieldEventTitle, String clubPromoReqFieldEventSubtitle, String clubPromoReqFieldPromoText, String clubPromoReqFieldMobileTicketsText, String clubPromoReqFieldMobileTicketsURL, String clubPromoReqFieldTicketsURL, String clubPromoReqFieldTextCampaignPromo, String clubPromoReqFieldSocialKeyword, String clubPromoReqFieldHighlightsTitle, String clubPromoReqFieldLocationAddress, String clubPromoReqFieldEventMapTitle, String clubPromoReqFieldScheduleTitle, String clubPromoReqFieldFAQTitle, String tagToolPlayerValue) {
         type(FieldInternalName, clubPromoReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldURLExtension, clubPromoReqFieldURLExtension);
         type(FieldEventTitle, clubPromoReqFieldEventTitle);
         type(FieldEventSubtitle, clubPromoReqFieldEventSubtitle);
@@ -2749,9 +2686,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewContributor(String mainURLCall, String betaOrProd, String contributorReqFieldInternalName, String contributorReqFieldFirstName, String contributorReqFieldLastName, String contributorReqFieldTitle, String contributorReqFieldEmail, String contributorReqFieldTwitterHandle, String contributorReqFieldBlog, String contributorReqFieldBlogTitle, String contributorReqFieldRSSFeed, String contributorReqFieldFacebookID, String contributorReqFieldActiveTab, String contributorReqFieldHideArticles, String contributorReqFieldVideoKeywordType, String contributorReqFieldVideoKeywordValue, String contributorReqFieldVideoLandingPage, String contributorReqFieldBlurb, String tagToolPlayerValue) {
+    public void fillAndSaveNewContributor(String betaOrProd, String contributorReqFieldInternalName, String contributorReqFieldFirstName, String contributorReqFieldLastName, String contributorReqFieldTitle, String contributorReqFieldEmail, String contributorReqFieldTwitterHandle, String contributorReqFieldBlog, String contributorReqFieldBlogTitle, String contributorReqFieldRSSFeed, String contributorReqFieldFacebookID, String contributorReqFieldActiveTab, String contributorReqFieldHideArticles, String contributorReqFieldVideoKeywordType, String contributorReqFieldVideoKeywordValue, String contributorReqFieldVideoLandingPage, String contributorReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, contributorReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldFirstName, contributorReqFieldFirstName);
         type(FieldLastName, contributorReqFieldLastName);
         type(FieldTitle, contributorReqFieldTitle);
@@ -2777,9 +2714,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewDailyEmail(String mainURLCall, String betaOrProd, String dailyEmailReqFieldInternalName, String dailyEmailReqFieldSubject, String dailyEmailReqFieldSubjectB, String dailyEmailReqFieldTriviaQuestion, String dailyEmailReqFieldTriviaAnswer, String tagToolPlayerValue) {
+    public void fillAndSaveNewDailyEmail(String betaOrProd, String dailyEmailReqFieldInternalName, String dailyEmailReqFieldSubject, String dailyEmailReqFieldSubjectB, String dailyEmailReqFieldTriviaQuestion, String dailyEmailReqFieldTriviaAnswer, String tagToolPlayerValue) {
         type(FieldInternalName, dailyEmailReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldSubject, dailyEmailReqFieldSubject);
         type(FieldSubjectB, dailyEmailReqFieldSubjectB);
         type(FieldTriviaQuestion, dailyEmailReqFieldTriviaQuestion);
@@ -2792,9 +2729,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewDeviceAnnouncement(String mainURLCall, String betaOrProd, String deviceAnnouncementReqFieldInternalName, String deviceAnnouncementReqFieldAppVersion, String deviceAnnouncementReqFieldOSVersion, String deviceAnnouncementReqFieldEntitlement, String deviceAnnouncementReqFieldScreen, String deviceAnnouncementReqFieldType, String deviceAnnouncementReqFieldDisplayType, String deviceAnnouncementReqFieldTitle, String deviceAnnouncementReqFieldMessage, String deviceAnnouncementReqFieldOpenLabel, String deviceAnnouncementReqFieldOpenLink, String deviceAnnouncementReqFieldCloseLabel, String deviceAnnouncementReqFieldCloseLink, String tagToolPlayerValue) {
+    public void fillAndSaveNewDeviceAnnouncement(String betaOrProd, String deviceAnnouncementReqFieldInternalName, String deviceAnnouncementReqFieldAppVersion, String deviceAnnouncementReqFieldOSVersion, String deviceAnnouncementReqFieldEntitlement, String deviceAnnouncementReqFieldScreen, String deviceAnnouncementReqFieldType, String deviceAnnouncementReqFieldDisplayType, String deviceAnnouncementReqFieldTitle, String deviceAnnouncementReqFieldMessage, String deviceAnnouncementReqFieldOpenLabel, String deviceAnnouncementReqFieldOpenLink, String deviceAnnouncementReqFieldCloseLabel, String deviceAnnouncementReqFieldCloseLink, String tagToolPlayerValue) {
         type(FieldInternalName, deviceAnnouncementReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldAppVersion, deviceAnnouncementReqFieldAppVersion);
         type(FieldOSVersion, deviceAnnouncementReqFieldOSVersion);
         type(FieldEntitlement, deviceAnnouncementReqFieldEntitlement);
@@ -2815,9 +2752,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewDeviceBanner(String mainURLCall, String betaOrProd, String deviceBannerReqFieldInternalName, String deviceBannerReqFieldAppVersion, String deviceBannerReqFieldOSVersion, String deviceBannerReqFieldEntitlement, String deviceBannerReqFieldAccessFeature, String deviceBannerReqFieldScreen, String deviceBannerReqFieldViewID, String deviceBannerReqFieldType, String deviceBannerReqFieldWebViewType, String deviceBannerReqFieldTitle, String deviceBannerReqFieldLink, String deviceBannerReqFieldBackgroundColor, String deviceBannerReqFieldTrackingString, String deviceBannerReqFieldAdMarvelID, String deviceBannerReqFieldAdMarvelWidth, String deviceBannerReqFieldAdMarvelHeight, String deviceBannerReqFieldAdMarvelSectionID, String deviceBannerReqFieldAdMarvelMLBTarget, String deviceBannerReqFieldAdMarvelExpiryTime, String deviceBannerReqFieldMLBTVContentID, String deviceBannerReqFieldMLBTVCalendarEventID, String deviceBannerReqFieldSponsor, String tagToolPlayerValue) {
+    public void fillAndSaveNewDeviceBanner(String betaOrProd, String deviceBannerReqFieldInternalName, String deviceBannerReqFieldAppVersion, String deviceBannerReqFieldOSVersion, String deviceBannerReqFieldEntitlement, String deviceBannerReqFieldAccessFeature, String deviceBannerReqFieldScreen, String deviceBannerReqFieldViewID, String deviceBannerReqFieldType, String deviceBannerReqFieldWebViewType, String deviceBannerReqFieldTitle, String deviceBannerReqFieldLink, String deviceBannerReqFieldBackgroundColor, String deviceBannerReqFieldTrackingString, String deviceBannerReqFieldAdMarvelID, String deviceBannerReqFieldAdMarvelWidth, String deviceBannerReqFieldAdMarvelHeight, String deviceBannerReqFieldAdMarvelSectionID, String deviceBannerReqFieldAdMarvelMLBTarget, String deviceBannerReqFieldAdMarvelExpiryTime, String deviceBannerReqFieldMLBTVContentID, String deviceBannerReqFieldMLBTVCalendarEventID, String deviceBannerReqFieldSponsor, String tagToolPlayerValue) {
         type(FieldInternalName, deviceBannerReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldAppVersion, deviceBannerReqFieldAppVersion);
         type(FieldOSVersion, deviceBannerReqFieldOSVersion);
         type(FieldEntitlement, deviceBannerReqFieldEntitlement);
@@ -2847,9 +2784,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewDevicePage(String mainURLCall, String betaOrProd, String devicePageReqFieldInternalName, String devicePageReqFieldHeadline, String devicePageReqFieldBlurb, String devicePageReqFieldYearlyPurchaseFlow, String devicePageReqFieldMonthlyPurchaseFlow, String devicePageReqFieldUpgradeLink, String devicePageReqFieldActivationLink, String tagToolPlayerValue) {
+    public void fillAndSaveNewDevicePage(String betaOrProd, String devicePageReqFieldInternalName, String devicePageReqFieldHeadline, String devicePageReqFieldBlurb, String devicePageReqFieldYearlyPurchaseFlow, String devicePageReqFieldMonthlyPurchaseFlow, String devicePageReqFieldUpgradeLink, String devicePageReqFieldActivationLink, String tagToolPlayerValue) {
         type(FieldInternalName, devicePageReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, devicePageReqFieldHeadline);
         type(FieldBlurb, devicePageReqFieldBlurb);
         type(FieldYearlyPurchaseFlow, devicePageReqFieldYearlyPurchaseFlow);
@@ -2864,9 +2801,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewDigitalAsset(String mainURLCall, String betaOrProd, String digitalAssetReqFieldInternalName, String digitalAssetReqFieldHeadline, String tagToolPlayerValue) {
+    public void fillAndSaveNewDigitalAsset(String betaOrProd, String digitalAssetReqFieldInternalName, String digitalAssetReqFieldHeadline, String tagToolPlayerValue) {
         type(FieldInternalName, digitalAssetReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, digitalAssetReqFieldHeadline);
         testCMSToolNewFunctionHTML();
         click(BtnChooseAFileToUpload);
@@ -2884,7 +2821,7 @@ public class HB_HomePage extends AbstractPage {
     public void fillAndSaveNewDrawer(String mainURLCall, String betaOrProd, String drawerReqFieldInternalName, String drawerReqFieldKicker, String drawerReqFieldCustomContent, String drawerReqFieldBlurb, String drawerReqFieldURL, String drawerReqFieldURLText, String drawerReqFieldNumberOfItems, String tagToolPlayerValue) {
         Selenium seleniumDrawer = new WebDriverBackedSelenium(driver, mainURLCall);
         type(FieldInternalName, drawerReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         click(FieldAppears);
         pause(1);
         seleniumDrawer.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
@@ -2910,7 +2847,7 @@ public class HB_HomePage extends AbstractPage {
     public void fillAndSaveNewEvent(String mainURLCall, String betaOrProd, String eventReqFieldInternalName, String eventReqFieldProgramID, String eventReqFieldProgram, String eventReqFieldLocation, String eventReqFieldEventTitle, String eventReqFieldEventDescription, String eventReqFieldEventURL, String tagToolPlayerValue) {
         Selenium seleniumEvent = new WebDriverBackedSelenium(driver, mainURLCall);
         type(FieldInternalName, eventReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldProgramID, eventReqFieldProgramID);
         type(FieldProgram, eventReqFieldProgram);
         type(FieldLocation, eventReqFieldLocation);
@@ -2933,9 +2870,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewFeature(String mainURLCall, String betaOrProd, String featureReqFieldInternalName, String featureReqFieldHeadline, String featureReqFieldURL, String featureReqFieldURLText, String featureReqFieldMobileURL, String featureReqFieldBlurb, String tagToolPlayerValue) {
+    public void fillAndSaveNewFeature(String betaOrProd, String featureReqFieldInternalName, String featureReqFieldHeadline, String featureReqFieldURL, String featureReqFieldURLText, String featureReqFieldMobileURL, String featureReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, featureReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, featureReqFieldHeadline);
         type(FieldURL, featureReqFieldURL);
         type(FieldURLText, featureReqFieldURLText);
@@ -2949,9 +2886,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewFeatures(String mainURLCall, String betaOrProd, String featuresReqFieldInternalName, String featuresReqFieldNumberOfItems, String tagToolPlayerValue) {
+    public void fillAndSaveNewFeatures(String betaOrProd, String featuresReqFieldInternalName, String featuresReqFieldNumberOfItems, String tagToolPlayerValue) {
         type(FieldInternalName, featuresReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldNumberOfItems, featuresReqFieldNumberOfItems);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -2961,9 +2898,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewFieldOption(String mainURLCall, String betaOrProd, String fieldOptionReqFieldInternalName, String fieldOptionReqFieldDisplayName, String fieldOptionReqFieldValue, String tagToolPlayerValue) {
+    public void fillAndSaveNewFieldOption(String betaOrProd, String fieldOptionReqFieldInternalName, String fieldOptionReqFieldDisplayName, String fieldOptionReqFieldValue, String tagToolPlayerValue) {
         type(FieldInternalName, fieldOptionReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldDisplayName, fieldOptionReqFieldDisplayName);
         type(FieldValue, fieldOptionReqFieldValue);
         if (betaOrProd == "beta") {
@@ -2974,9 +2911,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewGamePreview(String mainURLCall, String betaOrProd, String gamePreviewReqFieldInternalName, String gamePreviewReqFieldHeadline, String gamePreviewReqFieldHomeHeadline, String gamePreviewReqFieldAwayHeadline, String gamePreviewReqFieldSubhead, String gamePreviewReqFieldAltHeadline, String gamePreviewReqFieldByline, String gamePreviewReqFieldBlurb, String tagToolPlayerValue) {
+    public void fillAndSaveNewGamePreview(String betaOrProd, String gamePreviewReqFieldInternalName, String gamePreviewReqFieldHeadline, String gamePreviewReqFieldHomeHeadline, String gamePreviewReqFieldAwayHeadline, String gamePreviewReqFieldSubhead, String gamePreviewReqFieldAltHeadline, String gamePreviewReqFieldByline, String gamePreviewReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, gamePreviewReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, gamePreviewReqFieldHeadline);
         type(FieldHomeHeadline, gamePreviewReqFieldHomeHeadline);
         type(FieldAwayHeadline, gamePreviewReqFieldAwayHeadline);
@@ -2993,9 +2930,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewGameWrap(String mainURLCall, String betaOrProd, String gameWrapReqFieldInternalName, String gameWrapReqFieldHeadline, String gameWrapReqFieldBlurb, String tagToolPlayerValue) {
+    public void fillAndSaveNewGameWrap(String betaOrProd, String gameWrapReqFieldInternalName, String gameWrapReqFieldHeadline, String gameWrapReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, gameWrapReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, gameWrapReqFieldHeadline);
         type(FieldBlurb, gameWrapReqFieldBlurb);
         if (betaOrProd == "beta") {
@@ -3006,9 +2943,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewHighlight(String mainURLCall, String betaOrProd, String highlightReqFieldInternalName, String highlightReqFieldYear, String tagToolPlayerValue) {
+    public void fillAndSaveNewHighlight(String betaOrProd, String highlightReqFieldInternalName, String highlightReqFieldYear, String tagToolPlayerValue) {
         type(FieldInternalName, highlightReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldYear, highlightReqFieldYear);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -3018,9 +2955,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewHomepageTab(String mainURLCall, String betaOrProd, String homepageTabReqFieldInternalName, String homepageTabReqFieldDefaultAltText, String homepageTabReqFieldDefaultClickthroughURL, String tagToolPlayerValue) {
+    public void fillAndSaveNewHomepageTab(String betaOrProd, String homepageTabReqFieldInternalName, String homepageTabReqFieldDefaultAltText, String homepageTabReqFieldDefaultClickthroughURL, String tagToolPlayerValue) {
         type(FieldInternalName, homepageTabReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldDefaultAltText, homepageTabReqFieldDefaultAltText);
         type(FieldDefaultClickthroughURL, homepageTabReqFieldDefaultClickthroughURL);
         if (betaOrProd == "beta") {
@@ -3031,9 +2968,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewHPConfig(String mainURLCall, String betaOrProd, String hPConfigReqFieldInternalName, String hPConfigReqFieldBreakingNews, String hPConfigReqFieldBreakingNewsURL, String hPConfigReqFieldABTests, String hPConfigReqFieldHeaderURL, String hPConfigReqFieldHeaderAlt, String tagToolPlayerValue) {
+    public void fillAndSaveNewHPConfig(String betaOrProd, String hPConfigReqFieldInternalName, String hPConfigReqFieldBreakingNews, String hPConfigReqFieldBreakingNewsURL, String hPConfigReqFieldABTests, String hPConfigReqFieldHeaderURL, String hPConfigReqFieldHeaderAlt, String tagToolPlayerValue) {
         type(FieldInternalName, hPConfigReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldBreakingNews, hPConfigReqFieldBreakingNews);
         type(FieldBreakingNewsURL, hPConfigReqFieldBreakingNewsURL);
         type(FieldABTests, hPConfigReqFieldABTests);
@@ -3047,9 +2984,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewHTMLInclude(String mainURLCall, String betaOrProd, String hTMLIncludeReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewHTMLInclude(String betaOrProd, String hTMLIncludeReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, hTMLIncludeReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3058,9 +2995,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewHTMLPage(String mainURLCall, String betaOrProd, String hTMLPageReqFieldInternalName, String hTMLPageReqFieldHeadline, String hTMLPageBlurbValue, String tagToolPlayerValue) {
+    public void fillAndSaveNewHTMLPage(String betaOrProd, String hTMLPageReqFieldInternalName, String hTMLPageReqFieldHeadline, String hTMLPageBlurbValue, String tagToolPlayerValue) {
         type(FieldInternalName, hTMLPageReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, hTMLPageReqFieldHeadline);
         pause(1);
         pressTab();
@@ -3074,9 +3011,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewInstagramPhoto(String mainURLCall, String betaOrProd, String instagramPhotoReqFieldInternalName, String instagramPhotoReqFieldApprover, String instagramPhotoReqFieldApprovedTime, String instagramPhotoReqFieldInstagramID, String instagramPhotoReqFieldImageURL, String instagramPhotoReqFieldLargeImageURL, String instagramPhotoReqFieldCaption, String instagramPhotoReqFieldCreatorID, String instagramPhotoReqFieldCreatorName, String instagramPhotoReqFieldCreatorProfilePicture, String instagramPhotoReqFieldCreatedTime, String instagramPhotoReqFieldLatitude, String instagramPhotoReqFieldLongitude, String tagToolPlayerValue) {
+    public void fillAndSaveNewInstagramPhoto(String betaOrProd, String instagramPhotoReqFieldInternalName, String instagramPhotoReqFieldApprover, String instagramPhotoReqFieldApprovedTime, String instagramPhotoReqFieldInstagramID, String instagramPhotoReqFieldImageURL, String instagramPhotoReqFieldLargeImageURL, String instagramPhotoReqFieldCaption, String instagramPhotoReqFieldCreatorID, String instagramPhotoReqFieldCreatorName, String instagramPhotoReqFieldCreatorProfilePicture, String instagramPhotoReqFieldCreatedTime, String instagramPhotoReqFieldLatitude, String instagramPhotoReqFieldLongitude, String tagToolPlayerValue) {
         type(FieldInternalName, instagramPhotoReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldApprover, instagramPhotoReqFieldApprover);
         type(FieldApprovedTime, instagramPhotoReqFieldApprovedTime);
         type(FieldInstagramID, instagramPhotoReqFieldInstagramID);
@@ -3097,9 +3034,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewSocialMediaStream(String mainURLCall, String betaOrProd, String instagramStreamReqFieldInternalName, String instagramStreamReqFieldDisplayName, String instagramStreamReqFieldKey, String tagToolPlayerValue) {
+    public void fillAndSaveNewSocialMediaStream(String betaOrProd, String instagramStreamReqFieldInternalName, String instagramStreamReqFieldDisplayName, String instagramStreamReqFieldKey, String tagToolPlayerValue) {
         type(FieldInternalName, instagramStreamReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldInstagramStreamDisplayName, instagramStreamReqFieldDisplayName);
         type(FieldKey, instagramStreamReqFieldKey);
         if (betaOrProd == "beta") {
@@ -3110,9 +3047,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewKiosk(String mainURLCall, String betaOrProd, String kioskReqFieldInternalName, String kioskReqFieldCalendarEventID, String kioskReqFieldContentID, String tagToolPlayerValue) {
+    public void fillAndSaveNewKiosk(String betaOrProd, String kioskReqFieldInternalName, String kioskReqFieldCalendarEventID, String kioskReqFieldContentID, String tagToolPlayerValue) {
         type(FieldInternalName, kioskReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldCalendarEventID, kioskReqFieldCalendarEventID);
         type(FieldContentID, kioskReqFieldContentID);
         if (betaOrProd == "beta") {
@@ -3123,9 +3060,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewLineup(String mainURLCall, String betaOrProd, String lineupReqFieldInternalName, String lineupReqFieldUmpireHP, String lineupReqFieldUmpire1st, String lineupReqFieldUmpire2nd, String lineupReqFieldUmpire3rd, String lineupReqFieldUmpireLF, String lineupReqFieldUmpireRF, String lineupReqFieldUmpireOS, String lineupReqFieldNotes, String tagToolPlayerValue) {
+    public void fillAndSaveNewLineup(String betaOrProd, String lineupReqFieldInternalName, String lineupReqFieldUmpireHP, String lineupReqFieldUmpire1st, String lineupReqFieldUmpire2nd, String lineupReqFieldUmpire3rd, String lineupReqFieldUmpireLF, String lineupReqFieldUmpireRF, String lineupReqFieldUmpireOS, String lineupReqFieldNotes, String tagToolPlayerValue) {
         type(FieldInternalName, lineupReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldUmpireHP, lineupReqFieldUmpireHP);
         type(FieldUmpire1st, lineupReqFieldUmpire1st);
         type(FieldUmpire2nd, lineupReqFieldUmpire2nd);
@@ -3142,9 +3079,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewLineupPlayer(String mainURLCall, String betaOrProd, String lineupPlayerReqFieldInternalName, String lineupPlayerReqFieldPosition, String tagToolPlayerValue) {
+    public void fillAndSaveNewLineupPlayer(String betaOrProd, String lineupPlayerReqFieldInternalName, String lineupPlayerReqFieldPosition, String tagToolPlayerValue) {
         type(FieldInternalName, lineupPlayerReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldPosition, lineupPlayerReqFieldPosition);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -3154,13 +3091,13 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewLink(String mainURLCall, String betaOrProd, String linkReqFieldInternalName, String linkReqFieldLinkText, String linkReqFieldLinkURL, String linkReqFieldWidth, String linkReqFieldHeight, String tagToolPlayerValue) {
+    public void fillAndSaveNewLink(String betaOrProd, String linkReqFieldInternalName, String linkReqFieldLinkText, String linkReqFieldLinkURL, String linkReqFieldWidth, String linkReqFieldHeight, String tagToolPlayerValue) {
         pause(3);
         sendKeys(linkReqFieldLinkText);
         pressTab();
         pause(3);
         type(FieldInternalName, linkReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldLinkURL, linkReqFieldLinkURL);
         pause(1);
         pressTab();
@@ -3181,9 +3118,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewList(String mainURLCall, String betaOrProd, String listReqFieldInternalName, String listReqFieldKey, String listReqFieldNumberOfItems, String listReqFieldBlurb, String tagToolPlayerValue) {
+    public void fillAndSaveNewList(String betaOrProd, String listReqFieldInternalName, String listReqFieldKey, String listReqFieldNumberOfItems, String listReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, listReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldKey, listReqFieldKey);
         type(FieldNumberOfItems, listReqFieldNumberOfItems);
         type(FieldBlurb, listReqFieldBlurb);
@@ -3215,9 +3152,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMediawall(String mainURLCall, String betaOrProd, String mediawallReqFieldInternalName, String mediawallReqFieldNumberOfPanels, String tagToolPlayerValue) {
+    public void fillAndSaveNewMediawall(String betaOrProd, String mediawallReqFieldInternalName, String mediawallReqFieldNumberOfPanels, String tagToolPlayerValue) {
         type(FieldInternalName, mediawallReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldNumberOfPanels, mediawallReqFieldNumberOfPanels);
 
         click(btnSearchForMediawallPanel);
@@ -3249,9 +3186,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMediawallOverlay(String mainURLCall, String betaOrProd, String mediawallOverlayReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewMediawallOverlay(String betaOrProd, String mediawallOverlayReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, mediawallOverlayReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldInternalName, mediawallOverlayReqFieldInternalName);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -3261,9 +3198,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMediaWallPanel(String mainURLCall, String betaOrProd, String mediawallPanelReqFieldInternalName, String mediawallReqFieldHeadline, String mediawallReqFieldURLText, String mediawallReqFieldURL, String mediawallReqFieldMobileURL, String mediawallReqFieldSponsorURL, String mediawallReqFieldBlurb, String mediawallReqFieldNotes, String mediawallReqFieldDisplayTimeInSeconds, String mediawallReqFieldVideoAlias, String tagToolPlayerValue) {
+    public void fillAndSaveNewMediaWallPanel(String betaOrProd, String mediawallPanelReqFieldInternalName, String mediawallReqFieldHeadline, String mediawallReqFieldURLText, String mediawallReqFieldURL, String mediawallReqFieldMobileURL, String mediawallReqFieldSponsorURL, String mediawallReqFieldBlurb, String mediawallReqFieldNotes, String mediawallReqFieldDisplayTimeInSeconds, String mediawallReqFieldVideoAlias, String tagToolPlayerValue) {
         type(FieldInternalName, mediawallPanelReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, mediawallReqFieldHeadline);
         type(FieldURLText, mediawallReqFieldURLText);
         type(FieldURL, mediawallReqFieldURL);
@@ -3287,9 +3224,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMLBTVAdModule(String mainURLCall, String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String mLBTVAdModuleReqFieldURL, String mLBTVAdModuleReqFieldMobileURL, String mLBTVAdModuleReqFieldTabletURL, String tagToolPlayerValue) {
+    public void fillAndSaveNewMLBTVAdModule(String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String mLBTVAdModuleReqFieldURL, String mLBTVAdModuleReqFieldMobileURL, String mLBTVAdModuleReqFieldTabletURL, String tagToolPlayerValue) {
         type(FieldInternalName, mLBTVAdModuleReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldURL, mLBTVAdModuleReqFieldURL);
         type(FieldMobileURL, mLBTVAdModuleReqFieldMobileURL);
         type(FieldTabletURL, mLBTVAdModuleReqFieldTabletURL);
@@ -3301,9 +3238,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMoundBall(String mainURLCall, String betaOrProd, String moundBallReqFieldInternalName, String moundBallReqFieldBlurb, String tagToolPlayerValue) {
+    public void fillAndSaveNewMoundBall(String betaOrProd, String moundBallReqFieldInternalName, String moundBallReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, moundBallReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldBlurb, moundBallReqFieldBlurb);
         testCMSToolNewFunctionHTML();
         if (betaOrProd == "beta") {
@@ -3314,9 +3251,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewMusicLink(String mainURLCall, String betaOrProd, String musicLinkReqFieldInternalName, String musicLinkReqFieldUniqueID, String musicLinkReqFieldPreviewURL, String musicLinkReqFieldMediaURL, String tagToolPlayerValue) {
+    public void fillAndSaveNewMusicLink(String betaOrProd, String musicLinkReqFieldInternalName, String musicLinkReqFieldUniqueID, String musicLinkReqFieldPreviewURL, String musicLinkReqFieldMediaURL, String tagToolPlayerValue) {
         type(FieldInternalName, musicLinkReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldUniqueID, musicLinkReqFieldUniqueID);
         type(FieldPreviewURL, musicLinkReqFieldPreviewURL);
         type(FieldMediaURL, musicLinkReqFieldMediaURL);
@@ -3328,9 +3265,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewNote(String mainURLCall, String betaOrProd, String noteReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewNote(String betaOrProd, String noteReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, noteReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         testCMSToolNewFunctionHTML();
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -3340,9 +3277,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewNotebook(String mainURLCall, String betaOrProd, String notebookReqFieldInternalName, String notebookReqFieldHeadline, String notebookReqFieldByline, String notebookReqFieldSource, String notebookTaglineValue, String tagToolPlayerValue) {
+    public void fillAndSaveNewNotebook(String betaOrProd, String notebookReqFieldInternalName, String notebookReqFieldHeadline, String notebookReqFieldByline, String notebookReqFieldSource, String notebookTaglineValue, String tagToolPlayerValue) {
         type(FieldInternalName, notebookReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, notebookReqFieldHeadline);
         type(FieldByline, notebookReqFieldByline);
         type(FieldSource, notebookReqFieldSource);
@@ -3360,9 +3297,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPage(String mainURLCall, String betaOrProd, String pageReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPage(String betaOrProd, String pageReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, pageReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3371,9 +3308,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPhotoGallery(String mainURLCall, String betaOrProd, String photoGalleryReqFieldInternalName, String photoGalleryReqFieldTitle, String photoGalleryReqFieldSpanishTitle, String photoGalleryReqFieldBlurb, String photoGalleryReqFieldSpanishBlurb, String tagToolPlayerValue) {
+    public void fillAndSaveNewPhotoGallery(String betaOrProd, String photoGalleryReqFieldInternalName, String photoGalleryReqFieldTitle, String photoGalleryReqFieldSpanishTitle, String photoGalleryReqFieldBlurb, String photoGalleryReqFieldSpanishBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, photoGalleryReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldTitle, photoGalleryReqFieldTitle);
         type(FieldSpanishTitle, photoGalleryReqFieldSpanishTitle);
         pause(1);
@@ -3461,7 +3398,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPhotoGalleryAlias(String mainURLCall, String betaOrProd, String photoGalleryAliasReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPhotoGalleryAlias(String betaOrProd, String photoGalleryAliasReqFieldInternalName) {
         type(FieldInternalName, photoGalleryAliasReqFieldInternalName);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -3471,9 +3408,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPhotoGalleryList(String mainURLCall, String betaOrProd, String photoGalleryListReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPhotoGalleryList(String betaOrProd, String photoGalleryListReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, photoGalleryListReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3482,9 +3419,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewProspect(String mainURLCall, String betaOrProd, String prospectReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewProspect(String betaOrProd, String prospectReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, prospectReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3493,9 +3430,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPodcastDetail(String mainURLCall, String betaOrProd, String podcastDetailReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPodcastDetail(String betaOrProd, String podcastDetailReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, podcastDetailReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3504,9 +3441,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPodcastEpisode(String mainURLCall, String betaOrProd, String podcastEpisodeReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPodcastEpisode(String betaOrProd, String podcastEpisodeReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, podcastEpisodeReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3515,9 +3452,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPressRelease(String mainURLCall, String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) {
+    public void fillAndSaveNewPressRelease(String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) {
         type(FieldInternalName, pressReleaseReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldNotes, pressReleaseReqFieldNotes);
         type(FieldDisplayHeadline, pressReleaseReqFieldDisplayHeadline);
         type(FieldHeadline, pressReleaseReqFieldHeadline);
@@ -3532,9 +3469,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPressboxAsset(String mainURLCall, String betaOrProd, String pressboxAssetReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPressboxAsset(String betaOrProd, String pressboxAssetReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, pressboxAssetReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3543,9 +3480,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPressboxAssetList(String mainURLCall, String betaOrProd, String pressboxAssetListReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPressboxAssetList(String betaOrProd, String pressboxAssetListReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, pressboxAssetListReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3554,7 +3491,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPreviewAlias(String mainURLCall, String betaOrProd, String previewAliasReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPreviewAlias(String betaOrProd, String previewAliasReqFieldInternalName) {
         type(FieldInternalName, previewAliasReqFieldInternalName);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
@@ -3564,9 +3501,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewProgramShow(String mainURLCall, String betaOrProd, String programShowReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewProgramShow(String betaOrProd, String programShowReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, programShowReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3575,9 +3512,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewPromoApplication(String mainURLCall, String betaOrProd, String promoApplicationReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewPromoApplication(String betaOrProd, String promoApplicationReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, promoApplicationReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3586,9 +3523,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewQuoteSheet(String mainURLCall, String betaOrProd, String quoteSheetReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewQuoteSheet(String betaOrProd, String quoteSheetReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, quoteSheetReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3597,9 +3534,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewRaffle(String mainURLCall, String betaOrProd, String raffleReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewRaffle(String betaOrProd, String raffleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, raffleReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3608,9 +3545,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewSchedule(String mainURLCall, String betaOrProd, String scheduleReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewSchedule(String betaOrProd, String scheduleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, scheduleReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3619,9 +3556,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewScrapbook(String mainURLCall, String betaOrProd, String scrapbookReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewScrapbook(String betaOrProd, String scrapbookReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, scrapbookReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3630,9 +3567,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewScrapbookPage(String mainURLCall, String betaOrProd, String scrapbookPageReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewScrapbookPage(String betaOrProd, String scrapbookPageReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, scrapbookPageReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3641,10 +3578,10 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewSection(String mainURLCall, String betaOrProd, String sectionReqFieldInternalName, String sectionReqFieldSectionID, String sectionReqFieldShortTitle, String sectionReqFieldLongTitle, String sectionReqFieldWiredURL, String sectionReqFieldMobileURL, String sectionReqFieldTarget, String sectionReqFieldType, String tagToolPlayerValue) {
+    public void fillAndSaveNewSection(String betaOrProd, String sectionReqFieldInternalName, String sectionReqFieldSectionID, String sectionReqFieldShortTitle, String sectionReqFieldLongTitle, String sectionReqFieldWiredURL, String sectionReqFieldMobileURL, String sectionReqFieldTarget, String sectionReqFieldType, String tagToolPlayerValue) {
         testCMSToolNewFunctionHTML();
         type(FieldInternalName, sectionReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldSectionID, sectionReqFieldSectionID);
         type(FieldShortTitle, sectionReqFieldShortTitle);
         type(FieldLongTitle, sectionReqFieldLongTitle);
@@ -3660,9 +3597,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewSeriesConfiguration(String mainURLCall, String betaOrProd, String seriesConfigurationReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewSeriesConfiguration(String betaOrProd, String seriesConfigurationReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, seriesConfigurationReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3671,9 +3608,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewShortContent(String mainURLCall, String betaOrProd, String shortContentReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewShortContent(String betaOrProd, String shortContentReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, shortContentReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3682,9 +3619,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewTicketPage(String mainURLCall, String betaOrProd, String ticketPageReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewTicketPage(String betaOrProd, String ticketPageReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, ticketPageReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3693,9 +3630,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewTrendingModule(String mainURLCall, String betaOrProd, String trendingModuleReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewTrendingModule(String betaOrProd, String trendingModuleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, trendingModuleReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3704,9 +3641,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewTweet(String mainURLCall, String betaOrProd, String tweetReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewTweet(String betaOrProd, String tweetReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, tweetReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3715,9 +3652,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewVideoTopicPage(String mainURLCall, String betaOrProd, String videoTopicPageReqFieldInternalName, String videoTopicPageReqFieldHeadline, String videoTopicPageReqFieldFacebookDescription, String videoTopicPageReqFieldMaxItems, String videoTopicPageReqFieldItemsPerPage, String videoTopicPageReqFieldSearchCriteria, String videoTopicPageReqFieldRelatedLink, String videoTopicPageReqFieldCustomTemplatePath, String videoTopicPageReqFieldJavascriptPath, String videoTopicPageReqFieldStylesheetPath, String videoTopicPageReqFieldCustomPanel, String videoTopicPageReqFieldTwitterHandle, String videoTopicPageReqFieldPollKey, String tagToolPlayerValue) {
+    public void fillAndSaveNewVideoTopicPage(String betaOrProd, String videoTopicPageReqFieldInternalName, String videoTopicPageReqFieldHeadline, String videoTopicPageReqFieldFacebookDescription, String videoTopicPageReqFieldMaxItems, String videoTopicPageReqFieldItemsPerPage, String videoTopicPageReqFieldSearchCriteria, String videoTopicPageReqFieldRelatedLink, String videoTopicPageReqFieldCustomTemplatePath, String videoTopicPageReqFieldJavascriptPath, String videoTopicPageReqFieldStylesheetPath, String videoTopicPageReqFieldCustomPanel, String videoTopicPageReqFieldTwitterHandle, String videoTopicPageReqFieldPollKey, String tagToolPlayerValue) {
         type(FieldInternalName, videoTopicPageReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, videoTopicPageReqFieldHeadline);
         type(FieldFacebookDescription, videoTopicPageReqFieldFacebookDescription);
         type(FieldMaxItems, videoTopicPageReqFieldMaxItems);
@@ -3757,9 +3694,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewTwitterHandle(String mainURLCall, String betaOrProd, String twitterHandleReqFieldInternalName, String tagToolPlayerValue) {
+    public void fillAndSaveNewTwitterHandle(String betaOrProd, String twitterHandleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, twitterHandleReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         if (betaOrProd == "beta") {
             saveItemAndPublishToBeta();
         }
@@ -3768,9 +3705,9 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void fillAndSaveNewVideoClipList(String mainURLCall, String betaOrProd, String videoClipListReqFieldInternalName, String videoClipListReqFieldHeadline, String videoClipListReqFieldListDefaultView, String tagToolPlayerValue) {
+    public void fillAndSaveNewVideoClipList(String betaOrProd, String videoClipListReqFieldInternalName, String videoClipListReqFieldHeadline, String videoClipListReqFieldListDefaultView, String tagToolPlayerValue) {
         type(FieldInternalName, videoClipListReqFieldInternalName);
-        useTagToolNew(mainURLCall, tagToolPlayerValue);
+        useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, videoClipListReqFieldHeadline);
         type(FieldListDefaultView, videoClipListReqFieldListDefaultView);
 
@@ -3800,7 +3737,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public static Robot getRobotInstance() {
+    private static Robot getRobotInstance() {
         synchronized (Robot.class) {
             if (instance == null) {
                 try {
@@ -3813,13 +3750,13 @@ public class HB_HomePage extends AbstractPage {
         return instance;
     }
 
-    public void press(int keyEvent) {
+    void press(int keyEvent) {
         getRobotInstance().keyPress(keyEvent);
         getRobotInstance().keyRelease(keyEvent);
     }
 
 
-    public void clickPosition(int coordinateX, int coordinateY) {
+    void clickPosition(int coordinateX, int coordinateY) {
         Robot robot = getRobotInstance();
         robot.mouseMove(coordinateX, coordinateY);
         robot.mousePress(InputEvent.BUTTON1_MASK);
@@ -3835,7 +3772,7 @@ public class HB_HomePage extends AbstractPage {
     }
 
 
-    public void changeCalendar(String dateChangerExpectedMonth, int dateChangerExpectedDate, int dateChangerExpectedYear) {
+    void changeCalendar(String dateChangerExpectedMonth, int dateChangerExpectedDate, int dateChangerExpectedYear) {
         boolean isDateCorrect = false;
         String calMonth;
         String calYear;
@@ -3863,7 +3800,7 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public boolean selectDay(Integer date) {
+    boolean selectDay(Integer date) {
         WebElement dateWidget = driver.findElement(By.id("ui-datepicker-div"));
         List<WebElement> days = dateWidget.findElements(By.className("ui-state-default"));
         for (WebElement day : days) {
