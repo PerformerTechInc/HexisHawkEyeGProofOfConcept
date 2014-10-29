@@ -1577,7 +1577,7 @@ public class HB_HomePage extends AbstractPage {
         click(BtnSave);
         pause(1);
         click(BtnToBeta);
-        Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 600));
+        Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 60));
         if (isElementPresent(statusPublishComplete) == true) {
             deleteCreatedItemNew();
         }
@@ -1588,7 +1588,7 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
         click(BtnToProd);
         click(BtnToProdConfirm);
-        Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 600));
+        Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 60));
         if (isElementPresent(statusPublishComplete) == true) {
             deleteCreatedItemNew();
         }
@@ -1598,7 +1598,7 @@ public class HB_HomePage extends AbstractPage {
         click(BtnSave);
         pause(1);
         click(BtnToBeta);
-        Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 600));
+        Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 60));
         if (isElementPresent(statusPublishComplete) == true) {
         }
     }
@@ -1608,7 +1608,7 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
         click(BtnToProd);
         click(BtnToProdConfirm);
-        Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 600));
+        Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 60));
         if (isElementPresent(statusPublishComplete) == true) {
         }
     }
