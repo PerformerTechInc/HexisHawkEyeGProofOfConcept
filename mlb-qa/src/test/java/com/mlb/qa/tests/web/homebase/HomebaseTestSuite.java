@@ -606,12 +606,13 @@ public class HomebaseTestSuite extends UITest {
         return homePage;
     }
 
-    @Test()
-    public void homeBaseTestMLB000TestFunction() {
+    @Parameters({"month","day","year"})
+    @Test
+    public void homeBaseTestMLB000TestFunction(String month, int day, int year ) {
         HB_HomePage homePage = basePart();
-        homePage.selectHomePageUploadPhotos();
-        homePage.uploadPhotos();
-        }
+        homePage.probablesGameContentAddPlayers(month,day,year);
+        homePage.probablesGameContentDeletePlayers(month,day,year);
+    }
 
     @Test
     public void homeBaseTestMLB001Login() {
