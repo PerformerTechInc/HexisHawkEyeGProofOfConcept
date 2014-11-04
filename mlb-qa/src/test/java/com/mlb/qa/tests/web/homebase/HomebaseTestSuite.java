@@ -1146,18 +1146,19 @@ public class HomebaseTestSuite extends UITest {
     }
     @Parameters({"month","day","year"})
     @Test
-    public void homeBaseTestMLB077GameContentProbables(String month, int day, int year ) {
+    public void homeBaseTestMLB077GameContentProbables(String month, int day, int year) {
         HB_HomePage homePage = basePart();
         homePage.probablesGameContentAddPlayers(month,day,year);
         homePage.probablesGameContentDeletePlayers(month,day,year);
     }
 
+    @Parameters({"month","day","year"})
     @Test
-    public void homeBaseTestMLB078GameContentLineup() {
+    public void homeBaseTestMLB078GameContentLineup(String month, int day, int year) {
         HB_HomePage homePage = basePart();
-        homePage.lineupGameContentDeletePlayers();
-        homePage.lineupGameContentAddPlayers();
-        homePage.lineupGameContentDeletePlayers();
+        homePage.lineupGameContentDeletePlayers(month,day,year);
+        homePage.lineupGameContentAddPlayers(month,day,year);
+        homePage.lineupGameContentDeletePlayers(month,day,year);
     }
 
 

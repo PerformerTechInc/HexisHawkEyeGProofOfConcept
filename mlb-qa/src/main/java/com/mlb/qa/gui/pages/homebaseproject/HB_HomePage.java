@@ -1884,16 +1884,19 @@ public class HB_HomePage extends AbstractPage {
         click(btnSaveProbables);
     }
 
-    void lineupGameContentBaseState() {
+    void lineupGameContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
         selectGameContent();
+        click(btnChangeDateList.get(1));
+        changeCalendar(dateChangerMonth, dateChangerDate, dateChangerYear);
+       
         List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
         (gameContentSelectGame.get(0)).click();
         click(btnDashboardGameContentLineup);
         pause(0.5);
     }
 
-    public void lineupGameContentAddPlayers() {
-        lineupGameContentBaseState();
+    public void lineupGameContentAddPlayers(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
+        lineupGameContentBaseState(dateChangerMonth, dateChangerDate, dateChangerYear);
         List<WebElement> FieldDataPosition = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:220px']"));
         List<WebElement> FieldDataPosition2 = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:280px']"));
 
@@ -2375,8 +2378,8 @@ public class HB_HomePage extends AbstractPage {
         }
     }
 
-    public void lineupGameContentDeletePlayers() {
-        lineupGameContentBaseState();
+    public void lineupGameContentDeletePlayers(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
+        lineupGameContentBaseState(dateChangerMonth, dateChangerDate, dateChangerYear);
         List<WebElement> FieldDataPositionPlayerType2Child = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='lineupColumn']"));
         List<WebElement> fieldPlayerTypeDataDataSourceAL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsAL']")));
         List<WebElement> fieldPlayerTypeDataDataSourceNL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsNL']")));
