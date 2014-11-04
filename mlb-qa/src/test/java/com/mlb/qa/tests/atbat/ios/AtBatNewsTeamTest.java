@@ -6,7 +6,6 @@ import com.mlb.qa.at_bat.ios.page.footer.AtBatBottomMenuPage;
 import com.mlb.qa.at_bat.ios.page.footer.AtBatMorePage;
 import com.mlb.qa.at_bat.ios.page.team.AtBatTeamPage;
 import com.mlb.qa.at_bat.ios.page.team.AtBatTeamSelectionPage;
-import com.mlb.qa.at_bat.ios.page.team.news.AtBatNewsPage;
 import com.mlb.qa.atb.service.lookup.AtbLookupService;
 import com.qaprosoft.carina.core.foundation.UITest;
 import org.openqa.selenium.By;

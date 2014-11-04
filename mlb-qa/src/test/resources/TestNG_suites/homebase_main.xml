@@ -1,12 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite verbose="1" name="MLB - Homebase Basic test"
-	skipfailedinvocationcounts="false" junit="false" parallel="methods"
-	thread-count="1" annotations="JDK"> 
-	
-	<test verbose="1" name="Verify Home Page" thread-count="1">
-		<classes>
-			<class name="com.mlb.qa.tests.web.homebase.HomebaseTestSuite" />
-		</classes>
-	</test>
+       skipfailedinvocationcounts="false" junit="false" parallel="methods"
+       thread-count="1" annotations="JDK">
+
+    <listeners>
+        <listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
+    </listeners>
+    <test verbose="1" name="Verify Home Page" thread-count="1">
+        <parameter name="month" value="July"/>
+        <parameter name="day" value="1"/>
+        <parameter name="year" value="2014"/>
+        <classes>
+            <class name="com.mlb.qa.tests.web.homebase.HomebaseTestSuite"/>
+        </classes>
+    </test>
 </suite>
