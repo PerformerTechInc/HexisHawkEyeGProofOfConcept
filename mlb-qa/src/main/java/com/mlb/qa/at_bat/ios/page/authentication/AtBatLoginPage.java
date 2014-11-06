@@ -56,6 +56,8 @@ public class AtBatLoginPage extends AtBatIOSPage {
         if (!isElementPresent(okButton, EXPLICIT_TIMEOUT * 3))
             Assert.fail("'ok' button is not recognized!");
         click(okButton);
+        pause(4);
+        clickOnScreen(15,15);
 
     }
 }
