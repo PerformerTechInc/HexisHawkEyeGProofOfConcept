@@ -35,8 +35,9 @@ public class AtBatLoginPage extends AtBatIOSPage {
         super(driver);
     }
 
-    public void login(){
+    public void login() {
         String username = AtbParameter.MLB_ATBAT_DEFAULT_USER.getValue();
+        isElementPresent(emailInput, 20);
         type(emailInput, username);
         int i = 1;
         while (!emailInput.getText().equals(username) && ++i < 10) {
@@ -57,7 +58,7 @@ public class AtBatLoginPage extends AtBatIOSPage {
             Assert.fail("'ok' button is not recognized!");
         click(okButton);
         pause(4);
-        clickOnScreen(15,15);
+        clickOnScreen(15, 15);
 
     }
 }
