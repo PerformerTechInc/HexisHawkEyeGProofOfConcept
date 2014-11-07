@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
+
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -1319,96 +1320,26 @@ public class HB_HomePage extends AbstractPage {
     @FindBy(xpath = "//button[contains(text(), 'To Prod')]")
     public ExtendedWebElement btnLineupToProd;
 
-    @FindBy(xpath = "//div[@class='awayRemove1 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway1;
+    
+    @FindBy(xpath = "//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:220px' or @style='width:280px']")
+    private List<ExtendedWebElement> inputLineupPlayers;
 
-    @FindBy(xpath = "//div[@class='awayRemove2 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway2;
+    @FindBy(xpath = "//input[@class='autocomplete-maininput processedYes'][@style='width:30px']")
+    private List<ExtendedWebElement> inputLineupPlayersPosition;
+    
+    @FindBy(xpath = "//div[contains(@class, 'removeLineupEntry triggerAble')]")
+    private List<ExtendedWebElement> btnLineupDeleteEntries;
 
-    @FindBy(xpath = "//div[@class='awayRemove3 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway3;
-
-    @FindBy(xpath = "//div[@class='awayRemove4 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway4;
-
-    @FindBy(xpath = "//div[@class='awayRemove5 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway5;
-
-    @FindBy(xpath = "//div[@class='awayRemove6 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway6;
-
-    @FindBy(xpath = "//div[@class='awayRemove7 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway7;
-
-    @FindBy(xpath = "//div[@class='awayRemove8 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway8;
-
-    @FindBy(xpath = "//div[@class='awayRemove9 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway9;
-
-    @FindBy(xpath = "//div[@class='awayRemoveSP removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryAway10;
-
-    @FindBy(xpath = "//div[@class='homeRemove1 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome1;
-
-    @FindBy(xpath = "//div[@class='homeRemove2 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome2;
-
-    @FindBy(xpath = "//div[@class='homeRemove3 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome3;
-
-    @FindBy(xpath = "//div[@class='homeRemove4 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome4;
-
-    @FindBy(xpath = "//div[@class='homeRemove5 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome5;
-
-    @FindBy(xpath = "//div[@class='homeRemove6 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome6;
-
-    @FindBy(xpath = "//div[@class='homeRemove7 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome7;
-
-    @FindBy(xpath = "//div[@class='homeRemove8 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome8;
-
-    @FindBy(xpath = "//div[@class='homeRemove9 removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome9;
-
-    @FindBy(xpath = "//div[@class='homeRemoveSP removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryHome10;
-
-    @FindBy(xpath = "//div[@class='hpRemove removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryOfficialHP;
-
-    @FindBy(xpath = "//div[@class='1bRemove removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryOfficial1B;
-
-    @FindBy(xpath = "//div[@class='2bRemove removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryOfficial2B;
-
-    @FindBy(xpath = "//div[@class='3bRemove removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryOfficial3B;
-
-    @FindBy(xpath = "//div[@class='lfRemove removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryOfficialLF;
-
-    @FindBy(xpath = "//div[@class='rfRemove removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryOfficialRF;
-
-    @FindBy(xpath = "//div[@class='osRemove removeLineupEntry triggerAble']")
-    private ExtendedWebElement btnLineupDeleteEntryOfficialOS;
-
-
+    
     private static Robot instance;
 
-    private static Hashtable mTable;
+    @SuppressWarnings("rawtypes")
+	private static Hashtable mTable;
 
-    private static Hashtable getMTable() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	private static Hashtable getMTable() {
         if (mTable == null) {
             mTable = new Hashtable();
-
             mTable.put("January", 0);
             mTable.put("February", 1);
             mTable.put("March", 2);
@@ -1884,10 +1815,11 @@ public class HB_HomePage extends AbstractPage {
         click(btnSaveProbables);
     }
 
-    void lineupGameContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
+    public void lineupGameContentBaseState(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
         selectGameContent();
         click(btnChangeDateList.get(1));
         changeCalendar(dateChangerMonth, dateChangerDate, dateChangerYear);
+        pause(1);
        
         List<WebElement> gameContentSelectGame = gameContentGamesFieldDataPosition.getElement().findElements(By.xpath("//a[contains(text(), ' at ')]"));
         (gameContentSelectGame.get(0)).click();
@@ -1895,553 +1827,40 @@ public class HB_HomePage extends AbstractPage {
         pause(0.5);
     }
 
-    public void lineupGameContentAddPlayers(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
-        lineupGameContentBaseState(dateChangerMonth, dateChangerDate, dateChangerYear);
-        List<WebElement> FieldDataPosition = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:220px']"));
-        List<WebElement> FieldDataPosition2 = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:280px']"));
-
-        int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
-        int NumberOfFieldDataPosition2PlayerTextInputBoxes = FieldDataPosition2.size();
-        List<WebElement> FieldDataPositionPlayerFieldsBeforeLineupPopulate = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
-
-/*
-        if (isElementPresent(btnUnlock) == true) {
-
-		while (isElementPresent(btnUnlock) == true) {
-			click(btnUnlock);
-		}
-		}
-*/
-        for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
-
-            if (NumberOfFieldDataPositionPlayerTextInputBoxes == 20) {
-
-                if (a == 0) {
-                    (FieldDataPosition.get(a)).click();
-                }
-
-                if (a == 10) {
-                    (FieldDataPosition.get(a)).click();
-                }
-
-                (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-                for (int b = (a + 1); b > 0; b--) {
-                    (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-                }
-                (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-                (FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
-                pause(0.5);
-            }
-
-            if (NumberOfFieldDataPositionPlayerTextInputBoxes == 18) {
-
-                if (a == 0) {
-                    (FieldDataPosition.get(a)).click();
-                }
-
-                if (a == 9) {
-                    (FieldDataPosition.get(a)).click();
-                }
-
-                (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-                for (int b = (a + 1); b > 0; b--) {
-                    (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
-                }
-                (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-                (FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
-                pause(0.5);
-            }
-
-        }
-
-        List<WebElement> FieldDataPositionPlayerType2Child = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='lineupColumn']"));
-        List<WebElement> fieldPlayerTypeDataDataSourceAL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsAL']")));
-        List<WebElement> fieldPlayerTypeDataDataSourceNL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsNL']")));
-
-
-        if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
-            WebElement lineupAwayPlayerPosition1 = fieldPlayerTypeDataDataSourceAL.get(0);
-            WebElement lineupAwayPlayerPosition2 = fieldPlayerTypeDataDataSourceAL.get(1);
-            WebElement lineupAwayPlayerPosition3 = fieldPlayerTypeDataDataSourceAL.get(2);
-            WebElement lineupAwayPlayerPosition4 = fieldPlayerTypeDataDataSourceAL.get(3);
-            WebElement lineupAwayPlayerPosition5 = fieldPlayerTypeDataDataSourceAL.get(4);
-            WebElement lineupAwayPlayerPosition6 = fieldPlayerTypeDataDataSourceAL.get(5);
-            WebElement lineupAwayPlayerPosition7 = fieldPlayerTypeDataDataSourceAL.get(6);
-            WebElement lineupAwayPlayerPosition8 = fieldPlayerTypeDataDataSourceAL.get(7);
-            WebElement lineupAwayPlayerPosition9 = fieldPlayerTypeDataDataSourceAL.get(8);
-            WebElement lineupAwayPlayerPosition10 = fieldPlayerTypeDataDataSourceAL.get(9);
-            WebElement lineupHomePlayerPosition1 = fieldPlayerTypeDataDataSourceAL.get(10);
-            WebElement lineupHomePlayerPosition2 = fieldPlayerTypeDataDataSourceAL.get(11);
-            WebElement lineupHomePlayerPosition3 = fieldPlayerTypeDataDataSourceAL.get(12);
-            WebElement lineupHomePlayerPosition4 = fieldPlayerTypeDataDataSourceAL.get(13);
-            WebElement lineupHomePlayerPosition5 = fieldPlayerTypeDataDataSourceAL.get(14);
-            WebElement lineupHomePlayerPosition6 = fieldPlayerTypeDataDataSourceAL.get(15);
-            WebElement lineupHomePlayerPosition7 = fieldPlayerTypeDataDataSourceAL.get(16);
-            WebElement lineupHomePlayerPosition8 = fieldPlayerTypeDataDataSourceAL.get(17);
-            WebElement lineupHomePlayerPosition9 = fieldPlayerTypeDataDataSourceAL.get(18);
-            WebElement lineupHomePlayerPosition10 = fieldPlayerTypeDataDataSourceAL.get(19);
-            List<WebElement> PlayerPositionDropDownList = lineupAwayPlayerPosition1.findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@style='width:30px']"));
-
-            if (lineupAwayPlayerPosition1.getText().toString().equals("P")) {
-            } else {
-                PlayerPositionDropDownList.get(0).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(0).sendKeys("P");
-                pause(0.5);
-                PlayerPositionDropDownList.get(0).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition2.getText().toString().equals("C")) {
-            } else {
-                PlayerPositionDropDownList.get(1).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(1).sendKeys("C");
-                pause(0.5);
-                PlayerPositionDropDownList.get(1).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition3.getText().toString().equals("1B")) {
-            } else {
-                PlayerPositionDropDownList.get(2).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(2).sendKeys("1B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(2).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition4.getText().toString().equals("2B")) {
-            } else {
-                PlayerPositionDropDownList.get(3).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(3).sendKeys("2B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(3).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition5.getText().toString().equals("3B")) {
-            } else {
-                PlayerPositionDropDownList.get(4).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(4).sendKeys("3B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(4).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition6.getText().toString().equals("SS")) {
-            } else {
-                PlayerPositionDropDownList.get(5).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(5).sendKeys("SS");
-                pause(0.5);
-                PlayerPositionDropDownList.get(5).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition7.getText().toString().equals("LF")) {
-            } else {
-                PlayerPositionDropDownList.get(6).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(6).sendKeys("LF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(6).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition8.getText().toString().equals("CF")) {
-            } else {
-                PlayerPositionDropDownList.get(7).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(7).sendKeys("CF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(7).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition9.getText().toString().equals("RF")) {
-            } else {
-                PlayerPositionDropDownList.get(8).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(8).sendKeys("RF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(8).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition10.getText().toString().equals("DH")) {
-            } else {
-                PlayerPositionDropDownList.get(9).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(9).sendKeys("DH");
-                pause(0.5);
-                PlayerPositionDropDownList.get(9).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition1.getText().toString().equals("P")) {
-            } else {
-                PlayerPositionDropDownList.get(10).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(10).sendKeys("P");
-                pause(0.5);
-                PlayerPositionDropDownList.get(10).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition2.getText().toString().equals("C")) {
-            } else {
-                PlayerPositionDropDownList.get(11).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(11).sendKeys("C");
-                pause(0.5);
-                PlayerPositionDropDownList.get(11).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition3.getText().toString().equals("1B")) {
-            } else {
-                PlayerPositionDropDownList.get(12).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(12).sendKeys("1B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(12).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition4.getText().toString().equals("2B")) {
-            } else {
-                PlayerPositionDropDownList.get(13).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(13).sendKeys("2B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(13).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition5.getText().toString().equals("3B")) {
-            } else {
-                PlayerPositionDropDownList.get(14).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(14).sendKeys("3B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(14).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition6.getText().toString().equals("SS")) {
-            } else {
-                PlayerPositionDropDownList.get(15).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(15).sendKeys("SS");
-                pause(0.5);
-                PlayerPositionDropDownList.get(15).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition7.getText().toString().equals("LF")) {
-            } else {
-                PlayerPositionDropDownList.get(16).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(16).sendKeys("LF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(16).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition8.getText().toString().equals("CF")) {
-            } else {
-                PlayerPositionDropDownList.get(17).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(17).sendKeys("CF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(17).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition9.getText().toString().equals("RF")) {
-            } else {
-                PlayerPositionDropDownList.get(18).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(18).sendKeys("RF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(18).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition10.getText().toString().equals("DH")) {
-            } else {
-                PlayerPositionDropDownList.get(19).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(19).sendKeys("DH");
-                pause(0.5);
-                PlayerPositionDropDownList.get(19).sendKeys(Keys.ENTER);
-            }
-        }
-
-        if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
-            WebElement lineupAwayPlayerPosition1 = fieldPlayerTypeDataDataSourceNL.get(0);
-            WebElement lineupAwayPlayerPosition2 = fieldPlayerTypeDataDataSourceNL.get(1);
-            WebElement lineupAwayPlayerPosition3 = fieldPlayerTypeDataDataSourceNL.get(2);
-            WebElement lineupAwayPlayerPosition4 = fieldPlayerTypeDataDataSourceNL.get(3);
-            WebElement lineupAwayPlayerPosition5 = fieldPlayerTypeDataDataSourceNL.get(4);
-            WebElement lineupAwayPlayerPosition6 = fieldPlayerTypeDataDataSourceNL.get(5);
-            WebElement lineupAwayPlayerPosition7 = fieldPlayerTypeDataDataSourceNL.get(6);
-            WebElement lineupAwayPlayerPosition8 = fieldPlayerTypeDataDataSourceNL.get(7);
-            WebElement lineupAwayPlayerPosition9 = fieldPlayerTypeDataDataSourceNL.get(8);
-            WebElement lineupHomePlayerPosition1 = fieldPlayerTypeDataDataSourceNL.get(9);
-            WebElement lineupHomePlayerPosition2 = fieldPlayerTypeDataDataSourceNL.get(10);
-            WebElement lineupHomePlayerPosition3 = fieldPlayerTypeDataDataSourceNL.get(11);
-            WebElement lineupHomePlayerPosition4 = fieldPlayerTypeDataDataSourceNL.get(12);
-            WebElement lineupHomePlayerPosition5 = fieldPlayerTypeDataDataSourceNL.get(13);
-            WebElement lineupHomePlayerPosition6 = fieldPlayerTypeDataDataSourceNL.get(14);
-            WebElement lineupHomePlayerPosition7 = fieldPlayerTypeDataDataSourceNL.get(15);
-            WebElement lineupHomePlayerPosition8 = fieldPlayerTypeDataDataSourceNL.get(16);
-            WebElement lineupHomePlayerPosition9 = fieldPlayerTypeDataDataSourceNL.get(17);
-            List<WebElement> PlayerPositionDropDownList = lineupAwayPlayerPosition1.findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@style='width:30px']"));
-
-            if (lineupAwayPlayerPosition1.getText().toString().equals("P")) {
-            } else {
-                PlayerPositionDropDownList.get(0).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(0).sendKeys("P");
-                pause(0.5);
-                PlayerPositionDropDownList.get(0).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition2.getText().toString().equals("C")) {
-            } else {
-                PlayerPositionDropDownList.get(1).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(1).sendKeys("C");
-                pause(0.5);
-                PlayerPositionDropDownList.get(1).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition3.getText().toString().equals("1B")) {
-            } else {
-                PlayerPositionDropDownList.get(2).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(2).sendKeys("1B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(2).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition4.getText().toString().equals("2B")) {
-            } else {
-                PlayerPositionDropDownList.get(3).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(3).sendKeys("2B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(3).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition5.getText().toString().equals("3B")) {
-            } else {
-                PlayerPositionDropDownList.get(4).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(4).sendKeys("3B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(4).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition6.getText().toString().equals("SS")) {
-            } else {
-                PlayerPositionDropDownList.get(5).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(5).sendKeys("SS");
-                pause(0.5);
-                PlayerPositionDropDownList.get(5).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition7.getText().toString().equals("LF")) {
-            } else {
-                PlayerPositionDropDownList.get(6).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(6).sendKeys("LF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(6).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition8.getText().toString().equals("CF")) {
-            } else {
-                PlayerPositionDropDownList.get(7).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(7).sendKeys("CF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(7).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupAwayPlayerPosition9.getText().toString().equals("RF")) {
-            } else {
-                PlayerPositionDropDownList.get(8).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(8).sendKeys("RF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(8).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition1.getText().toString().equals("P")) {
-            } else {
-                PlayerPositionDropDownList.get(9).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(9).sendKeys("P");
-                pause(0.5);
-                PlayerPositionDropDownList.get(9).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition2.getText().toString().equals("C")) {
-            } else {
-                PlayerPositionDropDownList.get(10).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(10).sendKeys("C");
-                pause(0.5);
-                PlayerPositionDropDownList.get(10).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition3.getText().toString().equals("1B")) {
-            } else {
-                PlayerPositionDropDownList.get(11).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(11).sendKeys("1B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(11).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition4.getText().toString().equals("2B")) {
-            } else {
-                PlayerPositionDropDownList.get(12).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(12).sendKeys("2B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(12).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition5.getText().toString().equals("3B")) {
-            } else {
-                PlayerPositionDropDownList.get(13).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(13).sendKeys("3B");
-                pause(0.5);
-                PlayerPositionDropDownList.get(13).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition6.getText().toString().equals("SS")) {
-            } else {
-                PlayerPositionDropDownList.get(14).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(14).sendKeys("SS");
-                pause(0.5);
-                PlayerPositionDropDownList.get(14).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition7.getText().toString().equals("LF")) {
-            } else {
-                PlayerPositionDropDownList.get(15).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(15).sendKeys("LF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(15).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition8.getText().toString().equals("CF")) {
-            } else {
-                PlayerPositionDropDownList.get(16).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(16).sendKeys("CF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(16).sendKeys(Keys.ENTER);
-            }
-
-            if (lineupHomePlayerPosition9.getText().toString().equals("RF")) {
-            } else {
-                PlayerPositionDropDownList.get(17).click();
-                pause(0.5);
-                PlayerPositionDropDownList.get(17).sendKeys("RF");
-                pause(0.5);
-                PlayerPositionDropDownList.get(17).sendKeys(Keys.ENTER);
-            }
-        }
-
-        (FieldDataPosition2.get(0)).click();
-
-        for (int c = 0; c < NumberOfFieldDataPosition2PlayerTextInputBoxes; c++) {
-            (FieldDataPosition2.get(c)).sendKeys(Keys.ARROW_DOWN);
-            for (int d = (c + 1); d > 0; d--) {
-                (FieldDataPosition2.get(c)).sendKeys(Keys.ARROW_DOWN);
-            }
-            (FieldDataPosition2.get(c)).sendKeys(Keys.ARROW_UP);
-            (FieldDataPosition2.get(c)).sendKeys(Keys.TAB);
-            pause(0.5);
-        }
-
+    public void lineupGameContentAddPlayers() {
+    	final	String[] playersPosition = {"P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH"};
+    	int playersNum = playersPosition.length;
+    	
+    	for (int i=0; i<inputLineupPlayers.size(); i++) {
+    		if (i%playersNum == 0) { //each 10th element should be clicked!
+    			click(inputLineupPlayers.get(i));
+    		}
+			for (int j=0; j<i%playersNum; j++) { //in the 2nd team choose players from scratch again
+				inputLineupPlayers.get(i).getElement().sendKeys(Keys.ARROW_DOWN);
+			}
+			inputLineupPlayers.get(i).getElement().sendKeys(Keys.ENTER);
+			if (i < inputLineupPlayersPosition.size()) {
+				if (inputLineupPlayersPosition.get(i).getElement().getText() != playersPosition[i%playersNum]) {
+					click(inputLineupPlayersPosition.get(i));
+					inputLineupPlayersPosition.get(i).getElement().sendKeys(playersPosition[i%playersNum]);
+					inputLineupPlayersPosition.get(i).getElement().sendKeys(Keys.ENTER);
+				}				
+			}
+    	}
         click(btnLineupSave);
         click(btnLineupToBeta);
-
-        List<WebElement> FieldDataPositionPlayerFieldsAfterLineupPopulate = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='bit-box']"));
-
-        if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
-            logger.info(FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
-            logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size());
-            logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
-            Assert.assertEquals(("Number of Bit-Box fields delta after Populate: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 43."), (FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size()), 43);
-        }
-        if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
-            logger.info(FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
-            logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size());
-            logger.info(FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size());
-            Assert.assertEquals(("Number of Bit-Box fields delta after Populate: " + FieldDataPositionPlayerFieldsAfterLineupPopulate.size() + ". Expected number is 47."), (FieldDataPositionPlayerFieldsAfterLineupPopulate.size() - FieldDataPositionPlayerFieldsBeforeLineupPopulate.size()), 47);
-        }
     }
 
-    public void lineupGameContentDeletePlayers(String dateChangerMonth, int dateChangerDate, int dateChangerYear) {
-        lineupGameContentBaseState(dateChangerMonth, dateChangerDate, dateChangerYear);
-        List<WebElement> FieldDataPositionPlayerType2Child = lineupGameContentFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='lineupColumn']"));
-        List<WebElement> fieldPlayerTypeDataDataSourceAL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsAL']")));
-        List<WebElement> fieldPlayerTypeDataDataSourceNL = (FieldDataPositionPlayerType2Child.get(0).findElements(By.xpath("//div[@data-data-source='baseballPositionsNL']")));
-
+    public void lineupGameContentDeletePlayers() {
         if (isElementPresent(btnUnlock) == true) {
             while (isElementPresent(btnUnlock) == true) {
                 click(btnUnlock);
             }
         }
 
-        if (fieldPlayerTypeDataDataSourceNL.size() == 18) {
-            click(btnLineupDeleteEntryAway1);
-            click(btnLineupDeleteEntryAway2);
-            click(btnLineupDeleteEntryAway3);
-            click(btnLineupDeleteEntryAway4);
-            click(btnLineupDeleteEntryAway5);
-            click(btnLineupDeleteEntryAway6);
-            click(btnLineupDeleteEntryAway7);
-            click(btnLineupDeleteEntryAway8);
-            click(btnLineupDeleteEntryAway9);
-            click(btnLineupDeleteEntryHome1);
-            click(btnLineupDeleteEntryHome2);
-            click(btnLineupDeleteEntryHome3);
-            click(btnLineupDeleteEntryHome4);
-            click(btnLineupDeleteEntryHome5);
-            click(btnLineupDeleteEntryHome6);
-            click(btnLineupDeleteEntryHome7);
-            click(btnLineupDeleteEntryHome8);
-            click(btnLineupDeleteEntryHome9);
+        for (int i=0 ; i<btnLineupDeleteEntries.size(); i++) {
+        	click(btnLineupDeleteEntries.get(i));
         }
-
-        if (fieldPlayerTypeDataDataSourceAL.size() == 20) {
-            click(btnLineupDeleteEntryAway1);
-            click(btnLineupDeleteEntryAway2);
-            click(btnLineupDeleteEntryAway3);
-            click(btnLineupDeleteEntryAway4);
-            click(btnLineupDeleteEntryAway5);
-            click(btnLineupDeleteEntryAway6);
-            click(btnLineupDeleteEntryAway7);
-            click(btnLineupDeleteEntryAway8);
-            click(btnLineupDeleteEntryAway9);
-            click(btnLineupDeleteEntryAway10);
-            click(btnLineupDeleteEntryHome1);
-            click(btnLineupDeleteEntryHome2);
-            click(btnLineupDeleteEntryHome3);
-            click(btnLineupDeleteEntryHome4);
-            click(btnLineupDeleteEntryHome5);
-            click(btnLineupDeleteEntryHome6);
-            click(btnLineupDeleteEntryHome7);
-            click(btnLineupDeleteEntryHome8);
-            click(btnLineupDeleteEntryHome9);
-            click(btnLineupDeleteEntryHome10);
-        }
-
-        click(btnLineupDeleteEntryOfficialHP);
-        click(btnLineupDeleteEntryOfficial1B);
-        click(btnLineupDeleteEntryOfficial2B);
-        click(btnLineupDeleteEntryOfficial3B);
-        click(btnLineupDeleteEntryOfficialLF);
-        click(btnLineupDeleteEntryOfficialRF);
-        click(btnLineupDeleteEntryOfficialOS);
-
     }
 
     public void fillAndSaveNewArticle(String betaOrProd, String articleReqFieldInternalName, String articleReqFieldHeadline, String articleReqFieldSubhead, String articleReqFieldAltHeadline, String articleReqFieldByline, String articleReqFieldSeoHeadline, String articleReqFieldPoll, String tagToolPlayerValue, String articleBlurbValue, String articleNotesValue, String articleTaglineValue) {

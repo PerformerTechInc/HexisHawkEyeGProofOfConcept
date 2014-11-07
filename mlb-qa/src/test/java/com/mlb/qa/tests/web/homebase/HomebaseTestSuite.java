@@ -1156,9 +1156,10 @@ public class HomebaseTestSuite extends UITest {
     @Test
     public void homeBaseTestMLB078GameContentLineup(String month, int day, int year) {
         HB_HomePage homePage = basePart();
-        homePage.lineupGameContentDeletePlayers(month,day,year);
-        homePage.lineupGameContentAddPlayers(month,day,year);
-        homePage.lineupGameContentDeletePlayers(month,day,year);
+        homePage.lineupGameContentBaseState(month,day,year);
+        homePage.lineupGameContentDeletePlayers();
+        homePage.lineupGameContentAddPlayers();
+        //homePage.lineupGameContentDeletePlayers();
     }
 
 
