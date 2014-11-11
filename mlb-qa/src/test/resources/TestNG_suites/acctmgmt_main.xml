@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite verbose="1" name="MLB - Account Management Proof Of Concept"
+       skipfailedinvocationcounts="false" junit="false" parallel="methods"
+       thread-count="1" annotations="JDK">
+
+    <listeners>
+        <listener class-name="com.qaprosoft.carina.core.foundation.retry.AnnotationTransformer"/>
+    </listeners>
+    <test verbose="1" name="Registration Service API" thread-count="1">
+        <classes>
+            <class name="com.mlb.qa.tests.acctmgmt.web.AcctMgmtPOC001"/>
+        </classes>
+    </test>
+</suite>
