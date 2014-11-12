@@ -6,9 +6,9 @@ import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -1373,37 +1373,27 @@ public class HB_HomePage extends AbstractPage {
     //************ BEGIN FUNCTIONS ************//
     //************ BEGIN FUNCTIONS ************//
 
-    public void testGoogleSearch() {
-        driver.get("http://www.google.com/xhtml");
-        pause(10);  // Let the user actually see something!
-        WebElement searchBox = driver.findElement(By.name("q"));
-        searchBox.sendKeys("ChromeDriver");
-        searchBox.submit();
-        pause(10);  // Let the user actually see something!
-        driver.quit();
-    }
-
     public void login(String username, String password, String profile) {
-        if (isElementPresent(txtUsername) == true) {
+        if (isElementPresent(txtUsername)) {
             type(txtUsername, username);
             type(txtUserPassword, password);
             click(btnSubmit);
-            if (isElementPresent(selProfile) == true) {
+            if (isElementPresent(selProfile)) {
                 select(selProfile, profile);
                 click(btnSubmitProfile);
             }
-            Assert.assertTrue("Profile label was not found! Login operation is not successful!", isElementPresent(headerLabel, 60));
-            Assert.assertEquals("Profile name is not match!", profile, headerLabel.getText().toLowerCase());
+            Assert.assertTrue(isElementPresent(headerLabel, 60),"Profile label was not found! Login operation is not successful!");
+            Assert.assertEquals(profile, headerLabel.getText().toLowerCase(),"Profile name is not match!");
         }
     }
 
     public void oldUIToNewUI(String majorVSMinor) {
-        if (isElementPresent(dropDownSelectSite, 10) == true) {
+        if (isElementPresent(dropDownSelectSite, 10)) {
             click(dropDownSelectSite);
-            if (majorVSMinor == "mlb") {
+            if (majorVSMinor.equals("mlb")) {
                 click(dropDownSelectMLB);
             }
-            if (majorVSMinor == "milb") {
+            if (majorVSMinor.equals("milb")) {
                 click(dropDownSelectMiLB);
             }
         }
@@ -1472,7 +1462,7 @@ public class HB_HomePage extends AbstractPage {
         sendKeys("\n");
         pause(0.5);
 
-        if (tagToolPlayer == "Smith") {
+        if (tagToolPlayer.equals("Smith")) {
             click(FieldTagToolUmpireTag);
             pause(0.5);
             type(FieldTagToolUmpireTag, "a");
@@ -1508,8 +1498,8 @@ public class HB_HomePage extends AbstractPage {
         click(BtnSave);
         pause(1);
         click(BtnToBeta);
-        Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 60));
-        if (isElementPresent(statusPublishComplete) == true) {
+        Assert.assertTrue( isElementPresent(statusPublishComplete, 60),"Item Has Not Been Published To Beta!");
+        if (isElementPresent(statusPublishComplete)) {
             deleteCreatedItemNew();
         }
     }
@@ -1519,8 +1509,8 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
         click(BtnToProd);
         click(BtnToProdConfirm);
-        Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 60));
-        if (isElementPresent(statusPublishComplete) == true) {
+        Assert.assertTrue(isElementPresent(statusPublishComplete, 60),"Item Has Not Been Published To Prod!");
+        if (isElementPresent(statusPublishComplete)) {
             deleteCreatedItemNew();
         }
     }
@@ -1529,8 +1519,8 @@ public class HB_HomePage extends AbstractPage {
         click(BtnSave);
         pause(1);
         click(BtnToBeta);
-        Assert.assertTrue("Item Has Not Been Published To Beta!", isElementPresent(statusPublishComplete, 60));
-        if (isElementPresent(statusPublishComplete) == true) {
+        Assert.assertTrue(isElementPresent(statusPublishComplete, 60),"Item Has Not Been Published To Beta!");
+        if (isElementPresent(statusPublishComplete)) {
         }
     }
 
@@ -1539,8 +1529,8 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
         click(BtnToProd);
         click(BtnToProdConfirm);
-        Assert.assertTrue("Item Has Not Been Published To Prod!", isElementPresent(statusPublishComplete, 60));
-        if (isElementPresent(statusPublishComplete) == true) {
+        Assert.assertTrue(isElementPresent(statusPublishComplete, 60),"Item Has Not Been Published To Prod!");
+        if (isElementPresent(statusPublishComplete)) {
         }
     }
 
@@ -1604,13 +1594,9 @@ public class HB_HomePage extends AbstractPage {
         String valuePhotoAsset = StatusPublishComplete.getText();
         String valuePhotoAssetTrimmed = valuePhotoAsset.substring(15);
         driver.get(hostName + "prototype/homebase.jsp?#/itemeditor\\edit\\" + valuePhotoAssetTrimmed);
-//		type(FieldMainSearch, valuePhotoAssetTrimmed + "\n");
-//		click(btnSearch);
         pause(3);
-//		WebElement btnItemSearchedForValidation = panelSearchTileInfo.getElement().findElement(By.xpath("h4[contains(text(), '" + valuePhotoAssetTrimmed + "')]"));
-//		btnItemSearchedForValidation.click();
-        Assert.assertTrue("Cut Width Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutWidth001, 5));
-        Assert.assertTrue("Cut Height Value Doesn't Exist! :)", isElementPresent(FieldPhotoAssetCutHeight001, 5));
+        Assert.assertTrue(isElementPresent(FieldPhotoAssetCutWidth001, 5),"Cut Width Value Doesn't Exist! :)");
+        Assert.assertTrue(isElementPresent(FieldPhotoAssetCutHeight001, 5),"Cut Height Value Doesn't Exist! :)");
         pause(5);
         click(deleteItem);
         click(deleteItemConfirm);
@@ -1641,42 +1627,40 @@ public class HB_HomePage extends AbstractPage {
 
     public void depthChartsAddPlayers() {
         depthChartsBaseState();
-        List<WebElement> FieldDataPosition = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:240px']"));
-        logger.info(FieldDataPosition.size());
+        List<WebElement> fieldDataPosition = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//input[@class='autocomplete-maininput processedYes'][@type='text'][@style='width:240px']"));
+        logger.info(fieldDataPosition.size());
         int depthChartsPauseTime = 1;
-        int NumberOfFieldDataPositionPlayerTextInputBoxes = FieldDataPosition.size();
+        int NumberOfFieldDataPositionPlayerTextInputBoxes = fieldDataPosition.size();
         for (int a = 0; a < NumberOfFieldDataPositionPlayerTextInputBoxes; a++) {
             pause(Integer.valueOf(depthChartsPauseTime));
-            click("DepthChartPlayerInputField", FieldDataPosition.get(a));
-//			(FieldDataPosition.get(a)).click();
+            click("DepthChartPlayerInputField", fieldDataPosition.get(a));
             pause(Integer.valueOf(depthChartsPauseTime));
-            (FieldDataPosition.get(a)).sendKeys("6");
+            (fieldDataPosition.get(a)).sendKeys("6");
             pause(Integer.valueOf(depthChartsPauseTime));
-            (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
+            (fieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
             for (int b = (a + a); b > a; b--) {
-                (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
+                (fieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
             }
-            (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-            (FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
+            (fieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
+            (fieldDataPosition.get(a)).sendKeys(Keys.ENTER);
             pause(Integer.valueOf(depthChartsPauseTime));
-            click("DepthChartPlayerInputField", FieldDataPosition.get(a));
-//			(FieldDataPosition.get(a)).click();
+            click("DepthChartPlayerInputField", fieldDataPosition.get(a));
             pause(Integer.valueOf(depthChartsPauseTime));
-            (FieldDataPosition.get(a)).sendKeys("5");
+            (fieldDataPosition.get(a)).sendKeys("5");
             pause(Integer.valueOf(depthChartsPauseTime));
-            (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
+            (fieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
             for (int b = (a + a); b > a; b--) {
-                (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
+                (fieldDataPosition.get(a)).sendKeys(Keys.ARROW_DOWN);
             }
-            (FieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
-            (FieldDataPosition.get(a)).sendKeys(Keys.ENTER);
+            (fieldDataPosition.get(a)).sendKeys(Keys.ARROW_UP);
+            (fieldDataPosition.get(a)).sendKeys(Keys.ENTER);
             pause(Integer.valueOf(depthChartsPauseTime));
         }
         click(btnSaveDepthChart);
         List<WebElement> FieldDataPositionDeleteButtons = depthChartsFieldDataPositionDescription.getElement().findElements(By.xpath("//div[@class='removePlayerDepthChart triggerAble ']"));
         int depthChartPlayerValueExpectedAfterAdd = 22;
         int depthChartsPlayerNumberOfAddButtonsAfter = FieldDataPositionDeleteButtons.size();
-        Assert.assertEquals((depthChartsPlayerNumberOfAddButtonsAfter + " out of " + depthChartPlayerValueExpectedAfterAdd + " Depth Chart Player Adds were performed."), depthChartPlayerValueExpectedAfterAdd, depthChartsPlayerNumberOfAddButtonsAfter);
+        Assert.assertEquals(depthChartPlayerValueExpectedAfterAdd, depthChartsPlayerNumberOfAddButtonsAfter, (depthChartsPlayerNumberOfAddButtonsAfter + " out of " + depthChartPlayerValueExpectedAfterAdd + " Depth Chart Player Adds were performed."));
     }
 
     public void depthChartsRepositionPlayers() {
@@ -1828,7 +1812,7 @@ public class HB_HomePage extends AbstractPage {
     }
 
     public void lineupGameContentAddPlayers() {
-    	final	String[] playersPosition = {"P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH"};
+    	final String[] playersPosition = {"P", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH"};
     	int playersNum = playersPosition.length;
     	
     	for (int i=0; i<inputLineupPlayers.size(); i++) {
@@ -1840,7 +1824,7 @@ public class HB_HomePage extends AbstractPage {
 			}
 			inputLineupPlayers.get(i).getElement().sendKeys(Keys.ENTER);
 			if (i < inputLineupPlayersPosition.size()) {
-				if (inputLineupPlayersPosition.get(i).getElement().getText() != playersPosition[i%playersNum]) {
+				if (!inputLineupPlayersPosition.get(i).getElement().getText().equals(playersPosition[i % playersNum])) {
 					click(inputLineupPlayersPosition.get(i));
 					inputLineupPlayersPosition.get(i).getElement().sendKeys(playersPosition[i%playersNum]);
 					inputLineupPlayersPosition.get(i).getElement().sendKeys(Keys.ENTER);
@@ -1852,8 +1836,8 @@ public class HB_HomePage extends AbstractPage {
     }
 
     public void lineupGameContentDeletePlayers() {
-        if (isElementPresent(btnUnlock) == true) {
-            while (isElementPresent(btnUnlock) == true) {
+        if (isElementPresent(btnUnlock)) {
+            while (isElementPresent(btnUnlock)) {
                 click(btnUnlock);
             }
         }
@@ -1872,22 +1856,17 @@ public class HB_HomePage extends AbstractPage {
         type(FieldByline, articleReqFieldByline);
         type(FieldSeoHeadline, articleReqFieldSeoHeadline);
         type(FieldBlurb, articleBlurbValue);
-        if (tagToolPlayerValue == "smith") {
+        if (tagToolPlayerValue.equals("smith")) {
             type(FieldNotes, articleNotesValue);
         }
         type(FieldTagline, articleTaglineValue);
-        if (tagToolPlayerValue == "Smith") {
+        if (tagToolPlayerValue.equals("Smith")) {
             click(BtnCmsToolWysiwyg);
         }
         testCMSToolNewFunctionHTML();
         click(BtnCmsToolHtml);
         type(FieldPoll, articleReqFieldPoll);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewArticleView(String betaOrProd, String articleViewReqFieldInternalName, String articleViewReqFieldName, String articleViewReqFieldViewKey, String tagToolPlayerValue) {
@@ -1895,23 +1874,13 @@ public class HB_HomePage extends AbstractPage {
         useTagToolNew(tagToolPlayerValue);
         type(FieldName, articleViewReqFieldName);
         type(FieldViewKey, articleViewReqFieldViewKey);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewAudioSchedule(String betaOrProd, String audioScheduleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, audioScheduleReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewBallpark(String betaOrProd, String ballparkReqFieldInternalName, String ballparkReqFieldID, String ballparkReqFieldName, String ballparkReqFieldAddress1, String ballparkReqFieldAddress2, String ballparkReqFieldLocation, String ballparkReqFieldMapType, String ballparkReqFieldMapVersion, String ballparkReqFieldFacebookID, String ballparkReqFieldFoursquareID, String ballparkReqFieldWebsiteURL, String ballparkReqFieldThumbnailURL, String ballparkReqFieldThumbnailCaption, String ballparkReqFieldTwitterHashTags, String ballparkReqFieldAboutURL, String ballparkReqFieldScheduleURL, String ballparkReqFieldSmallThumbnailURL, String ballparkReqFieldStartYear, String ballparkReqFieldEndYear, String ballparkReqFieldUpgradeURL, String ballparkReqFieldAbout, String ballparkReqFieldEventsText, String ballparkReqFieldSponsorImageText, String ballparkReqFieldSponsorImageURL, String ballparkReqFieldSponsorImage2Text, String ballparkReqFieldSponsorImage2URL, String ballparkReqFieldTicketsText, String ballparkReqFieldTicketsURL, String ballparkReqFieldTicketsErrorText, String tagToolPlayerValue) {
@@ -1945,12 +1914,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldTicketsText, ballparkReqFieldTicketsText);
         type(FieldTicketsURL, ballparkReqFieldTicketsURL);
         type(FieldTicketsErrorText, ballparkReqFieldTicketsErrorText);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewBallparkMenu(String betaOrProd, String ballparkMenuReqFieldInternalName, String ballparkMenuReqFieldDisplayName, String ballparkMenuReqFieldDisplayImageURL, String ballparkMenuReqFieldLinkURL, String ballparkMenuReqFieldLinkName, String ballparkMenuReqFieldBundleKey, String ballparkMenuReqFieldBundleName, String ballparkMenuReqFieldBundleURL, String ballparkMenuReqFieldSharingURL, String ballparkMenuReqFieldSharingText, String ballparkMenuReqFieldErrorText, String ballparkMenuReqFieldSourceURL, String tagToolPlayerValue) {
@@ -1967,12 +1931,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldSharingText, ballparkMenuReqFieldSharingText);
         type(FieldErrorText, ballparkMenuReqFieldErrorText);
         type(FieldSourceURL, ballparkMenuReqFieldSourceURL);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewBallparkMusic(String betaOrProd, String ballparkMusicReqFieldInternalName, String ballparkMusicReqFieldTitle, String ballparkMusicReqFieldArtist, String ballparkMusicReqFieldDescription, String ballparkMusicReqFieldThumbnail, String ballparkMusicReqFieldRank, String tagToolPlayerValue) {
@@ -1983,12 +1942,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldDescription, ballparkMusicReqFieldDescription);
         type(FieldThumbnail, ballparkMusicReqFieldThumbnail);
         type(FieldRank, ballparkMusicReqFieldRank);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewBallparkSubmenu(String betaOrProd, String ballparkSubmenuReqFieldInternalName, String ballparkSubmenuReqFieldDisplayName, String ballparkSubmenuReqFieldDisplayImageURL, String ballparkSubmenuReqFieldLinkURL, String ballparkSubmenuReqFieldLinkName, String ballparkSubmenuReqFieldBundleKey, String ballparkSubmenuReqFieldBundleName, String ballparkSubmenuReqFieldBundleURL, String ballparkSubmenuReqFieldSharingURL, String ballparkSubmenuReqFieldSharingText, String ballparkSubmenuReqFieldErrorText, String ballparkSubmenuReqFieldSourceURL, String tagToolPlayerValue) {
@@ -2005,12 +1959,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldSharingText, ballparkSubmenuReqFieldSharingText);
         type(FieldErrorText, ballparkSubmenuReqFieldErrorText);
         type(FieldSourceURL, ballparkSubmenuReqFieldSourceURL);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewBlogContent(String betaOrProd, String blogContentReqFieldInternalName, String blogContentReqFieldURL, String blogContentReqFieldURLText, String blogContentReqFieldHeadline, String blogContentReqFieldAltHeadline, String blogContentReqFieldSEOHeadline, String blogContentReqFieldBlurb, String blogContentReqFieldByline, String blogContentReqFieldCaption, String blogContentReqFieldMediaCredit, String tagToolPlayerValue) {
@@ -2032,12 +1981,7 @@ public class HB_HomePage extends AbstractPage {
         testCMSToolNewFunctionWYSIWYG();
         click(BtnCmsToolWysiwyg);
 
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewBlogContentAlias(String betaOrProd, String blogContentAliasReqFieldInternalName, String blogContentAliasReqFieldHeadline, String blogContentAliasReqFieldBlurb, String blogContentAliasReqFieldSummary) {
@@ -2045,12 +1989,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldHeadline, blogContentAliasReqFieldHeadline);
         type(FieldBlurb, blogContentAliasReqFieldBlurb);
         type(FieldSummary, blogContentAliasReqFieldSummary);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewChron(String betaOrProd, String chronReqFieldInternalName, String chronReqFieldDateNotation, String chronReqFieldYear, String chronReqFieldDisplayYear, String chronReqFieldTitle, String tagToolPlayerValue) {
@@ -2061,24 +2000,14 @@ public class HB_HomePage extends AbstractPage {
         type(FieldDisplayYear, chronReqFieldDisplayYear);
         type(FieldTitle, chronReqFieldTitle);
         testCMSToolNewFunctionHTML();
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewClosedCaption(String betaOrProd, String closedCaptionReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, closedCaptionReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
         testCMSToolNewFunctionHTML();
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewClubPromo(String betaOrProd, String clubPromoReqFieldInternalName, String clubPromoReqFieldURLExtension, String clubPromoReqFieldEventTitle, String clubPromoReqFieldEventSubtitle, String clubPromoReqFieldPromoText, String clubPromoReqFieldMobileTicketsText, String clubPromoReqFieldMobileTicketsURL, String clubPromoReqFieldTicketsURL, String clubPromoReqFieldTextCampaignPromo, String clubPromoReqFieldSocialKeyword, String clubPromoReqFieldHighlightsTitle, String clubPromoReqFieldLocationAddress, String clubPromoReqFieldEventMapTitle, String clubPromoReqFieldScheduleTitle, String clubPromoReqFieldFAQTitle, String tagToolPlayerValue) {
@@ -2100,12 +2029,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldFAQTitle, clubPromoReqFieldFAQTitle);
         click(labelSponsors);
         testCMSToolNewFunctionHTML();
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewContributor(String betaOrProd, String contributorReqFieldInternalName, String contributorReqFieldFirstName, String contributorReqFieldLastName, String contributorReqFieldTitle, String contributorReqFieldEmail, String contributorReqFieldTwitterHandle, String contributorReqFieldBlog, String contributorReqFieldBlogTitle, String contributorReqFieldRSSFeed, String contributorReqFieldFacebookID, String contributorReqFieldActiveTab, String contributorReqFieldHideArticles, String contributorReqFieldVideoKeywordType, String contributorReqFieldVideoKeywordValue, String contributorReqFieldVideoLandingPage, String contributorReqFieldBlurb, String tagToolPlayerValue) {
@@ -2128,12 +2052,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldBlurb, contributorReqFieldBlurb);
         click(labelBigBlurb);
         testCMSToolNewFunctionHTML();
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewDailyEmail(String betaOrProd, String dailyEmailReqFieldInternalName, String dailyEmailReqFieldSubject, String dailyEmailReqFieldSubjectB, String dailyEmailReqFieldTriviaQuestion, String dailyEmailReqFieldTriviaAnswer, String tagToolPlayerValue) {
@@ -2143,12 +2062,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldSubjectB, dailyEmailReqFieldSubjectB);
         type(FieldTriviaQuestion, dailyEmailReqFieldTriviaQuestion);
         type(FieldTriviaAnswer, dailyEmailReqFieldTriviaAnswer);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewDeviceAnnouncement(String betaOrProd, String deviceAnnouncementReqFieldInternalName, String deviceAnnouncementReqFieldAppVersion, String deviceAnnouncementReqFieldOSVersion, String deviceAnnouncementReqFieldEntitlement, String deviceAnnouncementReqFieldScreen, String deviceAnnouncementReqFieldType, String deviceAnnouncementReqFieldDisplayType, String deviceAnnouncementReqFieldTitle, String deviceAnnouncementReqFieldMessage, String deviceAnnouncementReqFieldOpenLabel, String deviceAnnouncementReqFieldOpenLink, String deviceAnnouncementReqFieldCloseLabel, String deviceAnnouncementReqFieldCloseLink, String tagToolPlayerValue) {
@@ -2166,12 +2080,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldOpenLink, deviceAnnouncementReqFieldOpenLink);
         type(FieldCloseLabel, deviceAnnouncementReqFieldCloseLabel);
         type(FieldCloseLink, deviceAnnouncementReqFieldCloseLink);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewDeviceBanner(String betaOrProd, String deviceBannerReqFieldInternalName, String deviceBannerReqFieldAppVersion, String deviceBannerReqFieldOSVersion, String deviceBannerReqFieldEntitlement, String deviceBannerReqFieldAccessFeature, String deviceBannerReqFieldScreen, String deviceBannerReqFieldViewID, String deviceBannerReqFieldType, String deviceBannerReqFieldWebViewType, String deviceBannerReqFieldTitle, String deviceBannerReqFieldLink, String deviceBannerReqFieldBackgroundColor, String deviceBannerReqFieldTrackingString, String deviceBannerReqFieldAdMarvelID, String deviceBannerReqFieldAdMarvelWidth, String deviceBannerReqFieldAdMarvelHeight, String deviceBannerReqFieldAdMarvelSectionID, String deviceBannerReqFieldAdMarvelMLBTarget, String deviceBannerReqFieldAdMarvelExpiryTime, String deviceBannerReqFieldMLBTVContentID, String deviceBannerReqFieldMLBTVCalendarEventID, String deviceBannerReqFieldSponsor, String tagToolPlayerValue) {
@@ -2198,12 +2107,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldMLBTVContentID, deviceBannerReqFieldMLBTVContentID);
         type(FieldMLBTVCalendarEventID, deviceBannerReqFieldMLBTVCalendarEventID);
         type(FieldSponsor, deviceBannerReqFieldSponsor);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewDevicePage(String betaOrProd, String devicePageReqFieldInternalName, String devicePageReqFieldHeadline, String devicePageReqFieldBlurb, String devicePageReqFieldYearlyPurchaseFlow, String devicePageReqFieldMonthlyPurchaseFlow, String devicePageReqFieldUpgradeLink, String devicePageReqFieldActivationLink, String tagToolPlayerValue) {
@@ -2215,12 +2119,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldMonthlyPurchaseFlow, devicePageReqFieldMonthlyPurchaseFlow);
         type(FieldUpgradeLink, devicePageReqFieldUpgradeLink);
         type(FieldActivationLink, devicePageReqFieldActivationLink);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewDigitalAsset(String betaOrProd, String digitalAssetReqFieldInternalName, String digitalAssetReqFieldHeadline, String tagToolPlayerValue) {
@@ -2232,12 +2131,7 @@ public class HB_HomePage extends AbstractPage {
 
         testPhotoFileDialog();
 
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewDrawer(String mainURLCall, String betaOrProd, String drawerReqFieldInternalName, String drawerReqFieldKicker, String drawerReqFieldCustomContent, String drawerReqFieldBlurb, String drawerReqFieldURL, String drawerReqFieldURLText, String drawerReqFieldNumberOfItems, String tagToolPlayerValue) {
@@ -2258,12 +2152,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldURL, drawerReqFieldURL);
         type(FieldURLText, drawerReqFieldURLText);
         type(FieldNumberOfItems, drawerReqFieldNumberOfItems);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewEvent(String mainURLCall, String betaOrProd, String eventReqFieldInternalName, String eventReqFieldProgramID, String eventReqFieldProgram, String eventReqFieldLocation, String eventReqFieldEventTitle, String eventReqFieldEventDescription, String eventReqFieldEventURL, String tagToolPlayerValue) {
@@ -2284,12 +2173,7 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
         seleniumEvent.keyPressNative(String.valueOf(KeyEvent.VK_ENTER));
         pause(1);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewFeature(String betaOrProd, String featureReqFieldInternalName, String featureReqFieldHeadline, String featureReqFieldURL, String featureReqFieldURLText, String featureReqFieldMobileURL, String featureReqFieldBlurb, String tagToolPlayerValue) {
@@ -2300,24 +2184,14 @@ public class HB_HomePage extends AbstractPage {
         type(FieldURLText, featureReqFieldURLText);
         type(FieldMobileURL, featureReqFieldMobileURL);
         type(FieldBlurb, featureReqFieldBlurb);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewFeatures(String betaOrProd, String featuresReqFieldInternalName, String featuresReqFieldNumberOfItems, String tagToolPlayerValue) {
         type(FieldInternalName, featuresReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
         type(FieldNumberOfItems, featuresReqFieldNumberOfItems);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewFieldOption(String betaOrProd, String fieldOptionReqFieldInternalName, String fieldOptionReqFieldDisplayName, String fieldOptionReqFieldValue, String tagToolPlayerValue) {
@@ -2325,12 +2199,7 @@ public class HB_HomePage extends AbstractPage {
         useTagToolNew(tagToolPlayerValue);
         type(FieldDisplayName, fieldOptionReqFieldDisplayName);
         type(FieldValue, fieldOptionReqFieldValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewGamePreview(String betaOrProd, String gamePreviewReqFieldInternalName, String gamePreviewReqFieldHeadline, String gamePreviewReqFieldHomeHeadline, String gamePreviewReqFieldAwayHeadline, String gamePreviewReqFieldSubhead, String gamePreviewReqFieldAltHeadline, String gamePreviewReqFieldByline, String gamePreviewReqFieldBlurb, String tagToolPlayerValue) {
@@ -2344,12 +2213,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldByline, gamePreviewReqFieldByline);
         type(FieldBlurb, gamePreviewReqFieldBlurb);
         testCMSToolNewFunctionHTML();
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewGameWrap(String betaOrProd, String gameWrapReqFieldInternalName, String gameWrapReqFieldHeadline, String gameWrapReqFieldBlurb, String tagToolPlayerValue) {
@@ -2357,24 +2221,14 @@ public class HB_HomePage extends AbstractPage {
         useTagToolNew(tagToolPlayerValue);
         type(FieldHeadline, gameWrapReqFieldHeadline);
         type(FieldBlurb, gameWrapReqFieldBlurb);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewHighlight(String betaOrProd, String highlightReqFieldInternalName, String highlightReqFieldYear, String tagToolPlayerValue) {
         type(FieldInternalName, highlightReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
         type(FieldYear, highlightReqFieldYear);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewHomepageTab(String betaOrProd, String homepageTabReqFieldInternalName, String homepageTabReqFieldDefaultAltText, String homepageTabReqFieldDefaultClickthroughURL, String tagToolPlayerValue) {
@@ -2382,12 +2236,7 @@ public class HB_HomePage extends AbstractPage {
         useTagToolNew(tagToolPlayerValue);
         type(FieldDefaultAltText, homepageTabReqFieldDefaultAltText);
         type(FieldDefaultClickthroughURL, homepageTabReqFieldDefaultClickthroughURL);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewHPConfig(String betaOrProd, String hPConfigReqFieldInternalName, String hPConfigReqFieldBreakingNews, String hPConfigReqFieldBreakingNewsURL, String hPConfigReqFieldABTests, String hPConfigReqFieldHeaderURL, String hPConfigReqFieldHeaderAlt, String tagToolPlayerValue) {
@@ -2398,23 +2247,13 @@ public class HB_HomePage extends AbstractPage {
         type(FieldABTests, hPConfigReqFieldABTests);
         type(FieldHeaderURL, hPConfigReqFieldHeaderURL);
         type(FieldHeaderAlt, hPConfigReqFieldHeaderAlt);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewHTMLInclude(String betaOrProd, String hTMLIncludeReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, hTMLIncludeReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewHTMLPage(String betaOrProd, String hTMLPageReqFieldInternalName, String hTMLPageReqFieldHeadline, String hTMLPageBlurbValue, String tagToolPlayerValue) {
@@ -2425,12 +2264,7 @@ public class HB_HomePage extends AbstractPage {
         pressTab();
         sendKeys(hTMLPageBlurbValue);
         pause(1);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewInstagramPhoto(String betaOrProd, String instagramPhotoReqFieldInternalName, String instagramPhotoReqFieldApprover, String instagramPhotoReqFieldApprovedTime, String instagramPhotoReqFieldInstagramID, String instagramPhotoReqFieldImageURL, String instagramPhotoReqFieldLargeImageURL, String instagramPhotoReqFieldCaption, String instagramPhotoReqFieldCreatorID, String instagramPhotoReqFieldCreatorName, String instagramPhotoReqFieldCreatorProfilePicture, String instagramPhotoReqFieldCreatedTime, String instagramPhotoReqFieldLatitude, String instagramPhotoReqFieldLongitude, String tagToolPlayerValue) {
@@ -2448,12 +2282,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldCreatedTime, instagramPhotoReqFieldCreatedTime);
         type(FieldLatitude, instagramPhotoReqFieldLatitude);
         type(FieldLongitude, instagramPhotoReqFieldLongitude);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewSocialMediaStream(String betaOrProd, String instagramStreamReqFieldInternalName, String instagramStreamReqFieldDisplayName, String instagramStreamReqFieldKey, String tagToolPlayerValue) {
@@ -2461,12 +2290,7 @@ public class HB_HomePage extends AbstractPage {
         useTagToolNew(tagToolPlayerValue);
         type(FieldInstagramStreamDisplayName, instagramStreamReqFieldDisplayName);
         type(FieldKey, instagramStreamReqFieldKey);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewKiosk(String betaOrProd, String kioskReqFieldInternalName, String kioskReqFieldCalendarEventID, String kioskReqFieldContentID, String tagToolPlayerValue) {
@@ -2474,12 +2298,7 @@ public class HB_HomePage extends AbstractPage {
         useTagToolNew(tagToolPlayerValue);
         type(FieldCalendarEventID, kioskReqFieldCalendarEventID);
         type(FieldContentID, kioskReqFieldContentID);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewLineup(String betaOrProd, String lineupReqFieldInternalName, String lineupReqFieldUmpireHP, String lineupReqFieldUmpire1st, String lineupReqFieldUmpire2nd, String lineupReqFieldUmpire3rd, String lineupReqFieldUmpireLF, String lineupReqFieldUmpireRF, String lineupReqFieldUmpireOS, String lineupReqFieldNotes, String tagToolPlayerValue) {
@@ -2493,24 +2312,14 @@ public class HB_HomePage extends AbstractPage {
         type(FieldUmpireRF, lineupReqFieldUmpireRF);
         type(FieldUmpireOS, lineupReqFieldUmpireOS);
         type(FieldLineupNotes, lineupReqFieldNotes);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewLineupPlayer(String betaOrProd, String lineupPlayerReqFieldInternalName, String lineupPlayerReqFieldPosition, String tagToolPlayerValue) {
         type(FieldInternalName, lineupPlayerReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
         type(FieldPosition, lineupPlayerReqFieldPosition);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewLink(String betaOrProd, String linkReqFieldInternalName, String linkReqFieldLinkText, String linkReqFieldLinkURL, String linkReqFieldWidth, String linkReqFieldHeight, String tagToolPlayerValue) {
@@ -2532,10 +2341,14 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
         pressTab();
         pause(1);
-        if (betaOrProd == "beta") {
+        betaOrProd(betaOrProd);
+    }
+
+    private void betaOrProd(String value){
+        if (value.equals("beta")) {
             saveItemAndPublishToBeta();
         }
-        if (betaOrProd == "prod") {
+        if (value.equals("prod")) {
             saveItemAndPublishToProd();
         }
     }
@@ -2565,13 +2378,7 @@ public class HB_HomePage extends AbstractPage {
         WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-tweet']"));
         btnAddVideoClipListBeingSearched3.click();
 
-
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewMediawall(String betaOrProd, String mediawallReqFieldInternalName, String mediawallReqFieldNumberOfPanels, String tagToolPlayerValue) {
@@ -2600,10 +2407,10 @@ public class HB_HomePage extends AbstractPage {
         btnAddVideoClipListBeingSearched3.click();
 
 
-        if (betaOrProd == "beta") {
+        if (betaOrProd.equals("beta")) {
             saveItemAndPublishToBetaWithoutDelete();
         }
-        if (betaOrProd == "prod") {
+        if (betaOrProd.equals("prod")) {
             saveItemAndPublishToProdWithoutDelete();
         }
     }
@@ -2612,12 +2419,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldInternalName, mediawallOverlayReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
         type(FieldInternalName, mediawallOverlayReqFieldInternalName);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewMediaWallPanel(String betaOrProd, String mediawallPanelReqFieldInternalName, String mediawallReqFieldHeadline, String mediawallReqFieldURLText, String mediawallReqFieldURL, String mediawallReqFieldMobileURL, String mediawallReqFieldSponsorURL, String mediawallReqFieldBlurb, String mediawallReqFieldNotes, String mediawallReqFieldDisplayTimeInSeconds, String mediawallReqFieldVideoAlias, String tagToolPlayerValue) {
@@ -2638,12 +2440,7 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
         type(FieldDisplayTimeInSeconds, mediawallReqFieldDisplayTimeInSeconds);
         type(FieldVideoAlias, mediawallReqFieldVideoAlias);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+       betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewMLBTVAdModule(String betaOrProd, String mLBTVAdModuleReqFieldInternalName, String mLBTVAdModuleReqFieldURL, String mLBTVAdModuleReqFieldMobileURL, String mLBTVAdModuleReqFieldTabletURL, String tagToolPlayerValue) {
@@ -2652,12 +2449,7 @@ public class HB_HomePage extends AbstractPage {
         type(FieldURL, mLBTVAdModuleReqFieldURL);
         type(FieldMobileURL, mLBTVAdModuleReqFieldMobileURL);
         type(FieldTabletURL, mLBTVAdModuleReqFieldTabletURL);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewMoundBall(String betaOrProd, String moundBallReqFieldInternalName, String moundBallReqFieldBlurb, String tagToolPlayerValue) {
@@ -2665,12 +2457,7 @@ public class HB_HomePage extends AbstractPage {
         useTagToolNew(tagToolPlayerValue);
         type(FieldBlurb, moundBallReqFieldBlurb);
         testCMSToolNewFunctionHTML();
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewMusicLink(String betaOrProd, String musicLinkReqFieldInternalName, String musicLinkReqFieldUniqueID, String musicLinkReqFieldPreviewURL, String musicLinkReqFieldMediaURL, String tagToolPlayerValue) {
@@ -2679,24 +2466,14 @@ public class HB_HomePage extends AbstractPage {
         type(FieldUniqueID, musicLinkReqFieldUniqueID);
         type(FieldPreviewURL, musicLinkReqFieldPreviewURL);
         type(FieldMediaURL, musicLinkReqFieldMediaURL);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewNote(String betaOrProd, String noteReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, noteReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
         testCMSToolNewFunctionHTML();
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewNotebook(String betaOrProd, String notebookReqFieldInternalName, String notebookReqFieldHeadline, String notebookReqFieldByline, String notebookReqFieldSource, String notebookTaglineValue, String tagToolPlayerValue) {
@@ -2711,23 +2488,13 @@ public class HB_HomePage extends AbstractPage {
         pause(1);
         pressTab();
         pause(1);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPage(String betaOrProd, String pageReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, pageReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPhotoGallery(String betaOrProd, String photoGalleryReqFieldInternalName, String photoGalleryReqFieldTitle, String photoGalleryReqFieldSpanishTitle, String photoGalleryReqFieldBlurb, String photoGalleryReqFieldSpanishBlurb, String tagToolPlayerValue) {
@@ -2747,28 +2514,28 @@ public class HB_HomePage extends AbstractPage {
 
         click(btnPhotosSearchForPhotoAsset);
         click(btnSearchHideOptions);
-        if (tagToolPlayerValue == "Smith") {
+        if (tagToolPlayerValue.equals("Smith")) {
             type(FieldMainSearch, "95436230");
         }
-        if (tagToolPlayerValue == "Jones") {
+        if (tagToolPlayerValue.equals("Jones")) {
             type(FieldMainSearch, "69623638");
         }
         click(btnSearch);
         WebElement btnAddVideoClipListBeingSearched = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
         btnAddVideoClipListBeingSearched.click();
-        if (tagToolPlayerValue == "Smith") {
+        if (tagToolPlayerValue.equals("Smith")) {
             type(FieldMainSearch, "95436222");
         }
-        if (tagToolPlayerValue == "Jones") {
+        if (tagToolPlayerValue.equals("Jones")) {
             type(FieldMainSearch, "63673952");
         }
         click(btnSearch);
         WebElement btnAddVideoClipListBeingSearched2 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
         btnAddVideoClipListBeingSearched2.click();
-        if (tagToolPlayerValue == "Smith") {
+        if (tagToolPlayerValue.equals("Smith")) {
             type(FieldMainSearch, "95436010");
         }
-        if (tagToolPlayerValue == "Jones") {
+        if (tagToolPlayerValue.equals("Jones")) {
             type(FieldMainSearch, "63671994");
         }
         click(btnSearch);
@@ -2776,102 +2543,36 @@ public class HB_HomePage extends AbstractPage {
         btnAddVideoClipListBeingSearched3.click();
 
         click(BtnSave);
-
-/*
-         click(btnHomeThumbnailSearchForPhotoAsset);
-	    click(btnSearchHideOptions);
-		type(FieldMainSearch, "95436230");
-		click(btnSearch);
-		WebElement btnAddVideoClipListBeingSearched4 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
-		btnAddVideoClipListBeingSearched4.click();
-		type(FieldMainSearch, "95436222");
-		click(btnSearch);
-		WebElement btnAddVideoClipListBeingSearched5 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
-		btnAddVideoClipListBeingSearched5.click();
-		type(FieldMainSearch, "95436010");
-		click(btnSearch);
-		WebElement btnAddVideoClipListBeingSearched6 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
-		btnAddVideoClipListBeingSearched6.click();
-
-		click(BtnSave);
-
-	    click(btnAwayThumbnailSearchForPhotoAsset);
-		click(btnSearchHideOptions);
-		type(FieldMainSearch, "95436230");
-		click(btnSearch);
-		WebElement btnAddVideoClipListBeingSearched7 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
-		btnAddVideoClipListBeingSearched7.click();
-		type(FieldMainSearch, "95436222");
-		click(btnSearch);
-		WebElement btnAddVideoClipListBeingSearched8 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
-		btnAddVideoClipListBeingSearched8.click();
-		type(FieldMainSearch, "95436010");
-		click(btnSearch);
-		WebElement btnAddVideoClipListBeingSearched9 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-photo-asset']"));
-		btnAddVideoClipListBeingSearched9.click();
-
-*/
-
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPhotoGalleryAlias(String betaOrProd, String photoGalleryAliasReqFieldInternalName) {
         type(FieldInternalName, photoGalleryAliasReqFieldInternalName);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPhotoGalleryList(String betaOrProd, String photoGalleryListReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, photoGalleryListReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewProspect(String betaOrProd, String prospectReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, prospectReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPodcastDetail(String betaOrProd, String podcastDetailReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, podcastDetailReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPodcastEpisode(String betaOrProd, String podcastEpisodeReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, podcastEpisodeReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPressRelease(String betaOrProd, String pressReleaseReqFieldInternalName, String pressReleaseReqFieldNotes, String pressReleaseReqFieldDisplayHeadline, String pressReleaseReqFieldHeadline, String pressReleaseReqFieldSubHeadline, String pressReleaseReqFieldBlurb, String tagToolPlayerValue) {
@@ -2883,121 +2584,66 @@ public class HB_HomePage extends AbstractPage {
         type(FieldSubHeadline, pressReleaseReqFieldSubHeadline);
         type(FieldBlurb, pressReleaseReqFieldBlurb);
         testCMSToolNewFunctionHTML();
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPressboxAsset(String betaOrProd, String pressboxAssetReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, pressboxAssetReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPressboxAssetList(String betaOrProd, String pressboxAssetListReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, pressboxAssetListReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPreviewAlias(String betaOrProd, String previewAliasReqFieldInternalName) {
         type(FieldInternalName, previewAliasReqFieldInternalName);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewProgramShow(String betaOrProd, String programShowReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, programShowReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewPromoApplication(String betaOrProd, String promoApplicationReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, promoApplicationReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewQuoteSheet(String betaOrProd, String quoteSheetReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, quoteSheetReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewRaffle(String betaOrProd, String raffleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, raffleReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewSchedule(String betaOrProd, String scheduleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, scheduleReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewScrapbook(String betaOrProd, String scrapbookReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, scrapbookReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewScrapbookPage(String betaOrProd, String scrapbookPageReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, scrapbookPageReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewSection(String betaOrProd, String sectionReqFieldInternalName, String sectionReqFieldSectionID, String sectionReqFieldShortTitle, String sectionReqFieldLongTitle, String sectionReqFieldWiredURL, String sectionReqFieldMobileURL, String sectionReqFieldTarget, String sectionReqFieldType, String tagToolPlayerValue) {
@@ -3011,67 +2657,37 @@ public class HB_HomePage extends AbstractPage {
         type(FieldMobileURL, sectionReqFieldMobileURL);
         type(FieldTarget, sectionReqFieldTarget);
         type(FieldType, sectionReqFieldType);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewSeriesConfiguration(String betaOrProd, String seriesConfigurationReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, seriesConfigurationReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewShortContent(String betaOrProd, String shortContentReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, shortContentReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewTicketPage(String betaOrProd, String ticketPageReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, ticketPageReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewTrendingModule(String betaOrProd, String trendingModuleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, trendingModuleReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewTweet(String betaOrProd, String tweetReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, tweetReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewVideoTopicPage(String betaOrProd, String videoTopicPageReqFieldInternalName, String videoTopicPageReqFieldHeadline, String videoTopicPageReqFieldFacebookDescription, String videoTopicPageReqFieldMaxItems, String videoTopicPageReqFieldItemsPerPage, String videoTopicPageReqFieldSearchCriteria, String videoTopicPageReqFieldRelatedLink, String videoTopicPageReqFieldCustomTemplatePath, String videoTopicPageReqFieldJavascriptPath, String videoTopicPageReqFieldStylesheetPath, String videoTopicPageReqFieldCustomPanel, String videoTopicPageReqFieldTwitterHandle, String videoTopicPageReqFieldPollKey, String tagToolPlayerValue) {
@@ -3108,23 +2724,13 @@ public class HB_HomePage extends AbstractPage {
         WebElement btnAddVideoClipListBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video_clip_list']"));
         btnAddVideoClipListBeingSearched3.click();
 
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewTwitterHandle(String betaOrProd, String twitterHandleReqFieldInternalName, String tagToolPlayerValue) {
         type(FieldInternalName, twitterHandleReqFieldInternalName);
         useTagToolNew(tagToolPlayerValue);
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     public void fillAndSaveNewVideoClipList(String betaOrProd, String videoClipListReqFieldInternalName, String videoClipListReqFieldHeadline, String videoClipListReqFieldListDefaultView, String tagToolPlayerValue) {
@@ -3151,12 +2757,7 @@ public class HB_HomePage extends AbstractPage {
         WebElement btnAddVideoBeingSearched3 = panelSearchTileControls.getElement().findElement(By.xpath("//div[@class='add-icon-all_types add-icon-video']"));
         btnAddVideoBeingSearched3.click();
 
-        if (betaOrProd == "beta") {
-            saveItemAndPublishToBeta();
-        }
-        if (betaOrProd == "prod") {
-            saveItemAndPublishToProd();
-        }
+        betaOrProd(betaOrProd);
     }
 
     private static Robot getRobotInstance() {
@@ -3186,7 +2787,7 @@ public class HB_HomePage extends AbstractPage {
     }
 
     public void clipBoardCopy(String stringToCopyToClipboard) {
-        String str = stringToCopyToClipboard.toString();
+        String str = stringToCopyToClipboard;
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
         StringSelection strSel = new StringSelection(str);
