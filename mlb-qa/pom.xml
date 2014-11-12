@@ -13,7 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<com.qaprosoft.carina-core.version>2.2.6.1</com.qaprosoft.carina-core.version>
+		<com.qaprosoft.carina-core.version>2.2.6.6</com.qaprosoft.carina-core.version>
 		<org.eclipse.persistence.version>2.5.1</org.eclipse.persistence.version>
 	</properties>
 
