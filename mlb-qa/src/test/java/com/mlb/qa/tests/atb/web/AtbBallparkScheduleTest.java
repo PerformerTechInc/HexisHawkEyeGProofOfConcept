@@ -47,6 +47,9 @@ public class AtbBallparkScheduleTest extends AtbBaseWebTest {
 				scheduleUrl).loadGamesFromCalendarTab(teamAbbrev);
 		String year = AtbParameter.MLB_ATB_SEASON.getValue();
 		int month = new DateTime().getMonthOfYear();
+		if(month >10){
+			month=10;
+		}
 		Team team = lookupService.lookupTeamByAbbrev(teamAbbrev, year);
 		List<Game> gamesBe = lookupService.lookupListOfGamesForTheMonth(team.getTeamId(),
 				Integer.parseInt(year),
