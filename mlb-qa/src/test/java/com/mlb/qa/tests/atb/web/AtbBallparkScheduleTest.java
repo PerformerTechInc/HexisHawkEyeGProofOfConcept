@@ -30,6 +30,9 @@ public class AtbBallparkScheduleTest extends AtbBaseWebTest {
 		List<Game> gamesUi = AtbBallparkSchedulePage.open(getDriver(),
 				scheduleUrl).loadGamesFromListTab(team.getName());
 		int month = new DateTime().getMonthOfYear();
+		if(month >10){
+			month=10;
+		}
 		List<Game> gamesBe = lookupService.lookupListOfGamesForTheMonth(team.getTeamId(),
 				Integer.parseInt(year),
 				month);
