@@ -41,10 +41,10 @@ public class AcctMgmtPOC001 extends UITest {
     //************ IDENTITY SERVICE POINT IDENTIFY OBJECTS ************//
 	public final String valueIdentityPointServiceIdentifyEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/IdentityPointService";
 	public final String valueIdentityPointServiceIdentifySoapAction = "http://services.bamnetworks.com/registration/identityPoint/identify";
-	public final String valueIdentityPointServiceIdentifyNewUserEmail = valueIdentityPointServiceCreateNewUserEmail;
-	public final String valueIdentityPointServiceIdentifyNewUserPassword = valueIdentityPointServiceCreateNewUserPassword;
-//	public final String valueIdentityPointServiceIdentifyNewUserEmail = "snehal.chudgar@mlb.com";
-//	public final String valueIdentityPointServiceIdentifyNewUserPassword = "--------";
+//	public final String valueIdentityPointServiceIdentifyNewUserEmail = valueIdentityPointServiceCreateNewUserEmail;
+//	public final String valueIdentityPointServiceIdentifyNewUserPassword = valueIdentityPointServiceCreateNewUserPassword;
+	public final String valueIdentityPointServiceIdentifyNewUserEmail = "snehal.chudgar@mlb.com";
+	public final String valueIdentityPointServiceIdentifyNewUserPassword = "--------";
 //	public final String valueIdentityPointServiceIdentifySoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"account-name\"  ns0:password=\"password\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:identityPoint_identify_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valueIdentityPointServiceIdentifyNewUserEmail + "</ns:address></ns:email><ns:password>" + valueIdentityPointServiceIdentifyNewUserPassword + "</ns:password></ns:identification></ns:identityPoint_identify_request></soapenv:Body></soapenv:Envelope>";
 	public final String valueIdentityPointServiceIdentifySoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header/><soapenv:Body><ns:identityPoint_identify_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valueIdentityPointServiceIdentifyNewUserEmail + "</ns:address></ns:email><ns:password>" + valueIdentityPointServiceIdentifyNewUserPassword + "</ns:password></ns:identification></ns:identityPoint_identify_request></soapenv:Body></soapenv:Envelope>";
     //************ IDENTITY SERVICE POINT IDENTIFY OBJECTS ************//
@@ -83,7 +83,140 @@ public class AcctMgmtPOC001 extends UITest {
 	public final String valueIdentityPointServiceUnlinkSoapEnvelope = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.6\"><soap:Header/><soap:Body><ns:identityPoint_unlink_request><ns:identification type=\"fingerprint\"><ns:id>" + valueIdentityPointServiceUnlinkID + "</ns:id><ns:fingerprint>" + valueIdentityPointServiceUnlinkFingerprint + "</ns:fingerprint></ns:identification></ns:identityPoint_unlink_request></soap:Body></soap:Envelope>";
     //************ IDENTITY SERVICE POINT UNLINK OBJECTS ************//	
 	
-//	@Test
+    //************ EMAIL SERVICE FIND PRIMARY EMAIL OBJECTS ************//
+	public final String valueEmailServiceFindPrimaryEmailEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/EmailService";
+	public final String valueEmailServiceFindPrimaryEmailSoapAction = "http://services.bamnetworks.com/registration/email/findPrimary";
+	public final String valueEmailServiceFindPrimaryEmailID = "";
+	public final String valueEmailServiceFindPrimaryEmailFingerprint = "";
+	public final String valueEmailServiceFindPrimaryEmailSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:email_findPrimary_request><ns:identification type=\"fingerprint\"><ns:id>" + valueEmailServiceFindPrimaryEmailID + "</ns:id><ns:fingerprint>" + valueEmailServiceFindPrimaryEmailFingerprint + "</ns:fingerprint></ns:identification></ns:email_findPrimary_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueEmailServiceFindPrimaryEmailSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:email_findPrimary_request><ns:identification type=\"fingerprint\"><ns:id>";
+	public final String valueEmailServiceFindPrimaryEmailSoapEnvelopePart2 = "</ns:id><ns:fingerprint>";
+	public final String valueEmailServiceFindPrimaryEmailSoapEnvelopePart3 = "</ns:fingerprint></ns:identification></ns:email_findPrimary_request></soapenv:Body></soapenv:Envelope>";
+    //************ EMAIL SERVICE FIND PRIMARY EMAIL OBJECTS ************//
+	
+    //************ EMAIL SERVICE UPDATE EMAIL OBJECTS ************//
+	public final String valueEmailServiceUpdateEmailEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/EmailService";
+	public final String valueEmailServiceUpdateEmailSoapAction = "http://services.bamnetworks.com/registration/email/update";
+	public final String valueEmailServiceUpdateEmailUserEmail = "";
+	public final String valueEmailServiceUpdateEmailUserPassword = "";
+	public final String valueEmailServiceUpdateEmailUserNewEmail = "";
+	public final String valueEmailServiceUpdateEmailSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:email_update_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valueEmailServiceUpdateEmailUserEmail + "</ns:address></ns:email><ns:password>" + valueEmailServiceUpdateEmailUserPassword + "</ns:password></ns:identification><ns:email><ns:address>" + valueEmailServiceUpdateEmailUserNewEmail + "</ns:address></ns:email></ns:email_update_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueEmailServiceUpdateEmailSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:email_update_request><ns:identification type=\"email-password\"><ns:email><ns:address>";
+	public final String valueEmailServiceUpdateEmailSoapEnvelopePart2 = "</ns:address></ns:email><ns:password>";
+	public final String valueEmailServiceUpdateEmailSoapEnvelopePart3 = "</ns:password></ns:identification><ns:email><ns:address>";
+	public final String valueEmailServiceUpdateEmailSoapEnvelopePart4 = "</ns:address></ns:email></ns:email_update_request></soapenv:Body></soapenv:Envelope>";
+    //************ EMAIL SERVICE UPDATE EMAIL OBJECTS ************//	
+	
+    //************ PASSWORD SERVICE UPDATE WITH EMAIL AND PASSWORD OBJECTS ************//
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/PasswordService";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordSoapAction = "http://services.bamnetworks.com/registration/password/update";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordUserEmail = "";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordUserOldPassword = "";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordUserNewPassword = "";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account-name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:password_update_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valuePasswordServiceUpdateWithEmailAndPasswordUserEmail + "</ns:address></ns:email><ns:password>" + valuePasswordServiceUpdateWithEmailAndPasswordUserOldPassword + "</ns:password></ns:identification><ns:password>" + valuePasswordServiceUpdateWithEmailAndPasswordUserNewPassword + "</ns:password></ns:password_update_request></soapenv:Body></soapenv:Envelope>";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account-name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:password_update_request><ns:identification type=\"email-password\"><ns:email><ns:address>";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelopePart2 = "</ns:address></ns:email><ns:password>";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelopePart3 = "</ns:password></ns:identification><ns:password>";
+	public final String valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelopePart4 = "</ns:password></ns:password_update_request></soapenv:Body></soapenv:Envelope>";
+    //************ PASSWORD SERVICE UPDATE WITH EMAIL AND PASSWORD OBJECTS ************//
+	
+    //************ PASSWORD SERVICE UPDATE WITH FINGERPRINT OBJECTS ************//
+	public final String valuePasswordServiceUpdateWithFingerprintEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/PasswordService";
+	public final String valuePasswordServiceUpdateWithFingerprintSoapAction = "http://services.bamnetworks.com/registration/password/update";
+	public final String valuePasswordServiceUpdateWithFingerprintID = "24295622";
+	public final String valuePasswordServiceUpdateWithFingerprintFingerprint = "S3o0NWFrY2RTaGFTRW91ZjkyK0dpKzRJbm1rPXwxMzU3OTQ4MDcxNjk0fGlwdD1lbWFpbC1wYXNzd29yZA==";
+	public final String valuePasswordServiceUpdateWithFingerprintUserNewPassword = "";
+	public final String valuePasswordServiceUpdateWithFingerprintSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account-name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:password_update_request><ns:identification type=\"fingerprint\"><ns:id>" + valuePasswordServiceUpdateWithFingerprintID + "</ns:id><ns:fingerprint>" + valuePasswordServiceUpdateWithFingerprintFingerprint + "</ns:fingerprint></ns:identification><ns:password>" + valuePasswordServiceUpdateWithFingerprintUserNewPassword + "</ns:password></ns:password_update_request></soapenv:Body></soapenv:Envelope>";
+	public final String valuePasswordServiceUpdateWithFingerprintSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account-name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:password_update_request><ns:identification type=\"fingerprint\"><ns:id>";
+	public final String valuePasswordServiceUpdateWithFingerprintSoapEnvelopePart2 = "</ns:id><ns:fingerprint>";
+	public final String valuePasswordServiceUpdateWithFingerprintSoapEnvelopePart3 = "</ns:fingerprint></ns:identification><ns:password>";
+	public final String valuePasswordServiceUpdateWithFingerprintSoapEnvelopePart4 = "</ns:password></ns:password_update_request></soapenv:Body></soapenv:Envelope>";
+    //************ PASSWORD SERVICE UPDATE WITH FINGERPRINT OBJECTS ************//
+	
+    //************ PASSWORD SERVICE RESET OBJECTS ************//
+	public final String valuePasswordServiceResetEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/PasswordService";
+	public final String valuePasswordServiceResetSoapAction = "http://services.bamnetworks.com/registration/password/reset";
+	public final String valuePasswordServiceResetUserEmail = "";
+	public final String valuePasswordServiceResetSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"partner-accont-name\" ns0:password=\"partner-account-password\" ns0:targetNamespaceId=\"1\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:password_reset_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valuePasswordServiceResetUserEmail + "</ns:address></ns:email></ns:identification></ns:password_reset_request></soapenv:Body></soapenv:Envelope>";
+	public final String valuePasswordServiceResetSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"partner-accont-name\" ns0:password=\"partner-account-password\" ns0:targetNamespaceId=\"1\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:password_reset_request><ns:identification type=\"email-password\"><ns:email><ns:address>";
+	public final String valuePasswordServiceResetSoapEnvelopePart2 = "</ns:address></ns:email></ns:identification></ns:password_reset_request></soapenv:Body></soapenv:Envelope>";
+    //************ PASSWORD SERVICE RESET OBJECTS ************//
+	
+    //************ PROFILE SERVICE FIND PROFILE OBJECTS ************//
+	public final String valueProfileServiceFindProfileEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/ProfileService";
+	public final String valueProfileServiceFindProfileSoapAction = "http://services.bamnetworks.com/registration/profile/find";
+	public final String valueProfileServiceFindProfileID = "15461828";
+	public final String valueProfileServiceFindProfileFingerprint = "hpy0yKgqrUOWdMEoA/408lvhI38=";
+	public final String valueProfileServiceFindProfileSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_find_request><ns:identification type=\"fingerprint\"><ns:id>" + valueProfileServiceFindProfileID + "</ns:id><ns:fingerprint>" + valueProfileServiceFindProfileFingerprint + "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueProfileServiceFindProfileSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_find_request><ns:identification type=\"fingerprint\"><ns:id>"; 
+	public final String valueProfileServiceFindProfileSoapEnvelopePart2 = "</ns:id><ns:fingerprint>";
+	public final String valueProfileServiceFindProfileSoapEnvelopePart3 = "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
+    //************ PROFILE SERVICE FIND PROFILE OBJECTS ************//
+	
+	
+	
+	//**********INCOMPLETE************//
+	//**********INCOMPLETE************//
+	//**********INCOMPLETE************//
+	
+    //************ PROFILE SERVICE FIND PROFILE REST JSON OBJECTS ************//
+	public final String valueProfileServiceFindProfileRestJSONEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/ProfileService";
+	public final String valueProfileServiceFindProfileRestJSONSoapAction = "https://qasecure.mlb.com/pubajaxws/bamrest/ProfileService/op-jsFind/v-1.5";
+	public final String valueProfileServiceFindProfileRestJSONID = "15461828";
+	public final String valueProfileServiceFindProfileRestJSONFingerprint = "hpy0yKgqrUOWdMEoA/408lvhI38=";
+	public final String valueProfileServiceFindProfileRestJSONSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_find_request><ns:identification type=\"fingerprint\"><ns:id>" + valueProfileServiceFindProfileID + "</ns:id><ns:fingerprint>" + valueProfileServiceFindProfileFingerprint + "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueProfileServiceFindProfileRestJSONSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_find_request><ns:identification type=\"fingerprint\"><ns:id>"; 
+	public final String valueProfileServiceFindProfileRestJSONSoapEnvelopePart2 = "</ns:id><ns:fingerprint>";
+	public final String valueProfileServiceFindProfileRestJSONSoapEnvelopePart3 = "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
+    //************ PROFILE SERVICE FIND PROFILE REST JSON OBJECTS ************//
+	
+    //************ PROFILE SERVICE FIND PROFILE REST MAI COOKIE OBJECTS ************//
+	public final String valueProfileServiceFindProfileRestMaiCookieEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/ProfileService";
+	public final String valueProfileServiceFindProfileRestMaiCookieSoapAction = "https://qasecure.mlb.com/pubajaxws/bamrest/ProfileService/op-jsFind/v-1.5";
+	public final String valueProfileServiceFindProfileRestMaiCookieID = "15461828";
+	public final String valueProfileServiceFindProfileRestMaiCookieFingerprint = "hpy0yKgqrUOWdMEoA/408lvhI38=";
+	public final String valueProfileServiceFindProfileRestMaiCookieSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_find_request><ns:identification type=\"fingerprint\"><ns:id>" + valueProfileServiceFindProfileID + "</ns:id><ns:fingerprint>" + valueProfileServiceFindProfileFingerprint + "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueProfileServiceFindProfileRestMaiCookieSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_find_request><ns:identification type=\"fingerprint\"><ns:id>"; 
+	public final String valueProfileServiceFindProfileRestMaiCookieSoapEnvelopePart2 = "</ns:id><ns:fingerprint>";
+	public final String valueProfileServiceFindProfileRestMaiCookieSoapEnvelopePart3 = "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
+    //************ PROFILE SERVICE FIND PROFILE REST MAI COOKIE OBJECTS ************//
+	
+    //************ PROFILE SERVICE SAVE PROFILE OBJECTS ************//
+	public final String valueProfileServiceSaveProfileEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/ProfileService";
+	public final String valueProfileServiceSaveProfileSoapAction = "https://qasecure.mlb.com/pubajaxws/bamrest/ProfileService/op-jsFind/v-1.5";
+	public final String valueProfileServiceSaveProfileUserEmail = "";
+	public final String valueProfileServiceSaveProfileUserPassword = "";
+	public final String valueProfileServiceSaveProfileNickname = "";
+	public final String valueProfileServiceSaveProfileFirstName = "";
+	public final String valueProfileServiceSaveProfileLastName = "";
+	public final String valueProfileServiceSaveProfileMiddleName = "";
+	public final String valueProfileServiceSaveProfileClubAffiliation = "";
+	public final String valueProfileServiceSaveProfileGameEventID1 = "";
+	public final String valueProfileServiceSaveProfileGameEventID2 = "";
+	public final String valueProfileServiceSaveProfileFavoriteTeam = "";
+	public final String valueProfileServiceSaveProfileFavoriteTeamReason = "";
+	public final String valueProfileServiceSaveProfileAboutMe = "";
+	public final String valueProfileServiceSaveProfileSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account-name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_save_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valueProfileServiceSaveProfileUserEmail + "</ns:address></ns:email><ns:password>" + valueProfileServiceSaveProfileUserPassword + "</ns:password></ns:identification><ns:profileProperty><ns:name>nickname</ns:name><ns:value>" + valueProfileServiceSaveProfileNickname + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>firstName</ns:name><ns:value>" + valueProfileServiceSaveProfileFirstName + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>lastName</ns:name><ns:value>" + valueProfileServiceSaveProfileLastName + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>middleName</ns:name><ns:value>" + valueProfileServiceSaveProfileMiddleName + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>clubAffiliation</ns:name><ns:value>" + valueProfileServiceSaveProfileClubAffiliation + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>gameEventId</ns:name><ns:value>" + valueProfileServiceSaveProfileGameEventID1 + "</ns:value><ns:value>" + valueProfileServiceSaveProfileGameEventID2 + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>favoriteTeam</ns:name><ns:value>" + valueProfileServiceSaveProfileFavoriteTeam + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>favoriteTeamReason</ns:name><ns:value>" + valueProfileServiceSaveProfileFavoriteTeamReason + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>aboutMe</ns:name><ns:value>" + valueProfileServiceSaveProfileAboutMe + "</ns:value></ns:profileProperty></ns:profile_save_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account-name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_save_request><ns:identification type=\"email-password\"><ns:email><ns:address>"; 
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart2 = "</ns:address></ns:email><ns:password>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart3 =  "</ns:password></ns:identification><ns:profileProperty><ns:name>nickname</ns:name><ns:value>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart4 =  "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>firstName</ns:name><ns:value>"; 
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart5 =  "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>lastName</ns:name><ns:value>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart6 =  "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>middleName</ns:name><ns:value>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart7 =  "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>clubAffiliation</ns:name><ns:value>"; 
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart8 =  "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>gameEventId</ns:name><ns:value>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart9 =  "</ns:value><ns:value>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart10 =  "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>favoriteTeam</ns:name><ns:value>"; 
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart11 =  "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>favoriteTeamReason</ns:name><ns:value>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart12 =  "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>aboutMe</ns:name><ns:value>";
+	public final String valueProfileServiceSaveProfileSoapEnvelopePart13 =  "</ns:value></ns:profileProperty></ns:profile_save_request></soapenv:Body></soapenv:Envelope>";
+    //************ PROFILE SERVICE SAVE PROFILE OBJECTS ************//
+	
+	//**********INCOMPLETE************//
+	//**********INCOMPLETE************//
+	//**********INCOMPLETE************//
+
+	//	@Test
 	public void accountManagementTest000TestFunction() throws UnsupportedEncodingException	{
 		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
 		HttpResult valueIdentityPointServiceCreateSoapResponse = (serviceCall.setIdentityPointServiceCreate(valueIdentityPointServiceCreateEndpointURL, valueIdentityPointServiceCreateSoapAction, valueIdentityPointServiceCreateSoapEnvelopePart1, valueIdentityPointServiceCreateSoapEnvelopePart2, valueIdentityPointServiceCreateSoapEnvelopePart3, valueIdentityPointServiceCreateNewUserEmail, valueIdentityPointServiceCreateNewUserPassword));
@@ -142,6 +275,69 @@ public class AcctMgmtPOC001 extends UITest {
 	public void accountManagementTest007IdentityPointServiceUnlink() throws UnsupportedEncodingException	{
 		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
 		HttpResult valueIdentityPointServiceUnlinkSoapResponse = (serviceCall.setIdentityPointServiceUnlink(valueIdentityPointServiceUnlinkEndpointURL, valueIdentityPointServiceUnlinkSoapAction, valueIdentityPointServiceUnlinkSoapEnvelope, valueIdentityPointServiceUnlinkID, valueIdentityPointServiceUnlinkID));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest008EmailServiceFindPrimaryEmail() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueEmailServiceFindPrimaryEmailSoapResponse = (serviceCall.setEmailServiceFindPrimaryEmail(valueEmailServiceFindPrimaryEmailEndpointURL, valueEmailServiceFindPrimaryEmailSoapAction, valueEmailServiceFindPrimaryEmailSoapEnvelopePart1, valueEmailServiceFindPrimaryEmailSoapEnvelopePart2, valueEmailServiceFindPrimaryEmailSoapEnvelopePart3, valueEmailServiceFindPrimaryEmailID, valueEmailServiceFindPrimaryEmailFingerprint));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest009EmailServiceUpdateEmail() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueEmailServiceUpdateEmailSoapResponse = (serviceCall.setEmailServiceUpdateEmail(valueEmailServiceUpdateEmailEndpointURL, valueEmailServiceUpdateEmailSoapAction, valueEmailServiceUpdateEmailSoapEnvelopePart1, valueEmailServiceUpdateEmailSoapEnvelopePart2, valueEmailServiceUpdateEmailSoapEnvelopePart3, valueEmailServiceUpdateEmailSoapEnvelopePart4, valueEmailServiceUpdateEmailUserEmail, valueEmailServiceUpdateEmailUserPassword, valueEmailServiceUpdateEmailUserNewEmail));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest010PasswordServiceUpdateWithEmailAndPassword() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valuePasswordServiceUpdateWithEmailAndPasswordSoapResponse = (serviceCall.setPasswordServiceUpdateWithEmailAndPassword(valuePasswordServiceUpdateWithEmailAndPasswordEndpointURL, valuePasswordServiceUpdateWithEmailAndPasswordSoapAction, valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelopePart1, valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelopePart2, valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelopePart3, valuePasswordServiceUpdateWithEmailAndPasswordSoapEnvelopePart4, valuePasswordServiceUpdateWithEmailAndPasswordUserEmail, valuePasswordServiceUpdateWithEmailAndPasswordUserOldPassword, valuePasswordServiceUpdateWithEmailAndPasswordUserNewPassword));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest011PasswordServiceUpdateWithFingerprint() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valuePasswordServiceUpdateWithFingerprintSoapResponse = (serviceCall.setPasswordServiceUpdateWithFingerprint(valuePasswordServiceUpdateWithFingerprintEndpointURL, valuePasswordServiceUpdateWithFingerprintSoapAction, valuePasswordServiceUpdateWithFingerprintSoapEnvelopePart1, valuePasswordServiceUpdateWithFingerprintSoapEnvelopePart2, valuePasswordServiceUpdateWithFingerprintSoapEnvelopePart3, valuePasswordServiceUpdateWithFingerprintSoapEnvelopePart4, valuePasswordServiceUpdateWithFingerprintID, valuePasswordServiceUpdateWithFingerprintFingerprint, valuePasswordServiceUpdateWithFingerprintUserNewPassword));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest012PasswordServiceReset() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valuePasswordServiceResetSoapResponse = (serviceCall.setPasswordServiceReset(valuePasswordServiceResetEndpointURL, valuePasswordServiceResetSoapAction, valuePasswordServiceResetSoapEnvelopePart1, valuePasswordServiceResetSoapEnvelopePart2, valuePasswordServiceResetUserEmail));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest013ProfileServiceFindProfile() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueProfileServiceFindProfileSoapResponse = (serviceCall.setProfileServiceFindProfile(valueProfileServiceFindProfileEndpointURL, valueProfileServiceFindProfileSoapAction, valueProfileServiceFindProfileSoapEnvelopePart1, valueProfileServiceFindProfileSoapEnvelopePart2, valueProfileServiceFindProfileSoapEnvelopePart3, valueProfileServiceFindProfileID, valueProfileServiceFindProfileFingerprint));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest014ProfileServiceFindProfileRestJSON() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueProfileServiceFindProfileRestJSONSoapResponse = (serviceCall.setProfileServiceFindProfileRestJSON(valueProfileServiceFindProfileRestJSONEndpointURL, valueProfileServiceFindProfileRestJSONSoapAction, valueProfileServiceFindProfileRestJSONSoapEnvelopePart1, valueProfileServiceFindProfileRestJSONSoapEnvelopePart2, valueProfileServiceFindProfileRestJSONSoapEnvelopePart3, valueProfileServiceFindProfileRestJSONID, valueProfileServiceFindProfileRestJSONFingerprint));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest015ProfileServiceFindProfileRestMaiCookie() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueProfileServiceFindProfileRestMaiCookieSoapResponse = (serviceCall.setProfileServiceFindProfileRestMaiCookie(valueProfileServiceFindProfileRestMaiCookieEndpointURL, valueProfileServiceFindProfileRestMaiCookieSoapAction, valueProfileServiceFindProfileRestMaiCookieSoapEnvelopePart1, valueProfileServiceFindProfileRestMaiCookieSoapEnvelopePart2, valueProfileServiceFindProfileRestMaiCookieSoapEnvelopePart3, valueProfileServiceFindProfileRestMaiCookieID, valueProfileServiceFindProfileRestMaiCookieFingerprint));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest016ProfileServiceSaveProfile() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueProfileServiceSaveProfileSoapResponse = (serviceCall.setProfileServiceSaveProfile(valueProfileServiceSaveProfileEndpointURL, valueProfileServiceSaveProfileSoapAction, valueProfileServiceSaveProfileSoapEnvelopePart1, valueProfileServiceSaveProfileUserEmail, valueProfileServiceSaveProfileSoapEnvelopePart2, valueProfileServiceSaveProfileUserPassword, valueProfileServiceSaveProfileSoapEnvelopePart3, valueProfileServiceSaveProfileNickname, valueProfileServiceSaveProfileSoapEnvelopePart4, valueProfileServiceSaveProfileFirstName, valueProfileServiceSaveProfileSoapEnvelopePart5, valueProfileServiceSaveProfileLastName, valueProfileServiceSaveProfileSoapEnvelopePart6, valueProfileServiceSaveProfileMiddleName, valueProfileServiceSaveProfileSoapEnvelopePart7, valueProfileServiceSaveProfileClubAffiliation, valueProfileServiceSaveProfileSoapEnvelopePart8, valueProfileServiceSaveProfileGameEventID1, valueProfileServiceSaveProfileSoapEnvelopePart9, valueProfileServiceSaveProfileGameEventID2, valueProfileServiceSaveProfileSoapEnvelopePart10, valueProfileServiceSaveProfileFavoriteTeam, valueProfileServiceSaveProfileSoapEnvelopePart11, valueProfileServiceSaveProfileFavoriteTeamReason, valueProfileServiceSaveProfileSoapEnvelopePart12, valueProfileServiceSaveProfileAboutMe, valueProfileServiceSaveProfileSoapEnvelopePart13));
 		return;
 	}	
 
