@@ -41,10 +41,10 @@ public class AcctMgmtPOC001 extends UITest {
     //************ IDENTITY SERVICE POINT IDENTIFY OBJECTS ************//
 	public final String valueIdentityPointServiceIdentifyEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/IdentityPointService";
 	public final String valueIdentityPointServiceIdentifySoapAction = "http://services.bamnetworks.com/registration/identityPoint/identify";
-//	public final String valueIdentityPointServiceIdentifyNewUserEmail = valueIdentityPointServiceCreateNewUserEmail;
-//	public final String valueIdentityPointServiceIdentifyNewUserPassword = valueIdentityPointServiceCreateNewUserPassword;
-	public final String valueIdentityPointServiceIdentifyNewUserEmail = "snehal.chudgar@mlb.com";
-	public final String valueIdentityPointServiceIdentifyNewUserPassword = "--------";
+	public final String valueIdentityPointServiceIdentifyNewUserEmail = valueIdentityPointServiceCreateNewUserEmail;
+	public final String valueIdentityPointServiceIdentifyNewUserPassword = valueIdentityPointServiceCreateNewUserPassword;
+//	public final String valueIdentityPointServiceIdentifyNewUserEmail = "snehal.chudgar@mlb.com";
+//	public final String valueIdentityPointServiceIdentifyNewUserPassword = "--------";
 //	public final String valueIdentityPointServiceIdentifySoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"account-name\"  ns0:password=\"password\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:identityPoint_identify_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valueIdentityPointServiceIdentifyNewUserEmail + "</ns:address></ns:email><ns:password>" + valueIdentityPointServiceIdentifyNewUserPassword + "</ns:password></ns:identification></ns:identityPoint_identify_request></soapenv:Body></soapenv:Envelope>";
 	public final String valueIdentityPointServiceIdentifySoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header/><soapenv:Body><ns:identityPoint_identify_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valueIdentityPointServiceIdentifyNewUserEmail + "</ns:address></ns:email><ns:password>" + valueIdentityPointServiceIdentifyNewUserPassword + "</ns:password></ns:identification></ns:identityPoint_identify_request></soapenv:Body></soapenv:Envelope>";
     //************ IDENTITY SERVICE POINT IDENTIFY OBJECTS ************//
@@ -181,21 +181,25 @@ public class AcctMgmtPOC001 extends UITest {
 	public final String valueProfileServiceFindProfileRestMaiCookieSoapEnvelopePart3 = "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
     //************ PROFILE SERVICE FIND PROFILE REST MAI COOKIE OBJECTS ************//
 	
+	//**********INCOMPLETE************//
+	//**********INCOMPLETE************//
+	//**********INCOMPLETE************//
+
     //************ PROFILE SERVICE SAVE PROFILE OBJECTS ************//
 	public final String valueProfileServiceSaveProfileEndpointURL = "https://qasecure.mlb.com/pubajaxws/services/ProfileService";
 	public final String valueProfileServiceSaveProfileSoapAction = "https://qasecure.mlb.com/pubajaxws/bamrest/ProfileService/op-jsFind/v-1.5";
-	public final String valueProfileServiceSaveProfileUserEmail = "";
-	public final String valueProfileServiceSaveProfileUserPassword = "";
-	public final String valueProfileServiceSaveProfileNickname = "";
-	public final String valueProfileServiceSaveProfileFirstName = "";
-	public final String valueProfileServiceSaveProfileLastName = "";
-	public final String valueProfileServiceSaveProfileMiddleName = "";
-	public final String valueProfileServiceSaveProfileClubAffiliation = "";
-	public final String valueProfileServiceSaveProfileGameEventID1 = "";
-	public final String valueProfileServiceSaveProfileGameEventID2 = "";
-	public final String valueProfileServiceSaveProfileFavoriteTeam = "";
-	public final String valueProfileServiceSaveProfileFavoriteTeamReason = "";
-	public final String valueProfileServiceSaveProfileAboutMe = "";
+	public final String valueProfileServiceSaveProfileUserEmail = valueIdentityPointServiceCreateNewUserEmail;
+	public final String valueProfileServiceSaveProfileUserPassword = "valueIdentityPointServiceCreateNewUserPassword";
+	public final String valueProfileServiceSaveProfileNickname = "Nickey Namey";
+	public final String valueProfileServiceSaveProfileFirstName = "First";
+	public final String valueProfileServiceSaveProfileLastName = "Last";
+	public final String valueProfileServiceSaveProfileMiddleName = "Middle";
+	public final String valueProfileServiceSaveProfileClubAffiliation = "New York Yankee Lovers Association";
+	public final String valueProfileServiceSaveProfileGameEventID1 = "nyy_vs_nym";
+	public final String valueProfileServiceSaveProfileGameEventID2 = "nyy_vs_phi";
+	public final String valueProfileServiceSaveProfileFavoriteTeam = "121";
+	public final String valueProfileServiceSaveProfileFavoriteTeamReason = "Because They Got Bo, and Bo Knows!@#$";
+	public final String valueProfileServiceSaveProfileAboutMe = "I am the best baseball fan in America!";
 	public final String valueProfileServiceSaveProfileSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account-name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_save_request><ns:identification type=\"email-password\"><ns:email><ns:address>" + valueProfileServiceSaveProfileUserEmail + "</ns:address></ns:email><ns:password>" + valueProfileServiceSaveProfileUserPassword + "</ns:password></ns:identification><ns:profileProperty><ns:name>nickname</ns:name><ns:value>" + valueProfileServiceSaveProfileNickname + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>firstName</ns:name><ns:value>" + valueProfileServiceSaveProfileFirstName + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>lastName</ns:name><ns:value>" + valueProfileServiceSaveProfileLastName + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>middleName</ns:name><ns:value>" + valueProfileServiceSaveProfileMiddleName + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>clubAffiliation</ns:name><ns:value>" + valueProfileServiceSaveProfileClubAffiliation + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>gameEventId</ns:name><ns:value>" + valueProfileServiceSaveProfileGameEventID1 + "</ns:value><ns:value>" + valueProfileServiceSaveProfileGameEventID2 + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>favoriteTeam</ns:name><ns:value>" + valueProfileServiceSaveProfileFavoriteTeam + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>favoriteTeamReason</ns:name><ns:value>" + valueProfileServiceSaveProfileFavoriteTeamReason + "</ns:value></ns:profileProperty><ns:profileProperty><ns:name>aboutMe</ns:name><ns:value>" + valueProfileServiceSaveProfileAboutMe + "</ns:value></ns:profileProperty></ns:profile_save_request></soapenv:Body></soapenv:Envelope>";
 	public final String valueProfileServiceSaveProfileSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account-name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_save_request><ns:identification type=\"email-password\"><ns:email><ns:address>"; 
 	public final String valueProfileServiceSaveProfileSoapEnvelopePart2 = "</ns:address></ns:email><ns:password>";
@@ -212,11 +216,42 @@ public class AcctMgmtPOC001 extends UITest {
 	public final String valueProfileServiceSaveProfileSoapEnvelopePart13 =  "</ns:value></ns:profileProperty></ns:profile_save_request></soapenv:Body></soapenv:Envelope>";
     //************ PROFILE SERVICE SAVE PROFILE OBJECTS ************//
 	
-	//**********INCOMPLETE************//
-	//**********INCOMPLETE************//
-	//**********INCOMPLETE************//
-
-	//	@Test
+    //************ CREDIT CARD SERVICE FIND PRIMARY OBJECTS ************//
+	public final String valueCreditCardServiceFindPrimaryEndpointURL = "https://secure.mlb.com/pubajaxws/services/CreditCardService";
+	public final String valueCreditCardServiceFindPrimarySoapAction = "http://services.bamnetworks.com/registration/creditCard/findPrimary/";
+	public final String valueCreditCardServiceFindPrimaryID = "14386700";
+	public final String valueCreditCardServiceFindPrimaryFingerprint = "dC22RV5OzBXrcaA0wAm1HEwOGRE=";
+	public final String valueCreditCardServiceFindPrimarySoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:creditCard_findPrimary_request><ns:identification type=\"fingerprint\"><ns:id>" + valueCreditCardServiceFindPrimaryID + "</ns:id><ns:fingerprint>" + valueCreditCardServiceFindPrimaryFingerprint + "</ns:fingerprint></ns:identification></ns:creditCard_findPrimary_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueCreditCardServiceFindPrimarySoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials  ns0:name=\"<account name>\"  ns0:password=\"<password>\"  ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:creditCard_findPrimary_request><ns:identification type=\"fingerprint\"><ns:id>"; 
+	public final String valueCreditCardServiceFindPrimarySoapEnvelopePart2 = "</ns:id><ns:fingerprint>";
+	public final String valueCreditCardServiceFindPrimarySoapEnvelopePart3 = "</ns:fingerprint></ns:identification></ns:creditCard_findPrimary_request></soapenv:Body></soapenv:Envelope>";
+    //************ CREDIT CARD SERVICE FIND PRIMARY OBJECTS ************//
+	
+    //************ CREDIT CARD SERVICE SET PRIMARY OBJECTS ************//
+	public final String valueCreditCardServiceSetPrimaryEndpointURL = "https://secure.mlb.com/pubajaxws/services/CreditCardService";
+	public final String valueCreditCardServiceSetPrimarySoapAction = "http://services.bamnetworks.com/registration/creditCard/setPrimary/";
+	public final String valueCreditCardServiceSetPrimaryID = "24295632";
+	public final String valueCreditCardServiceSetPrimaryFingerprint = "ZEE0RStidW0vbi9NR0xtWmpzVTFoSEdGd0w4PXwxMzU3OTQ4ODE2NjcwfGlwdD1lbWFpbC1wYXNzd29yZA==";
+	public final String valueCreditCardServiceSetPrimaryCardID = "8888";
+	public final String valueCreditCardServiceSetPrimarySoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:creditCard_setPrimary_request><ns:identification type=\"fingerprint\"><ns:id>" + valueCreditCardServiceSetPrimaryID + "</ns:id><ns:fingerprint>" + valueCreditCardServiceSetPrimaryFingerprint + "</ns:fingerprint></ns:identification><ns:creditCardId>" + valueCreditCardServiceSetPrimaryCardID + "</ns:creditCardId></ns:creditCard_setPrimary_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueCreditCardServiceSetPrimarySoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:creditCard_setPrimary_request><ns:identification type=\"fingerprint\"><ns:id>"; 
+	public final String valueCreditCardServiceSetPrimarySoapEnvelopePart2 =  "</ns:id><ns:fingerprint>";
+	public final String valueCreditCardServiceSetPrimarySoapEnvelopePart3 =  "</ns:fingerprint></ns:identification><ns:creditCardId>";
+	public final String valueCreditCardServiceSetPrimarySoapEnvelopePart4 =  "</ns:creditCardId></ns:creditCard_setPrimary_request></soapenv:Body></soapenv:Envelope>";
+    //************ CREDIT CARD SERVICE SET PRIMARY OBJECTS ************//
+	   
+    //************ WALLET SERVICE FIND ALL OBJECTS ************//
+	public final String valueWalletServiceFindAllEndpointURL = "https://secure.mlb.com/pubajaxws/services/WalletService";
+	public final String valueWalletServiceFindAllSoapAction = "http://services.bamnetworks.com/registration/wallet/findAll";
+	public final String valueWalletServiceFindAllID = "15461828";
+	public final String valueWalletServiceFindAllFingerprint = "hpy0yKgqrUOWdMEoA/408lvhI38=";
+	public final String valueWalletServiceFindAllSoapEnvelope = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_find_request><ns:identification type=\"fingerprint\"><ns:id>" + valueWalletServiceFindAllID + "</ns:id><ns:fingerprint>" + valueWalletServiceFindAllFingerprint + "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
+	public final String valueWalletServiceFindAllSoapEnvelopePart1 = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns=\"http://services.bamnetworks.com/registration/types/1.7\"><soapenv:Header><ns0:appCredentials ns0:name=\"<account name>\" ns0:password=\"<password>\" ns0:targetAccountName=\"mlb\" xmlns:ns0=\"http://services.bamnetworks.com/application/types/1.0\"/></soapenv:Header><soapenv:Body><ns:profile_find_request><ns:identification type=\"fingerprint\"><ns:id>";
+	public final String valueWalletServiceFindAllSoapEnvelopePart2 = "</ns:id><ns:fingerprint>";
+	public final String valueWalletServiceFindAllSoapEnvelopePart3 = "</ns:fingerprint></ns:identification></ns:profile_find_request></soapenv:Body></soapenv:Envelope>";
+    //************ WALLET SERVICE FIND ALL OBJECTS ************//
+	 
+	 //	@Test
 	public void accountManagementTest000TestFunction() throws UnsupportedEncodingException	{
 		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
 		HttpResult valueIdentityPointServiceCreateSoapResponse = (serviceCall.setIdentityPointServiceCreate(valueIdentityPointServiceCreateEndpointURL, valueIdentityPointServiceCreateSoapAction, valueIdentityPointServiceCreateSoapEnvelopePart1, valueIdentityPointServiceCreateSoapEnvelopePart2, valueIdentityPointServiceCreateSoapEnvelopePart3, valueIdentityPointServiceCreateNewUserEmail, valueIdentityPointServiceCreateNewUserPassword));
@@ -337,7 +372,28 @@ public class AcctMgmtPOC001 extends UITest {
 //	@Test
 	public void accountManagementTest016ProfileServiceSaveProfile() throws UnsupportedEncodingException	{
 		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
-		HttpResult valueProfileServiceSaveProfileSoapResponse = (serviceCall.setProfileServiceSaveProfile(valueProfileServiceSaveProfileEndpointURL, valueProfileServiceSaveProfileSoapAction, valueProfileServiceSaveProfileSoapEnvelopePart1, valueProfileServiceSaveProfileUserEmail, valueProfileServiceSaveProfileSoapEnvelopePart2, valueProfileServiceSaveProfileUserPassword, valueProfileServiceSaveProfileSoapEnvelopePart3, valueProfileServiceSaveProfileNickname, valueProfileServiceSaveProfileSoapEnvelopePart4, valueProfileServiceSaveProfileFirstName, valueProfileServiceSaveProfileSoapEnvelopePart5, valueProfileServiceSaveProfileLastName, valueProfileServiceSaveProfileSoapEnvelopePart6, valueProfileServiceSaveProfileMiddleName, valueProfileServiceSaveProfileSoapEnvelopePart7, valueProfileServiceSaveProfileClubAffiliation, valueProfileServiceSaveProfileSoapEnvelopePart8, valueProfileServiceSaveProfileGameEventID1, valueProfileServiceSaveProfileSoapEnvelopePart9, valueProfileServiceSaveProfileGameEventID2, valueProfileServiceSaveProfileSoapEnvelopePart10, valueProfileServiceSaveProfileFavoriteTeam, valueProfileServiceSaveProfileSoapEnvelopePart11, valueProfileServiceSaveProfileFavoriteTeamReason, valueProfileServiceSaveProfileSoapEnvelopePart12, valueProfileServiceSaveProfileAboutMe, valueProfileServiceSaveProfileSoapEnvelopePart13));
+		HttpResult valueProfileServiceSaveProfileSoapResponse = (serviceCall.setProfileServiceSaveProfile(valueProfileServiceSaveProfileEndpointURL, valueProfileServiceSaveProfileSoapAction, valueProfileServiceSaveProfileSoapEnvelopePart1, valueProfileServiceSaveProfileSoapEnvelopePart2, valueProfileServiceSaveProfileSoapEnvelopePart3, valueProfileServiceSaveProfileSoapEnvelopePart4, valueProfileServiceSaveProfileSoapEnvelopePart5, valueProfileServiceSaveProfileSoapEnvelopePart6, valueProfileServiceSaveProfileSoapEnvelopePart7, valueProfileServiceSaveProfileSoapEnvelopePart8, valueProfileServiceSaveProfileSoapEnvelopePart9, valueProfileServiceSaveProfileSoapEnvelopePart10, valueProfileServiceSaveProfileSoapEnvelopePart11, valueProfileServiceSaveProfileSoapEnvelopePart12, valueProfileServiceSaveProfileSoapEnvelopePart13, valueProfileServiceSaveProfileUserEmail, valueProfileServiceSaveProfileUserPassword, valueProfileServiceSaveProfileNickname, valueProfileServiceSaveProfileFirstName, valueProfileServiceSaveProfileLastName, valueProfileServiceSaveProfileMiddleName, valueProfileServiceSaveProfileClubAffiliation, valueProfileServiceSaveProfileGameEventID1, valueProfileServiceSaveProfileGameEventID2, valueProfileServiceSaveProfileFavoriteTeam, valueProfileServiceSaveProfileFavoriteTeamReason, valueProfileServiceSaveProfileAboutMe));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest017CreditCardServiceFindPrimary() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueCreditCardServiceFindPrimarySoapResponse = (serviceCall.setCreditCardServiceFindPrimary(valueCreditCardServiceFindPrimaryEndpointURL, valueCreditCardServiceFindPrimarySoapAction, valueCreditCardServiceFindPrimarySoapEnvelopePart1, valueCreditCardServiceFindPrimarySoapEnvelopePart2, valueCreditCardServiceFindPrimarySoapEnvelopePart3, valueCreditCardServiceFindPrimaryID, valueCreditCardServiceFindPrimaryFingerprint));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest018CreditCardServiceSetPrimary() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueCreditCardServiceSetPrimarySoapResponse = (serviceCall.setCreditCardServiceSetPrimary(valueCreditCardServiceSetPrimaryEndpointURL, valueCreditCardServiceSetPrimarySoapAction, valueCreditCardServiceSetPrimarySoapEnvelopePart1, valueCreditCardServiceSetPrimarySoapEnvelopePart2, valueCreditCardServiceSetPrimarySoapEnvelopePart3, valueCreditCardServiceSetPrimarySoapEnvelopePart4, valueCreditCardServiceSetPrimaryID, valueCreditCardServiceSetPrimaryFingerprint, valueCreditCardServiceSetPrimaryCardID));
+		return;
+	}	
+
+//	@Test
+	public void accountManagementTest019WalletServiceFindAll() throws UnsupportedEncodingException	{
+		AcctMgmtHttpServiceTest001 serviceCall = new AcctMgmtHttpServiceTest001();
+		HttpResult valueWalletServiceFindAllSoapResponse = (serviceCall.setWalletServiceFindAll(valueWalletServiceFindAllEndpointURL, valueWalletServiceFindAllSoapAction, valueWalletServiceFindAllSoapEnvelopePart1, valueWalletServiceFindAllSoapEnvelopePart2, valueWalletServiceFindAllSoapEnvelopePart3, valueWalletServiceFindAllID, valueWalletServiceFindAllFingerprint));
 		return;
 	}	
 

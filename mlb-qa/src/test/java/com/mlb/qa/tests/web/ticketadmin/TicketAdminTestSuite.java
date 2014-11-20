@@ -4,6 +4,8 @@ import com.mlb.qa.gui.pages.ticketadmin.TicketAdmin_HomePage;
 import com.qaprosoft.carina.core.foundation.UITest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.apache.commons.codec.binary.Base64;
+
 
 public class TicketAdminTestSuite extends UITest {
 
@@ -16,7 +18,9 @@ public class TicketAdminTestSuite extends UITest {
     private static final String mainURL = "https://bamutil.qa.mlb.com/ticketing-admin/login.jsp";
     public static String mainURL2 = "https://bamutil.qa.mlb.com/ticketing-admin/login.jsp";
     private static final String loginUser = "schudgar";
-    private static final String loginPassword = "ud3ofrV.";
+    private static final String loginPasswordEncrypted = "dWQzb2ZyVi4=";
+    private static byte[] decryptedPasswordBytes = Base64.decodeBase64(loginPasswordEncrypted);
+    private static final String loginPassword = new String(decryptedPasswordBytes);
     //************ LOGIN OBJECTS ************//
 
     private TicketAdmin_HomePage basePart(){

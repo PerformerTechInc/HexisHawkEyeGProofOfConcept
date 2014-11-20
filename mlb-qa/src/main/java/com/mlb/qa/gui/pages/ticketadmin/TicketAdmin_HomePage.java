@@ -198,6 +198,5 @@ public class TicketAdmin_HomePage extends AbstractPage {
             Assert.assertTrue("Home Page Header Banner Is Not Found! Login Operation Is Not Successful!", isElementPresent(bannerTicketingAdminHomePageQA, 60));
         }
     }
-
  
 }
